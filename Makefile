@@ -1,7 +1,7 @@
 #
-# Makefile for utility programs. Depends on Mini-XML, available at:
+# Makefile for IANA IPP registry tools. Depends on Mini-XML, available at:
 #
-#   http://www.msweet.org/projects.php/minixml
+#   http://www.msweet.org/projects.php/mini-xml
 #
 
 all:	register regtostrings

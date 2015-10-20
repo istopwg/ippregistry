@@ -23,7 +23,7 @@ The "apply-pending.sh" script applies one or more plain text registrations to a 
 
 If omitted, the script will use all .txt files starting with "pwg51" or "vendor-".
 
-The source XML file should be the current IANA IPP registration file at: (http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml) and must be named "base-registrations.xml".
+The source XML file should be the current IANA IPP registration file at: [http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml](http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml) and must be named "base-registrations.xml".
 
 The destination XML file is named "ipp-registrations.xml" and may be uploaded to the PWG FTP server or submitted to IANA.
 
@@ -40,7 +40,7 @@ The following options are understood:
 - "-t title" - specifies the title of the reference for the registration
 - "-x url" - specifies the URL of the reference for the registration
 
-The source XML file should be the current IANA IPP registration file at: (http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).
+The source XML file should be the current IANA IPP registration file at: [http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml](http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).
 
 The template file is a plain text registration of attributes, values, status codes, operations, etc. as documented in [RFC 2911](http://tools.ietf.org/html/rfc2911).
 
