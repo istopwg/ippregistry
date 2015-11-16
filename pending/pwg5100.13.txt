@@ -1,9 +1,12 @@
 http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf
 
-Printer Description attributes:	Reference
+Printer Status attributes:	Reference
 ------------------------------	---------
 printer-config-change-date-time (dateTime)	[PWG5100.13]
 printer-config-change-time (integer(1:MAX))	[PWG5100.13]
+
+Printer Description attributes:	Reference
+------------------------------	---------
 printer-input-tray (1setOf octetString)	[PWG5100.13]
 printer-output-tray (1setOf octetString) [PWG5100.13]
 printer-strings-languages-supported (1setOf naturalLanguage)	[PWG5100.13]
