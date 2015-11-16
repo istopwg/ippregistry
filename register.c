@@ -18,6 +18,7 @@
  */
 
 #include <mxml.h>
+#include <time.h>
 #include <limits.h>
 #include <ctype.h>
 
@@ -313,6 +314,20 @@ main(int  argc,				/* I - Number of command-line args */
 
   if (changed)
   {
+    mxml_node_t	*updated = mxmlFindElement(xml, xml, "updated", NULL, NULL, MXML_DESCEND);
+
+    if (updated)
+    {
+      time_t curtime = time(NULL);	/* Current time in seconds */
+      struct tm *curdate = gmtime(&curtime);
+					/* Current date in UTC */
+      char datestr[64];			/* Date string YYYY-MM-DD */
+
+      strftime(datestr, sizeof(datestr), "%Y-%m-%d", curdate);
+
+      mxmlSetOpaque(updated, datestr);
+    }
+
     if (xmlin == xmlout)
     {
       snprintf(xmlbackup, sizeof(xmlbackup), "%s.O", xmlin);

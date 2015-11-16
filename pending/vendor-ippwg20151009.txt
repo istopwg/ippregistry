@@ -1,0 +1,15 @@
+http://www.pwg.org/pipermail/ipp/2015/018621.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value                       Reference
+  -----------------------                       ---------
+job-password-encryption (type2 keyword)		[PWG5100.11]
+  sha2-512_224
+  sha3-224
+  sha3-256
+  sha3-384
+  sha3-512
+  sha3-512_224
+  sha3-512_256
+  shake-128
+  shake-256

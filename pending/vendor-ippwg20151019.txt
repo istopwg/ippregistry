@@ -1,0 +1,11 @@
+http://www.pwg.org/archives/ipp/2015/018629.html
+
+Printer Description attributes:					Reference
+------------------------------					---------
+pdl-override-guaranteed-supported (1setOf type2 keyword)	[IPPWG20151019]
+
+Attributes (attribute syntax)
+ Keyword Attribute Value					Reference
+ -----------------------					---------
+pdl-override-guaranteed-supported (1setOf type2 keyword)	[IPPWG20151019]
+ < any Job Template attribute >				[IPPWG20151019]

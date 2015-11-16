@@ -1,0 +1,11 @@
+http://www.pwg.org/archives/ipp/2014/018054.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value                       Reference
+  -----------------------                       ---------
+job-password-encryption (type2 keyword)		[PWG5100.11]
+  sha2-224
+  sha2-256
+  sha2-384
+  sha2-512
+  sha2-512_256
