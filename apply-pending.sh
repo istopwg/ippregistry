@@ -3,12 +3,12 @@ src="iana-ipp-registrations.xml"
 dst="-o ipp-registrations.xml"
 
 echo Fetching IANA source registry...
-curl http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml >$src
+curl -z $src -o $src http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
 
 if test $# -gt 0; then
 	files="$@"
 else
-	files=`ls -1 pending/pwg51*.txt pending/vendor-*.txt`
+	files=`ls -1 pending/*.txt`
 fi
 
 echo Applying pending registrations:
