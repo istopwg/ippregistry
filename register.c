@@ -1849,7 +1849,13 @@ validate_registry(
   mxml_node_t	*registry_node,		/* <registry> node */
 		*record_node,		/* Current <record> node */
 		*key_node,		/* Current key node */
-		*last_node;		/* Last node in sequence */
+		*last_node,		/* Last node in sequence */
+		*range_node,		/* <range> node */
+		*value_node,		/* <value> node */
+		*syntax_node;		/* <syntax> node */
+  const char	*value,			/* Value string */
+		*syntax;		/* Syntax string */
+  char		*type3;			/* Pointer to a "type3" definition */
 
 
  /*
@@ -1862,6 +1868,46 @@ validate_registry(
     fprintf(stderr, "register: Unable to find registry '%s' (%s) in XML file.\n",
             registry, regname);
     exit(1);
+  }
+
+ /*
+  * Scan for "type3" registration rules...
+  */
+
+  for (range_node = mxmlFindElement(registry_node, registry_node, "range", NULL, NULL, MXML_DESCEND);
+       range_node;
+       range_node = mxmlFindElement(range_node, registry_node, "range", NULL, NULL, MXML_DESCEND))
+  {
+    value_node = mxmlFindElement(range_node, range_node, "value", NULL, NULL, MXML_DESCEND);
+    value      = mxmlGetOpaque(value_node);
+
+    if (value && !strcmp(value, "type3"))
+    {
+      fputs("Removing type3 registration rule.\n", stderr);
+      mxmlDelete(range_node);
+      range_node = registry_node;
+      changed = 1;
+    }
+  }
+
+ /*
+  * Scan for "type3" registration syntaxes...
+  */
+
+  for (syntax_node = mxmlFindElement(registry_node, registry_node, "syntax", NULL, NULL, MXML_DESCEND);
+       syntax_node;
+       syntax_node = mxmlFindElement(syntax_node, registry_node, "syntax", NULL, NULL, MXML_DESCEND))
+  {
+    syntax = mxmlGetOpaque(syntax_node);
+    while (syntax && (type3 = strstr(syntax, "type3")) != NULL)
+    {
+     /*
+      * Change type3 to type2...
+      */
+
+      type3[4] = '2';
+      changed  = 1;
+    }
   }
 
  /*
