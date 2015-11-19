@@ -7,7 +7,7 @@ printer-config-change-time (integer(1:MAX))	[PWG5100.13]
 
 Printer Description attributes:	Reference
 ------------------------------	---------
-printer-input-tray (1setOf octetString)	[PWG5100.13]
-printer-output-tray (1setOf octetString) [PWG5100.13]
+printer-input-tray (1setOf octetString(MAX))	[PWG5100.13]
+printer-output-tray (1setOf octetString(MAX)) [PWG5100.13]
 printer-strings-languages-supported (1setOf naturalLanguage)	[PWG5100.13]
 printer-strings-uri (uri | no-value)	[PWG5100.13]
