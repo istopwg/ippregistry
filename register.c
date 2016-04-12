@@ -1,6 +1,4 @@
 /*
- * "register.c"
- *
  * Program to add registration info to the IANA IPP registry.
  *
  * Usage:
@@ -15,9 +13,30 @@
  *    -o newfile.xml		New XML file (instead of replacing filename.xml)
  *    -t "Standard Title"	Title of standard
  *    -x "Standard URL"		URL for standard (or rfcNNNN)
+ *
+ * Copyright (c) 2008-2016 by Michael R Sweet
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 #include <mxml.h>
+#include <time.h>
 #include <limits.h>
 #include <ctype.h>
 
@@ -313,6 +332,20 @@ main(int  argc,				/* I - Number of command-line args */
 
   if (changed)
   {
+    mxml_node_t	*updated = mxmlFindElement(xml, xml, "updated", NULL, NULL, MXML_DESCEND);
+
+    if (updated)
+    {
+      time_t curtime = time(NULL);	/* Current time in seconds */
+      struct tm *curdate = gmtime(&curtime);
+					/* Current date in UTC */
+      char datestr[64];			/* Date string YYYY-MM-DD */
+
+      strftime(datestr, sizeof(datestr), "%Y-%m-%d", curdate);
+
+      mxmlSetOpaque(updated, datestr);
+    }
+
     if (xmlin == xmlout)
     {
       snprintf(xmlbackup, sizeof(xmlbackup), "%s.O", xmlin);
@@ -1834,7 +1867,13 @@ validate_registry(
   mxml_node_t	*registry_node,		/* <registry> node */
 		*record_node,		/* Current <record> node */
 		*key_node,		/* Current key node */
-		*last_node;		/* Last node in sequence */
+		*last_node,		/* Last node in sequence */
+		*range_node,		/* <range> node */
+		*value_node,		/* <value> node */
+		*syntax_node;		/* <syntax> node */
+  const char	*value,			/* Value string */
+		*syntax;		/* Syntax string */
+  char		*type3;			/* Pointer to a "type3" definition */
 
 
  /*
@@ -1847,6 +1886,46 @@ validate_registry(
     fprintf(stderr, "register: Unable to find registry '%s' (%s) in XML file.\n",
             registry, regname);
     exit(1);
+  }
+
+ /*
+  * Scan for "type3" registration rules...
+  */
+
+  for (range_node = mxmlFindElement(registry_node, registry_node, "range", NULL, NULL, MXML_DESCEND);
+       range_node;
+       range_node = mxmlFindElement(range_node, registry_node, "range", NULL, NULL, MXML_DESCEND))
+  {
+    value_node = mxmlFindElement(range_node, range_node, "value", NULL, NULL, MXML_DESCEND);
+    value      = mxmlGetOpaque(value_node);
+
+    if (value && !strcmp(value, "type3"))
+    {
+      fputs("Removing type3 registration rule.\n", stderr);
+      mxmlDelete(range_node);
+      range_node = registry_node;
+      changed = 1;
+    }
+  }
+
+ /*
+  * Scan for "type3" registration syntaxes...
+  */
+
+  for (syntax_node = mxmlFindElement(registry_node, registry_node, "syntax", NULL, NULL, MXML_DESCEND);
+       syntax_node;
+       syntax_node = mxmlFindElement(syntax_node, registry_node, "syntax", NULL, NULL, MXML_DESCEND))
+  {
+    syntax = mxmlGetOpaque(syntax_node);
+    while (syntax && (type3 = strstr(syntax, "type3")) != NULL)
+    {
+     /*
+      * Change type3 to type2...
+      */
+
+      type3[4] = '2';
+      changed  = 1;
+    }
   }
 
  /*
@@ -1984,8 +2063,3 @@ xref_name(const char *xref,		/* I - URL or "rfcNNNN" reference */
 
   return (name);
 }
-
-
-/*
- * End of "register.c".
- */

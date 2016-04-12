@@ -10,6 +10,9 @@ This repository contains the tools used by the PWG IPP workgroup to maintain the
 
 The tools use the [Mini-XML](http://www.msweet.org/projects.php/mini-xml) library to access the XML registry file. Otherwise you'll need a C compiler and a "make" program.
 
+The "apply-pending.sh" script uses the curl program to download the current IANA IPP registry file.
+
+
 ## Compiling
 
 Run "make". The included makefile should not require any additional tweaking.
@@ -17,15 +20,15 @@ Run "make". The included makefile should not require any additional tweaking.
 
 # Using the "apply-pending.sh" Script
 
-The "apply-pending.sh" script applies one or more plain text registrations to a source XML registry file:
+The "apply-pending.sh" script applies one or more plain text registrations to the current IANA IPP XML registry file:
 
     ./apply-pending.sh [list-of-templates.txt]
 
-If omitted, the script will use all .txt files starting with "pwg51" or "vendor-".
+If omitted, the script will use all .txt files in the "pending" directory.
 
-The source XML file should be the current IANA IPP registration file at: [http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml](http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml) and must be named "base-registrations.xml".
+The current IANA IPP registry (input) file is stored in the current directory with the name "iana-ipp-registrations.xml".
 
-The destination XML file is named "ipp-registrations.xml" and may be uploaded to the PWG FTP server or submitted to IANA.
+The output XML file is named "ipp-registrations.xml" and may be uploaded to the PWG FTP server or submitted to IANA.
 
 
 # Using the "register" Tool
