@@ -1,0 +1,28 @@
+http://ftp.pwg.org/pub/pwg/ipp/wd/wp-job-password-repertoire-20160101.pdf
+
+Printer Description attributes:					Reference
+-------------------------------					---------
+job-password-length-supported (rangeOfInteger(0:255))		[IPPWG20160229-1]
+job-password-repertoire-configured (name(MAX) | type2 keyword)	[IPPWG20160229-1]
+job-password-repertoire-supported (1setOf (name(MAX) | type2 keyword))	[IPPWG20160229-1]
+
+Attributes (attribute syntax)
+ Keyword Attribute Value					Reference
+ -----------------------					---------
+job-password-encryption-supported (1setOf type2 keyword)	[PWG5100.11]
+ md2(deprecated)						[IPPWG20160229-1]
+ md4(deprecated)						[IPPWG20160229-1]
+ md5(deprecated)						[IPPWG20160229-1]
+ sha(deprecated)						[IPPWG20160229-1]
+job-password-repertoire-configured (name(MAX) | type2 keyword)	[IPPWG20160229-1]
+ < any "job-password-repertoire-supported" value >		[IPPWG20160229-1]
+job-password-repertoire-supported (1setOf (name(MAX) | type2 keyword))	[IPPWG20160229-1]
+ iana_us-ascii_digits						[IPPWG20160229-1]
+ iana_us-ascii_letters						[IPPWG20160229-1]
+ iana_us-ascii_complex						[IPPWG20160229-1]
+ iana_us-ascii_any						[IPPWG20160229-1]
+ iana_utf-8_digits						[IPPWG20160229-1]
+ iana_utf-8_letters						[IPPWG20160229-1]
+ iana_utf-8_any						[IPPWG20160229-1]
+
+

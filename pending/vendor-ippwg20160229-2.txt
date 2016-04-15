@@ -1,0 +1,16 @@
+http://www.pwg.org/pipermail/ipp/2016/018729.html
+
+Attributes (attribute syntax)
+Keyword Attribute Value					Reference
+-----------------------					---------
+media (name(MAX) | type2 keyword)				[RFC2911]
+ na_arch-e2_26x38in						[IPPWG20160229-2]
+ na_arch-e3_27x39in						[IPPWG20160229-2]
+ oe_12x16_12x16in						[IPPWG20160229-2]
+ oe_14x17_14x17in						[IPPWG20160229-2]
+ oe_18x22_18x22in						[IPPWG20160229-2]
+ oe_a2plus_17x24in						[IPPWG20160229-2]
+ oe_photo-10r_10x12in						[IPPWG20160229-2]
+ oe_photo-s10r_10x15in						[IPPWG20160229-2]
+ oe_photo-20r_20x24in						[IPPWG20160229-2]
+
