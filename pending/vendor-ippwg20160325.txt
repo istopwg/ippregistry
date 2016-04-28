@@ -1,8 +1,0 @@
-http://www.pwg.org/pipermail/ipp/2016/018744.html
-
-Attributes (attribute syntax)
-Keyword Attribute Value					Reference
------------------------					---------
-trimming-type (name(MAX) | type2 keyword)			[PWG5100.1]
- draw-line							[IPPWG20160325]
-
