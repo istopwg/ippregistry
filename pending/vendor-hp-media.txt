@@ -1,0 +1,8 @@
+http://www.pwg.org/pipermail/ipp/2016/018826.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value		Reference
+  -----------------------		---------
+media (type2 keyword | name(MAX))	[RFC2911]
+  om_16K_195x270mm			[VENDOR-HP-MEDIA]
+  om_16K_184x260mm			[VENDOR-HP-MEDIA]

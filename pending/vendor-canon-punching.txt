@@ -1,0 +1,21 @@
+http://www.pwg.org/pipermail/ipp/2016/018825.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value		Reference
+  -----------------------		---------
+finishing-template (type2 keyword | name(MAX))	[PWG5100.3]
+  punch-multiple-bottom		[VENDOR-CANON-PUNCHING]
+  punch-multiple-left		[VENDOR-CANON-PUNCHING]
+  punch-multiple-right		[VENDOR-CANON-PUNCHING]
+  punch-multiple-top		[VENDOR-CANON-PUNCHING]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	---------
+finishings (type2 enum)			[RFC2911]
+  86	punch-multiple-left		[VENDOR-CANON-PUNCHING]
+  87	punch-multiple-top		[VENDOR-CANON-PUNCHING]
+  88	punch-multiple-right		[VENDOR-CANON-PUNCHING]
+  89	punch-multiple-bottom		[VENDOR-CANON-PUNCHING]
+
