@@ -1,9 +1,9 @@
 /*
- * Program to convert keyword and enum registrations to strings.
+ * Program to convert keyword and enum registrations to C strings.
  *
  * Usage:
  *
- *    ./reg2strings filename.xml
+ *    ./reg2c filename.xml
  *
  * Copyright (c) 2008-2016 by Michael R Sweet
  *
@@ -243,7 +243,7 @@ static const char	*get_localized(const char *attribute,
 			               char *buffer, size_t bufsize);
 static int		load_cb(mxml_node_t *node);
 static int		usage(void);
-static void		write_strings(mxml_node_t *registry_node);
+static void		write_strings(mxml_node_t *registry_node, const char *attrname);
 
 
 /*
@@ -294,16 +294,20 @@ main(int  argc,				/* I - Number of command-line args */
         (int (*)(const void *, const void *))compare_loc);
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       REG_ATTRIBUTES, MXML_DESCEND)) != NULL)
-    write_strings(registry_node);
-
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       REG_ENUMS, MXML_DESCEND)) != NULL)
-    write_strings(registry_node);
-
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
                                        REG_KEYWORDS, MXML_DESCEND)) != NULL)
-    write_strings(registry_node);
+  {
+    puts("/* \"media-source\" strings */");
+    puts("static const char * const media_sources[][2] =");
+    puts("{");
+    write_strings(registry_node, "media-source");
+    puts("};\n\n");
+
+    puts("/* \"media-type\" strings */");
+    puts("static const char * const media_types[][2] =");
+    puts("{");
+    write_strings(registry_node, "media-type");
+    puts("};\n\n");
+  }
 
   return (0);
 }
@@ -586,7 +590,8 @@ usage(void)
 
 static void
 write_strings(
-    mxml_node_t *registry_node)		/* I - Registry */
+    mxml_node_t *registry_node,		/* I - Registry */
+    const char  *attrname)		/* I - Attribute name */
 {
   mxml_node_t	*record_node,		/* Current record node */
 		*attribute_node,	/* Attribute for localization */
@@ -607,138 +612,28 @@ write_strings(
   {
     attribute_node  = mxmlFindElement(record_node, record_node, "attribute",
                                       NULL, NULL, MXML_DESCEND_FIRST);
-    collection_node = mxmlFindElement(record_node, record_node, "collection",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    member_node     = mxmlFindElement(record_node, record_node,
-                                      "member_attribute", NULL, NULL,
-                                      MXML_DESCEND_FIRST);
-    name_node       = mxmlFindElement(record_node, record_node, "name",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    syntax_node     = mxmlFindElement(record_node, record_node, "syntax",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
     value_node      = mxmlFindElement(record_node, record_node, "value",
                                       NULL, NULL, MXML_DESCEND_FIRST);
 
-    if (collection_node && name_node && syntax_node)
+    if (attribute_node && name_node)
     {
      /*
       * See if this is an attribute we want to localize...
       */
 
-      const char *collection = mxmlGetOpaque(collection_node),
-      			*name = mxmlGetOpaque(name_node),
-			*syntax = mxmlGetOpaque(syntax_node);
+      const char *attribute = mxmlGetOpaque(attribute_node),
+                 *value = mxmlGetOpaque(value_node);
 
-      if (collection && name && syntax && !member_node &&
-          !strstr(name, "-default") &&
-          !strstr(name, "-ready") &&
-          !strstr(name, "-supported") &&
-          strcmp(name, "attributes-charset") &&
-          strcmp(name, "attributes-natural-language") &&
-          strcmp(name, "current-page-order") &&
-          strcmp(name, "document-access-error") &&
-          strcmp(name, "document-charset") &&
-          strcmp(name, "document-format") &&
-          strcmp(name, "document-format-details") &&
-          strcmp(name, "document-natural-language") &&
-          strcmp(name, "first-index") &&
-          strcmp(name, "job-finishings-col") &&
-          strcmp(name, "job-id") &&
-          strcmp(name, "job-ids") &&
-          strcmp(name, "job-impressions") &&
-          strcmp(name, "job-k-octets") &&
-          strcmp(name, "job-media-sheets") &&
-          strcmp(name, "job-message-from-operator") &&
-          strcmp(name, "job-message-to-operator") &&
-          strcmp(name, "job-uri") &&
-          strcmp(name, "last-document") &&
-          strcmp(name, "limit") &&
-          strcmp(name, "message") &&
-          strcmp(name, "my-jobs") &&
-          strcmp(name, "notify-charset") &&
-          strcmp(name, "original-requesting-user-name") &&
-          strcmp(name, "overrides") &&
-          strcmp(name, "pdl-init-file") &&
-          strcmp(name, "printer-uri") &&
-	  (!strcmp(collection, "Job Template") ||
-           !strcmp(collection, "Operation") ||
-           !strcmp(collection, "Subscription Template")) &&
-           !strstr(syntax, "keyword") && !strstr(syntax, "enum"))
+      if (!strcmp(attribute, attrname) && value)
       {
        /*
         * Job template or operation attribute that isn't otherwise localized.
         */
 
-        printf("\"%s\" = \"%s\";\n", name,
-               get_localized("", name, name, localized, sizeof(localized)));
+        printf("  { \"%s\", _(\"%s\") },\n", value, get_localized(attribute, value, value, localized, sizeof(localized)));
       }
 
       continue;
-    }
-
-    if (!name_node)
-      name_node = value_node;
-
-    if (attribute_node && name_node && value_node)
-    {
-      const char *attribute = mxmlGetOpaque(attribute_node),
-      			*name = mxmlGetOpaque(name_node),
-			*value = mxmlGetOpaque(value_node);
-
-      if (!strcmp(attribute, "cover-back-supported") ||
-          !strcmp(attribute, "cover-front-supported") ||
-          !strcmp(attribute, "current-page-order") ||
-          !strcmp(attribute, "document-digital-signature") ||
-          !strcmp(attribute, "document-format-details-supported") ||
-          !strcmp(attribute, "document-format-varying-attributes") ||
-          !strcmp(attribute, "finishings-col-supported") ||
-          !strcmp(attribute, "ipp-features-supported") ||
-          !strcmp(attribute, "ipp-versions-supported") ||
-          !strcmp(attribute, "job-mandatory-attributes") ||
-          !strcmp(attribute, "job-password-encryption") ||
-          !strcmp(attribute, "job-save-disposition-supported") ||
-          !strcmp(attribute, "job-spooling-supported") ||
-          !strcmp(attribute, "media-col-supported") ||
-          !strcmp(attribute, "media-key") ||
-          !strcmp(attribute, "media-source-feed-direction") ||
-          !strcmp(attribute, "media-source-feed-orientation") ||
-          !strcmp(attribute, "notify-pull-method") ||
-          !strcmp(attribute, "notify-pull-method-supported") ||
-          !strcmp(attribute, "pdl-init-file-supported") ||
-          !strcmp(attribute, "pdl-override-supported") ||
-          !strcmp(attribute, "printer-settable-attributes-supported") ||
-          !strcmp(attribute, "proof-print-supported") ||
-          !strcmp(attribute, "pwg-raster-document-sheet-back") ||
-          !strcmp(attribute, "pwg-raster-document-type-supported") ||
-          !strcmp(attribute, "save-info-supported") ||
-          !strcmp(attribute, "stitching-supported") ||
-          !strcmp(attribute, "uri-authentication-supported") ||
-          !strcmp(attribute, "uri-security-supported") ||
-          !strcmp(attribute, "which-jobs") ||
-          !strcmp(attribute, "xri-authentication-supported") ||
-          !strcmp(attribute, "xri-security-supported"))
-        continue;
-
-      if ((!last_attribute || strcmp(attribute, last_attribute)) &&
-          !strstr(attribute, "-default") && !strstr(attribute, "-supported") &&
-          !strstr(attribute, "-ready"))
-      {
-        printf("\"%s\" = \"%s\";\n", attribute,
-               get_localized("", attribute, attribute, localized,
-                             sizeof(localized)));
-        last_attribute = attribute;
-      }
-
-      if (value[0] != '<' && value[0] != ' ' && strcmp(name, "Unassigned") &&
-          strcmp(attribute, "operations-supported") &&
-          (strcmp(attribute, "media") || strchr(value, '_') != NULL))
-	printf("\"%s.%s\" = \"%s\";\n", attribute, value,
-	       get_localized(attribute, name, value, localized,
-	       sizeof(localized)));
-      else if (!strcmp(attribute, "operations-supported") &&
-               strncmp(name, "Reserved (", 10))
-        printf("\"%s.%ld\" = \"%s\";\n", attribute, strtol(value, NULL, 0),
-               name);
     }
   }
 }
