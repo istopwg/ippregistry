@@ -7,8 +7,8 @@ Apple would like to register a new "output-bin" keyword value of 'auto', which s
 The registration template is as follows:
 
 Attributes (attribute syntax)
-Keyword Attribute Value                                Reference
+  Keyword Attribute Value                              Reference
 -----------------------                                ---------
-output-bin (type2 keyword)                              [PWG5100.2]
-auto                                                   [APPLE20161001]
+output-bin (type2 keyword)                             [PWG5100.2]
+  auto                                                 [APPLE20161001]
 

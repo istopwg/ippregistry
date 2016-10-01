@@ -7,7 +7,7 @@ Apple would like to register a new "ipp-features-supported" keyword value of 'ic
 The registration template is as follows:
 
 Attributes (attribute syntax)
- Keyword Attribute Value                                Reference
- -----------------------                                ---------
+  Keyword Attribute Value                                Reference
+  -----------------------                                ---------
 ipp-features-supported (1setOf type2 keyword)            [PWG5100.13]
- icc-color-matching                                     [APPLE20160824]
+  icc-color-matching                                     [APPLE20160824]
