@@ -1,0 +1,13 @@
+http://www.pwg.org/pipermail/ipp/2016/018914.html
+
+All,
+
+Apple would like to register a new "ipp-features-supported" keyword value of 'icc-color-matching', which specifies that a Printer supports ICC-based color matching, the "printer-icc-profiles" Printer Description attribute, and embedded ICC color profiles in documents.
+
+The registration template is as follows:
+
+Attributes (attribute syntax)
+ Keyword Attribute Value                                Reference
+ -----------------------                                ---------
+ipp-features-supported (1setOf type2 keyword)            [PWG5100.13]
+ icc-color-matching                                     [APPLE20160824]
