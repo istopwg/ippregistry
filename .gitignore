@@ -1,6 +1,12 @@
 iana-ipp-registrations.xml
 ipp-registrations.xml*
+pwg-ipp-registrations.xml
+pwg-semantic-model
 register
 register.dSYM
+regtoc
+regtoc.dSYM
+regtosm
+regtosm.dSYM
 regtostrings
 regtostrings.dSYM

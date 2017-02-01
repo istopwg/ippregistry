@@ -1,9 +1,9 @@
 /*
- * Program to convert keyword and enum registrations to strings.
+ * Program to convert the IPP registrations into a PWG Semantic Model schema.
  *
  * Usage:
  *
- *    ./regtostrings filename.xml >filename.strings
+ *    ./regtosm filename.xml output-directory version
  *
  * Copyright (c) 2008-2017 by Michael R Sweet
  *
@@ -34,20 +34,17 @@
 /* Common IPP registry stuff */
 #include "ipp-registry.h"
 
-/* "Canned" localizations */
-#include "ipp-strings.h"
-
 
 /*
  * Local functions...
  */
 
-static int		usage(void);
-static void		write_strings(mxml_node_t *registry_node);
+static char	*get_sm_name(const char *ipp, char *sm, size_t smsize);
+static int	usage(void);
 
 
 /*
- * 'main()' - Write a strings file for all keywords and enums in the registry.
+ * 'main()' - Convert the IPP registry into a PWG Semantic Model schema.
  */
 
 int					/* O - Exit status */
@@ -60,9 +57,11 @@ main(int  argc,				/* I - Number of command-line args */
   FILE		*xmlfile;		/* XML registration file pointer */
 
 
-  if (argc != 2)
-    return (usage());
+  char temp[10];
+  get_sm_name("foo", temp, sizeof(temp));
+  usage();
 
+#if 0
  /*
   * Load the XML registration file...
   */
@@ -77,7 +76,7 @@ main(int  argc,				/* I - Number of command-line args */
     return (1);
   }
 
-  xml = mxmlLoadFile(NULL, xmlfile, ipp_load_cb);
+  xml = mxmlLoadFile(NULL, xmlfile, load_cb);
   fclose(xmlfile);
 
   if (!xml)
@@ -90,6 +89,9 @@ main(int  argc,				/* I - Number of command-line args */
   * Output keyword and enum strings...
   */
 
+  qsort(strings, sizeof(strings) / sizeof(strings[0]), sizeof(ipp_loc_t),
+        (int (*)(const void *, const void *))compare_loc);
+
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
                                        IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
     write_strings(registry_node);
@@ -101,8 +103,23 @@ main(int  argc,				/* I - Number of command-line args */
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
                                        IPP_REGISTRY_KEYWORDS, MXML_DESCEND)) != NULL)
     write_strings(registry_node);
+#endif /* 0 */
 
   return (0);
+}
+
+
+/*
+ * 'get_sm_name()' - Convert an IPP keyword/name into a Semantic Model name.
+ */
+
+static char *				/* O - SM name */
+get_sm_name(const char *ipp,		/* I - IPP keyword/name */
+            char       *sm,		/* I - SM name buffer */
+            size_t     smsize)		/* I - Size of name buffer */
+{
+  *sm = '\0';
+  return (sm);
 }
 
 
@@ -113,11 +130,12 @@ main(int  argc,				/* I - Number of command-line args */
 static int				/* O - Exit status */
 usage(void)
 {
-  puts("\nUsage: ./regtostrings filename.xml >filename.strings\n");
+  puts("\nUsage: ./regtosm filename.xml output-directory\n");
   return (1);
 }
 
 
+#if 0
 /*
  * 'write_strings()' - Write strings for registered enums and keywords.
  */
@@ -207,7 +225,8 @@ write_strings(
         * Job template or operation attribute that isn't otherwise localized.
         */
 
-        printf("\"%s\" = \"%s\";\n", name, ipp_get_localized("", name, name, localized, sizeof(localized)));
+        printf("\"%s\" = \"%s\";\n", name,
+               get_localized("", name, name, localized, sizeof(localized)));
       }
 
       continue;
@@ -260,14 +279,18 @@ write_strings(
           !strstr(attribute, "-default") && !strstr(attribute, "-supported") &&
           !strstr(attribute, "-ready"))
       {
-        printf("\"%s\" = \"%s\";\n", attribute, ipp_get_localized("", attribute, attribute, localized, sizeof(localized)));
+        printf("\"%s\" = \"%s\";\n", attribute,
+               get_localized("", attribute, attribute, localized,
+                             sizeof(localized)));
         last_attribute = attribute;
       }
 
       if (value[0] != '<' && value[0] != ' ' && strcmp(name, "Unassigned") &&
           strcmp(attribute, "operations-supported") &&
           (strcmp(attribute, "media") || strchr(value, '_') != NULL))
-	printf("\"%s.%s\" = \"%s\";\n", attribute, value, ipp_get_localized(attribute, name, value, localized, sizeof(localized)));
+	printf("\"%s.%s\" = \"%s\";\n", attribute, value,
+	       get_localized(attribute, name, value, localized,
+	       sizeof(localized)));
       else if (!strcmp(attribute, "operations-supported") &&
                strncmp(name, "Reserved (", 10))
         printf("\"%s.%ld\" = \"%s\";\n", attribute, strtol(value, NULL, 0),
@@ -275,3 +298,4 @@ write_strings(
     }
   }
 }
+#endif /* 0 */

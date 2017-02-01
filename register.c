@@ -14,7 +14,7 @@
  *    -t "Standard Title"	Title of standard
  *    -x "Standard URL"		URL for standard (or rfcNNNN)
  *
- * Copyright (c) 2008-2016 by Michael R Sweet
+ * Copyright (c) 2008-2017 by Michael R Sweet
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,10 @@
 #include <time.h>
 #include <limits.h>
 #include <ctype.h>
+
+
+/* Common IPP registry stuff */
+#include "ipp-registry.h"
 
 
 /*
@@ -67,14 +71,6 @@ enum
   IN_STATUS_CODES,			/* Status codes */
   IN_MAX
 };
-
-/* <registry id="foo"> values */
-#define REG_OBJECTS		"ipp-registrations-1"
-#define REG_ATTRIBUTES		"ipp-registrations-2"
-#define REG_KEYWORDS		"ipp-registrations-4"
-#define REG_ENUMS		"ipp-registrations-6"
-#define REG_OPERATIONS		"ipp-registrations-10"
-#define REG_STATUS_CODES	"ipp-registrations-11"
 
 
 /*
@@ -115,7 +111,6 @@ static int		add_value(mxml_node_t *xml, const char *enumval,
 			          const char *xrefname);
 static int		compare_record(reg_record_t *a, reg_record_t *b);
 static int		compare_strings(const char *s, const char *t);
-static int		load_cb(mxml_node_t *node);
 static int		read_text(mxml_node_t *xml, FILE *textfile,
 			          const char *title,
 			          const char *xref);
@@ -274,7 +269,7 @@ main(int  argc,				/* I - Number of command-line args */
     return (1);
   }
 
-  xml = mxmlLoadFile(NULL, xmlfile, load_cb);
+  xml = mxmlLoadFile(NULL, xmlfile, ipp_load_cb);
   fclose(xmlfile);
 
   if (!xml)
@@ -287,27 +282,27 @@ main(int  argc,				/* I - Number of command-line args */
   * Verify that the XML file is well-formed...
   */
 
-  changed |= validate_registry(xml, REG_OBJECTS, "Objects",
+  changed |= validate_registry(xml, IPP_REGISTRY_OBJECTS, "Objects",
                                (int)(sizeof(object_keys) /
                                      sizeof(object_keys[0])),
                                object_keys);
-  changed |= validate_registry(xml, REG_ATTRIBUTES, "Attributes",
+  changed |= validate_registry(xml, IPP_REGISTRY_ATTRIBUTES, "Attributes",
                                (int)(sizeof(attribute_keys) /
                                      sizeof(attribute_keys[0])),
 			       attribute_keys);
-  changed |= validate_registry(xml, REG_KEYWORDS, "Keyword Values",
+  changed |= validate_registry(xml, IPP_REGISTRY_KEYWORDS, "Keyword Values",
                                (int)(sizeof(keyword_keys) /
                                      sizeof(keyword_keys[0])),
 			       keyword_keys);
-  changed |= validate_registry(xml, REG_ENUMS, "Enum Values",
+  changed |= validate_registry(xml, IPP_REGISTRY_ENUMS, "Enum Values",
                                (int)(sizeof(enum_keys) /
                                      sizeof(enum_keys[0])),
 			       enum_keys);
-  changed |= validate_registry(xml, REG_OPERATIONS, "Operations",
+  changed |= validate_registry(xml, IPP_REGISTRY_OPERATIONS, "Operations",
                                (int)(sizeof(operation_keys) /
                                      sizeof(operation_keys[0])),
 			       operation_keys);
-  changed |= validate_registry(xml, REG_STATUS_CODES, "Status Codes",
+  changed |= validate_registry(xml, IPP_REGISTRY_STATUS_CODES, "Status Codes",
                                (int)(sizeof(status_code_keys) /
                                      sizeof(status_code_keys[0])),
 			       status_code_keys);
@@ -421,9 +416,9 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       REG_ATTRIBUTES, MXML_DESCEND)) == NULL)
+                                       IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" REG_ATTRIBUTES "' registry in XML file.\n",
+    fputs("register: Unable to find '" IPP_REGISTRY_ATTRIBUTES "' registry in XML file.\n",
           stderr);
     exit(1);
   }
@@ -686,7 +681,7 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
     exit(1);
   }
 
-  compare_enums = !strcmp(registry, REG_ENUMS);
+  compare_enums = !strcmp(registry, IPP_REGISTRY_ENUMS);
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
                                      NULL, NULL, MXML_DESCEND_FIRST);
@@ -816,9 +811,9 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       REG_OPERATIONS, MXML_DESCEND)) == NULL)
+                                       IPP_REGISTRY_OPERATIONS, MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" REG_OPERATIONS "' registry in XML file.\n",
+    fputs("register: Unable to find '" IPP_REGISTRY_OPERATIONS "' registry in XML file.\n",
           stderr);
     exit(1);
   }
@@ -899,10 +894,10 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-				       REG_STATUS_CODES,
+				       IPP_REGISTRY_STATUS_CODES,
 				       MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" REG_STATUS_CODES
+    fputs("register: Unable to find '" IPP_REGISTRY_STATUS_CODES
           "' registry in XML file.\n", stderr);
     exit(1);
   }
@@ -1036,7 +1031,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
   * Find any existing definition of the attribute...
   */
 
-  registry = enumval ? REG_ENUMS : REG_KEYWORDS;
+  registry = enumval ? IPP_REGISTRY_ENUMS : IPP_REGISTRY_KEYWORDS;
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", registry,
 				       MXML_DESCEND)) == NULL)
@@ -1599,7 +1594,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
               */
 
               fprintf(stderr, "Attribute \"%s (%s)\"\n", first, second);
-              changed |= add_valattr(xml, REG_KEYWORDS, first, second, xref, xrefname);
+              changed |= add_valattr(xml, IPP_REGISTRY_KEYWORDS, first, second, xref, xrefname);
 
               strncpy(attrname, first, sizeof(attrname));
               strncpy(syntax, second, sizeof(syntax));
@@ -1683,7 +1678,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
               */
 
               fprintf(stderr, "Attribute \"%s (%s)\"\n", first, second);
-              changed |= add_valattr(xml, REG_ENUMS, first, second, xref, xrefname);
+              changed |= add_valattr(xml, IPP_REGISTRY_ENUMS, first, second, xref, xrefname);
 
               strncpy(attrname, first, sizeof(attrname));
               strncpy(syntax, second, sizeof(syntax));
