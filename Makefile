@@ -23,16 +23,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-all:	register regtoc regtosm regtostrings
+CFLAGS	=	-g -Os -I/usr/local/include -L/usr/local/lib
+TARGETS	=	register regtoc regtosm regtostrings
+
+all:	$(TARGETS)
+
+clean:
+	/bin/rm -f $(TARGETS)
+	for file i $(TARGETS); do \
+		test -d $$file.dSYM && /bin/rm -rf $$file.dSYM; \
+	done
 
 register:	register.c ipp-registry.h
-	cc -o register -g register.c -lmxml
+	cc $(CFLAGS) -o register register.c -lmxml
 
 regtoc:	regtoc.c ipp-registry.h ipp-strings.h
-	cc -o regtoc -g regtoc.c -lmxml
+	cc $(CFLAGS) -o regtoc regtoc.c -lmxml
 
 regtosm:	regtosm.c ipp-registry.h
-	cc -o regtosm -g regtosm.c -lmxml
+	cc $(CFLAGS) -o regtosm regtosm.c -lmxml
 
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
-	cc -o regtostrings -g regtostrings.c -lmxml
+	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml

@@ -231,20 +231,47 @@ create_well_known_values(
   for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
   {
     attribute_node  = mxmlFindElement(record_node, record_node, "attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    name_node       = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
     value_node      = mxmlFindElement(record_node, record_node, "value", NULL, NULL, MXML_DESCEND_FIRST);
 
     if (attribute_node && value_node)
     {
       const char *attribute = mxmlGetOpaque(attribute_node),
-                 *value = mxmlGetOpaque(value_node);
+                 *value = mxmlGetOpaque(name_node);
+
+      if (!value)
+        value = mxmlGetOpaque(value_node);
+
+      if (value[0] == '<' || strstr(value, "(deprecated)") != NULL || strstr(value,
+      "(obsolete)") != NULL)
+        continue;                       /* Skip "< ... >" values */
+
+      if (strstr(attribute, "-default") != NULL || strstr(attribute, "-ready") != NULL)
+        continue;                       /* Skip -default and -ready values */
+
+      if (!strncmp(attribute, "notify-", 7))
+        continue;                       /* Skip notify-xxx values */
+
+      if (!strcmp(attribute, "requested-attributes"))
+        continue;                       /* Skip requested-attributes values */
+
+      if (!strcmp(attribute, "cover-back-supported") || !strcmp(attribute, "cover-sheet-info-supported") || !strcmp(attribute, "document-format-details-supported") || !strcmp(attribute, "ipp-features-supported") || !strcmp(attribute, "ipp-versions-supported") || !strcmp(attribute, "job-save-disposition-supported") || !strcmp(attribute, "operations-supported") || !strcmp(attribute, "pdl-init-file-supported") || !strcmp(attribute, "proof-print-supported") || !strcmp(attribute, "save-info-supported") || !strcmp(attribute, "stitching-supported") || strstr(attribute, "-col-supported") != NULL || strstr(attribute, "-attributes-supported") != NULL)
+        continue;                       /* Skip most -supported values */
 
       if (!last_attribute || strcmp(last_attribute, attribute))
       {
        /* Start a new xs:simpleType */
+        size_t smname_len;
+
         last_attribute = attribute;
 
+        get_sm_name(attribute, smname, sizeof(smname));
+        smname_len = strlen(smname);
+        if (smname_len > 9 && !strcmp(smname + smname_len - 9, "Supported"))
+          smname[smname_len - 9] = '\0';
+
         xs_simpleType = mxmlNewElement(xsdnode, "xs:simpleType");
-        mxmlElementSetAttrf(xs_simpleType, "name", "%sWKV", get_sm_name(attribute, smname, sizeof(smname)));
+        mxmlElementSetAttrf(xs_simpleType, "name", "%sWKV", smname);
 
 	xs_restriction = mxmlNewElement(xs_simpleType, "xs:restriction");
 	mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
@@ -254,7 +281,10 @@ create_well_known_values(
       }
 
       xs_enumeration = mxmlNewElement(xs_restriction, "xs_enumeration");
-      mxmlElementSetAttr(xs_enumeration, "value", get_sm_name(value, smvalue, sizeof(smvalue)));
+      if (!strcmp(attribute, "media") && strchr(value, '_') != NULL)
+        mxmlElementSetAttr(xs_enumeration, "value", value);
+      else
+        mxmlElementSetAttr(xs_enumeration, "value", get_sm_name(value, smvalue, sizeof(smvalue)));
     }
   }
 }
@@ -417,6 +447,9 @@ get_sm_name(const char *ipp,		/* I - IPP keyword/name */
   {
     if (*ipp == '-' && ipp[1])
     {
+      if (smptr > sm && isdigit(smptr[-1]) && isdigit(ipp[1]))
+        *smptr++ = '_';
+
       ipp ++;
       *smptr++ = toupper(*ipp++);
     }
