@@ -42,6 +42,8 @@
  * Local functions...
  */
 
+static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
+static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
 static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation);
@@ -172,14 +174,49 @@ main(int  argc,				/* I - Number of command-line args */
   }
 
  /*
-  * Output well-known value strings strings...
+  * Output common element definitions...
   */
 
-#if 0
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
-    write_strings(registry_node);
-#endif /* 0 */
+  puts("Generating PwgCommon.xsd...");
+
+  xsdnode = create_xsd_root(nsurl, version, "Semantic elements used in more than one sub-schema.");
+
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
+    create_elements(xsdnode, registry_node);
+
+  if ((xsdfile = create_xsd_file(directory, "PwgCommon")) != NULL)
+  {
+    mxmlSaveFile(mxmlGetParent(xsdnode), xsdfile, save_cb);
+    fclose(xsdfile);
+  }
+  else
+    return (1);
+
+  mxmlDelete(mxmlGetParent(xsdnode));
+
+ /*
+  * Output common type definitions...
+  */
+
+  puts("Generating PwgTypes.xsd...");
+
+  xsdnode = create_xsd_root(nsurl, version, "Semantic types used for all elements.");
+
+  create_types(xsdnode);
+
+  if ((xsdfile = create_xsd_file(directory, "PwgTypes")) != NULL)
+  {
+    mxmlSaveFile(mxmlGetParent(xsdnode), xsdfile, save_cb);
+    fclose(xsdfile);
+  }
+  else
+    return (1);
+
+  mxmlDelete(mxmlGetParent(xsdnode));
+
+ /*
+  * Output well-known value strings strings...
+  */
 
   puts("Generating PwgWellKnownValues.xsd...");
 
@@ -203,6 +240,327 @@ main(int  argc,				/* I - Number of command-line args */
   mxmlDelete(mxmlGetParent(xsdnode));
 
   return (0);
+}
+
+
+/*
+ * 'create_collection()' - Create a complex type representing a collection.
+ */
+
+static void
+create_collection(
+    mxml_node_t *xsdnode,               /* I - xs:schema node */
+    mxml_node_t *record_node,           /* I - First record in collection */
+    const char  *smtype)                /* I - Semantic model type name */
+{
+#if 0
+  mxml_node_t   *name_node,             /* name node */
+                *syntax_node,           /* syntax node */
+                *membername_node,       /* membername node */
+                *submembername_node,    /* submembername node */
+                *xs_element,            /* xs:element node */
+                *xs_type,               /* xs:complexType or xs:simpleType node */
+                *xs_restriction,        /* xs:restriction node */
+                *xs_sequence,           /* xs:sequence node */
+                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+  const char    *name,                  /* mame value */
+                *syntax,                /* syntax value */
+                *membername,            /* membername value */
+                *submembername;         /* submembername value */
+  char          smname[1024];           /* Semantic model element name */
+#endif /* 0 */
+  mxml_node_t   *xs_type;               /* xs:complexType or xs:simpleType node */
+
+
+  xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+  mxmlElementSetAttr(xs_type, "name", smtype);
+}
+
+
+/*
+ * 'create_element()' - Create a single element.
+ */
+
+static void
+create_element(
+    mxml_node_t *xsdnode,               /* I - xs:schema node */
+    mxml_node_t *record_node)           /* I - Attribute record */
+{
+  mxml_node_t   *name_node,             /* name node */
+                *syntax_node,           /* syntax node */
+                *membername_node,       /* membername node */
+                *submembername_node,    /* submembername node */
+                *xs_element,            /* xs:element node */
+                *xs_type,               /* xs:complexType or xs:simpleType node */
+                *xs_sequence,           /* xs:sequence node */
+                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+  const char    *name,                  /* mame value */
+                *syntax;                /* syntax value */
+  char          smname[1024],           /* Semantic model element name */
+                smtemp[1024],           /* Semantic model name */
+                smtemp2[1024],          /* Semantic model name */
+                *smptr;                 /* Pointer into name */
+  const char    *smtype;                /* Semantic model type name */
+
+
+ /*
+  * IPP data types map to the following XML schema data types:
+  *
+  *   boolean         -> xs:boolean
+  *   charset         -> CharsetType
+  *   collection      -> xs:complexType
+  *   enum            -> AttributeNameWKV
+  *   integer         -> xs:int
+  *   keyword         -> AttributeNameWKV
+  *   mimeMediaType   -> MimeMediaType
+  *   name            -> NameType
+  *   naturalLanguage -> NaturalLanguageType
+  *   octetString     -> OctetStringType
+  *   rangeOfInteger  -> RangeOfIntType
+  *   resolution      -> ResolutionType
+  *   text            -> TextType
+  *   uri             -> xs:anyURI
+  */
+
+  name_node          = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+  name               = mxmlGetOpaque(name_node);
+  membername_node    = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+  submembername_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+  syntax_node        = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+  syntax             = mxmlGetOpaque(syntax_node);
+
+  if (!name || !syntax)
+    return;
+
+  if (membername_node || submembername_node)
+    return;
+
+  if (strstr(name, "-default"))
+    return;
+
+  printf("%s %s\n", name, syntax);
+
+  get_sm_name(name, smname, sizeof(smname));
+
+  if (strstr(syntax, "boolean"))
+    smtype = "xs:boolean";
+  else if (strstr(syntax, "charset"))
+    smtype = "ChsrsetType";
+  else if (strstr(syntax, "collection"))
+  {
+    get_sm_name(name, smtemp2, sizeof(smtemp2));
+    if ((smptr = strstr(smtemp2, "Database")) == NULL)
+      smptr = strstr(smtemp2, "Ready");
+    if (smptr)
+      *smptr = '\0';
+    snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
+
+    smtype = smtemp;
+
+    create_collection(xsdnode, record_node, smtype);
+  }
+  else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
+  {
+    get_sm_name(name, smtemp2, sizeof(smtemp2));
+    if ((smptr = strstr(smtemp2, "Database")) == NULL)
+      smptr = strstr(smtemp2, "Ready");
+    if (smptr)
+      *smptr = '\0';
+    snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
+
+    smtype = smtemp;
+  }
+  else if (strstr(syntax, "integer"))
+    smtype = "xs:int";
+  else if (strstr(syntax, "mimeMediaType"))
+    smtype = "MimeMediaType";
+  else if (strstr(syntax, "name"))
+    smtype = "NameType";
+  else if (strstr(syntax, "naturalLanguage"))
+    smtype = "NaturalLanguageType";
+  else if (strstr(syntax, "octetString"))
+    smtype = "OctetString";
+  else if (strstr(syntax, "rangeOfInteger"))
+    smtype = "RangeOfIntType";
+  else if (strstr(syntax, "resolution"))
+    smtype = "ResolutionType";
+  else if (strstr(syntax, "text"))
+    smtype = "TextType";
+  else if (strstr(syntax, "uri"))
+    smtype = "xs:anyURI";
+  else
+    return;
+
+  if (mxmlFindElement(xsdnode, xsdnode, "xs:element", "name", smname, MXML_DESCEND_FIRST) != NULL)
+    return;
+
+  xs_element = mxmlNewElement(xsdnode, "xs:element");
+  mxmlElementSetAttr(xs_element, "name", smname);
+
+  if (!strncmp(syntax, "1setOf ", 7))
+  {
+   /*
+    * A sequence of 0 or more element values...
+    */
+
+    xs_type     = mxmlNewElement(xs_element, "xs:complexType");
+    xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+    xs_temp     = mxmlNewElement(xs_sequence, "xs:element");
+    mxmlElementSetAttr(xs_temp, "type", smtype);
+    mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
+  }
+  else
+  {
+   /*
+    * Just a single element value.
+    */
+
+    mxmlElementSetAttr(xs_element, "type", smtype);
+  }
+}
+
+
+/*
+ * 'create_elements()' - Create all of the common elements.
+ */
+
+static void
+create_elements(
+    mxml_node_t *xsdnode,               /* I - xs:schema node */
+    mxml_node_t *registry_node)         /* I - Attribute registry */
+{
+  mxml_node_t   *record_node,           /* Current attribute record */
+                *collection_node,       /* Current collection node */
+                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+  const char    *collection;            /* Current collection value */
+
+
+  /* Include types... */
+  xs_temp = mxmlNewElement(xsdnode, "xs:include");
+  mxmlElementSetAttr(xs_temp, "schemaLocation", "PwgTypes.xsd");
+
+  /* Loop through all attributes */
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
+  {
+    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
+    collection      = mxmlGetOpaque(collection_node);
+
+    if (!collection || !strcmp(collection, "Operation"))
+      continue;
+
+    create_element(xsdnode, record_node);
+  }
+}
+
+
+/*
+ * 'create_types()' - Create all of the common types.
+ */
+
+static void
+create_types(mxml_node_t *xsdnode)      /* I - xs:schema node */
+{
+  mxml_node_t   *xs_type,               /* xs:complexType or xs:simpleType node */
+                *xs_restriction,        /* xs:restriction node */
+                *xs_sequence,           /* xs:sequence node */
+                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+
+
+  /* Include well-known values... */
+  xs_temp = mxmlNewElement(xsdnode, "xs:include");
+  mxmlElementSetAttr(xs_temp, "schemaLocation", "PwgWellKnownValues.xsd");
+
+  /* CharsetType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "CharsetType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "63");
+
+  /* MimeMediaType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "MimeMediaType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "255");
+
+  /* NameType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "NameType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:string");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "255");
+
+  /* NaturalLanguageType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "NaturalLanguageType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "63");
+
+  /* OctetStringType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "OctetStringType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:base64Binary");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "43690");
+
+  /* RangeOfIntType */
+  xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+  mxmlElementSetAttr(xs_type, "name", "RangeOfIntType");
+
+  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttr(xs_temp, "name", "LowerBound");
+  mxmlElementSetAttr(xs_temp, "type", "xs:int");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttr(xs_temp, "name", "UpperBound");
+  mxmlElementSetAttr(xs_temp, "type", "xs:int");
+
+  /* ResolutionType */
+  xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+  mxmlElementSetAttr(xs_type, "name", "ResolutionType");
+
+  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttr(xs_temp, "name", "CrossFeedDir");
+  mxmlElementSetAttr(xs_temp, "type", "xs:int");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttr(xs_temp, "name", "FeedDir");
+  mxmlElementSetAttr(xs_temp, "type", "xs:int");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttr(xs_temp, "name", "Units");
+  mxmlElementSetAttr(xs_temp, "type", "UnitsWKV");
+
+  /* TextType */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "TextType");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:string");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "1023");
 }
 
 
@@ -280,7 +638,7 @@ create_well_known_values(
 	mxmlElementSetAttr(xs_maxLength, "value", "255");
       }
 
-      xs_enumeration = mxmlNewElement(xs_restriction, "xs_enumeration");
+      xs_enumeration = mxmlNewElement(xs_restriction, "xs:enumeration");
       if (!strcmp(attribute, "media") && strchr(value, '_') != NULL)
         mxmlElementSetAttr(xs_enumeration, "value", value);
       else
