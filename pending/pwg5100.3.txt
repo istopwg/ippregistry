@@ -1,8 +1,8 @@
 http://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf
 
-Job Template attributes: Reference
+Job Template attributes:	Reference
 --------------------------	---------
-media-col collection
-  media-size collection
-    x-dimension integer(0:MAX)
-    y-dimension integer(0:MAX)
+media-col (collection)		[PWG5100.3]
+  media-size (collection)	[PWG5100.3]
+    x-dimension (integer(0:MAX))	[PWG5100.3]
+    y-dimension (integer(0:MAX))	[PWG5100.3]
