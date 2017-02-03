@@ -32,6 +32,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <stdarg.h>
 
 
 /* Common IPP registry stuff */
@@ -47,7 +48,7 @@ static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *rec
 static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
-static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation);
+static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation, ...);
 static int		get_current_date(int *month);
 static char		*get_sm_element(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_name(const char *ipp, char *sm, size_t smsize);
@@ -182,7 +183,7 @@ main(int  argc,				/* I - Number of command-line args */
 
   puts("Generating PwgCommon.xsd...");
 
-  xsdnode = create_xsd_root(nsurl, version, "Semantic elements used in more than one sub-schema.");
+  xsdnode = create_xsd_root(nsurl, version, "Semantic elements used in more than one sub-schema.", "PwgTypes.xsd", NULL);
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
     create_elements(xsdnode, registry_node);
@@ -203,7 +204,7 @@ main(int  argc,				/* I - Number of command-line args */
 
   puts("Generating PwgTypes.xsd...");
 
-  xsdnode = create_xsd_root(nsurl, version, "Semantic types used for all elements.");
+  xsdnode = create_xsd_root(nsurl, version, "Semantic types used for all elements.", "PwgWellKnownValues.xsd", NULL);
 
   create_types(xsdnode);
 
@@ -223,7 +224,7 @@ main(int  argc,				/* I - Number of command-line args */
 
   puts("Generating PwgWellKnownValues.xsd...");
 
-  xsdnode = create_xsd_root(nsurl, version, "Well known values (i.e. keywords) used by semantic elements.");
+  xsdnode = create_xsd_root(nsurl, version, "Well known values (i.e. keywords) used by semantic elements.", NULL);
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ENUMS, MXML_DESCEND)) != NULL)
     create_well_known_values(xsdnode, registry_node);
@@ -282,25 +283,14 @@ create_collection(
   member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
   membername1 = mxmlGetOpaque(member_node);
 
-  if (membername1)
-    printf("COLLECTION %s.%s -> %s\n", name1, membername1, smtype);
-  else
-    printf("COLLECTION %s -> %s\n", name1, smtype);
-
-  printf("    next=%p\n", record_node->next);
-
   while ((record_node = mxmlGetNextSibling(record_node)) != NULL)
   {
    /*
     * Return if the attribute name or the member attribute name changes...
     */
 
-    printf("    record_node=%p\n", record_node);
-
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
     name      = mxmlGetOpaque(name_node);
-
-    printf("    name=\"%s\"\n", name);
 
     if (!name || strcmp(name1, name))
       return;
@@ -308,15 +298,11 @@ create_collection(
     member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
     membername  = mxmlGetOpaque(member_node);
 
-    printf("    mermbername=\"%s\"\n", membername);
-
     if (!membername || (membername1 && strcmp(membername1, membername)))
       return;
 
-    submember_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    submember_node = mxmlFindElement(record_node, record_node, "sub-member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
     submembername  = mxmlGetOpaque(submember_node);
-
-    printf("    submembername=\"%s\"\n", submembername);
 
     if (!membername1 && submembername)
       continue;
@@ -326,15 +312,8 @@ create_collection(
     syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
     syntax      = mxmlGetOpaque(syntax_node);
 
-    printf("    syntax=\"%s\"\n", syntax);
-
     if (!syntax)
       continue;
-
-    if (membername1)
-      printf("    %s.%s.%s %s\n", name, membername, submembername, syntax);
-    else
-      printf("    %s.%s %s\n", name, membername, syntax);
 
     if (membername1)
       get_sm_element(submembername, smelement, sizeof(smelement));
@@ -344,7 +323,7 @@ create_collection(
     if (strstr(syntax, "boolean"))
       smeltype = "xs:boolean";
     else if (strstr(syntax, "charset"))
-      smeltype = "ChsrsetType";
+      smeltype = "CharsetType";
     else if (strstr(syntax, "collection"))
     {
       if (membername1)
@@ -356,8 +335,6 @@ create_collection(
 
       if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smeltype, MXML_DESCEND_FIRST))
         create_collection(xsdnode, record_node, smeltype);
-      else
-        printf("EXISTS: %s\n", smeltype);
     }
     else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
     {
@@ -480,22 +457,17 @@ create_element(
     return;
 
   if (member_node)
-  {
-    printf("SKIPPING %s.%s %s\n", name, mxmlGetOpaque(member_node), syntax);
-    return;
-  }
-
-  if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)"))
     return;
 
-  printf("%s %s\n", name, syntax);
+  if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
+    return;
 
   get_sm_element(name, smname, sizeof(smname));
 
   if (strstr(syntax, "boolean"))
     smtype = "xs:boolean";
   else if (strstr(syntax, "charset"))
-    smtype = "ChsrsetType";
+    smtype = "CharsetType";
   else if (strstr(syntax, "collection"))
   {
     get_sm_type(name, 1, smtemp, sizeof(smtemp));
@@ -504,8 +476,6 @@ create_element(
 
     if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smtype, MXML_DESCEND_FIRST))
       create_collection(xsdnode, record_node, smtype);
-    else
-      printf("EXISTS: %s\n", smtype);
   }
   else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
   {
@@ -573,14 +543,9 @@ create_elements(
     mxml_node_t *registry_node)         /* I - Attribute registry */
 {
   mxml_node_t   *record_node,           /* Current attribute record */
-                *collection_node,       /* Current collection node */
-                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+                *collection_node;       /* Current collection node */
   const char    *collection;            /* Current collection value */
 
-
-  /* Include types... */
-  xs_temp = mxmlNewElement(xsdnode, "xs:include");
-  mxmlElementSetAttr(xs_temp, "schemaLocation", "PwgTypes.xsd");
 
   /* Loop through all attributes */
   for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
@@ -588,7 +553,8 @@ create_elements(
     collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
     collection      = mxmlGetOpaque(collection_node);
 
-    if (!collection || !strcmp(collection, "Operation"))
+    /* Current omit operation, event, and subscription attributes... */
+    if (!collection || !strcmp(collection, "Operation") || !strncmp(collection, "Event ", 6) || !strncmp(collection, "Subscription ", 13))
       continue;
 
     create_element(xsdnode, record_node);
@@ -608,10 +574,6 @@ create_types(mxml_node_t *xsdnode)      /* I - xs:schema node */
                 *xs_sequence,           /* xs:sequence node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
 
-
-  /* Include well-known values... */
-  xs_temp = mxmlNewElement(xsdnode, "xs:include");
-  mxmlElementSetAttr(xs_temp, "schemaLocation", "PwgWellKnownValues.xsd");
 
   /* CharsetType */
   xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
@@ -845,13 +807,17 @@ create_xsd_file(const char *directory,	/* I - Directory */
 static mxml_node_t *			/* O - xs:schema node */
 create_xsd_root(const char *nsurl,	/* I - Namespace URL */
 	        const char *version,	/* I - Schema version */
-                const char *annotation)/* I - Comment for header */
+                const char *annotation, /* I - Comment for header */
+                ...)                    /* I - Additional include paths */
 {
   mxml_node_t	*root,			/* Root node */
 		*xs_schema,		/* xs:schema node */
+		*xs_include,            /* xs:include node */
 		*xs_documentation,	/* xs:documentation node */
 		*xs_annotation;		/* xs:annotation node */
   char		header[2048];		/* Standard header text */
+  va_list       ap;                     /* Additional arguments */
+  const char    *include;               /* Include file */
 
 
   root      = mxmlNewXML("1.0");
@@ -864,6 +830,14 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
   mxmlElementSetAttr(xs_schema, "elementFormDefault", "qualified");
   mxmlElementSetAttr(xs_schema, "attributeFormDefault", "qualified");
   mxmlElementSetAttr(xs_schema, "version", version);
+
+  va_start(ap, annotation);
+  while ((include = va_arg(ap, const char *)) != NULL)
+  {
+    xs_include = mxmlNewElement(xs_schema, "xs:include");
+    mxmlElementSetAttr(xs_include, "schemaLocation", include);
+  }
+  va_end(ap);
 
   xs_documentation = mxmlNewElement(xs_schema, "xs:documentation");
   xs_annotation    = mxmlNewElement(xs_documentation, "xs:annotation");
@@ -1018,6 +992,11 @@ get_sm_name(const char *ipp,		/* I - IPP keyword/name */
       ipp ++;
       *smptr++ = toupper(*ipp++);
     }
+    else if (*ipp == ' ')
+    {
+      ipp ++;
+      *smptr++ = '_';
+    }
     else
       *smptr++ = *ipp++;
   }
@@ -1055,10 +1034,14 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
     ipp = strstr(ipp, "printer-state");
   else if (!strncmp(ipp, "ipp-", 4))
     ipp += 4;
-  else if (!strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
+  else if (!strncmp(ipp, "job-cover-", 10) || !strncmp(ipp, "job-finishings", 14) || !strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
     ipp += 4;
   else if (!strncmp(ipp, "printer-resolution", 18))
     ipp += 8;
+  else if (!strcmp(ipp, "current-page-order"))
+    ipp = "page-order-received";
+  else if (!strcmp(ipp, "media-input-tray-check"))
+    ipp = "media";
 
  /*
   * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
@@ -1079,7 +1062,7 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
       smptr += strlen(smptr);
       ipp += 10;
     }
-    else if (!strcmp(ipp, "-actual") || !strcmp(ipp, "-completed") || !strcmp(ipp, "-database") || !strcmp(ipp, "-default") || !strcmp(ipp, "-ready") || (!strcmp(ipp, "-supported") && !collection))
+    else if (!strcmp(ipp, "-actual") || !strcmp(ipp, "-completed") || !strcmp(ipp, "-configured") || !strcmp(ipp, "-database") || !strcmp(ipp, "-default") || !strcmp(ipp, "-ready") || !strcmp(ipp, "-supplied") || (!strcmp(ipp, "-supported") && !collection))
     {
      /*
       * Type name doesn't include attribute suffix...
@@ -1099,10 +1082,15 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
       *smptr++ = *ipp++;
   }
 
-  strncpy(smptr, "Type", smend - smptr);
+  if (collection)
+    strncpy(smptr, "Type", smend - smptr);
+  else
+    strncpy(smptr, "WKV", smend - smptr);
+
   *smend = '\0';
 
-  return (sm);}
+  return (sm);
+}
 
 
 /*
