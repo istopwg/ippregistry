@@ -43,7 +43,7 @@
  */
 
 static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
-static void             create_subcollection(mxml_node_t *xs_sequence, mxml_node_t *record_node, const char *smmember, const char *smtype2);
+static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *record_node, const char *smtype);
 static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
@@ -51,6 +51,7 @@ static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, cons
 static int		get_current_date(int *month);
 static char		*get_sm_element(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_name(const char *ipp, char *sm, size_t smsize);
+static char		*get_sm_type(const char *ipp, int collection, char *sm, size_t smsize);
 static const char	*save_cb(mxml_node_t *node, int column);
 static int		usage(void);
 
@@ -260,98 +261,148 @@ create_collection(
                 *member_node,           /* membername node */
                 *submember_node,        /* submembername node */
                 *xs_element,            /* xs:element node */
-                *xs_type,               /* xs:complexType or xs:simpleType node */
-                *xs_restriction,        /* xs:restriction node */
-                *xs_sequence,           /* xs:sequence node */
+                *xs_type = NULL,        /* xs:complexType or xs:simpleType node */
+                *xs_sequence = NULL,    /* xs:sequence node */
                 *xs_sequence2,          /* xs:sequence node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
   const char    *name1,                 /* First name value */
-                *name,                  /* name value */
+                *name,                 /* name value */
                 *syntax,                /* syntax value */
                 *membername1,           /* First membername value */
                 *membername,            /* membername value */
                 *submembername;         /* submembername value */
-  char          smmember[1024],         /* Semantic model element name */
-                smtemp[1024],           /* Temporary names */
-                smtemp2[1024];
-  const char    *smsubtype;             /* Sub-type */
-  mxml_node_t   *xs_type;               /* xs:complexType or xs:simpleType node */
+  char          smelement[1024],        /* Semantic model element name */
+                smtemp[1024];           /* Temporary names */
+  const char    *smeltype;              /* Element type */
 
-
- /*
-  * Create top-level type...
-  */
-
-  xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttr(xs_type, "name", smtype);
-
-  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
   name1     = mxmlGetOpaque(name_node);
 
-  while ((record_node = mxmlGetNext(record_node)) != NULL)
+  member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+  membername1 = mxmlGetOpaque(member_node);
+
+  if (membername1)
+    printf("COLLECTION %s.%s -> %s\n", name1, membername1, smtype);
+  else
+    printf("COLLECTION %s -> %s\n", name1, smtype);
+
+  printf("    next=%p\n", record_node->next);
+
+  while ((record_node = mxmlGetNextSibling(record_node)) != NULL)
   {
+   /*
+    * Return if the attribute name or the member attribute name changes...
+    */
+
+    printf("    record_node=%p\n", record_node);
+
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
     name      = mxmlGetOpaque(name_node);
+
+    printf("    name=\"%s\"\n", name);
 
     if (!name || strcmp(name1, name))
       return;
 
-    if (mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST))
-      continue;
-
     member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
     membername  = mxmlGetOpaque(member_node);
+
+    printf("    mermbername=\"%s\"\n", membername);
+
+    if (!membername || (membername1 && strcmp(membername1, membername)))
+      return;
+
+    submember_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    submembername  = mxmlGetOpaque(submember_node);
+
+    printf("    submembername=\"%s\"\n", submembername);
+
+    if (!membername1 && submembername)
+      continue;
+    else if (membername1 && !submembername)
+      continue;
+
     syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
     syntax      = mxmlGetOpaque(syntax_node);
 
-    get_sm_element(membername, smmember, sizeof(smmember));
+    printf("    syntax=\"%s\"\n", syntax);
+
+    if (!syntax)
+      continue;
+
+    if (membername1)
+      printf("    %s.%s.%s %s\n", name, membername, submembername, syntax);
+    else
+      printf("    %s.%s %s\n", name, membername, syntax);
+
+    if (membername1)
+      get_sm_element(submembername, smelement, sizeof(smelement));
+    else
+      get_sm_element(membername, smelement, sizeof(smelement));
 
     if (strstr(syntax, "boolean"))
-      smsubtype = "xs:boolean";
+      smeltype = "xs:boolean";
     else if (strstr(syntax, "charset"))
-      smsubtype = "ChsrsetType";
+      smeltype = "ChsrsetType";
     else if (strstr(syntax, "collection"))
     {
-      get_sm_name(membername, smtemp2, sizeof(smtemp2));
-      snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
+      if (membername1)
+        get_sm_type(submembername, 1, smtemp, sizeof(smtemp));
+      else
+        get_sm_type(membername, 1, smtemp, sizeof(smtemp));
 
-      smsubtype = smtemp;
+      smeltype = smtemp;
 
-      if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smsubtype, MXML_DESCEND_FIRST))
-        smsubtype = NULL;
+      if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smeltype, MXML_DESCEND_FIRST))
+        create_collection(xsdnode, record_node, smeltype);
+      else
+        printf("EXISTS: %s\n", smeltype);
     }
     else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
     {
-      get_sm_name(membername, smtemp2, sizeof(smtemp2));
-      snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
+      if (membername1)
+        get_sm_type(submembername, 0, smtemp, sizeof(smtemp));
+      else
+        get_sm_type(membername, 0, smtemp, sizeof(smtemp));
 
-      smsubtype = smtemp;
+      smeltype = smtemp;
     }
-    else if (strstr(syntax, "integer"))
-      smsubtype = "xs:int";
-    else if (strstr(syntax, "mimeMediaType"))
-      smsubtype = "MimeMediaType";
-    else if (strstr(syntax, "name"))
-      smsubtype = "NameType";
-    else if (strstr(syntax, "naturalLanguage"))
-      smsubtype = "NaturalLanguageType";
-    else if (strstr(syntax, "octetString"))
-      smsubtype = "OctetString";
     else if (strstr(syntax, "rangeOfInteger"))
-      smsubtype = "RangeOfIntType";
+      smeltype = "RangeOfIntType";
+    else if (strstr(syntax, "integer"))
+      smeltype = "xs:int";
+    else if (strstr(syntax, "mimeMediaType"))
+      smeltype = "MimeMediaType";
+    else if (strstr(syntax, "name"))
+      smeltype = "NameType";
+    else if (strstr(syntax, "naturalLanguage"))
+      smeltype = "NaturalLanguageType";
+    else if (strstr(syntax, "octetString"))
+      smeltype = "OctetString";
     else if (strstr(syntax, "resolution"))
-      smsubtype = "ResolutionType";
+      smeltype = "ResolutionType";
     else if (strstr(syntax, "text"))
-      smsubtype = "TextType";
+      smeltype = "TextType";
     else if (strstr(syntax, "uri"))
-      smsubtype = "xs:anyURI";
+      smeltype = "xs:anyURI";
     else
       return;
 
+    if (!xs_sequence)
+    {
+     /*
+      * Create top-level type...
+      */
+
+      xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+      mxmlElementSetAttr(xs_type, "name", smtype);
+
+      xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+    }
+
     xs_element = mxmlNewElement(xs_sequence, "xs:element");
-    mxmlElementSetAttr(xs_element, "name", smmember);
+    mxmlElementSetAttr(xs_element, "name", smelement);
 
     if (!strncmp(syntax, "1setOf ", 7))
     {
@@ -362,20 +413,17 @@ create_collection(
       xs_type      = mxmlNewElement(xs_element, "xs:complexType");
       xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
       xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
-      if (smsubtype)
-        mxmlElementSetAttr(xs_temp, "type", smsubtype);
+      mxmlElementSetAttr(xs_temp, "type", smeltype);
       mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
     }
-    else if (smsubtype)
+    else
     {
      /*
       * Just a single element value.
       */
 
-      mxmlElementSetAttr(xs_element, "type", smsubtype);
+      mxmlElementSetAttr(xs_element, "type", smeltype);
     }
-    else
-      create_subcollection(xs_sequence, record_node);
   }
 }
 
@@ -399,9 +447,7 @@ create_element(
   const char    *name,                  /* name value */
                 *syntax;                /* syntax value */
   char          smname[1024],           /* Semantic model element name */
-                smtemp[1024],           /* Semantic model name */
-                smtemp2[1024],          /* Semantic model name */
-                *smptr;                 /* Pointer into name */
+                smtemp[1024];           /* Semantic model name */
   const char    *smtype;                /* Semantic model type name */
 
 
@@ -434,7 +480,10 @@ create_element(
     return;
 
   if (member_node)
+  {
+    printf("SKIPPING %s.%s %s\n", name, mxmlGetOpaque(member_node), syntax);
     return;
+  }
 
   if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)"))
     return;
@@ -449,28 +498,23 @@ create_element(
     smtype = "ChsrsetType";
   else if (strstr(syntax, "collection"))
   {
-    get_sm_name(name, smtemp2, sizeof(smtemp2));
-    if ((smptr = strstr(smtemp2, "Database")) == NULL)
-      smptr = strstr(smtemp2, "Ready");
-    if (smptr)
-      *smptr = '\0';
-    snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
+    get_sm_type(name, 1, smtemp, sizeof(smtemp));
 
     smtype = smtemp;
 
-    create_collection(xsdnode, record_node, smtype);
+    if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smtype, MXML_DESCEND_FIRST))
+      create_collection(xsdnode, record_node, smtype);
+    else
+      printf("EXISTS: %s\n", smtype);
   }
   else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
   {
-    get_sm_name(name, smtemp2, sizeof(smtemp2));
-    if ((smptr = strstr(smtemp2, "Database")) == NULL)
-      smptr = strstr(smtemp2, "Ready");
-    if (smptr)
-      *smptr = '\0';
-    snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
+    get_sm_type(name, 0, smtemp, sizeof(smtemp));
 
     smtype = smtemp;
   }
+  else if (strstr(syntax, "rangeOfInteger"))
+    smtype = "RangeOfIntType";
   else if (strstr(syntax, "integer"))
     smtype = "xs:int";
   else if (strstr(syntax, "mimeMediaType"))
@@ -481,8 +525,6 @@ create_element(
     smtype = "NaturalLanguageType";
   else if (strstr(syntax, "octetString"))
     smtype = "OctetString";
-  else if (strstr(syntax, "rangeOfInteger"))
-    smtype = "RangeOfIntType";
   else if (strstr(syntax, "resolution"))
     smtype = "ResolutionType";
   else if (strstr(syntax, "text"))
@@ -550,130 +592,6 @@ create_elements(
       continue;
 
     create_element(xsdnode, record_node);
-  }
-}
-
-
-/*
- * 'create_subcollection()' - Create a sub-collection.
- */
-
-static void
-create_subcollection(
-    mxml_node_t *xs_sequence,           /* I - Containing xs:sequence */
-    mxml_node_t *record_node)           /* I - Current record */
-{
-  mxml_node_t   *name_node,             /* name node */
-                *syntax_node,           /* syntax node */
-                *member_node,           /* membername node */
-                *submember_node,        /* submembername node */
-                *xs_element,            /* xs:element node */
-                *xs_type,               /* xs:complexType or xs:simpleType node */
-                *xs_restriction,        /* xs:restriction node */
-                *xs_sequence2,          /* xs:sequence node */
-                *xs_sequence3,          /* xs:sequence node */
-                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
-  const char    *name1,                 /* First name value */
-                *name,                  /* name value */
-                *syntax,                /* syntax value */
-                *membername1,           /* First membername value */
-                *membername,            /* membername value */
-                *submembername;         /* submembername value */
-  char          smmember[1024],         /* Semantic model element name */
-                smtemp[1024],           /* Temporary names */
-                smtemp2[1024];
-  const char    *smsubtype2;            /* Sub-sub-type */
-  mxml_node_t   *xs_type;               /* xs:complexType or xs:simpleType node */
-
-
- /*
-  * Create top-level type...
-  */
-
-  xs_type     = mxmlNewElement(xs_sequence, "xs:complexType");
-  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
-
-  member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
-  membername1 = mxmlGetOpaque(name_node);
-
-  while ((record_node = mxmlGetNext(record_node)) != NULL)
-  {
-    member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
-    membername  = mxmlGetOpaque(member_node);
-
-    if (!membername || strcmp(membername1, membername))
-      return;
-
-    submember_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
-    submembername  = mxmlGetOpaque(submember_node);
-    syntax_node    = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
-    syntax         = mxmlGetOpaque(syntax_node);
-
-    get_sm_element(submembername, smmember, sizeof(smmember));
-
-    if (strstr(syntax, "boolean"))
-      smsubtype2 = "xs:boolean";
-    else if (strstr(syntax, "charset"))
-      smsubtype2 = "ChsrsetType";
-    else if (strstr(syntax, "collection"))
-    {
-      get_sm_name(submembername, smtemp2, sizeof(smtemp2));
-      snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
-
-      smsubtype2 = smtemp;
-    }
-    else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
-    {
-      get_sm_name(submembername, smtemp2, sizeof(smtemp2));
-      snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
-
-      smsubtype2 = smtemp;
-    }
-    else if (strstr(syntax, "integer"))
-      smsubtype2 = "xs:int";
-    else if (strstr(syntax, "mimeMediaType"))
-      smsubtype2 = "MimeMediaType";
-    else if (strstr(syntax, "name"))
-      smsubtype2 = "NameType";
-    else if (strstr(syntax, "naturalLanguage"))
-      smsubtype2 = "NaturalLanguageType";
-    else if (strstr(syntax, "octetString"))
-      smsubtype2 = "OctetString";
-    else if (strstr(syntax, "rangeOfInteger"))
-      smsubtype2 = "RangeOfIntType";
-    else if (strstr(syntax, "resolution"))
-      smsubtype2 = "ResolutionType";
-    else if (strstr(syntax, "text"))
-      smsubtype2 = "TextType";
-    else if (strstr(syntax, "uri"))
-      smsubtype2 = "xs:anyURI";
-    else
-      return;
-
-    xs_element = mxmlNewElement(xs_sequence, "xs:element");
-    mxmlElementSetAttr(xs_element, "name", smmember);
-
-    if (!strncmp(syntax, "1setOf ", 7))
-    {
-     /*
-      * A sequence of 0 or more element values...
-      */
-
-      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
-      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
-      xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
-
-      mxmlElementSetAttr(xs_temp, "type", smsubtype2);
-      mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
-    }
-    else
-    {
-     /*
-      * Just a single element value.
-      */
-
-      mxmlElementSetAttr(xs_element, "type", smsubtype2);
-    }
   }
 }
 
@@ -1108,6 +1026,83 @@ get_sm_name(const char *ipp,		/* I - IPP keyword/name */
 
   return (sm);
 }
+
+
+/*
+ * 'get_sm_type()' - Convert an IPP keyword/enum into a Semantic Model type name.
+ */
+
+static char *				/* O - SM name */
+get_sm_type(const char *ipp,		/* I - IPP keyword/name */
+            int        collection,      /* I - Collection attribute? */
+            char       *sm,		/* I - SM name buffer */
+            size_t     smsize)		/* I - Size of name buffer */
+{
+  char	*smptr = sm, *smend = sm + smsize - 1;
+					/* Pointer into SM name buffer and end */
+
+
+ /*
+  * Rule 2: Strip leading "ipp-"...
+  * Rule 6: Remove "job-", "document-", and "printer-" prefix from common Job, Document, and Printer attributes.
+  */
+
+  if (strstr(ipp, "document-state"))
+    ipp = strstr(ipp, "document-state");
+  else if (strstr(ipp, "job-state"))
+    ipp = strstr(ipp, "job-state");
+  else if (strstr(ipp, "printer-state"))
+    ipp = strstr(ipp, "printer-state");
+  else if (!strncmp(ipp, "ipp-", 4))
+    ipp += 4;
+  else if (!strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
+    ipp += 4;
+  else if (!strncmp(ipp, "printer-resolution", 18))
+    ipp += 8;
+
+ /*
+  * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
+  */
+
+  *smptr++ = toupper(*ipp++);
+
+  while (*ipp && smptr < smend)
+  {
+    if (!strncmp(ipp, "-attribute", 10))
+    {
+     /*
+      * Rule 3: Replace "-attribute" with "Element"...
+      */
+
+      strncpy(smptr, "Element", smend - smptr);
+      *smend = '\0';
+      smptr += strlen(smptr);
+      ipp += 10;
+    }
+    else if (!strcmp(ipp, "-actual") || !strcmp(ipp, "-completed") || !strcmp(ipp, "-database") || !strcmp(ipp, "-default") || !strcmp(ipp, "-ready") || (!strcmp(ipp, "-supported") && !collection))
+    {
+     /*
+      * Type name doesn't include attribute suffix...
+      */
+
+      break;
+    }
+    else if (*ipp == '-' && ipp[1])
+    {
+      if (smptr > sm && isdigit(smptr[-1]) && isdigit(ipp[1]))
+        *smptr++ = '_';
+
+      ipp ++;
+      *smptr++ = toupper(*ipp++);
+    }
+    else
+      *smptr++ = *ipp++;
+  }
+
+  strncpy(smptr, "Type", smend - smptr);
+  *smend = '\0';
+
+  return (sm);}
 
 
 /*
