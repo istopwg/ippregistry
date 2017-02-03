@@ -1,0 +1,11 @@
+http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf
+
+Attributes (attribute syntax)
+Keyword Attribute Value   Reference
+-----------------------   ---------
+print-scaling (type2 keyword)
+  auto
+  auto-fit
+  fill
+  fit
+  none
