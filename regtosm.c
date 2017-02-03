@@ -43,11 +43,13 @@
  */
 
 static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
+static void             create_subcollection(mxml_node_t *xs_sequence, mxml_node_t *record_node, const char *smmember, const char *smtype2);
 static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
 static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation);
 static int		get_current_date(int *month);
+static char		*get_sm_element(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_name(const char *ipp, char *sm, size_t smsize);
 static const char	*save_cb(mxml_node_t *node, int column);
 static int		usage(void);
@@ -253,27 +255,128 @@ create_collection(
     mxml_node_t *record_node,           /* I - First record in collection */
     const char  *smtype)                /* I - Semantic model type name */
 {
-#if 0
   mxml_node_t   *name_node,             /* name node */
                 *syntax_node,           /* syntax node */
-                *membername_node,       /* membername node */
-                *submembername_node,    /* submembername node */
+                *member_node,           /* membername node */
+                *submember_node,        /* submembername node */
                 *xs_element,            /* xs:element node */
                 *xs_type,               /* xs:complexType or xs:simpleType node */
                 *xs_restriction,        /* xs:restriction node */
                 *xs_sequence,           /* xs:sequence node */
+                *xs_sequence2,          /* xs:sequence node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
-  const char    *name,                  /* mame value */
+  const char    *name1,                 /* First name value */
+                *name,                  /* name value */
                 *syntax,                /* syntax value */
+                *membername1,           /* First membername value */
                 *membername,            /* membername value */
                 *submembername;         /* submembername value */
-  char          smname[1024];           /* Semantic model element name */
-#endif /* 0 */
+  char          smmember[1024],         /* Semantic model element name */
+                smtemp[1024],           /* Temporary names */
+                smtemp2[1024];
+  const char    *smsubtype;             /* Sub-type */
   mxml_node_t   *xs_type;               /* xs:complexType or xs:simpleType node */
 
 
+ /*
+  * Create top-level type...
+  */
+
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
   mxmlElementSetAttr(xs_type, "name", smtype);
+
+  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+
+  name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+  name1     = mxmlGetOpaque(name_node);
+
+  while ((record_node = mxmlGetNext(record_node)) != NULL)
+  {
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+    name      = mxmlGetOpaque(name_node);
+
+    if (!name || strcmp(name1, name))
+      return;
+
+    if (mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST))
+      continue;
+
+    member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    membername  = mxmlGetOpaque(member_node);
+    syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+    syntax      = mxmlGetOpaque(syntax_node);
+
+    get_sm_element(membername, smmember, sizeof(smmember));
+
+    if (strstr(syntax, "boolean"))
+      smsubtype = "xs:boolean";
+    else if (strstr(syntax, "charset"))
+      smsubtype = "ChsrsetType";
+    else if (strstr(syntax, "collection"))
+    {
+      get_sm_name(membername, smtemp2, sizeof(smtemp2));
+      snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
+
+      smsubtype = smtemp;
+
+      if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smsubtype, MXML_DESCEND_FIRST))
+        smsubtype = NULL;
+    }
+    else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
+    {
+      get_sm_name(membername, smtemp2, sizeof(smtemp2));
+      snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
+
+      smsubtype = smtemp;
+    }
+    else if (strstr(syntax, "integer"))
+      smsubtype = "xs:int";
+    else if (strstr(syntax, "mimeMediaType"))
+      smsubtype = "MimeMediaType";
+    else if (strstr(syntax, "name"))
+      smsubtype = "NameType";
+    else if (strstr(syntax, "naturalLanguage"))
+      smsubtype = "NaturalLanguageType";
+    else if (strstr(syntax, "octetString"))
+      smsubtype = "OctetString";
+    else if (strstr(syntax, "rangeOfInteger"))
+      smsubtype = "RangeOfIntType";
+    else if (strstr(syntax, "resolution"))
+      smsubtype = "ResolutionType";
+    else if (strstr(syntax, "text"))
+      smsubtype = "TextType";
+    else if (strstr(syntax, "uri"))
+      smsubtype = "xs:anyURI";
+    else
+      return;
+
+    xs_element = mxmlNewElement(xs_sequence, "xs:element");
+    mxmlElementSetAttr(xs_element, "name", smmember);
+
+    if (!strncmp(syntax, "1setOf ", 7))
+    {
+     /*
+      * A sequence of 0 or more element values...
+      */
+
+      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
+      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
+      xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
+      if (smsubtype)
+        mxmlElementSetAttr(xs_temp, "type", smsubtype);
+      mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
+    }
+    else if (smsubtype)
+    {
+     /*
+      * Just a single element value.
+      */
+
+      mxmlElementSetAttr(xs_element, "type", smsubtype);
+    }
+    else
+      create_subcollection(xs_sequence, record_node);
+  }
 }
 
 
@@ -288,13 +391,12 @@ create_element(
 {
   mxml_node_t   *name_node,             /* name node */
                 *syntax_node,           /* syntax node */
-                *membername_node,       /* membername node */
-                *submembername_node,    /* submembername node */
+                *member_node,           /* member_attribute node */
                 *xs_element,            /* xs:element node */
                 *xs_type,               /* xs:complexType or xs:simpleType node */
                 *xs_sequence,           /* xs:sequence node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
-  const char    *name,                  /* mame value */
+  const char    *name,                  /* name value */
                 *syntax;                /* syntax value */
   char          smname[1024],           /* Semantic model element name */
                 smtemp[1024],           /* Semantic model name */
@@ -322,25 +424,24 @@ create_element(
   *   uri             -> xs:anyURI
   */
 
-  name_node          = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
-  name               = mxmlGetOpaque(name_node);
-  membername_node    = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
-  submembername_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
-  syntax_node        = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
-  syntax             = mxmlGetOpaque(syntax_node);
+  name_node   = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+  name        = mxmlGetOpaque(name_node);
+  member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+  syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+  syntax      = mxmlGetOpaque(syntax_node);
 
   if (!name || !syntax)
     return;
 
-  if (membername_node || submembername_node)
+  if (member_node)
     return;
 
-  if (strstr(name, "-default"))
+  if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)"))
     return;
 
   printf("%s %s\n", name, syntax);
 
-  get_sm_name(name, smname, sizeof(smname));
+  get_sm_element(name, smname, sizeof(smname));
 
   if (strstr(syntax, "boolean"))
     smtype = "xs:boolean";
@@ -449,6 +550,130 @@ create_elements(
       continue;
 
     create_element(xsdnode, record_node);
+  }
+}
+
+
+/*
+ * 'create_subcollection()' - Create a sub-collection.
+ */
+
+static void
+create_subcollection(
+    mxml_node_t *xs_sequence,           /* I - Containing xs:sequence */
+    mxml_node_t *record_node)           /* I - Current record */
+{
+  mxml_node_t   *name_node,             /* name node */
+                *syntax_node,           /* syntax node */
+                *member_node,           /* membername node */
+                *submember_node,        /* submembername node */
+                *xs_element,            /* xs:element node */
+                *xs_type,               /* xs:complexType or xs:simpleType node */
+                *xs_restriction,        /* xs:restriction node */
+                *xs_sequence2,          /* xs:sequence node */
+                *xs_sequence3,          /* xs:sequence node */
+                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+  const char    *name1,                 /* First name value */
+                *name,                  /* name value */
+                *syntax,                /* syntax value */
+                *membername1,           /* First membername value */
+                *membername,            /* membername value */
+                *submembername;         /* submembername value */
+  char          smmember[1024],         /* Semantic model element name */
+                smtemp[1024],           /* Temporary names */
+                smtemp2[1024];
+  const char    *smsubtype2;            /* Sub-sub-type */
+  mxml_node_t   *xs_type;               /* xs:complexType or xs:simpleType node */
+
+
+ /*
+  * Create top-level type...
+  */
+
+  xs_type     = mxmlNewElement(xs_sequence, "xs:complexType");
+  xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+
+  member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+  membername1 = mxmlGetOpaque(name_node);
+
+  while ((record_node = mxmlGetNext(record_node)) != NULL)
+  {
+    member_node = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    membername  = mxmlGetOpaque(member_node);
+
+    if (!membername || strcmp(membername1, membername))
+      return;
+
+    submember_node = mxmlFindElement(record_node, record_node, "submember_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    submembername  = mxmlGetOpaque(submember_node);
+    syntax_node    = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+    syntax         = mxmlGetOpaque(syntax_node);
+
+    get_sm_element(submembername, smmember, sizeof(smmember));
+
+    if (strstr(syntax, "boolean"))
+      smsubtype2 = "xs:boolean";
+    else if (strstr(syntax, "charset"))
+      smsubtype2 = "ChsrsetType";
+    else if (strstr(syntax, "collection"))
+    {
+      get_sm_name(submembername, smtemp2, sizeof(smtemp2));
+      snprintf(smtemp, sizeof(smtemp), "%sType", smtemp2);
+
+      smsubtype2 = smtemp;
+    }
+    else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
+    {
+      get_sm_name(submembername, smtemp2, sizeof(smtemp2));
+      snprintf(smtemp, sizeof(smtemp), "%sWKV", smtemp2);
+
+      smsubtype2 = smtemp;
+    }
+    else if (strstr(syntax, "integer"))
+      smsubtype2 = "xs:int";
+    else if (strstr(syntax, "mimeMediaType"))
+      smsubtype2 = "MimeMediaType";
+    else if (strstr(syntax, "name"))
+      smsubtype2 = "NameType";
+    else if (strstr(syntax, "naturalLanguage"))
+      smsubtype2 = "NaturalLanguageType";
+    else if (strstr(syntax, "octetString"))
+      smsubtype2 = "OctetString";
+    else if (strstr(syntax, "rangeOfInteger"))
+      smsubtype2 = "RangeOfIntType";
+    else if (strstr(syntax, "resolution"))
+      smsubtype2 = "ResolutionType";
+    else if (strstr(syntax, "text"))
+      smsubtype2 = "TextType";
+    else if (strstr(syntax, "uri"))
+      smsubtype2 = "xs:anyURI";
+    else
+      return;
+
+    xs_element = mxmlNewElement(xs_sequence, "xs:element");
+    mxmlElementSetAttr(xs_element, "name", smmember);
+
+    if (!strncmp(syntax, "1setOf ", 7))
+    {
+     /*
+      * A sequence of 0 or more element values...
+      */
+
+      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
+      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
+      xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
+
+      mxmlElementSetAttr(xs_temp, "type", smsubtype2);
+      mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
+    }
+    else
+    {
+     /*
+      * Just a single element value.
+      */
+
+      mxmlElementSetAttr(xs_element, "type", smsubtype2);
+    }
   }
 }
 
@@ -783,7 +1008,71 @@ get_current_date(int *month)		/* O - Current month (NULL = don't care) */
 
 
 /*
- * 'get_sm_name()' - Convert an IPP keyword/name into a Semantic Model name.
+ * 'get_sm_element()' - Convert an IPP attribute name into a Semantic Model element name.
+ *
+ * Follows the rules from PWG PJT 1.0.
+ */
+
+static char *				/* O - SM name */
+get_sm_element(const char *ipp,		/* I - IPP keyword/name */
+               char       *sm,		/* I - SM name buffer */
+               size_t     smsize)	/* I - Size of name buffer */
+{
+  char	*smptr = sm, *smend = sm + smsize - 1;
+					/* Pointer into SM name buffer and end */
+
+
+ /*
+  * Rule 2: Strip leading "ipp-"...
+  * Rule 6: Remove "job-", "document-", and "printer-" prefix from common Job, Document, and Printer attributes.
+  */
+
+  if (!strncmp(ipp, "ipp-", 4))
+    ipp += 4;
+  else if (!strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
+    ipp += 4;
+  else if (!strncmp(ipp, "printer-resolution", 18))
+    ipp += 8;
+
+ /*
+  * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
+  */
+
+  *smptr++ = toupper(*ipp++);
+
+  while (*ipp && smptr < smend)
+  {
+    if (!strncmp(ipp, "-attribute", 10))
+    {
+     /*
+      * Rule 3: Replace "-attribute" with "Element"...
+      */
+
+      strncpy(smptr, "Element", smend - smptr);
+      *smend = '\0';
+      smptr += strlen(smptr);
+      ipp += 10;
+    }
+    else if (*ipp == '-' && ipp[1])
+    {
+      if (smptr > sm && isdigit(smptr[-1]) && isdigit(ipp[1]))
+        *smptr++ = '_';
+
+      ipp ++;
+      *smptr++ = toupper(*ipp++);
+    }
+    else
+      *smptr++ = *ipp++;
+  }
+
+  *smptr = '\0';
+
+  return (sm);
+}
+
+
+/*
+ * 'get_sm_name()' - Convert an IPP keyword/enum into a Semantic Model token name.
  */
 
 static char *				/* O - SM name */
