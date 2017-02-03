@@ -309,6 +309,9 @@ create_collection(
     else if (membername1 && !submembername)
       continue;
 
+    if (strstr(membername, "(extension)") || strstr(membername, "(deprecated)") || strstr(membername, "(obsolete)") || strstr(membername, "(under review)"))
+      continue;
+
     syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
     syntax      = mxmlGetOpaque(syntax_node);
 
@@ -844,7 +847,7 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
 
   snprintf(header, sizeof(header),
            "PWG Semantic Model v%s\n"
-           "Copyright © 2002-%d The IEEE-ISTO Printer Working Group.\n\n"
+           "Copyright &copy; 2002-%d The IEEE-ISTO Printer Working Group.\n\n"
            "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
            "of this software and associated documentation files (the \"Software\"), to deal\n"
            "in the Software without restriction, including without limitation the rights\n"
