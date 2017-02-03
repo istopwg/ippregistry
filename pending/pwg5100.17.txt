@@ -1,0 +1,9 @@
+http://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf
+
+Attributes (attribute syntax)
+Keyword Attribute Value   Reference
+-----------------------   ---------
+job-destination-spooling-supported (type2 keyword)
+  automatic
+  spool
+  stream
