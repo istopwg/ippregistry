@@ -1,0 +1,14 @@
+http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf
+
+Attributes (attribute syntax)
+Keyword Attribute Value   Reference
+-----------------------   ---------
+job-delay-output-until (type2 keyword)
+  day-time
+  evening
+  indefinite
+  night
+  no-delay-output
+  second-shift
+  third-shift
+  weekend
