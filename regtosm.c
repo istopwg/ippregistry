@@ -45,6 +45,7 @@
 
 static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *record_node, const char *smtype);
+static void		create_status_codes(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
@@ -233,6 +234,9 @@ main(int  argc,				/* I - Number of command-line args */
                                        IPP_REGISTRY_KEYWORDS, MXML_DESCEND)) != NULL)
     create_well_known_values(xsdnode, registry_node);
 
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_STATUS_CODES, MXML_DESCEND)) != NULL)
+    create_status_codes(xsdnode, registry_node);
+
   if ((xsdfile = create_xsd_file(directory, "PwgWellKnownValues")) != NULL)
   {
     mxmlSaveFile(mxmlGetParent(xsdnode), xsdfile, save_cb);
@@ -359,7 +363,7 @@ create_collection(
     else if (strstr(syntax, "naturalLanguage"))
       smeltype = "NaturalLanguageType";
     else if (strstr(syntax, "octetString"))
-      smeltype = "OctetString";
+      smeltype = "OctetStringType";
     else if (strstr(syntax, "resolution"))
       smeltype = "ResolutionType";
     else if (strstr(syntax, "text"))
@@ -393,6 +397,7 @@ create_collection(
       xs_type      = mxmlNewElement(xs_element, "xs:complexType");
       xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
       xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
+      mxmlElementSetAttrf(xs_temp, "name", "%sValue", smelement);
       mxmlElementSetAttr(xs_temp, "type", smeltype);
       mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
     }
@@ -497,7 +502,7 @@ create_element(
   else if (strstr(syntax, "naturalLanguage"))
     smtype = "NaturalLanguageType";
   else if (strstr(syntax, "octetString"))
-    smtype = "OctetString";
+    smtype = "OctetStringType";
   else if (strstr(syntax, "resolution"))
     smtype = "ResolutionType";
   else if (strstr(syntax, "text"))
@@ -522,6 +527,7 @@ create_element(
     xs_type     = mxmlNewElement(xs_element, "xs:complexType");
     xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
     xs_temp     = mxmlNewElement(xs_sequence, "xs:element");
+    mxmlElementSetAttrf(xs_temp, "name", "%sValue", smname);
     mxmlElementSetAttr(xs_temp, "type", smtype);
     mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
   }
@@ -545,22 +551,69 @@ create_elements(
     mxml_node_t *xsdnode,               /* I - xs:schema node */
     mxml_node_t *registry_node)         /* I - Attribute registry */
 {
-  mxml_node_t   *record_node,           /* Current attribute record */
-                *collection_node;       /* Current collection node */
+  mxml_node_t   *record_node;           /* Current attribute record */
+#if 0
+  mxml_node_t   *collection_node;       /* Current collection node */
   const char    *collection;            /* Current collection value */
+#endif /* 0 */
 
 
   /* Loop through all attributes */
   for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
   {
+#if 0
     collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
     collection      = mxmlGetOpaque(collection_node);
 
-    /* Current omit operation, event, and subscription attributes... */
+    /* Currently omit operation, event, and subscription attributes... */
     if (!collection || !strcmp(collection, "Operation") || !strncmp(collection, "Event ", 6) || !strncmp(collection, "Subscription ", 13))
       continue;
+#endif /* 0 */
 
     create_element(xsdnode, record_node);
+  }
+}
+
+
+/*
+ * 'create_status_codes()' - Create the well-known values nodes for status codes.
+ */
+
+static void
+create_status_codes(
+    mxml_node_t *xsdnode,		/* I - xs:schema node */
+    mxml_node_t *registry_node)		/* I - IPP registry node */
+{
+  mxml_node_t	*record_node,		/* Current record node */
+		*name_node;		/* Name node */
+  const char    *name;                  /* Name string */
+  char		smname[1024];		/* SM name */
+  mxml_node_t	*xs_simpleType,		/* Simple type for well-known value */
+		*xs_restriction,	/* Restrictions on simpleType */
+		*xs_maxLength,		/* Maximum length of value */
+		*xs_enumeration;	/* Enumerated value */
+
+
+
+  xs_simpleType = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_simpleType, "name", "StatusCodeWKV");
+
+  xs_restriction = mxmlNewElement(xs_simpleType, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_maxLength = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_maxLength, "value", "255");
+
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
+  {
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+    name      = mxmlGetOpaque(name_node);
+
+    if (name && islower(*name & 255))
+    {
+      xs_enumeration = mxmlNewElement(xs_restriction, "xs:enumeration");
+      mxmlElementSetAttr(xs_enumeration, "value", get_sm_name(name, smname, sizeof(smname)));
+    }
   }
 }
 
@@ -577,6 +630,16 @@ create_types(mxml_node_t *xsdnode)      /* I - xs:schema node */
                 *xs_sequence,           /* xs:sequence node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
 
+
+  /* ElementWKV */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "ElementWKV");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "255");
 
   /* CharsetType */
   xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
@@ -660,6 +723,22 @@ create_types(mxml_node_t *xsdnode)      /* I - xs:schema node */
   mxmlElementSetAttr(xs_temp, "name", "Units");
   mxmlElementSetAttr(xs_temp, "type", "UnitsWKV");
 
+  /* UnitsWKV */
+  xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
+  mxmlElementSetAttr(xs_type, "name", "UnitsWKV");
+
+  xs_restriction = mxmlNewElement(xs_type, "xs:restriction");
+  mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:maxLength");
+  mxmlElementSetAttr(xs_temp, "value", "255");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:enumeration");
+  mxmlElementSetAttr(xs_temp, "value", "Dpi");
+
+  xs_temp = mxmlNewElement(xs_restriction, "xs:enumeration");
+  mxmlElementSetAttr(xs_temp, "value", "Dpcm");
+
   /* TextType */
   xs_type = mxmlNewElement(xsdnode, "xs:simpleType");
   mxmlElementSetAttr(xs_type, "name", "TextType");
@@ -715,13 +794,10 @@ create_well_known_values(
       if (strstr(attribute, "-default") != NULL || strstr(attribute, "-ready") != NULL)
         continue;                       /* Skip -default and -ready values */
 
-      if (!strncmp(attribute, "notify-", 7))
-        continue;                       /* Skip notify-xxx values */
+//      if (!strcmp(attribute, "requested-attributes"))
+//        continue;                       /* Skip requested-attributes values */
 
-      if (!strcmp(attribute, "requested-attributes"))
-        continue;                       /* Skip requested-attributes values */
-
-      if (!strcmp(attribute, "cover-back-supported") || !strcmp(attribute, "cover-sheet-info-supported") || !strcmp(attribute, "document-format-details-supported") || !strcmp(attribute, "ipp-features-supported") || !strcmp(attribute, "ipp-versions-supported") || !strcmp(attribute, "job-save-disposition-supported") || !strcmp(attribute, "operations-supported") || !strcmp(attribute, "pdl-init-file-supported") || !strcmp(attribute, "proof-print-supported") || !strcmp(attribute, "save-info-supported") || !strcmp(attribute, "stitching-supported") || strstr(attribute, "-col-supported") != NULL || strstr(attribute, "-attributes-supported") != NULL)
+      if (!strcmp(attribute, "destination-accesses-supported") || !strcmp(attribute, "destination-attributes-supported") || !strcmp(attribute, "destination-uris-supported") || !strcmp(attribute, "document-access-supported") || !strcmp(attribute, "document-format-details-supported") || !strcmp(attribute, "ipp-versions-supported") || !strcmp(attribute, "job-save-disposition-supported") || !strcmp(attribute, "operations-supported") || !strcmp(attribute, "pdl-init-file-supported") || !strcmp(attribute, "proof-print-supported") || !strcmp(attribute, "save-info-supported") || !strcmp(attribute, "stitching-supported") || strstr(attribute, "-col-supported") != NULL || strstr(attribute, "-attributes-supported") != NULL)
         continue;                       /* Skip most -supported values */
 
       if (!last_attribute || strcmp(last_attribute, attribute))
@@ -842,8 +918,8 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
   }
   va_end(ap);
 
-  xs_documentation = mxmlNewElement(xs_schema, "xs:documentation");
-  xs_annotation    = mxmlNewElement(xs_documentation, "xs:annotation");
+  xs_annotation    = mxmlNewElement(xs_schema, "xs:annotation");
+  xs_documentation = mxmlNewElement(xs_annotation, "xs:documentation");
 
   snprintf(header, sizeof(header),
            "PWG Semantic Model v%s\n"
@@ -867,14 +943,13 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
            "SOFTWARE.",
            version, get_current_date(NULL));
 
-  mxmlNewOpaque(xs_annotation, header);
+  mxmlNewOpaque(xs_documentation, header);
 
   if (annotation)
   {
-    xs_documentation = mxmlNewElement(xs_schema, "xs:documentation");
-    xs_annotation    = mxmlNewElement(xs_documentation, "xs:annotation");
+    xs_documentation = mxmlNewElement(xs_annotation, "xs:documentation");
 
-    mxmlNewOpaque(xs_annotation, annotation);
+    mxmlNewOpaque(xs_documentation, annotation);
   }
 
   return (xs_schema);
@@ -995,7 +1070,7 @@ get_sm_name(const char *ipp,		/* I - IPP keyword/name */
       ipp ++;
       *smptr++ = toupper(*ipp++);
     }
-    else if (*ipp == ' ')
+    else if (isspace(*ipp & 255))
     {
       ipp ++;
       *smptr++ = '_';
@@ -1031,20 +1106,46 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
 
   if (strstr(ipp, "document-state"))
     ipp = strstr(ipp, "document-state");
+  else if (strstr(ipp, "job-states"))
+    ipp = "job-state";
   else if (strstr(ipp, "job-state"))
     ipp = strstr(ipp, "job-state");
   else if (strstr(ipp, "printer-state"))
     ipp = strstr(ipp, "printer-state");
   else if (!strncmp(ipp, "ipp-", 4))
     ipp += 4;
+  else if (strstr(ipp, "cover-back") || strstr(ipp, "cover-front") || !strcmp(ipp, "destination-accesses-supported") || !strcmp(ipp, "destination-uris-supported") || !strcmp(ipp, "document-access-supported") || !strcmp(ipp, "document-format-details-supported") || !strcmp(ipp, "insert-sheet-supported") || strstr(ipp, "-col-supported"))
+    ipp = "element";
   else if (!strncmp(ipp, "job-cover-", 10) || !strncmp(ipp, "job-finishings", 14) || !strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
     ipp += 4;
   else if (!strncmp(ipp, "printer-resolution", 18))
     ipp += 8;
+  else if (strstr(ipp, "-attributes-supported"))
+    ipp = "element";
   else if (!strcmp(ipp, "current-page-order"))
     ipp = "page-order-received";
-  else if (!strcmp(ipp, "media-input-tray-check"))
+  else if (!strncmp(ipp, "input-quality", 13))
+    ipp = "print-quality";
+  else if (!strncmp(ipp, "input-sides", 11))
+    ipp = "sides";
+  else if (strstr(ipp, "-mandatory"))
+    ipp = "element";
+  else if (!strncmp(ipp, "media-front-coating", 19))
+    ipp = "media-back-coating";
+  else if (!strcmp(ipp, "media-input-tray-check") || !strncmp(ipp, "media-key", 9) || !strncmp(ipp, "media-size-name", 15))
     ipp = "media";
+  else if (!strcmp(ipp, "notify-subscribed-event"))
+    ipp = "notify-events";
+  else if (!strcmp(ipp, "destination-attributes") || !strcmp(ipp, "preferred-attributes"))
+    ipp = "job-ticket";
+  else if (strstr(ipp, "-orientation-requested"))
+    ipp = "orientation-requested";
+  else if (strstr(ipp, "-output-bin"))
+    ipp = "output-bin";
+  else if (!strcmp(ipp, "requested-attributes"))
+    ipp = "element";
+  else if (strstr(ipp, "-status-code"))
+    ipp = "status-code";
 
  /*
   * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
@@ -1065,7 +1166,7 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
       smptr += strlen(smptr);
       ipp += 10;
     }
-    else if (!strcmp(ipp, "-actual") || !strcmp(ipp, "-completed") || !strcmp(ipp, "-configured") || !strcmp(ipp, "-database") || !strcmp(ipp, "-default") || !strcmp(ipp, "-ready") || !strcmp(ipp, "-supplied") || (!strcmp(ipp, "-supported") && !collection))
+    else if (!strcmp(ipp, "-accepted") || !strcmp(ipp, "-actual") || !strcmp(ipp, "-completed") || !strcmp(ipp, "-configured") || !strcmp(ipp, "-database") || !strcmp(ipp, "-default") || !strcmp(ipp, "-detected") || !strcmp(ipp, "-ready") || !strcmp(ipp, "-supplied") || (!strcmp(ipp, "-supported") && !collection))
     {
      /*
       * Type name doesn't include attribute suffix...
