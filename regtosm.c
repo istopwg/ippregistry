@@ -462,6 +462,8 @@ create_collection(
       if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smeltype, MXML_DESCEND_FIRST))
         create_collection(xsdnode, record_node, smeltype);
     }
+    else if (strstr(syntax, "dateTime"))
+      smeltype = "xs:dateTime";
     else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
     {
       if (membername1)
@@ -592,14 +594,6 @@ create_element(
   if (find_map(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
     return;                       /* Skip excluded attributes */
 
-  int i;
-  for (i = 0; i < (int)(sizeof(exclude_attributes) / sizeof(exclude_attributes[0])); i ++)
-    if (!strcmp(exclude_attributes[i].from, name))
-    {
-      printf("Found attribute \"%s\" at index %d.\n", name, i);
-      return;
-    }
-
   get_sm_element(name, smname, sizeof(smname));
 
   if (strstr(syntax, "boolean"))
@@ -615,6 +609,8 @@ create_element(
     if (!mxmlFindElement(xsdnode, xsdnode, "xs:complexType", "name", smtype, MXML_DESCEND_FIRST))
       create_collection(xsdnode, record_node, smtype);
   }
+  else if (strstr(syntax, "dateTime"))
+    smtype = "xs:dateTime";
   else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
   {
     get_sm_type(name, 0, smtemp, sizeof(smtemp));
@@ -673,7 +669,7 @@ create_element(
 
 
 /*
- * 'create_elements()' - Create all of the common elements.
+ * 'create_elements()' - Create all of the common elements and their types.
  */
 
 static void
@@ -681,26 +677,111 @@ create_elements(
     mxml_node_t *xsdnode,               /* I - xs:schema node */
     mxml_node_t *registry_node)         /* I - Attribute registry */
 {
+  int           i;                      /* Looping var */
   mxml_node_t   *record_node;           /* Current attribute record */
-#if 0
   mxml_node_t   *collection_node;       /* Current collection node */
   const char    *collection;            /* Current collection value */
-#endif /* 0 */
+  ipp_map_t     *type;                  /* Current type */
+  static ipp_map_t types[] =            /* Map collections to types */
+  {
+    { "Document Description", "DocumentDescriptionType" },
+    { "Document Status", "DocumentStatusType" },
+    { "Document Template", "DocumentProcessingType" },
+    { "Job Description", "JobDescriptionType" },
+    { "Job Status", "JobStatusType" },
+    { "Job Template", "JobProcessingType" },
+    { "Printer Description", "ServiceDescriptionType" }, /* Also ServiceCapabilitiesType */
+    { "Printer Status", "ServiceStatusType" }
+  };
 
 
-  /* Loop through all attributes */
+ /*
+  * Loop through all attributes to define them and any types...
+  */
+
   for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
   {
-#if 0
-    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
-    collection      = mxmlGetOpaque(collection_node);
-
-    /* Currently omit operation, event, and subscription attributes... */
-    if (!collection || !strcmp(collection, "Operation") || !strncmp(collection, "Event ", 6) || !strncmp(collection, "Subscription ", 13))
-      continue;
-#endif /* 0 */
-
     create_element(xsdnode, record_node);
+  }
+
+ /*
+  * Then do it again to create the core types for each attribute group...
+  */
+
+  for (i = (int)(sizeof(types) / sizeof(types[0])), type = types; i > 0; i --, type ++)
+  {
+    mxml_node_t *xs_type, *xs_sequence, *xs_altsequence, *xs_element;
+    mxml_node_t *name_node;
+    const char *name;
+    char smelement[1024];
+
+    xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+    mxmlElementSetAttr(xs_type, "name", type->to);
+
+    xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
+
+    if (!strcmp(type->from, "Printer Description"))
+    {
+      xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+      mxmlElementSetAttr(xs_type, "name", "ServiceCapabilitiesType");
+
+      xs_altsequence = mxmlNewElement(xs_type, "xs:sequence");
+    }
+    else
+      xs_altsequence = NULL;
+
+    for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
+    {
+      collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
+      collection      = mxmlGetOpaque(collection_node);
+
+      if (strcmp(collection, type->from))
+        continue;
+
+      if (mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST))
+        continue;
+
+      name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+      name      = mxmlGetOpaque(name_node);
+
+      if (!name)
+        continue;
+
+      if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
+        continue;
+
+      if (find_map(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+        continue;
+
+      if (xs_altsequence && strstr(name, "-supported"))
+      {
+       /*
+        * See if this is a -supported attribute for a Job Template attribute...
+        */
+
+        char name2[1024], *nameptr;
+        mxml_node_t *job_template_node = NULL;
+
+        strncpy(name2, name, sizeof(name2) - 1);
+        name2[sizeof(name2) - 1] = '\0';
+
+        if ((nameptr = strstr(name2, "-supported")) != NULL)
+        {
+          *nameptr = '\0';
+          job_template_node = mxmlFindElement(xsdnode, xsdnode, "xs:element", "name", get_sm_element(name2, smelement, sizeof(smelement)), MXML_DESCEND);
+        }
+        if (job_template_node)
+          xs_element = mxmlNewElement(xs_altsequence, "xs:element");
+        else
+          xs_element = mxmlNewElement(xs_sequence, "xs:element");
+      }
+      else if (strstr(name, "-database") || strstr(name, "-ready"))
+        xs_element = mxmlNewElement(xs_altsequence, "xs:element");
+      else
+        xs_element = mxmlNewElement(xs_sequence, "xs:element");
+
+      mxmlElementSetAttr(xs_element, "ref", get_sm_element(name, smelement, sizeof(smelement)));
+    }
   }
 }
 
@@ -1361,172 +1442,6 @@ save_cb(mxml_node_t *node,		/* I - Current node */
 static int				/* O - Exit status */
 usage(void)
 {
-  puts("\nUsage: ./regtosm filename.xml output-directory\n");
+  puts("\nUsage: ./regtosm [options] filename.xml output-directory\n");
   return (1);
 }
-
-
-#if 0
-/*
- * 'write_strings()' - Write strings for registered enums and keywords.
- */
-
-static void
-write_strings(
-    mxml_node_t *registry_node)		/* I - Registry */
-{
-  mxml_node_t	*record_node,		/* Current record node */
-		*attribute_node,	/* Attribute for localization */
-		*collection_node,	/* Collection (for attributes) */
-		*member_node,		/* Member attribute node (for attributes */
-		*name_node,		/* Keyword string to be localized */
-		*syntax_node,		/* Syntax string (for attributes) */
-		*value_node;		/* Value for localization */
-  char		localized[1024];	/* Localized string */
-  const char	*last_attribute = NULL;	/* Last attribute written */
-
-
-  for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
-       record_node;
-       record_node = mxmlFindElement(record_node, registry_node, "record", NULL,
-                                     NULL, MXML_NO_DESCEND))
-  {
-    attribute_node  = mxmlFindElement(record_node, record_node, "attribute",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    collection_node = mxmlFindElement(record_node, record_node, "collection",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    member_node     = mxmlFindElement(record_node, record_node,
-                                      "member_attribute", NULL, NULL,
-                                      MXML_DESCEND_FIRST);
-    name_node       = mxmlFindElement(record_node, record_node, "name",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    syntax_node     = mxmlFindElement(record_node, record_node, "syntax",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    value_node      = mxmlFindElement(record_node, record_node, "value",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-
-    if (collection_node && name_node && syntax_node)
-    {
-     /*
-      * See if this is an attribute we want to localize...
-      */
-
-      const char *collection = mxmlGetOpaque(collection_node),
-      			*name = mxmlGetOpaque(name_node),
-			*syntax = mxmlGetOpaque(syntax_node);
-
-      if (collection && name && syntax && !member_node &&
-          !strstr(name, "-default") &&
-          !strstr(name, "-ready") &&
-          !strstr(name, "-supported") &&
-          strcmp(name, "attributes-charset") &&
-          strcmp(name, "attributes-natural-language") &&
-          strcmp(name, "current-page-order") &&
-          strcmp(name, "document-access-error") &&
-          strcmp(name, "document-charset") &&
-          strcmp(name, "document-format") &&
-          strcmp(name, "document-format-details") &&
-          strcmp(name, "document-natural-language") &&
-          strcmp(name, "first-index") &&
-          strcmp(name, "job-finishings-col") &&
-          strcmp(name, "job-id") &&
-          strcmp(name, "job-ids") &&
-          strcmp(name, "job-impressions") &&
-          strcmp(name, "job-k-octets") &&
-          strcmp(name, "job-media-sheets") &&
-          strcmp(name, "job-message-from-operator") &&
-          strcmp(name, "job-message-to-operator") &&
-          strcmp(name, "job-uri") &&
-          strcmp(name, "last-document") &&
-          strcmp(name, "limit") &&
-          strcmp(name, "message") &&
-          strcmp(name, "my-jobs") &&
-          strcmp(name, "notify-charset") &&
-          strcmp(name, "original-requesting-user-name") &&
-          strcmp(name, "overrides") &&
-          strcmp(name, "pdl-init-file") &&
-          strcmp(name, "printer-uri") &&
-	  (!strcmp(collection, "Job Template") ||
-           !strcmp(collection, "Operation") ||
-           !strcmp(collection, "Subscription Template")) &&
-           !strstr(syntax, "keyword") && !strstr(syntax, "enum"))
-      {
-       /*
-        * Job template or operation attribute that isn't otherwise localized.
-        */
-
-        printf("\"%s\" = \"%s\";\n", name,
-               get_localized("", name, name, localized, sizeof(localized)));
-      }
-
-      continue;
-    }
-
-    if (!name_node)
-      name_node = value_node;
-
-    if (attribute_node && name_node && value_node)
-    {
-      const char *attribute = mxmlGetOpaque(attribute_node),
-      			*name = mxmlGetOpaque(name_node),
-			*value = mxmlGetOpaque(value_node);
-
-      if (!strcmp(attribute, "cover-back-supported") ||
-          !strcmp(attribute, "cover-front-supported") ||
-          !strcmp(attribute, "current-page-order") ||
-          !strcmp(attribute, "document-digital-signature") ||
-          !strcmp(attribute, "document-format-details-supported") ||
-          !strcmp(attribute, "document-format-varying-attributes") ||
-          !strcmp(attribute, "finishings-col-supported") ||
-          !strcmp(attribute, "ipp-features-supported") ||
-          !strcmp(attribute, "ipp-versions-supported") ||
-          !strcmp(attribute, "job-mandatory-attributes") ||
-          !strcmp(attribute, "job-password-encryption") ||
-          !strcmp(attribute, "job-save-disposition-supported") ||
-          !strcmp(attribute, "job-spooling-supported") ||
-          !strcmp(attribute, "media-col-supported") ||
-          !strcmp(attribute, "media-key") ||
-          !strcmp(attribute, "media-source-feed-direction") ||
-          !strcmp(attribute, "media-source-feed-orientation") ||
-          !strcmp(attribute, "notify-pull-method") ||
-          !strcmp(attribute, "notify-pull-method-supported") ||
-          !strcmp(attribute, "pdl-init-file-supported") ||
-          !strcmp(attribute, "pdl-override-supported") ||
-          !strcmp(attribute, "printer-settable-attributes-supported") ||
-          !strcmp(attribute, "proof-print-supported") ||
-          !strcmp(attribute, "pwg-raster-document-sheet-back") ||
-          !strcmp(attribute, "pwg-raster-document-type-supported") ||
-          !strcmp(attribute, "save-info-supported") ||
-          !strcmp(attribute, "stitching-supported") ||
-          !strcmp(attribute, "uri-authentication-supported") ||
-          !strcmp(attribute, "uri-security-supported") ||
-          !strcmp(attribute, "which-jobs") ||
-          !strcmp(attribute, "xri-authentication-supported") ||
-          !strcmp(attribute, "xri-security-supported"))
-        continue;
-
-      if ((!last_attribute || strcmp(attribute, last_attribute)) &&
-          !strstr(attribute, "-default") && !strstr(attribute, "-supported") &&
-          !strstr(attribute, "-ready"))
-      {
-        printf("\"%s\" = \"%s\";\n", attribute,
-               get_localized("", attribute, attribute, localized,
-                             sizeof(localized)));
-        last_attribute = attribute;
-      }
-
-      if (value[0] != '<' && value[0] != ' ' && strcmp(name, "Unassigned") &&
-          strcmp(attribute, "operations-supported") &&
-          (strcmp(attribute, "media") || strchr(value, '_') != NULL))
-	printf("\"%s.%s\" = \"%s\";\n", attribute, value,
-	       get_localized(attribute, name, value, localized,
-	       sizeof(localized)));
-      else if (!strcmp(attribute, "operations-supported") &&
-               strncmp(name, "Reserved (", 10))
-        printf("\"%s.%ld\" = \"%s\";\n", attribute, strtol(value, NULL, 0),
-               name);
-    }
-  }
-}
-#endif /* 0 */
