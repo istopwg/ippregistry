@@ -40,6 +40,93 @@
 
 
 /*
+ * Local variables...
+ */
+
+typedef struct
+{
+  const char    *from,                  /* From this name */
+                *to;                    /* to this name */
+} ipp_map_t;
+
+static ipp_map_t exclude_attributes[] =
+{
+  { "destination-accesses-supported", NULL },
+  { "destination-attributes-supported", NULL },
+  { "destination-uris-supported", NULL },
+  { "document-access-supported", NULL },
+  { "document-creation-attributes-supported", NULL },
+  { "document-format-details-supported", NULL },
+  { "document-format-varying-attributes", NULL },
+  { "fetch-document-attributes-supported", NULL },
+  { "finishings-col-supported", NULL },
+  { "input-attributes-supported", NULL },
+  { "ipp-features-supported", NULL },
+  { "ipp-versions-supported", NULL },
+  { "job-accounting-sheets-supported", NULL },
+  { "job-creation-attributes-supported", NULL },
+  { "job-error-sheet-supported", NULL },
+  { "job-finishings-col-supported", NULL },
+  { "job-save-disposition-supported", NULL },
+  { "job-settable-attributes-supported", NULL },
+  { "job-sheets-col-supported", NULL },
+  { "media-col-supported", NULL },
+  { "notify-attributes", NULL },
+  { "notify-attributes-supported", NULL },
+  { "operations-supported", NULL },
+  { "output-attributes-supported", NULL },
+  { "overrides-supported", NULL },
+  { "pdl-init-file-supported", NULL },
+  { "pdl-override-guaranteed-supported", NULL },
+  { "preferred-attributes-supported", NULL },
+  { "printer-get-attributes-supported", NULL },
+  { "printer-kind", NULL }, /* FIXME - missing registrations for values */
+  { "printer-settable-attributes-supported", NULL },
+  { "proof-print-supported", NULL },
+  { "repertoire-supported", NULL },
+  { "save-info-supported", NULL },
+  { "separator-sheets-supported", NULL },
+  { "stitching-supported", NULL },
+  { "user-defined-values-supported", NULL }
+};
+#if 0
+static const char * const map_types[2][] =
+{
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" },
+  { "", "" }
+};
+#endif // 0
+
+
+/*
  * Local functions...
  */
 
@@ -414,6 +501,36 @@ create_collection(
 
 
 /*
+ * 'compare_map()' - Compare two map items.
+ */
+
+static int                              /* O - Result of comparison */
+compare_map(ipp_map_t *a,               /* I - First item */
+            ipp_map_t *b)               /* I - Second item */
+{
+  return (strcmp(a->from, b->from));
+}
+
+
+/*
+ * 'find_map()' - Find a map item.
+ */
+
+static ipp_map_t *                      /* O - Matching element or NULL */
+find_map(const char *name,              /* I - Name to lookup */
+         ipp_map_t  *map,               /* I - Map */
+         size_t     mapsize)            /* I - Number of elements in map */
+{
+  ipp_map_t     key;                    /* Search key */
+
+
+  key.from = name;
+
+  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map));
+}
+
+
+/*
  * 'create_element()' - Create a single element.
  */
 
@@ -469,6 +586,17 @@ create_element(
 
   if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
     return;
+
+  if (find_map(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+    return;                       /* Skip excluded attributes */
+
+  int i;
+  for (i = 0; i < (int)(sizeof(exclude_attributes) / sizeof(exclude_attributes[0])); i ++)
+    if (!strcmp(exclude_attributes[i].from, name))
+    {
+      printf("Found attribute \"%s\" at index %d.\n", name, i);
+      return;
+    }
 
   get_sm_element(name, smname, sizeof(smname));
 
@@ -794,11 +922,8 @@ create_well_known_values(
       if (strstr(attribute, "-default") != NULL || strstr(attribute, "-ready") != NULL)
         continue;                       /* Skip -default and -ready values */
 
-//      if (!strcmp(attribute, "requested-attributes"))
-//        continue;                       /* Skip requested-attributes values */
-
-      if (!strcmp(attribute, "destination-accesses-supported") || !strcmp(attribute, "destination-attributes-supported") || !strcmp(attribute, "destination-uris-supported") || !strcmp(attribute, "document-access-supported") || !strcmp(attribute, "document-format-details-supported") || !strcmp(attribute, "ipp-versions-supported") || !strcmp(attribute, "job-save-disposition-supported") || !strcmp(attribute, "operations-supported") || !strcmp(attribute, "pdl-init-file-supported") || !strcmp(attribute, "proof-print-supported") || !strcmp(attribute, "save-info-supported") || !strcmp(attribute, "stitching-supported") || strstr(attribute, "-col-supported") != NULL || strstr(attribute, "-attributes-supported") != NULL)
-        continue;                       /* Skip most -supported values */
+      if (find_map(attribute, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+        continue;                       /* Skip excluded attributes */
 
       if (!last_attribute || strcmp(last_attribute, attribute))
       {
