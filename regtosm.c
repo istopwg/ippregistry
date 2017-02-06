@@ -51,6 +51,8 @@ typedef struct
 
 static ipp_map_t exclude_attributes[] =
 {
+  { "cover-back-supported", NULL },
+  { "cover-front-supported", NULL },
   { "destination-accesses-supported", NULL },
   { "destination-attributes-supported", NULL },
   { "destination-uris-supported", NULL },
@@ -61,9 +63,12 @@ static ipp_map_t exclude_attributes[] =
   { "fetch-document-attributes-supported", NULL },
   { "finishings-col-supported", NULL },
   { "input-attributes-supported", NULL },
+  { "insert-sheet-supported", NULL },
   { "ipp-features-supported", NULL },
   { "ipp-versions-supported", NULL },
   { "job-accounting-sheets-supported", NULL },
+  { "job-cover-back-supported", NULL },
+  { "job-cover-front-supported", NULL },
   { "job-creation-attributes-supported", NULL },
   { "job-error-sheet-supported", NULL },
   { "job-finishings-col-supported", NULL },
@@ -71,6 +76,7 @@ static ipp_map_t exclude_attributes[] =
   { "job-settable-attributes-supported", NULL },
   { "job-sheets-col-supported", NULL },
   { "media-col-supported", NULL },
+  { "media-key-supported", NULL },
   { "notify-attributes", NULL },
   { "notify-attributes-supported", NULL },
   { "operations-supported", NULL },
@@ -89,47 +95,47 @@ static ipp_map_t exclude_attributes[] =
   { "stitching-supported", NULL },
   { "user-defined-values-supported", NULL }
 };
-#if 0
-static const char * const map_types[2][] =
+static ipp_map_t map_types[] =
 {
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" },
-  { "", "" }
+  { "current-page-order", "PageOrderWKV" },
+  { "destination-attributes", "JobTicketType" },
+  { "destination-mandatory-access-attributes", "ElementWKV" },
+  { "fetch-status-code", "StatusCodeWKV" },
+  { "input-orientation-requested", "OrientationRequestedWKV" },
+  { "input-orientation-requested-supported", "OrientationRequestedWKV" },
+  { "input-quality", "PrintQualityWKV" },
+  { "input-quality-supported", "PrintQualityWKV" },
+  { "input-sides", "SidesWKV" },
+  { "input-sides-supported", "SidesWKV" },
+  { "job-accounting-output-bin", "OutputBinWKV" },
+  { "job-mandatory-attributes", "ElementWKV" },
+  { "media-back-coating", "MediaCoatingWKV" },
+  { "media-back-coating-supported", "MediaCoatingWKV" },
+  { "media-front-coating", "MediaCoatingWKV" },
+  { "media-front-coating-supported", "MediaCoatingWKV" },
+  { "media-input-tray-check", "MediaWKV" },
+  { "media-key", "NameType" },
+  { "media-size-name", "MediaWKV" },
+  { "media-source-feed-orientation", "OrientationRequestedWKV" },
+  { "notify-status-code", "StatusCodeWKV" },
+  { "notify-subscribed-event", "NotifyEventsWKV" },
+  { "output-device-document-state", "DocumentStateWKV" },
+  { "output-device-document-state-reasons", "DocumentStateReasonsWKV" },
+  { "output-device-job-state", "JobStateWKV" },
+  { "output-device-job-state-reasons", "JobStateReasonsWKV" },
+  { "output-device-job-states", "JobStateWKV" },
+  { "page-order-received", "PageOrderWKV" },
+  { "page-order-received-supported", "PageOrderWKV" },
+  { "preferred-attributes", "JobTicketType" },
+  { "printer-mandatory-job-attributes", "ElementWKV" }
 };
-#endif // 0
 
 
 /*
  * Local functions...
  */
 
+static int              compare_map(ipp_map_t *a, ipp_map_t *b);
 static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *record_node, const char *smtype);
 static void		create_status_codes(mxml_node_t *xsdnode, mxml_node_t *registry_node);
@@ -137,6 +143,7 @@ static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
 static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation, ...);
+static ipp_map_t        *find_map(const char *name, ipp_map_t *map, size_t mapsize);
 static int		get_current_date(int *month);
 static char		*get_sm_element(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_name(const char *ipp, char *sm, size_t smsize);
@@ -165,6 +172,13 @@ main(int  argc,				/* I - Number of command-line args */
   mxml_node_t	*xsdnode;		/* XSD node */
   FILE		*xsdfile;		/* XSD file pointer */
 
+
+ /*
+  * Map sure map arrays are properly sorted...
+  */
+
+  qsort(exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map);
+  qsort(map_types, sizeof(map_types) / sizeof(map_types[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map);
 
  /*
   * Process command-line arguments...
@@ -339,6 +353,18 @@ main(int  argc,				/* I - Number of command-line args */
 
 
 /*
+ * 'compare_map()' - Compare two map items.
+ */
+
+static int                              /* O - Result of comparison */
+compare_map(ipp_map_t *a,               /* I - First item */
+            ipp_map_t *b)               /* I - Second item */
+{
+  return (strcmp(a->from, b->from));
+}
+
+
+/*
  * 'create_collection()' - Create a complex type representing a collection.
  */
 
@@ -402,6 +428,12 @@ create_collection(
 
     if (strstr(membername, "(extension)") || strstr(membername, "(deprecated)") || strstr(membername, "(obsolete)") || strstr(membername, "(under review)"))
       continue;
+
+    if (find_map(membername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+      continue;
+
+    if (submembername && find_map(submembername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+        continue;
 
     syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
     syntax      = mxmlGetOpaque(syntax_node);
@@ -497,36 +529,6 @@ create_collection(
       mxmlElementSetAttr(xs_element, "type", smeltype);
     }
   }
-}
-
-
-/*
- * 'compare_map()' - Compare two map items.
- */
-
-static int                              /* O - Result of comparison */
-compare_map(ipp_map_t *a,               /* I - First item */
-            ipp_map_t *b)               /* I - Second item */
-{
-  return (strcmp(a->from, b->from));
-}
-
-
-/*
- * 'find_map()' - Find a map item.
- */
-
-static ipp_map_t *                      /* O - Matching element or NULL */
-find_map(const char *name,              /* I - Name to lookup */
-         ipp_map_t  *map,               /* I - Map */
-         size_t     mapsize)            /* I - Number of elements in map */
-{
-  ipp_map_t     key;                    /* Search key */
-
-
-  key.from = name;
-
-  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map));
 }
 
 
@@ -928,17 +930,12 @@ create_well_known_values(
       if (!last_attribute || strcmp(last_attribute, attribute))
       {
        /* Start a new xs:simpleType */
-        size_t smname_len;
-
         last_attribute = attribute;
 
-        get_sm_name(attribute, smname, sizeof(smname));
-        smname_len = strlen(smname);
-        if (smname_len > 9 && !strcmp(smname + smname_len - 9, "Supported"))
-          smname[smname_len - 9] = '\0';
+        get_sm_type(attribute, 0, smname, sizeof(smname));
 
         xs_simpleType = mxmlNewElement(xsdnode, "xs:simpleType");
-        mxmlElementSetAttrf(xs_simpleType, "name", "%sWKV", smname);
+        mxmlElementSetAttr(xs_simpleType, "name", smname);
 
 	xs_restriction = mxmlNewElement(xs_simpleType, "xs:restriction");
 	mxmlElementSetAttr(xs_restriction, "base", "xs:NMTOKEN");
@@ -1082,6 +1079,24 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
 
 
 /*
+ * 'find_map()' - Find a map item.
+ */
+
+static ipp_map_t *                      /* O - Matching element or NULL */
+find_map(const char *name,              /* I - Name to lookup */
+         ipp_map_t  *map,               /* I - Map */
+         size_t     mapsize)            /* I - Number of elements in map */
+{
+  ipp_map_t     key;                    /* Search key */
+
+
+  key.from = name;
+
+  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map));
+}
+
+
+/*
  * 'get_current_date()' - Get the current year and month.
  */
 
@@ -1220,57 +1235,34 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
             char       *sm,		/* I - SM name buffer */
             size_t     smsize)		/* I - Size of name buffer */
 {
+  ipp_map_t     *type;                  /* Mapped type, if any */
   char	*smptr = sm, *smend = sm + smsize - 1;
 					/* Pointer into SM name buffer and end */
 
+
+ /*
+  * Map types for attributes that don't follow a simple rule...
+  */
+
+  if ((type = find_map(ipp, map_types, sizeof(map_types) / sizeof(map_types[0]))) != NULL)
+  {
+    strncpy(sm, type->to, smsize - 1);
+    *smend = '\0';
+
+    return (sm);
+  }
 
  /*
   * Rule 2: Strip leading "ipp-"...
   * Rule 6: Remove "job-", "document-", and "printer-" prefix from common Job, Document, and Printer attributes.
   */
 
-  if (strstr(ipp, "document-state"))
-    ipp = strstr(ipp, "document-state");
-  else if (strstr(ipp, "job-states"))
-    ipp = "job-state";
-  else if (strstr(ipp, "job-state"))
-    ipp = strstr(ipp, "job-state");
-  else if (strstr(ipp, "printer-state"))
-    ipp = strstr(ipp, "printer-state");
-  else if (!strncmp(ipp, "ipp-", 4))
+  if (!strncmp(ipp, "ipp-", 4))
     ipp += 4;
-  else if (strstr(ipp, "cover-back") || strstr(ipp, "cover-front") || !strcmp(ipp, "destination-accesses-supported") || !strcmp(ipp, "destination-uris-supported") || !strcmp(ipp, "document-access-supported") || !strcmp(ipp, "document-format-details-supported") || !strcmp(ipp, "insert-sheet-supported") || strstr(ipp, "-col-supported"))
-    ipp = "element";
   else if (!strncmp(ipp, "job-cover-", 10) || !strncmp(ipp, "job-finishings", 14) || !strncmp(ipp, "job-k-octets", 12) || !strncmp(ipp, "job-media-sheets", 16) || !strncmp(ipp, "job-impressions", 15))
     ipp += 4;
   else if (!strncmp(ipp, "printer-resolution", 18))
     ipp += 8;
-  else if (strstr(ipp, "-attributes-supported"))
-    ipp = "element";
-  else if (!strcmp(ipp, "current-page-order"))
-    ipp = "page-order-received";
-  else if (!strncmp(ipp, "input-quality", 13))
-    ipp = "print-quality";
-  else if (!strncmp(ipp, "input-sides", 11))
-    ipp = "sides";
-  else if (strstr(ipp, "-mandatory"))
-    ipp = "element";
-  else if (!strncmp(ipp, "media-front-coating", 19))
-    ipp = "media-back-coating";
-  else if (!strcmp(ipp, "media-input-tray-check") || !strncmp(ipp, "media-key", 9) || !strncmp(ipp, "media-size-name", 15))
-    ipp = "media";
-  else if (!strcmp(ipp, "notify-subscribed-event"))
-    ipp = "notify-events";
-  else if (!strcmp(ipp, "destination-attributes") || !strcmp(ipp, "preferred-attributes"))
-    ipp = "job-ticket";
-  else if (strstr(ipp, "-orientation-requested"))
-    ipp = "orientation-requested";
-  else if (strstr(ipp, "-output-bin"))
-    ipp = "output-bin";
-  else if (!strcmp(ipp, "requested-attributes"))
-    ipp = "element";
-  else if (strstr(ipp, "-status-code"))
-    ipp = "status-code";
 
  /*
   * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
