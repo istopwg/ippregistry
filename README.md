@@ -5,7 +5,7 @@ This repository contains the tools used by the PWG IPP workgroup to maintain the
 - apply-pending.sh, a script that applies a list of plain text registrations;
 - register, a tool to apply plain text registration templates to the current IANA IPP XML registry file; and
 - regtostrings, a tool for generating the ipp.strings file that provides localized strings for all registered attributes and values.
-- regtosm, a prototype tool for generating a PWG Semantic Model XML schema (in development, /not/ for production use!)
+- regtosm, a prototype tool for generating a PWG Semantic Model XML schema (in development, *not* for production use!)
 
 
 ## Prerequisites
