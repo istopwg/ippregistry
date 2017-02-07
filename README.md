@@ -1,11 +1,12 @@
 # IANA IPP Registry Tools
 
-This repository contains the tools used by the PWG IPP workgroup to maintain the [IANA IPP registry](http://www.iana.org/assignments/ipp-registrations) and sample IPP strings file. Two tools and a script are provided:
+This repository contains the tools used by the PWG IPP workgroup to maintain the [IANA IPP registry](http://www.iana.org/assignments/ipp-registrations) and sample IPP strings file. Three tools and a script are provided:
 
 - apply-pending.sh, a script that applies a list of plain text registrations;
 - register, a tool to apply plain text registration templates to the current IANA IPP XML registry file; and
-- regtosm, a tool for generating a PWG Semantic Model XML schema (in development)
 - regtostrings, a tool for generating the ipp.strings file that provides localized strings for all registered attributes and values.
+- regtosm, a prototype tool for generating a PWG Semantic Model XML schema (in development, /not/ for production use!)
+
 
 ## Prerequisites
 
@@ -46,7 +47,7 @@ The following options are understood:
 
 The source XML file should be the current IANA IPP registration file at: [http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml](http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).
 
-The template file is a plain text registration of attributes, values, status codes, operations, etc. as documented in [RFC 2911](http://tools.ietf.org/html/rfc2911).
+The template file is a plain text registration of attributes, values, status codes, operations, etc. as documented in [RFC 8011](http://tools.ietf.org/html/rfc8011).
 
 
 # Using the "regtostrings" Tool
@@ -55,4 +56,15 @@ The "regtostrings" tool reads the source XML registry file and writes an Apple .
 
     ./regtostrings ipp-registrations.xml | sort -u >ipp.strings
 
-Again, the source XML file should be the current IANA IPP registration file at: (http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).
+The source XML file should be the current IANA IPP registration file at: (http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).
+
+
+# Using the "regtosm" Tool
+
+" Note: The "regtosm" tool is under active development and should not be used as a replacement for the currently approved and published PWG Semantic Model schema.
+
+The "regtosm" tool reads the source XML registry file and writes a PWG Semantic Model XML schema to the specified directory. The following command will write the current registry to a directory called "test-schema":
+
+    ./regtosm ipp-registrations test-schema
+
+The source XML file should be the current IANA IPP registration file at: (http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml).

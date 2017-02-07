@@ -3,7 +3,7 @@
  *
  * Usage:
  *
- *    ./regtosm [-n nsurl-url] [-v version] filename.xml output-directory version
+ *    ./regtosm [-n namespace-url] [-v version] filename.xml output-directory
  *
  * Copyright (c) 2008-2017 by Michael R Sweet
  *
