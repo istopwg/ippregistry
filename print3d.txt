@@ -1,0 +1,230 @@
+# IPP attributes to include in PWG Semantic Model Print3D service schema/model
+# -actual, -default, -supplied, -supported added automatically
+accuracy-units
+= *
+accuracy-units-supported
+color-supported
+date-time-at-completed
+date-time-at-creation
+date-time-at-processing
+document-format
+document-name
+finishings
+# Limit values to those applicable to 3D
+= none
+= trim
+job-id
+job-name
+job-originating-user-name
+job-state
+= *
+job-state-message
+job-state-reasons
+= *
+job-uuid
+material-amount-units
+= *
+material-amount-units-supported
+material-diameter-supported
+material-purpose
+= *
+material-purpose-supported
+material-rate-supported
+material-rate-units
+= *
+material-rate-units-supported
+material-shell-thickness-supported
+material-temperature-supported
+material-type
+= *
+material-type-supported
+materials-col
+materials-col-database
+materials-col-ready
+max-materials-col-supported
+media-color
+= *
+multiple-object-handling
+= *
+pdf-features-supported
+= *
+platform-temperature
+print-accuracy
+print-base
+= *
+print-objects
+print-quality
+= *
+print-supports
+= *
+printer-camera-image-uri
+printre-config-change-date-time
+printer-current-time
+printer-geo-location
+printer-info
+printer-is-accepting-jobs
+printer-location
+printer-make-and-model
+printer-more-info
+printer-name
+printer-organization
+printer-organizational-unit
+printer-state
+= *
+printer-state-change-date-time
+printer-state-message
+printer-state-reasons
+# Limit well-known values to those applicable to 3D...
+= camera-failure
+= chamber-cooling
+= chamber-failure
+= chamber-heating
+= chamber-temperature-high
+= chamber-temperature-low
+= configuration-change
+= connecting-to-device
+= cover-open
+= deactivated
+= door-open
+= extruder-cooling
+= extruder-failure
+= extruder-heating
+= extruder-jam
+= extruder-temperature-high
+= extruder-temperature-low
+= fan-failure
+= hold-new-jobs
+= identify-printer-requested
+= interlock-closed
+= interlock-open
+= interpreter-complex-page-encountered
+= interpreter-memory-decrease
+= interpreter-memory-increase
+= interpreter-resource-added
+= interpreter-resource-deleted
+= interpreter-resource-unavailable
+= lamp-at-eol
+= lamp-failure
+= lamp-near-eol
+= laser-at-eol
+= laser-failure
+= laser-near-eol
+= material-empty
+= material-low
+= material-needed
+= motor-failure
+= moving-to-paused
+= none
+= other
+= output-area-almost-full
+= output-area-full
+= paused
+= platform-cooling
+= platform-failure
+= platform-heating
+= platform-temperature-high
+= platform-temperature-low
+= power-down
+= power-up
+= printer-manual-reset
+= printer-nms-reset
+= printer-ready-to-print
+= shutdown
+= spool-area-full
+= stopped-partly
+= stopping
+= subunit-added
+= subunit-almost-empty
+= subunit-almost-full
+= subunit-at-limit
+= subunit-closed
+= subunit-empty
+= subunit-full
+= subunit-life-almost-over
+= subunit-life-over
+= subunit-memory-exhausted
+= subunit-missing
+= subunit-motor-failure
+= subunit-near-limit
+= subunit-offline
+= subunit-opened
+= subunit-over-temperature
+= subunit-power-saver
+= subunit-recoverable-failure
+= subunit-recoverable-storage
+= subunit-removed
+= subunit-resource-added
+= subunit-resource-removed
+= subunit-thermistor-failure
+= subunit-timing-failure
+= subunit-turned-off
+= subunit-turned-on
+= subunit-under-temperature
+= subunit-unrecoverable-failure
+= subunit-unrecoverable-storage
+= subunit-warming-up
+= timed-out
+= trimmer-added
+= trimmer-added
+= trimmer-almost-empty
+= trimmer-almost-empty
+= trimmer-almost-full
+= trimmer-almost-full
+= trimmer-at-limit
+= trimmer-at-limit
+= trimmer-closed
+= trimmer-closed
+= trimmer-configuration-change
+= trimmer-configuration-change
+= trimmer-cover-closed
+= trimmer-cover-closed
+= trimmer-cover-open
+= trimmer-cover-open
+= trimmer-empty
+= trimmer-empty
+= trimmer-full
+= trimmer-full
+= trimmer-interlock-closed
+= trimmer-interlock-closed
+= trimmer-interlock-open
+= trimmer-interlock-open
+= trimmer-jam
+= trimmer-jam
+= trimmer-life-almost-over
+= trimmer-life-almost-over
+= trimmer-life-over
+= trimmer-life-over
+= trimmer-memory-exhausted
+= trimmer-memory-exhausted
+= trimmer-missing
+= trimmer-missing
+= trimmer-motor-failure
+= trimmer-motor-failure
+= trimmer-near-limit
+= trimmer-near-limit
+= trimmer-offline
+= trimmer-offline
+= trimmer-opened
+= trimmer-opened
+= trimmer-over-temperature
+= trimmer-over-temperature
+= trimmer-power-saver
+= trimmer-power-saver
+= trimmer-recoverable-failure
+= trimmer-recoverable-failure
+= trimmer-recoverable-storage
+= trimmer-removed
+= trimmer-resource-added
+= trimmer-resource-removed
+= trimmer-thermistor-failure
+= trimmer-timing-failure
+= trimmer-turned-off
+= trimmer-turned-on
+= trimmer-under-temperature
+= trimmer-unrecoverable-failure
+= trimmer-unrecoverable-storage-error
+= trimmer-warming-up
+= unknown
+printer-uuid
+printer-volume-supported
+queued-job-count

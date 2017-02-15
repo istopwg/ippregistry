@@ -3,7 +3,8 @@
  *
  * Usage:
  *
- *    ./regtosm [-n namespace-url] [-v version] filename.xml output-directory
+ *    ./regtosm [-a attribute-list] [-n namespace-url] [-s service-name]
+ *              [-v version] filename.xml output-directory
  *
  * Copyright (c) 2008-2017 by Michael R Sweet
  *
@@ -45,11 +46,14 @@
 
 typedef struct
 {
-  const char    *from,                  /* From this name */
-                *to;                    /* to this name */
+  const char    *name,                  /* Name */
+                *value;                 /* Value/Substitution */
 } ipp_map_t;
 
-static ipp_map_t exclude_attributes[] =
+static size_t	alloc_include = 0,	/* Attributes and values to include */
+		num_include = 0;
+static ipp_map_t *include_attributes = NULL;
+static ipp_map_t exclude_attributes[] =	/* Attributes to exclude */
 {
   { "cover-back-supported", NULL },
   { "cover-front-supported", NULL },
@@ -109,6 +113,7 @@ static ipp_map_t map_types[] =
   { "input-sides-supported", "SidesWKV" },
   { "job-accounting-output-bin", "OutputBinWKV" },
   { "job-mandatory-attributes", "ElementWKV" },
+  { "material-color", "MediaColorWKV" },
   { "media-back-coating", "MediaCoatingWKV" },
   { "media-back-coating-supported", "MediaCoatingWKV" },
   { "media-front-coating", "MediaCoatingWKV" },
@@ -135,7 +140,8 @@ static ipp_map_t map_types[] =
  * Local functions...
  */
 
-static int              compare_map(ipp_map_t *a, ipp_map_t *b);
+static int              compare_map_both(ipp_map_t *a, ipp_map_t *b);
+static int              compare_map_name(ipp_map_t *a, ipp_map_t *b);
 static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *record_node, const char *smtype);
 static void             create_service(mxml_node_t *xsdnode, const char *name);
@@ -144,11 +150,13 @@ static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static FILE		*create_xsd_file(const char *directory, const char *name);
 static mxml_node_t	*create_xsd_root(const char *nsurl, const char *version, const char *annotation, ...);
-static ipp_map_t        *find_map(const char *name, ipp_map_t *map, size_t mapsize);
+static ipp_map_t        *find_map_both(const char *name, const char *value, ipp_map_t *map, size_t mapsize);
+static ipp_map_t        *find_map_name(const char *name, ipp_map_t *map, size_t mapsize);
 static int		get_current_date(int *month);
 static char		*get_sm_element(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_name(const char *ipp, char *sm, size_t smsize);
 static char		*get_sm_type(const char *ipp, int collection, char *sm, size_t smsize);
+static int		load_attributes(const char *filename);
 static const char	*save_cb(mxml_node_t *node, int column);
 static int		usage(void);
 
@@ -164,12 +172,14 @@ main(int  argc,				/* I - Number of command-line args */
   int		i;			/* Looping var */
   char		*opt;			/* Command-line option */
   const char	*xmlin = NULL,		/* XML registration input file */
-		*directory = NULL;	/* Output directory */
+		*directory = NULL,	/* Output directory */
+		*service = "Print";	/* Service name */
   mxml_node_t	*xml,			/* XML registration file top node */
 		*registry_node;		/* Current registry node */
   FILE		*xmlfile;		/* XML registration file pointer */
   char		nsurl[1024] = "",	/* Namespace URL */
-		version[256] = "";	/* Schema version */
+		version[256] = "",	/* Schema version */
+		temp[1024];		/* Temporary string */
   mxml_node_t	*xsdnode;		/* XSD node */
   FILE		*xsdfile;		/* XSD file pointer */
 
@@ -178,8 +188,8 @@ main(int  argc,				/* I - Number of command-line args */
   * Map sure map arrays are properly sorted...
   */
 
-  qsort(exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map);
-  qsort(map_types, sizeof(map_types) / sizeof(map_types[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map);
+  qsort(exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name);
+  qsort(map_types, sizeof(map_types) / sizeof(map_types[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name);
 
  /*
   * Process command-line arguments...
@@ -193,6 +203,19 @@ main(int  argc,				/* I - Number of command-line args */
       {
         switch (*opt)
         {
+          case 'a' : /* -a attributes-file */
+              i ++;
+              if (i < argc)
+              {
+                load_attributes(argv[i]);
+	      }
+	      else
+	      {
+	        fputs("regtosm: Missing attributes list filename after '-a'.\n", stderr);
+	        return (usage());
+	      }
+	      break;
+
           case 'n' : /* -n namespace-url */
               i ++;
               if (i < argc)
@@ -203,6 +226,19 @@ main(int  argc,				/* I - Number of command-line args */
 	      else
 	      {
 	        fputs("regtosm: Missing namespace URL after '-n'.\n", stderr);
+	        return (usage());
+	      }
+	      break;
+
+          case 's' : /* -s service-name */
+              i ++;
+              if (i < argc)
+              {
+                service = argv[i];
+	      }
+	      else
+	      {
+	        fputs("regtosm: Missing service name after '-s'.\n", stderr);
 	        return (usage());
 	      }
 	      break;
@@ -353,13 +389,16 @@ main(int  argc,				/* I - Number of command-line args */
   * Output print service definitions...
   */
 
-  puts("Generating PrintService.xsd...");
+  printf("Generating %sService.xsd...\n", service);
 
-  xsdnode = create_xsd_root(nsurl, version, "Print Service Definition.", "PwgCommon.xsd", NULL);
+  snprintf(temp, sizeof(temp), "%s Service Definition.", service);
+  xsdnode = create_xsd_root(nsurl, version, temp, "PwgCommon.xsd", NULL);
 
-  create_service(xsdnode, "Print");
+  create_service(xsdnode, service);
 
-  if ((xsdfile = create_xsd_file(directory, "PrintService")) != NULL)
+  snprintf(temp, sizeof(temp), "%sService", service);
+
+  if ((xsdfile = create_xsd_file(directory, temp)) != NULL)
   {
     mxmlSaveFile(mxmlGetParent(xsdnode), xsdfile, save_cb);
     fclose(xsdfile);
@@ -374,14 +413,31 @@ main(int  argc,				/* I - Number of command-line args */
 
 
 /*
- * 'compare_map()' - Compare two map items.
+ * 'compare_map_name()' - Compare two map items by name.
  */
 
 static int                              /* O - Result of comparison */
-compare_map(ipp_map_t *a,               /* I - First item */
-            ipp_map_t *b)               /* I - Second item */
+compare_map_name(ipp_map_t *a,          /* I - First item */
+		 ipp_map_t *b)          /* I - Second item */
 {
-  return (strcmp(a->from, b->from));
+  return (strcmp(a->name, b->name));
+}
+
+
+/*
+ * 'compare_map_both()' - Compare two map items by name and value.
+ */
+
+static int                              /* O - Result of comparison */
+compare_map_both(ipp_map_t *a,          /* I - First item */
+                 ipp_map_t *b)          /* I - Second item */
+{
+  int	result = strcmp(a->name, b->name);
+
+  if (result)
+    return (result);
+  else
+    return (strcmp(a->value, b->value));
 }
 
 
@@ -450,10 +506,10 @@ create_collection(
     if (strstr(membername, "(extension)") || strstr(membername, "(deprecated)") || strstr(membername, "(obsolete)") || strstr(membername, "(under review)"))
       continue;
 
-    if (find_map(membername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+    if (find_map_name(membername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
       continue;
 
-    if (submembername && find_map(submembername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+    if (submembername && find_map_name(submembername, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
         continue;
 
     syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
@@ -485,7 +541,7 @@ create_collection(
     }
     else if (strstr(syntax, "dateTime"))
       smeltype = "xs:dateTime";
-    else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
+    else if (strstr(syntax, "enum") != NULL || strstr(syntax, "type2 keyword") != NULL)
     {
       if (membername1)
         get_sm_type(submembername, 0, smtemp, sizeof(smtemp));
@@ -494,6 +550,8 @@ create_collection(
 
       smeltype = smtemp;
     }
+    else if (strstr(syntax, "keyword"))
+      smeltype = "xs:NMTOKEN";
     else if (strstr(syntax, "rangeOfInteger"))
       smeltype = "RangeOfIntType";
     else if (strstr(syntax, "integer"))
@@ -612,8 +670,11 @@ create_element(
   if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
     return;
 
-  if (find_map(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
-    return;                       /* Skip excluded attributes */
+  if (num_include && !find_map_both(name, "", include_attributes, num_include))
+    return;				/* Only include listed attributes */
+
+  if (find_map_name(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+    return;				/* Skip excluded attributes */
 
   get_sm_element(name, smname, sizeof(smname));
 
@@ -632,12 +693,14 @@ create_element(
   }
   else if (strstr(syntax, "dateTime"))
     smtype = "xs:dateTime";
-  else if (strstr(syntax, "enum") != NULL || strstr(syntax, "keyword") != NULL)
+  else if (strstr(syntax, "enum") != NULL || strstr(syntax, "type2 keyword") != NULL)
   {
     get_sm_type(name, 0, smtemp, sizeof(smtemp));
 
     smtype = smtemp;
   }
+  else if (strstr(syntax, "keyword"))
+    smtype = "xs:NMTOKEN";
   else if (strstr(syntax, "rangeOfInteger"))
     smtype = "RangeOfIntType";
   else if (strstr(syntax, "integer"))
@@ -740,11 +803,11 @@ create_elements(
     char smelement[1024];
 
     xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-    mxmlElementSetAttr(xs_type, "name", type->to);
+    mxmlElementSetAttr(xs_type, "name", type->value);
 
     xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
-    if (!strcmp(type->from, "Printer Description"))
+    if (!strcmp(type->name, "Printer Description"))
     {
       xs_type = mxmlNewElement(xsdnode, "xs:complexType");
       mxmlElementSetAttr(xs_type, "name", "ServiceCapabilitiesType");
@@ -759,7 +822,7 @@ create_elements(
       collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
       collection      = mxmlGetOpaque(collection_node);
 
-      if (strcmp(collection, type->from))
+      if (strcmp(collection, type->name))
         continue;
 
       if (mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST))
@@ -774,7 +837,10 @@ create_elements(
       if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
         continue;
 
-      if (find_map(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+      if (num_include && !find_map_both(name, "", include_attributes, num_include))
+	continue;			/* Only include listed attributes */
+
+      if (find_map_name(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
         continue;
 
       if (xs_altsequence && strstr(name, "-supported"))
@@ -857,11 +923,6 @@ create_elements(
   mxmlElementSetAttr(xs_type, "name", "JobTicketType");
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
-
-  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "DocumentProcessing");
-  mxmlElementSetAttr(xs_temp, "type", "DocumentProcessingType");
-  mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
   mxmlElementSetAttr(xs_temp, "name", "JobDescription");
@@ -1255,6 +1316,9 @@ create_well_known_values(
       if (!value)
         value = mxmlGetOpaque(value_node);
 
+      if (num_include > 0 && !find_map_both(attribute, value, include_attributes, num_include) && !find_map_both(attribute, "*", include_attributes, num_include))
+        continue;			/* Skip values not explicitly listed */
+
       if (value[0] == '<' || strstr(value, "(deprecated)") != NULL || strstr(value,
       "(obsolete)") != NULL)
         continue;                       /* Skip "< ... >" values */
@@ -1262,7 +1326,7 @@ create_well_known_values(
       if (strstr(attribute, "-default") != NULL || strstr(attribute, "-ready") != NULL)
         continue;                       /* Skip -default and -ready values */
 
-      if (find_map(attribute, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
+      if (find_map_name(attribute, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
         continue;                       /* Skip excluded attributes */
 
       if (!last_attribute || strcmp(last_attribute, attribute))
@@ -1417,20 +1481,40 @@ create_xsd_root(const char *nsurl,	/* I - Namespace URL */
 
 
 /*
- * 'find_map()' - Find a map item.
+ * 'find_map_both()' - Find a map item using a name and value.
  */
 
 static ipp_map_t *                      /* O - Matching element or NULL */
-find_map(const char *name,              /* I - Name to lookup */
-         ipp_map_t  *map,               /* I - Map */
-         size_t     mapsize)            /* I - Number of elements in map */
+find_map_both(const char *name,         /* I - Name to lookup */
+              const char *value,	/* I - Value to lookup */
+	      ipp_map_t  *map,          /* I - Map */
+	      size_t     mapsize)       /* I - Number of elements in map */
 {
   ipp_map_t     key;                    /* Search key */
 
 
-  key.from = name;
+  key.name  = name;
+  key.value = value ? value : "";
 
-  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map));
+  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_both));
+}
+
+
+/*
+ * 'find_map_name()' - Find a map item using a name.
+ */
+
+static ipp_map_t *                      /* O - Matching element or NULL */
+find_map_name(const char *name,         /* I - Name to lookup */
+	      ipp_map_t  *map,          /* I - Map */
+	      size_t     mapsize)       /* I - Number of elements in map */
+{
+  ipp_map_t     key;                    /* Search key */
+
+
+  key.name = name;
+
+  return ((ipp_map_t *)bsearch(&key, map, mapsize, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name));
 }
 
 
@@ -1481,6 +1565,17 @@ get_sm_element(const char *ipp,		/* I - IPP keyword/name */
     ipp += 4;
   else if (!strncmp(ipp, "printer-resolution", 18))
     ipp += 8;
+  else if (!strncmp(ipp, "printer-", 8))
+  {
+   /*
+    * Rule 6: Replace "printer-" prefix with "Service".
+    */
+
+    strncpy(smptr, "Service", smend - smptr);
+    *smend = '\0';
+    smptr += strlen(smptr);
+    ipp += 8;
+  }
 
  /*
   * Rule 4: Convert "foo-bar-bla" into "FooBarBla".
@@ -1490,18 +1585,7 @@ get_sm_element(const char *ipp,		/* I - IPP keyword/name */
 
   while (*ipp && smptr < smend)
   {
-    if (!strncmp(ipp, "printer-", 8))
-    {
-     /*
-      * Rule 6: Replace "printer-" prefix with "Service".
-      */
-
-      strncpy(smptr, "Service", smend - smptr);
-      *smend = '\0';
-      smptr += strlen(smptr);
-      ipp += 8;
-    }
-    else if (!strncmp(ipp, "-attribute", 10))
+    if (!strncmp(ipp, "-attribute", 10))
     {
      /*
       * Rule 3: Replace "-attribute" with "Element"...
@@ -1593,9 +1677,9 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
   * Map types for attributes that don't follow a simple rule...
   */
 
-  if ((type = find_map(ipp, map_types, sizeof(map_types) / sizeof(map_types[0]))) != NULL)
+  if ((type = find_map_name(ipp, map_types, sizeof(map_types) / sizeof(map_types[0]))) != NULL)
   {
-    strncpy(sm, type->to, smsize - 1);
+    strncpy(sm, type->value, smsize - 1);
     *smend = '\0';
 
     return (sm);
@@ -1675,6 +1759,97 @@ get_sm_type(const char *ipp,		/* I - IPP keyword/name */
 
 
 /*
+ * 'load_attributes()' - Load the attributes description file.
+ */
+
+static int				/* O - 1 on failure, 0 on success */
+load_attributes(const char *filename)	/* I - File to load */
+{
+  FILE		*fp;			/* File pointer */
+  int		linenum = 0;		/* Line number */
+  char		line[1024],		/* Line */
+		*ptr,			/* Pointer into line */
+		*name = NULL,		/* Current attribute name */
+		*value = NULL;		/* Current attribute value */
+  ipp_map_t	*temp;			/* Temporary map pointer */
+
+
+  if ((fp = fopen(filename, "r")) == NULL)
+  {
+    fprintf(stderr, "regtosm: Unable to open attribute list file \"%s\": %s\n", filename, strerror(errno));
+    return (1);
+  }
+
+  while (fgets(line, sizeof(line), fp))
+  {
+    linenum ++;
+
+    if ((ptr = line + strlen(line) - 1) >= line && *ptr == '\n')
+      *ptr = '\0';
+
+    if (line[0] == '#' || line[0] == '\0')
+      continue;
+    else if (line[0] == '=')
+    {
+     /*
+      * Value...
+      */
+
+      for (value = line + 1; isspace(*value & 255); value ++);
+    }
+    else if (!isalpha(line[0] & 255))
+    {
+      fprintf(stderr, "regtosm: Bad attribute on line %d of \"%s\".\n", linenum, filename);
+      fclose(fp);
+      return (1);
+    }
+    else if ((name = strdup(line)) == NULL)
+    {
+      fputs("regtosm: Unable to allocate memory for attribute list.\n", stderr);
+      fclose(fp);
+      return (1);
+    }
+    else
+      value = NULL;
+
+    if (num_include >= alloc_include)
+    {
+      alloc_include += 100;
+      if (!include_attributes)
+        temp = malloc(alloc_include * sizeof(ipp_map_t));
+      else
+        temp = realloc(include_attributes, alloc_include * sizeof(ipp_map_t));
+
+      if (!temp)
+      {
+        fputs("regtosm: Unable to allocate memory for attribute list.\n", stderr);
+        fclose(fp);
+        return (1);
+      }
+
+      include_attributes = temp;
+    }
+
+    temp = include_attributes + num_include;
+    num_include ++;
+
+    temp->name = name;
+    if (value)
+      temp->value = strdup(value);
+    else
+      temp->value = "";
+  }
+
+  fclose(fp);
+
+  if (num_include > 0)
+    qsort(include_attributes, num_include, sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_both);
+
+  return (0);
+}
+
+
+/*
  * 'save_cb()' - Save (whitespace) callback...
  */
 
@@ -1723,7 +1898,9 @@ usage(void)
 {
   puts("\nUsage: ./regtosm [options] filename.xml output-directory\n");
   puts("Options:");
+  puts("  -a attribute-list");
   puts("  -n namespace-url");
+  puts("  -s service-name");
   puts("  -v version");
 
   return (1);
