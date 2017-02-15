@@ -99,12 +99,36 @@ static ipp_map_t exclude_attributes[] =	/* Attributes to exclude */
   { "stitching-supported", NULL },
   { "user-defined-values-supported", NULL }
 };
-static ipp_map_t map_types[] =
+static ipp_map_t alt_attributes[] =     /* Capability/Configuration attributes */
 {
+  { "finishings-col-database", NULL },
+  { "finishings-col-ready", NULL },
+  { "finishings-ready", NULL },
+  { "materials-col-database", NULL },
+  { "materials-col-ready", NULL },
+  { "media-col-database", NULL },
+  { "media-col-ready", NULL },
+  { "printer-alert", NULL },
+  { "printer-alert-description", NULL },
+  { "printer-input-tray", NULL },
+  { "printer-finisher", NULL },
+  { "printer-finisher-description", NULL },
+  { "printer-finisher-supply", NULL },
+  { "printer-finisher-supply-description", NULL },
+  { "printer-output-tray", NULL },
+  { "printer-supply", NULL },
+  { "printer-supply-description", NULL }
+};
+static ipp_map_t map_types[] =          /* Overrides of type names */
+{
+  { "binding-reference-edge", "ReferenceEdgeWKV" },
+  { "binding-reference-edge-supported", "ReferenceEdgeWKV" },
   { "current-page-order", "PageOrderWKV" },
   { "destination-attributes", "JobTicketType" },
   { "destination-mandatory-access-attributes", "ElementWKV" },
   { "fetch-status-code", "StatusCodeWKV" },
+  { "folding-reference-edge", "ReferenceEdgeWKV" },
+  { "folding-reference-edge-supported", "ReferenceEdgeWKV" },
   { "input-orientation-requested", "OrientationRequestedWKV" },
   { "input-orientation-requested-supported", "OrientationRequestedWKV" },
   { "input-quality", "PrintQualityWKV" },
@@ -132,7 +156,13 @@ static ipp_map_t map_types[] =
   { "page-order-received", "PageOrderWKV" },
   { "page-order-received-supported", "PageOrderWKV" },
   { "preferred-attributes", "JobTicketType" },
-  { "printer-mandatory-job-attributes", "ElementWKV" }
+  { "printer-mandatory-job-attributes", "ElementWKV" },
+  { "punching-reference-edge", "ReferenceEdgeWKV" },
+  { "punching-reference-edge-supported", "ReferenceEdgeWKV" },
+  { "stitching-reference-edge", "ReferenceEdgeWKV" },
+  { "stitching-reference-edge-supported", "ReferenceEdgeWKV" },
+  { "trimming-reference-edge", "ReferenceEdgeWKV" },
+  { "trimming-reference-edge-supported", "ReferenceEdgeWKV" }
 };
 
 
@@ -142,9 +172,9 @@ static ipp_map_t map_types[] =
 
 static int              compare_map_both(ipp_map_t *a, ipp_map_t *b);
 static int              compare_map_name(ipp_map_t *a, ipp_map_t *b);
-static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node);
+static void             create_elements(mxml_node_t *xsdnode, mxml_node_t *registry_node, const char *service);
 static void             create_collection(mxml_node_t *xsdnode, mxml_node_t *record_node, const char *smtype);
-static void             create_service(mxml_node_t *xsdnode, const char *name);
+static void             create_service(mxml_node_t *xsdnode, mxml_node_t *commonnode, mxml_node_t *registry_node, const char *service);
 static void		create_status_codes(mxml_node_t *xsdnode, mxml_node_t *registry_node);
 static void             create_types(mxml_node_t *xsdnode);
 static void		create_well_known_values(mxml_node_t *xsdnode, mxml_node_t *registry_node);
@@ -180,7 +210,8 @@ main(int  argc,				/* I - Number of command-line args */
   char		nsurl[1024] = "",	/* Namespace URL */
 		version[256] = "",	/* Schema version */
 		temp[1024];		/* Temporary string */
-  mxml_node_t	*xsdnode;		/* XSD node */
+  mxml_node_t	*xsdnode,		/* XSD node */
+                *commonnode;            /* PwgCommon.xsd node */
   FILE		*xsdfile;		/* XSD file pointer */
 
 
@@ -189,6 +220,7 @@ main(int  argc,				/* I - Number of command-line args */
   */
 
   qsort(exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name);
+  qsort(alt_attributes, sizeof(alt_attributes) / sizeof(alt_attributes[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name);
   qsort(map_types, sizeof(map_types) / sizeof(map_types[0]), sizeof(ipp_map_t), (int (*)(const void *, const void *))compare_map_name);
 
  /*
@@ -325,7 +357,7 @@ main(int  argc,				/* I - Number of command-line args */
   xsdnode = create_xsd_root(nsurl, version, "Semantic elements used in more than one sub-schema.", "PwgTypes.xsd", NULL);
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
-    create_elements(xsdnode, registry_node);
+    create_elements(xsdnode, registry_node, service);
 
   if ((xsdfile = create_xsd_file(directory, "PwgCommon")) != NULL)
   {
@@ -335,7 +367,7 @@ main(int  argc,				/* I - Number of command-line args */
   else
     return (1);
 
-  mxmlDelete(mxmlGetParent(xsdnode));
+  commonnode = xsdnode;
 
  /*
   * Output common type definitions...
@@ -394,7 +426,8 @@ main(int  argc,				/* I - Number of command-line args */
   snprintf(temp, sizeof(temp), "%s Service Definition.", service);
   xsdnode = create_xsd_root(nsurl, version, temp, "PwgCommon.xsd", NULL);
 
-  create_service(xsdnode, service);
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
+    create_service(xsdnode, commonnode, registry_node, service);
 
   snprintf(temp, sizeof(temp), "%sService", service);
 
@@ -407,6 +440,7 @@ main(int  argc,				/* I - Number of command-line args */
     return (1);
 
   mxmlDelete(mxmlGetParent(xsdnode));
+  mxmlDelete(mxmlGetParent(commonnode));
 
   return (0);
 }
@@ -759,11 +793,37 @@ create_element(
 static void
 create_elements(
     mxml_node_t *xsdnode,               /* I - xs:schema node */
-    mxml_node_t *registry_node)         /* I - Attribute registry */
+    mxml_node_t *registry_node,         /* I - Attribute registry */
+    const char  *service)               /* I - Service name */
+{
+  mxml_node_t   *record_node;           /* Current attribute record */
+
+
+ /*
+  * Loop through all attributes to define them and any types...
+  */
+
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
+    create_element(xsdnode, record_node);
+}
+
+
+/*
+ * 'create_service()' - Create a service definition from the common types.
+ */
+
+static void
+create_service(
+    mxml_node_t *xsdnode,               /* I - xs:schema node */
+    mxml_node_t *commonnode,            /* I - PwgCommon.xsd node */
+    mxml_node_t *registry_node,         /* I - Attribute registry */
+    const char  *service)               /* I - Service name */
 {
   int           i;                      /* Looping var */
   mxml_node_t   *xs_type,               /* xs:complexType node */
+                *xs_type2,              /* Secondary xs:complexType node */
                 *xs_sequence,           /* xs:sequence node */
+                *xs_sequence2,          /* Secondary xs:sequence node */
                 *xs_temp;               /* Other xs:... nodes */
   mxml_node_t   *record_node;           /* Current attribute record */
   mxml_node_t   *collection_node;       /* Current collection node */
@@ -778,21 +838,12 @@ create_elements(
     { "Job Status", "JobStatusType" },
     { "Job Template", "JobProcessingType" },
     { "Printer Description", "ServiceDescriptionType" }, /* Also ServiceCapabilitiesType */
-    { "Printer Status", "ServiceStatusType" }
+    { "Printer Status", "ServiceStatusType" }           /* Also ServiceConfigurationType */
   };
 
 
  /*
-  * Loop through all attributes to define them and any types...
-  */
-
-  for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND))
-  {
-    create_element(xsdnode, record_node);
-  }
-
- /*
-  * Then do it again to create the core types for each attribute group...
+  * Create the core types for each attribute group...
   */
 
   for (i = (int)(sizeof(types) / sizeof(types[0])), type = types; i > 0; i --, type ++)
@@ -803,14 +854,21 @@ create_elements(
     char smelement[1024];
 
     xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-    mxmlElementSetAttr(xs_type, "name", type->value);
+    mxmlElementSetAttrf(xs_type, "name", "%s%s", service, type->value);
 
     xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
     if (!strcmp(type->name, "Printer Description"))
     {
       xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-      mxmlElementSetAttr(xs_type, "name", "ServiceCapabilitiesType");
+      mxmlElementSetAttrf(xs_type, "name", "%sServiceCapabilitiesType", service);
+
+      xs_altsequence = mxmlNewElement(xs_type, "xs:sequence");
+    }
+    else if (!strcmp(type->name, "Printer Status"))
+    {
+      xs_type = mxmlNewElement(xsdnode, "xs:complexType");
+      mxmlElementSetAttrf(xs_type, "name", "%sServiceConfigurationType", service);
 
       xs_altsequence = mxmlNewElement(xs_type, "xs:sequence");
     }
@@ -858,14 +916,14 @@ create_elements(
         if ((nameptr = strstr(name2, "-supported")) != NULL)
         {
           *nameptr = '\0';
-          job_template_node = mxmlFindElement(xsdnode, xsdnode, "xs:element", "name", get_sm_element(name2, smelement, sizeof(smelement)), MXML_DESCEND);
+          job_template_node = mxmlFindElement(commonnode, commonnode, "xs:element", "name", get_sm_element(name2, smelement, sizeof(smelement)), MXML_DESCEND);
         }
         if (job_template_node)
           xs_temp = mxmlNewElement(xs_altsequence, "xs:element");
         else
           xs_temp = mxmlNewElement(xs_sequence, "xs:element");
       }
-      else if (strstr(name, "-database") || strstr(name, "-ready"))
+      else if (xs_altsequence && find_map_name(name, alt_attributes, sizeof(alt_attributes) / sizeof(alt_attributes[0])))
         xs_temp = mxmlNewElement(xs_altsequence, "xs:element");
       else
         xs_temp = mxmlNewElement(xs_sequence, "xs:element");
@@ -892,22 +950,22 @@ create_elements(
   }
 
  /*
-  * DocumentTicketType...
+  * <service>DocumentTicketType...
   */
 
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttr(xs_type, "name", "DocumentTicketType");
+  mxmlElementSetAttrf(xs_type, "name", "%sDocumentTicketType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "DocumentDescription");
-  mxmlElementSetAttr(xs_temp, "type", "DocumentDescriptionType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentDescription", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentDescriptionType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "DocumentProcessing");
-  mxmlElementSetAttr(xs_temp, "type", "DocumentProcessingType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentProcessing", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentProcessingType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:any");
@@ -916,64 +974,45 @@ create_elements(
   mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
 
  /*
-  * JobTicketType...
+  * <service>JobTicketType...
   */
 
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttr(xs_type, "name", "JobTicketType");
+  mxmlElementSetAttrf(xs_type, "name", "%sJobTicketType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "JobDescription");
-  mxmlElementSetAttr(xs_temp, "type", "JobDescriptionType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobDescription", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobDescriptionType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "JobProcessing");
-  mxmlElementSetAttr(xs_temp, "type", "JobProcessingType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobProcessing", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobProcessingType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:any");
   mxmlElementSetAttr(xs_temp, "namespace", "##other");
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
-  mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
-}
-
-
-/*
- * 'create_service()' - Create a service definition from the common types.
- */
-
-static void
-create_service(mxml_node_t *xsdnode,    /* I - xs:schema node */
-               const char  *name)       /* I - Service name */
-{
-  mxml_node_t   *xs_type,               /* xs:complexType node */
-                *xs_type2,              /* Secondary xs:complexType node */
-                *xs_sequence,           /* xs:sequence node */
-                *xs_sequence2,          /* Secondary xs:sequence node */
-                *xs_temp;               /* Other xs:... nodes */
-
-
-  /* <service>DocumentType */
+  mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");  /* <service>DocumentType */
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttrf(xs_type, "name", "%sDocumentType", name);
+  mxmlElementSetAttrf(xs_type, "name", "%sDocumentType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentReceipt", name);
-  mxmlElementSetAttr(xs_temp, "type", "DocumentTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentReceipt", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentStatus", name);
-  mxmlElementSetAttr(xs_temp, "type", "DocumentStatusType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentStatus", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentStatusType", service);
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentTicket", name);
-  mxmlElementSetAttr(xs_temp, "type", "DocumentTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocumentTicket", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:any");
@@ -983,34 +1022,34 @@ create_service(mxml_node_t *xsdnode,    /* I - xs:schema node */
 
   /* <service>JobType */
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttrf(xs_type, "name", "%sJobType", name);
+  mxmlElementSetAttrf(xs_type, "name", "%sJobType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sJobReceipt", name);
-  mxmlElementSetAttr(xs_temp, "type", "JobTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobReceipt", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sJobStatus", name);
-  mxmlElementSetAttr(xs_temp, "type", "JobStatusType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobStatus", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobStatusType", service);
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sJobTicket", name);
-  mxmlElementSetAttr(xs_temp, "type", "JobTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobTicket", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sDocuments", name);
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocuments", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_type2     = mxmlNewElement(xs_temp, "xs:complexType");
   xs_sequence2 = mxmlNewElement(xs_type2, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sDocument", name);
-  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentType", name);
+  mxmlElementSetAttrf(xs_temp, "name", "%sDocument", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
   mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
 
@@ -1021,42 +1060,47 @@ create_service(mxml_node_t *xsdnode,    /* I - xs:schema node */
 
   /* <service>JobsType */
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttrf(xs_type, "name", "%sJobsType", name);
+  mxmlElementSetAttrf(xs_type, "name", "%sJobsType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sJob", name);
-  mxmlElementSetAttrf(xs_temp, "type", "%sJobType", name);
+  mxmlElementSetAttrf(xs_temp, "name", "%sJob", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
   mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
 
   /* <service>ServiceType */
   xs_type = mxmlNewElement(xsdnode, "xs:complexType");
-  mxmlElementSetAttrf(xs_type, "name", "%sServiceType", name);
+  mxmlElementSetAttrf(xs_type, "name", "%sServiceType", service);
 
   xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sServiceCapabilities", name);
-  mxmlElementSetAttr(xs_temp, "type", "ServiceCapabilitiesType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sServiceCapabilities", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sServiceCapabilitiesType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sServiceDefaults", name);
+  mxmlElementSetAttrf(xs_temp, "name", "%sServiceConfiguration", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sServiceConfigurationType", service);
+  mxmlElementSetAttr(xs_temp, "minOccurs", "0");
+
+  xs_temp = mxmlNewElement(xs_sequence, "xs:element");
+  mxmlElementSetAttrf(xs_temp, "name", "%sServiceDefaults", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_type2     = mxmlNewElement(xs_temp, "xs:complexType");
   xs_sequence2 = mxmlNewElement(xs_type2, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "Default%sDocumentTicket", name);
-  mxmlElementSetAttr(xs_temp, "type", "DocumentTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "Default%sDocumentTicket", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sDocumentTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "Default%sJobTicket", name);
-  mxmlElementSetAttr(xs_temp, "type", "JobTicketType");
+  mxmlElementSetAttrf(xs_temp, "name", "Default%sJobTicket", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobTicketType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:any");
@@ -1065,26 +1109,26 @@ create_service(mxml_node_t *xsdnode,    /* I - xs:schema node */
   mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sServiceDescription", name);
-  mxmlElementSetAttr(xs_temp, "type", "ServiceDescriptionType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sServiceDescription", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sServiceDescriptionType", service);
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sServiceStatus", name);
-  mxmlElementSetAttr(xs_temp, "type", "ServiceStatusType");
+  mxmlElementSetAttrf(xs_temp, "name", "%sServiceStatus", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sServiceStatusType", service);
 
   xs_temp = mxmlNewElement(xs_sequence, "xs:element");
-  mxmlElementSetAttr(xs_temp, "name", "JobTable");
+  mxmlElementSetAttrf(xs_temp, "name", "%sJobTable", service);
 
   xs_type2     = mxmlNewElement(xs_temp, "xs:complexType");
   xs_sequence2 = mxmlNewElement(xs_type2, "xs:sequence");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:element");
   mxmlElementSetAttr(xs_temp, "name", "ActiveJobs");
-  mxmlElementSetAttrf(xs_temp, "type", "%sJobsType", name);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobsType", service);
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:element");
   mxmlElementSetAttr(xs_temp, "name", "JobHistory");
-  mxmlElementSetAttrf(xs_temp, "type", "%sJobsType", name);
+  mxmlElementSetAttrf(xs_temp, "type", "%sJobsType", service);
   mxmlElementSetAttr(xs_temp, "minOccurs", "0");
 
   xs_temp = mxmlNewElement(xs_sequence2, "xs:any");
@@ -1099,8 +1143,8 @@ create_service(mxml_node_t *xsdnode,    /* I - xs:schema node */
 
   /* <service>Service element */
   xs_temp = mxmlNewElement(xsdnode, "xs:element");
-  mxmlElementSetAttrf(xs_temp, "name", "%sService", name);
-  mxmlElementSetAttrf(xs_temp, "type", "%sServiceType", name);
+  mxmlElementSetAttrf(xs_temp, "name", "%sService", service);
+  mxmlElementSetAttrf(xs_temp, "type", "%sServiceType", service);
 }
 
 
