@@ -910,7 +910,10 @@ create_service(
         char name2[1024], *nameptr;
         mxml_node_t *job_template_node = NULL;
 
-        strncpy(name2, name, sizeof(name2) - 1);
+        if (!strncmp(name, "max-", 4))
+          strncpy(name2, name + 4, sizeof(name2) - 1);
+        else
+          strncpy(name2, name, sizeof(name2) - 1);
         name2[sizeof(name2) - 1] = '\0';
 
         if ((nameptr = strstr(name2, "-supported")) != NULL)
