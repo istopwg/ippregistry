@@ -9,10 +9,21 @@ date-time-at-creation
 date-time-at-processing
 document-format
 document-name
+document-state
+= *
+document-state-message
+document-state-reasons
+= *
 finishings
 # Limit values to those applicable to 3D
 = none
 = trim
+job-account-id
+job-account-type
+= *
+job-accounting-user-id
+job-authorization-uri
+job-charge-info
 job-id
 job-name
 job-originating-user-name
@@ -58,7 +69,8 @@ print-quality
 print-supports
 = *
 printer-camera-image-uri
-printre-config-change-date-time
+printer-charge-info-uri
+printer-config-change-date-time
 printer-current-time
 printer-geo-location
 printer-info

@@ -493,13 +493,16 @@ create_collection(
                 *xs_type = NULL,        /* xs:complexType or xs:simpleType node */
                 *xs_sequence = NULL,    /* xs:sequence node */
                 *xs_sequence2,          /* xs:sequence node */
+                *xs_annotation,         /* xs:annotation node */
+                *xs_documentation,      /* xs:documentation node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
   const char    *name1,                 /* First name value */
-                *name,                 /* name value */
+                *name,                  /* name value */
                 *syntax,                /* syntax value */
                 *membername1,           /* First membername value */
                 *membername,            /* membername value */
-                *submembername;         /* submembername value */
+                *submembername,         /* submembername value */
+                *annotation;            /* Annotation for element */
   char          smelement[1024],        /* Semantic model element name */
                 smtemp[1024];           /* Temporary names */
   const char    *smeltype;              /* Element type */
@@ -643,6 +646,27 @@ create_collection(
 
       mxmlElementSetAttr(xs_element, "type", smeltype);
     }
+
+    if (membername1)
+      name = submembername;
+    else
+      name = membername;
+
+    if (strstr(name, "-dimension") || (strstr(name, "-offset") && !strstr(syntax, "collection")) || strstr(name, "-position") || (strstr(name, "-thickness") && !strncmp(name, "media-", 6)))
+      annotation = "Units are hundredths of millimeters (1/2540th of an inch).";
+    else if (strstr(name, "-diameter") || strstr(name, "-thickness"))
+      annotation = "Units are nanometers.";
+    else if (strstr(name, "-temperature"))
+      annotation = "Units are degrees Celsius.";
+    else
+      annotation = NULL;
+
+    if (annotation)
+    {
+      xs_annotation    = mxmlNewElement(xs_element, "xs:annotation");
+      xs_documentation = mxmlNewElement(xs_annotation, "xs:documentation");
+      mxmlNewOpaque(xs_documentation, annotation);
+    }
   }
 }
 
@@ -662,9 +686,12 @@ create_element(
                 *xs_element,            /* xs:element node */
                 *xs_type,               /* xs:complexType or xs:simpleType node */
                 *xs_sequence,           /* xs:sequence node */
+                *xs_annotation,         /* xs:annotation node */
+                *xs_documentation,      /* xs:documentation node */
                 *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
   const char    *name,                  /* name value */
-                *syntax;                /* syntax value */
+                *syntax,                /* syntax value */
+                *annotation;            /* Annotation for element */
   char          smname[1024],           /* Semantic model element name */
                 smtemp[1024];           /* Semantic model name */
   const char    *smtype;                /* Semantic model type name */
@@ -782,6 +809,22 @@ create_element(
     */
 
     mxmlElementSetAttr(xs_element, "type", smtype);
+  }
+
+  if (strstr(name, "-dimension") || strstr(name, "-offset") || strstr(name, "-position") || (strstr(name, "-thickness") && !strncmp(name, "media-", 6)))
+    annotation = "Units are hundredths of millimeters (1/2540th of an inch).";
+  else if (strstr(name, "-diameter") || strstr(name, "-thickness"))
+    annotation = "Units are nanometers.";
+  else if (strstr(name, "-temperature"))
+    annotation = "Units are degrees Celsius.";
+  else
+    annotation = NULL;
+
+  if (annotation)
+  {
+    xs_annotation    = mxmlNewElement(xs_element, "xs:annotation");
+    xs_documentation = mxmlNewElement(xs_annotation, "xs:documentation");
+    mxmlNewOpaque(xs_documentation, annotation);
   }
 }
 
@@ -1368,7 +1411,7 @@ create_well_known_values(
 
       if (value[0] == '<' || strstr(value, "(deprecated)") != NULL || strstr(value,
       "(obsolete)") != NULL)
-        continue;                       /* Skip "< ... >" values */
+        continue;                       /* Skip "< ... >"  and old values */
 
       if (strstr(attribute, "-default") != NULL || strstr(attribute, "-ready") != NULL)
         continue;                       /* Skip -default and -ready values */
