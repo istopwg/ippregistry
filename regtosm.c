@@ -447,18 +447,6 @@ main(int  argc,				/* I - Number of command-line args */
 
 
 /*
- * 'compare_map_name()' - Compare two map items by name.
- */
-
-static int                              /* O - Result of comparison */
-compare_map_name(ipp_map_t *a,          /* I - First item */
-		 ipp_map_t *b)          /* I - Second item */
-{
-  return (strcmp(a->name, b->name));
-}
-
-
-/*
  * 'compare_map_both()' - Compare two map items by name and value.
  */
 
@@ -472,6 +460,18 @@ compare_map_both(ipp_map_t *a,          /* I - First item */
     return (result);
   else
     return (strcmp(a->value, b->value));
+}
+
+
+/*
+ * 'compare_map_name()' - Compare two map items by name.
+ */
+
+static int                              /* O - Result of comparison */
+compare_map_name(ipp_map_t *a,          /* I - First item */
+		 ipp_map_t *b)          /* I - Second item */
+{
+  return (strcmp(a->name, b->name));
 }
 
 
@@ -494,8 +494,7 @@ create_collection(
                 *xs_sequence = NULL,    /* xs:sequence node */
                 *xs_sequence2,          /* xs:sequence node */
                 *xs_annotation,         /* xs:annotation node */
-                *xs_documentation,      /* xs:documentation node */
-                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+                *xs_documentation;      /* xs:documentation node */
   const char    *name1,                 /* First name value */
                 *name,                  /* name value */
                 *syntax,                /* syntax value */
@@ -625,28 +624,6 @@ create_collection(
     xs_element = mxmlNewElement(xs_sequence, "xs:element");
     mxmlElementSetAttr(xs_element, "name", smelement);
 
-    if (!strncmp(syntax, "1setOf ", 7))
-    {
-     /*
-      * A sequence of 0 or more element values...
-      */
-
-      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
-      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
-      xs_temp      = mxmlNewElement(xs_sequence2, "xs:element");
-      mxmlElementSetAttrf(xs_temp, "name", "%sValue", smelement);
-      mxmlElementSetAttr(xs_temp, "type", smeltype);
-      mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
-    }
-    else
-    {
-     /*
-      * Just a single element value.
-      */
-
-      mxmlElementSetAttr(xs_element, "type", smeltype);
-    }
-
     if (membername1)
       name = submembername;
     else
@@ -660,6 +637,28 @@ create_collection(
       annotation = "Units are degrees Celsius.";
     else
       annotation = NULL;
+
+    if (!strncmp(syntax, "1setOf ", 7))
+    {
+     /*
+      * A sequence of 0 or more element values...
+      */
+
+      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
+      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
+      xs_element   = mxmlNewElement(xs_sequence2, "xs:element");
+      mxmlElementSetAttrf(xs_element, "name", "%sValue", smelement);
+      mxmlElementSetAttr(xs_element, "type", smeltype);
+      mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
+    }
+    else
+    {
+     /*
+      * Just a single element value.
+      */
+
+      mxmlElementSetAttr(xs_element, "type", smeltype);
+    }
 
     if (annotation)
     {
@@ -687,8 +686,7 @@ create_element(
                 *xs_type,               /* xs:complexType or xs:simpleType node */
                 *xs_sequence,           /* xs:sequence node */
                 *xs_annotation,         /* xs:annotation node */
-                *xs_documentation,      /* xs:documentation node */
-                *xs_temp;               /* xs:element, xs:maxLength, or xs:whiteSpace node */
+                *xs_documentation;      /* xs:documentation node */
   const char    *name,                  /* name value */
                 *syntax,                /* syntax value */
                 *annotation;            /* Annotation for element */
@@ -789,6 +787,15 @@ create_element(
   xs_element = mxmlNewElement(xsdnode, "xs:element");
   mxmlElementSetAttr(xs_element, "name", smname);
 
+  if (strstr(name, "-dimension") || strstr(name, "-offset") || strstr(name, "-position") || (strstr(name, "-thickness") && !strncmp(name, "media-", 6)))
+    annotation = "Units are hundredths of millimeters (1/2540th of an inch).";
+  else if (strstr(name, "-diameter") || strstr(name, "-thickness"))
+    annotation = "Units are nanometers.";
+  else if (strstr(name, "-temperature"))
+    annotation = "Units are degrees Celsius.";
+  else
+    annotation = NULL;
+
   if (!strncmp(syntax, "1setOf ", 7))
   {
    /*
@@ -797,10 +804,10 @@ create_element(
 
     xs_type     = mxmlNewElement(xs_element, "xs:complexType");
     xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
-    xs_temp     = mxmlNewElement(xs_sequence, "xs:element");
-    mxmlElementSetAttrf(xs_temp, "name", "%sValue", smname);
-    mxmlElementSetAttr(xs_temp, "type", smtype);
-    mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
+    xs_element  = mxmlNewElement(xs_sequence, "xs:element");
+    mxmlElementSetAttrf(xs_element, "name", "%sValue", smname);
+    mxmlElementSetAttr(xs_element, "type", smtype);
+    mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
   }
   else
   {
@@ -810,15 +817,6 @@ create_element(
 
     mxmlElementSetAttr(xs_element, "type", smtype);
   }
-
-  if (strstr(name, "-dimension") || strstr(name, "-offset") || strstr(name, "-position") || (strstr(name, "-thickness") && !strncmp(name, "media-", 6)))
-    annotation = "Units are hundredths of millimeters (1/2540th of an inch).";
-  else if (strstr(name, "-diameter") || strstr(name, "-thickness"))
-    annotation = "Units are nanometers.";
-  else if (strstr(name, "-temperature"))
-    annotation = "Units are degrees Celsius.";
-  else
-    annotation = NULL;
 
   if (annotation)
   {
@@ -975,6 +973,9 @@ create_service(
         xs_temp = mxmlNewElement(xs_sequence, "xs:element");
 
       mxmlElementSetAttr(xs_temp, "ref", get_sm_element(name, smelement, sizeof(smelement)));
+
+      if (strstr(type->name, " Template"))
+        mxmlElementSetAttr(xs_temp, "minOccurs", "0");
     }
 
    /*
