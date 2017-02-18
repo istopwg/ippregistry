@@ -1,38 +1,58 @@
 # IPP attributes to include in PWG Semantic Model Print3D service schema/model
-# -actual, -default, -supplied, -supported added automatically
+# -default, -supplied, -supported added automatically
 accuracy-units
 = *
 accuracy-units-supported
 color-supported
+copies
+copies-actual
 date-time-at-completed
 date-time-at-creation
 date-time-at-processing
+document-access-errors
 document-format
+document-format-detected
+document-format-supplied
+document-message
+document-message-supplied
 document-name
+document-name-supplied
 document-state
 = *
 document-state-message
 document-state-reasons
 = *
+document-uuid
+errors-count
 finishings
 # Limit values to those applicable to 3D
 = none
 = trim
+finishings-actual
 job-account-id
+job-account-id-actual
 job-account-type
 = *
+job-account-type-actual
 job-accounting-user-id
+job-accounting-user-id-actual
 job-authorization-uri
 job-charge-info
 job-id
+job-k-octets
+job-k-octets-processed
 job-name
 job-originating-user-name
+job-priority
+job-priority-actual
 job-state
 = *
 job-state-message
 job-state-reasons
 = *
 job-uuid
+k-octets
+k-octets-processed
 material-amount-units
 = *
 material-amount-units-supported
@@ -50,6 +70,7 @@ material-type
 = *
 material-type-supported
 materials-col
+materials-col-actual
 materials-col-database
 materials-col-ready
 max-materials-col-supported
@@ -57,17 +78,28 @@ media-color
 = *
 multiple-object-handling
 = *
+multiple-object-handling-actual
+number-of-documents
+output-device
+output-device-actual
+output-device-assigned
 pdf-features-supported
 = *
 platform-temperature
+platform-temperature-actual
 print-accuracy
+print-accuracy-actual
 print-base
 = *
+print-base-actual
 print-objects
+print-objects-actual
 print-quality
 = *
+print-quality-actual
 print-supports
 = *
+print-supports-actual
 printer-camera-image-uri
 printer-charge-info-uri
 printer-config-change-date-time
@@ -240,3 +272,5 @@ printer-state-reasons
 printer-uuid
 printer-volume-supported
 queued-job-count
+warnings-count
+

@@ -492,7 +492,6 @@ create_collection(
                 *xs_element,            /* xs:element node */
                 *xs_type = NULL,        /* xs:complexType or xs:simpleType node */
                 *xs_sequence = NULL,    /* xs:sequence node */
-                *xs_sequence2,          /* xs:sequence node */
                 *xs_annotation,         /* xs:annotation node */
                 *xs_documentation;      /* xs:documentation node */
   const char    *name1,                 /* First name value */
@@ -623,6 +622,10 @@ create_collection(
 
     xs_element = mxmlNewElement(xs_sequence, "xs:element");
     mxmlElementSetAttr(xs_element, "name", smelement);
+    mxmlElementSetAttr(xs_element, "type", smeltype);
+
+    if (!strncmp(syntax, "1setOf ", 7))
+      mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
 
     if (membername1)
       name = submembername;
@@ -637,28 +640,6 @@ create_collection(
       annotation = "Units are degrees Celsius.";
     else
       annotation = NULL;
-
-    if (!strncmp(syntax, "1setOf ", 7))
-    {
-     /*
-      * A sequence of 0 or more element values...
-      */
-
-      xs_type      = mxmlNewElement(xs_element, "xs:complexType");
-      xs_sequence2 = mxmlNewElement(xs_type, "xs:sequence");
-      xs_element   = mxmlNewElement(xs_sequence2, "xs:element");
-      mxmlElementSetAttrf(xs_element, "name", "%sValue", smelement);
-      mxmlElementSetAttr(xs_element, "type", smeltype);
-      mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
-    }
-    else
-    {
-     /*
-      * Just a single element value.
-      */
-
-      mxmlElementSetAttr(xs_element, "type", smeltype);
-    }
 
     if (annotation)
     {
@@ -683,8 +664,6 @@ create_element(
                 *syntax_node,           /* syntax node */
                 *member_node,           /* member_attribute node */
                 *xs_element,            /* xs:element node */
-                *xs_type,               /* xs:complexType or xs:simpleType node */
-                *xs_sequence,           /* xs:sequence node */
                 *xs_annotation,         /* xs:annotation node */
                 *xs_documentation;      /* xs:documentation node */
   const char    *name,                  /* name value */
@@ -726,7 +705,7 @@ create_element(
   if (member_node)
     return;
 
-  if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
+  if (strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
     return;
 
   if (num_include && !find_map_both(name, "", include_attributes, num_include))
@@ -786,6 +765,9 @@ create_element(
 
   xs_element = mxmlNewElement(xsdnode, "xs:element");
   mxmlElementSetAttr(xs_element, "name", smname);
+  mxmlElementSetAttr(xs_element, "type", smtype);
+//  if (!strncmp(syntax, "1setOf ", 7))
+//    mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
 
   if (strstr(name, "-dimension") || strstr(name, "-offset") || strstr(name, "-position") || (strstr(name, "-thickness") && !strncmp(name, "media-", 6)))
     annotation = "Units are hundredths of millimeters (1/2540th of an inch).";
@@ -795,28 +777,6 @@ create_element(
     annotation = "Units are degrees Celsius.";
   else
     annotation = NULL;
-
-  if (!strncmp(syntax, "1setOf ", 7))
-  {
-   /*
-    * A sequence of 0 or more element values...
-    */
-
-    xs_type     = mxmlNewElement(xs_element, "xs:complexType");
-    xs_sequence = mxmlNewElement(xs_type, "xs:sequence");
-    xs_element  = mxmlNewElement(xs_sequence, "xs:element");
-    mxmlElementSetAttrf(xs_element, "name", "%sValue", smname);
-    mxmlElementSetAttr(xs_element, "type", smtype);
-    mxmlElementSetAttr(xs_element, "maxOccurs", "unbounded");
-  }
-  else
-  {
-   /*
-    * Just a single element value.
-    */
-
-    mxmlElementSetAttr(xs_element, "type", smtype);
-  }
 
   if (annotation)
   {
@@ -890,8 +850,8 @@ create_service(
   for (i = (int)(sizeof(types) / sizeof(types[0])), type = types; i > 0; i --, type ++)
   {
     mxml_node_t *xs_altsequence;
-    mxml_node_t *name_node;
-    const char *name;
+    mxml_node_t *name_node, *syntax_node;
+    const char *name, *syntax;
     char smelement[1024];
 
     xs_type = mxmlNewElement(xsdnode, "xs:complexType");
@@ -933,7 +893,7 @@ create_service(
       if (!name)
         continue;
 
-      if (strstr(name, "-actual") || strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
+      if (strstr(name, "-completed") || strstr(name, "-default") || strstr(name, "(extension)") || strstr(name, "(deprecated)") || strstr(name, "(obsolete)") || strstr(name, "(under review)"))
         continue;
 
       if (num_include && !find_map_both(name, "", include_attributes, num_include))
@@ -941,6 +901,9 @@ create_service(
 
       if (find_map_name(name, exclude_attributes, sizeof(exclude_attributes) / sizeof(exclude_attributes[0])))
         continue;
+
+      syntax_node = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+      syntax      = mxmlGetOpaque(syntax_node);
 
       if (xs_altsequence && strstr(name, "-supported"))
       {
@@ -976,6 +939,9 @@ create_service(
 
       if (strstr(type->name, " Template"))
         mxmlElementSetAttr(xs_temp, "minOccurs", "0");
+
+      if (syntax && !strncmp(syntax, "1setOf ", 7))
+        mxmlElementSetAttr(xs_temp, "maxOccurs", "unbounded");
     }
 
    /*
