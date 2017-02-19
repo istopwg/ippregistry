@@ -13,6 +13,7 @@ document-access-errors
 document-format
 document-format-detected
 document-format-supplied
+document-format-supported
 document-message
 document-message-supplied
 document-name
