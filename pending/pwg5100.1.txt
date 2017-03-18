@@ -1,4 +1,4 @@
-http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings21-20170111.pdf
+http://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf
 
 Job Template attributes:		Reference
 --------------------------		------------

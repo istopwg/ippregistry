@@ -1,4 +1,4 @@
-http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170110.pdf
+http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf
 
 Document Status attributes:	Reference
 --------------------------	---------
