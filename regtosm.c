@@ -638,6 +638,8 @@ create_collection(
       annotation = "Units are nanometers.";
     else if (strstr(name, "-temperature"))
       annotation = "Units are degrees Celsius.";
+    else if (!strcmp(name, "document-metadata"))
+      annotation = "Strings are 'keyword=value', keywords are DublinCore elements or terms, values are UTF-8 plain text.";
     else
       annotation = NULL;
 
@@ -775,6 +777,8 @@ create_element(
     annotation = "Units are nanometers.";
   else if (strstr(name, "-temperature"))
     annotation = "Units are degrees Celsius.";
+  else if (!strcmp(name, "document-metadata"))
+    annotation = "Strings are 'keyword=value', keywords are DublinCore elements or terms, values are UTF-8 plain text.";
   else
     annotation = NULL;
 
@@ -1395,7 +1399,7 @@ create_well_known_values(
       }
 
       xs_enumeration = mxmlNewElement(xs_restriction, "xs:enumeration");
-      if (!strcmp(attribute, "media") && strchr(value, '_') != NULL)
+      if (!strncmp(attribute, "material-", 9) || !strncmp(attribute, "media", 5))
         mxmlElementSetAttr(xs_enumeration, "value", value);
       else
         mxmlElementSetAttr(xs_enumeration, "value", get_sm_name(value, smvalue, sizeof(smvalue)));

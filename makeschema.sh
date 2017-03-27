@@ -22,10 +22,12 @@ service="$2"
 if test $# -gt 2; then
 	version="$3"
 	directory="$schema-$version"
+	nsurl="http://www.pwg.org/schemas/$schema"
 else
 	date="`date '+%Y%m%d'`"
 	version="0.$date"
 	directory="$schema-$date"
+	nsurl="http://www.pwg.org/schemas/$schema-$date"
 fi
 
 if test ! -f ipp-registrations.xml; then
@@ -40,7 +42,10 @@ echo Creating schema...
 test -d $directory && rm -rf $directory
 mkdir $directory
 cp services/$service.md $directory/README.md
-./regtosm -a services/$service.txt -n http://www.pwg.org/schemas/$schema/$version -s $service -v $version ipp-registrations.xml $directory
+./regtosm -a services/$service.txt -n $nsurl -s $service -v $version ipp-registrations.xml $directory
+
+echo Generating HTML preview...
+(cd $directory; "/Applications/Oxygen XML Editor/schemaDocumentationMac.sh" ${service}Service.xsd -format:html -split:location)
 
 echo Creating schema archive...
 zip -rv9 $directory.zip $directory

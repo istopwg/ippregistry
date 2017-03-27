@@ -9,3 +9,14 @@ print-scaling (type2 keyword)
   fill
   fit
   none
+
+printer-kind (1setOf type2 keyword)
+  disc
+  document
+  envelope
+  label
+  large-format
+  photo
+  postcard
+  receipt
+  roll

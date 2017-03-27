@@ -6,6 +6,7 @@ accuracy-units-supported
 color-supported
 copies
 copies-actual
+copies-supported
 date-time-at-completed
 date-time-at-creation
 date-time-at-processing
@@ -16,6 +17,7 @@ document-format-supplied
 document-format-supported
 document-message
 document-message-supplied
+document-metadata
 document-name
 document-name-supplied
 document-state
@@ -88,19 +90,24 @@ pdf-features-supported
 = *
 platform-temperature
 platform-temperature-actual
+platform-temperature-supported
 print-accuracy
 print-accuracy-actual
+print-accuracy-supported
 print-base
 = *
 print-base-actual
+print-base-supported
 print-objects
 print-objects-actual
 print-quality
 = *
 print-quality-actual
+print-quality-supported
 print-supports
 = *
 print-supports-actual
+print-supports-supported
 printer-camera-image-uri
 printer-charge-info-uri
 printer-config-change-date-time
