@@ -1,6 +1,0 @@
-http://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf
-
-Operation attributes: Reference
---------------------------	---------
-compression-accepted (1setOf type2 keyword)	[PWG5100.18]
-document-format-accepted (1setOf mimeMediaType)	[PWG5100.18]
