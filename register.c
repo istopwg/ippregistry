@@ -1633,6 +1633,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
           const char  *xref)		/* I - Standard URL */
 {
   int		i,			/* Looping var */
+                blanks = 0,             /* Number of blank lines */
 		changed = 0,		/* Was something changed? */
 		state = IN_NOTHING,	/* Current state */
 		linenum = 0,		/* Current line number */
@@ -1738,8 +1739,18 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     * Skip blank lines and lines that start with "-"...
     */
 
-    if (!*ptr || *ptr == '-')
+    if (!*ptr)
+    {
+      blanks ++;
+      if (blanks > 1)
+        state = IN_NOTHING;
+
       continue;
+    }
+    else if (*ptr == '-')
+      continue;
+
+    blanks = 0;
 
    /*
     * Look for section headings...
