@@ -30,6 +30,9 @@
 #  define IPP_REGISTRY_ATTRIBUTES	"ipp-registrations-2"
 #  define IPP_REGISTRY_KEYWORDS		"ipp-registrations-4"
 #  define IPP_REGISTRY_ENUMS		"ipp-registrations-6"
+#  define IPP_REGISTRY_ATTRIBUTE_GROUPS	"ipp-registrations-7"
+#  define IPP_REGISTRY_OUT_OF_BANDS	"ipp-registrations-8"
+#  define IPP_REGISTRY_ATTRIBUTE_SYNTAXES "ipp-registrations-9"
 #  define IPP_REGISTRY_OPERATIONS	"ipp-registrations-10"
 #  define IPP_REGISTRY_STATUS_CODES	"ipp-registrations-11"
 

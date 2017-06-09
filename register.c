@@ -61,14 +61,21 @@ enum
   IN_DDESC_ATTRS,			/* Document Description attributes */
   IN_DSTAT_ATTRS,			/* Document Status attributes */
   IN_DTMPL_ATTRS,			/* Document Template attributes */
+  IN_RDESC_ATTRS,			/* Resource Description attributes */
+  IN_RSTAT_ATTRS,			/* Resource Status attributes */
   IN_SDESC_ATTRS,			/* Subscription Description attributes */
   IN_SSTAT_ATTRS,			/* Subscription Status attributes */
   IN_STMPL_ATTRS,			/* Subscription Template attributes */
+  IN_SYSDESC_ATTRS,			/* System Description attributes */
+  IN_SYSSTAT_ATTRS,			/* System Status attributes */
   IN_EVENT_ATTRS,			/* Event Notification attributes */
   IN_KEYWORD_VALS,			/* Keyword attribute values */
   IN_ENUM_VALS,				/* Enum Attribute values */
   IN_OPERATIONS,			/* Operations */
   IN_STATUS_CODES,			/* Status codes */
+  IN_OBJECTS,                           /* Objects */
+  IN_ATTR_GROUP_VALS,                   /* Attribute Group Values */
+  IN_OUT_OF_BAND_VALS,                  /* Out-of-Band Values */
   IN_MAX
 };
 
@@ -93,8 +100,11 @@ static int		add_attr(mxml_node_t *xml, const char *collection,
 			         const char *attrname, const char *membername,
 			         const char *submembername, const char *syntax,
 			         const char *xref, const char *xrefname);
+static int		add_attr_group(mxml_node_t *xml, const char *value, const char *name, const char *xref, const char *xrefname);
+static int		add_object(mxml_node_t *xml, const char *name, const char *xref, const char *xrefname);
 static int		add_operation(mxml_node_t *xml, const char *name,
 			              const char *xref, const char *xrefname);
+static int		add_out_of_band(mxml_node_t *xml, const char *value, const char *name, const char *xref, const char *xrefname);
 static int		add_status_code(mxml_node_t *xml, const char *value,
 			                const char *name, const char *xref,
 			                const char *xrefname);
@@ -142,11 +152,13 @@ main(int  argc,				/* I - Number of command-line args */
   FILE		*xmlfile,		/* XML registration file pointer */
 		*textfile;		/* Text registration file */
   int		changed = 0;		/* Was the registration data changed? */
-  static const char * const object_keys[] = { "name" };
   static const char * const attribute_keys[] = { "collection", "name", "member_attribute", "sub-member_attribute" };
+  static const char * const attribute_group_keys[] = { "value" };
   static const char * const keyword_keys[] = { "attribute", "value" };
   static const char * const enum_keys[] = { "attribute", "value" };
+  static const char * const object_keys[] = { "name" };
   static const char * const operation_keys[] = { "name" };
+  static const char * const out_of_band_keys[] = { "value" };
   static const char * const status_code_keys[] = { "value" };
 					/* Sorting keys for the different registries */
 
@@ -298,6 +310,14 @@ main(int  argc,				/* I - Number of command-line args */
                                (int)(sizeof(enum_keys) /
                                      sizeof(enum_keys[0])),
 			       enum_keys);
+  changed |= validate_registry(xml, IPP_REGISTRY_ATTRIBUTE_GROUPS, "Attribute Groups",
+                               (int)(sizeof(attribute_group_keys) /
+                                     sizeof(attribute_group_keys[0])),
+			       attribute_group_keys);
+  changed |= validate_registry(xml, IPP_REGISTRY_OUT_OF_BANDS, "Out-of-Band Values",
+                               (int)(sizeof(out_of_band_keys) /
+                                     sizeof(out_of_band_keys[0])),
+			       out_of_band_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_OPERATIONS, "Operations",
                                (int)(sizeof(operation_keys) /
                                      sizeof(operation_keys[0])),
@@ -646,6 +666,137 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 
 
 /*
+ * 'add_attr_group()' - Add an attribute group value to the registry.
+ */
+
+static int				/* O - 1 if something changed, 0 otherwise */
+add_attr_group(mxml_node_t *xml,	/* I - XML registry */
+               const char  *value,	/* I - Attribute group value */
+               const char  *name,	/* I - Attribute group name */
+               const char  *xref,	/* I - Standard URL/number */
+               const char  *xrefname)	/* I - Standard name or NULL */
+{
+  int		changed = 0,		/* Did something change? */
+		result;			/* Result of comparison */
+  mxml_node_t	*node,			/* New <registry> node */
+		*registry_node,		/* <registry> */
+		*record_node,		/* <record> */
+		*name_node,		/* <name> */
+		*value_node,		/* <value> */
+		*xref_node;		/* <xref> */
+  char		*nodeval;		/* Pointer into node value */
+
+
+ /*
+  * Find any existing definition of the attribute...
+  */
+
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
+				       IPP_REGISTRY_ATTRIBUTE_GROUPS,
+				       MXML_DESCEND)) == NULL)
+  {
+    fputs("register: Unable to find '" IPP_REGISTRY_ATTRIBUTE_GROUPS
+          "' registry in XML file.\n", stderr);
+    exit(1);
+  }
+
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record",
+                                     NULL, NULL, MXML_DESCEND_FIRST);
+       record_node;
+       record_node = mxmlFindElement(record_node, registry_node, "record",
+                                     NULL, NULL, MXML_NO_DESCEND))
+  {
+    value_node = mxmlFindElement(record_node, record_node, "value", NULL, NULL,
+				 MXML_DESCEND_FIRST);
+    if (!value_node)
+    {
+      fputs("register: Status code record missing <value> in XML file.\n",
+            stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
+    }
+
+    if ((result = strtol(value, NULL, 0) -
+                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
+      continue;
+    else if (result < 0)
+      break;
+
+    if (nodeval && *nodeval == '-')
+    {
+     /*
+      * 0xXXXX-0xXXXX range; update the range to be 1 more than the current
+      * value and then insert the new status code before this one...
+      */
+
+      char	newvalue[256];		/* New value */
+
+      snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
+      mxmlSetOpaque(value_node, newvalue);
+      changed = 1;
+      break;
+    }
+
+   /*
+    * OK, at this point the current record matches the value we are trying to add.
+    */
+
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
+                                MXML_DESCEND_FIRST);
+    if (!name_node)
+    {
+      fprintf(stderr, "register: Fixing record for attribute group '%s'.\n",
+              value);
+      name_node = mxmlNewElement(record_node, "name");
+    }
+
+    if (!mxmlGetOpaque(name_node))
+    {
+      mxmlNewOpaque(name_node, name);
+      return (1);
+    }
+    else if (compare_strings(name, mxmlGetOpaque(name_node)))
+    {
+      fprintf(stderr, "register: Updating record for attribute group '%s'.\n",
+              value);
+      mxmlSetOpaque(name_node, name);
+      return (1);
+    }
+    else
+      return (0);
+  }
+
+ /*
+  * If we get here the value does not exist.  Build a new record and add it to the
+  * registry in the right place.
+  */
+
+  node = mxmlNewElement(NULL, "record");
+
+  value_node = mxmlNewElement(node, "value");
+  mxmlNewOpaque(value_node, value);
+
+  name_node = mxmlNewElement(node, "name");
+  mxmlNewOpaque(name_node, name);
+
+  xref_node = mxmlNewElement(node, "xref");
+  mxmlElementSetAttr(xref_node, "data", xref);
+  if (xrefname)
+  {
+    mxmlElementSetAttr(xref_node, "type", "uri");
+    mxmlNewOpaque(xref_node, xrefname);
+  }
+  else
+    mxmlElementSetAttr(xref_node, "type", "rfc");
+
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
+          node);
+
+  return (1);
+}
+
+
+/*
  * 'add_valattr()' - Add a keyword/enum attribute definition.
  */
 
@@ -788,6 +939,83 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 
 
 /*
+ * 'add_object()' - Add an object to the registry.
+ */
+
+static int				/* O - 1 if something changed, 0 otherwise */
+add_object(mxml_node_t *xml,		/* I - XML registry */
+           const char  *name,   	/* I - Object name */
+           const char  *xref,   	/* I - Standard URL/number */
+           const char  *xrefname)	/* I - Standard name or NULL */
+{
+  int		result;			/* Result of comparison */
+  mxml_node_t	*node,			/* New <registry> node */
+		*registry_node,		/* <registry> */
+		*record_node,		/* <record> */
+		*name_node,		/* <name> */
+		*xref_node;		/* <xref> */
+
+
+ /*
+  * Find any existing definition of the operation...
+  */
+
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_OBJECTS, MXML_DESCEND)) == NULL)
+  {
+    fputs("register: Unable to find '" IPP_REGISTRY_OBJECTS "' registry in XML file.\n",
+          stderr);
+    exit(1);
+  }
+
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record",
+                                     NULL, NULL, MXML_DESCEND_FIRST);
+       record_node;
+       record_node = mxmlFindElement(record_node, registry_node, "record",
+                                     NULL, NULL, MXML_NO_DESCEND))
+  {
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
+				MXML_DESCEND_FIRST);
+    if (!name_node)
+    {
+      fputs("register: Object record missing <name> in XML file.\n", stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
+    }
+
+    if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
+      return (0);
+    else if (result < 0)
+      break;
+  }
+
+ /*
+  * If we get here the value does not exist.  Build a new record and add it to the
+  * registry in the right place.
+  */
+
+  node = mxmlNewElement(NULL, "record");
+
+  name_node = mxmlNewElement(node, "name");
+  mxmlNewOpaque(name_node, name);
+
+  xref_node = mxmlNewElement(node, "xref");
+  mxmlElementSetAttr(xref_node, "data", xref);
+  if (xrefname)
+  {
+    mxmlElementSetAttr(xref_node, "type", "uri");
+    mxmlNewOpaque(xref_node, xrefname);
+  }
+  else
+    mxmlElementSetAttr(xref_node, "type", "rfc");
+
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
+          record_node, node);
+
+  return (1);
+}
+
+
+/*
  * 'add_operation()' - Add an operation to the registry.
  */
 
@@ -797,8 +1025,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
 	      const char  *xref,	/* I - Standard URL/number */
 	      const char  *xrefname)	/* I - Standard name or NULL */
 {
-  int		changed = 0,		/* Did something change? */
-		result;			/* Result of comparison */
+  int		result;			/* Result of comparison */
   mxml_node_t	*node,			/* New <registry> node */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
@@ -834,8 +1061,8 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    if ((result = compare_strings(name, mxmlGetOpaque(name_node))) >= 0)
-      continue;
+    if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
+      return (0);
     else if (result < 0)
       break;
   }
@@ -862,6 +1089,137 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
           record_node, node);
+
+  return (1);
+}
+
+
+/*
+ * 'add_out_of_band()' - Add an out-of-band value to the registry.
+ */
+
+static int				/* O - 1 if something changed, 0 otherwise */
+add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
+                const char  *value,	/* I - Out-of-band value */
+	        const char  *name,	/* I - Out-of-band name */
+		const char  *xref,	/* I - Standard URL/number */
+		const char  *xrefname)	/* I - Standard name or NULL */
+{
+  int		changed = 0,		/* Did something change? */
+		result;			/* Result of comparison */
+  mxml_node_t	*node,			/* New <registry> node */
+		*registry_node,		/* <registry> */
+		*record_node,		/* <record> */
+		*name_node,		/* <name> */
+		*value_node,		/* <value> */
+		*xref_node;		/* <xref> */
+  char		*nodeval;		/* Pointer into node value */
+
+
+ /*
+  * Find any existing definition of the attribute...
+  */
+
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
+				       IPP_REGISTRY_OUT_OF_BANDS,
+				       MXML_DESCEND)) == NULL)
+  {
+    fputs("register: Unable to find '" IPP_REGISTRY_OUT_OF_BANDS
+          "' registry in XML file.\n", stderr);
+    exit(1);
+  }
+
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record",
+                                     NULL, NULL, MXML_DESCEND_FIRST);
+       record_node;
+       record_node = mxmlFindElement(record_node, registry_node, "record",
+                                     NULL, NULL, MXML_NO_DESCEND))
+  {
+    value_node = mxmlFindElement(record_node, record_node, "value", NULL, NULL,
+				 MXML_DESCEND_FIRST);
+    if (!value_node)
+    {
+      fputs("register: Out-of-band record missing <value> in XML file.\n",
+            stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
+    }
+
+    if ((result = strtol(value, NULL, 0) -
+                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
+      continue;
+    else if (result < 0)
+      break;
+
+    if (nodeval && *nodeval == '-')
+    {
+     /*
+      * 0xXXXX-0xXXXX range; update the range to be 1 more than the current
+      * value and then insert the new out-of-band value before this one...
+      */
+
+      char	newvalue[256];		/* New value */
+
+      snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
+      mxmlSetOpaque(value_node, newvalue);
+      changed = 1;
+      break;
+    }
+
+   /*
+    * OK, at this point the current record matches the value we are trying to add.
+    */
+
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
+                                MXML_DESCEND_FIRST);
+    if (!name_node)
+    {
+      fprintf(stderr, "register: Fixing record for out-of-band value '%s'.\n",
+              value);
+      name_node = mxmlNewElement(record_node, "name");
+    }
+
+    if (!mxmlGetOpaque(name_node))
+    {
+      mxmlNewOpaque(name_node, name);
+      return (1);
+    }
+    else if (compare_strings(name, mxmlGetOpaque(name_node)))
+    {
+      fprintf(stderr, "register: Updating record for out-of-band value '%s'.\n",
+              value);
+      mxmlSetOpaque(name_node, name);
+      return (1);
+    }
+    else
+      return (0);
+  }
+
+ /*
+  * If we get here the value does not exist.  Build a new record and add it to the
+  * registry in the right place.
+  */
+
+  node = mxmlNewElement(NULL, "record");
+
+  value_node = mxmlNewElement(node, "value");
+  mxmlNewOpaque(value_node, value);
+
+  name_node = mxmlNewElement(node, "name");
+  mxmlNewOpaque(name_node, name);
+
+  xref_node = mxmlNewElement(node, "xref");
+  mxmlElementSetAttr(xref_node, "data", xref);
+  if (xrefname)
+  {
+    mxmlElementSetAttr(xref_node, "type", "uri");
+    mxmlNewOpaque(xref_node, xrefname);
+  }
+  else
+    mxmlElementSetAttr(xref_node, "type", "rfc");
+
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
+          node);
 
   return (1);
 }
@@ -1023,8 +1381,6 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 		*name_node,		/* <name> */
 		*value_node,		/* <value> */
 		*xref_node;		/* <xref> */
-  const char	*last_attr = NULL,	/* Last attribute name */
-		*last_value = NULL;	/* Last value */
 
 
  /*
@@ -1212,8 +1568,7 @@ static int				/* O - Result of comparison */
 compare_strings(const char *s,		/* I - First string */
                 const char *t)		/* I - Second string */
 {
-  int		diff,			/* Difference between digits */
-		digits;			/* Number of digits */
+  int		diff;			/* Difference between digits */
 
 
   if (!s)
@@ -1268,39 +1623,6 @@ compare_strings(const char *s,		/* I - First string */
 
 
 /*
- * 'load_cb()' - Load callback.
- */
-
-static int				/* O - Type of child node */
-load_cb(mxml_node_t *node)		/* I - Parent node */
-{
-  const char *name = mxmlGetElement(node);
-					/* Name of parent element */
-
-
-  if (!strcmp(name, "attribute") ||
-      !strcmp(name, "collection") ||
-      !strcmp(name, "created") ||
-      !strcmp(name, "expert") ||
-      !strcmp(name, "member_attribute") ||
-      !strcmp(name, "name") ||
-      !strcmp(name, "note") ||
-      !strcmp(name, "registration_rule") ||
-      !strcmp(name, "section") ||
-      !strcmp(name, "sub-member_attribute") ||
-      !strcmp(name, "syntax") ||
-      !strcmp(name, "title") ||
-      !strcmp(name, "type") ||
-      !strcmp(name, "updated") ||
-      !strcmp(name, "value") ||
-      !strcmp(name, "xref"))
-    return (MXML_OPAQUE);
-  else
-    return (MXML_IGNORE);
-}
-
-
-/*
  * 'read_text()' - Read text registration data from the file.
  */
 
@@ -1319,7 +1641,6 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 		*ptr,			/* Pointer into line */
 		*first,			/* First value */
 		*second,		/* Second value */
-		*third,			/* Third value */
 		attrname[128],		/* Current attribute name */
 		membername[128],	/* Current member attribute name */
 		syntax[128];		/* Current syntax */
@@ -1336,18 +1657,25 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     { "Printer Status attributes:", 26 },
     { "Job Description attributes:", 27 },
     { "Job Status attributes:", 22 },
-    { "Job Template attributes:", 24},
-    { "Document Description attributes:", 32},
-    { "Document Status attributes:", 27},
-    { "Document Template attributes:", 29},
-    { "Subscription Description attributes:", 36},
-    { "Subscription Status attributes:", 31},
-    { "Subscription Template attributes:", 33},
-    { "Event Notification attributes:", 30},
-    { "Keyword Attribute Value", 23},
-    { "Enum Value", 10},
-    { "Operation Name", 14},
-    { "Value    Status Code Name", 25}
+    { "Job Template attributes:", 24 },
+    { "Document Description attributes:", 32 },
+    { "Document Status attributes:", 27 },
+    { "Document Template attributes:", 29 },
+    { "Resource Description attributes:", 32 },
+    { "Resource Status attributes:", 27 },
+    { "Subscription Description attributes:", 36 },
+    { "Subscription Status attributes:", 31 },
+    { "Subscription Template attributes:", 33 },
+    { "System Description attributes:", 30 },
+    { "System Status attributes:", 15 },
+    { "Event Notification attributes:", 30 },
+    { "Keyword Attribute Value", 23 },
+    { "Enum Value", 10 },
+    { "Operation Name", 14 },
+    { "Value    Status Code Name", 25 },
+    { "Object Name", 11 },
+    { "Attribute Group Value", 21 },
+    { "Out-of-Band Value", 17 }
   };
   static const char * const collections[] =
   {					/* Collection names for each state */
@@ -1361,10 +1689,17 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     "Document Description",
     "Document Status",
     "Document Template",
+    "Resource Description",
+    "Resource Status",
     "Subscription Description",
     "Subscription Status",
     "Subscription Template",
+    "System Description",
+    "System Status",
     "Event Notification",
+    NULL,
+    NULL,
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -1433,9 +1768,13 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
         case IN_DDESC_ATTRS :
         case IN_DSTAT_ATTRS :
         case IN_DTMPL_ATTRS :
+        case IN_RDESC_ATTRS :
+        case IN_RSTAT_ATTRS :
         case IN_SDESC_ATTRS :
         case IN_SSTAT_ATTRS :
         case IN_STMPL_ATTRS :
+        case IN_SYSDESC_ATTRS :
+        case IN_SYSSTAT_ATTRS :
         case IN_EVENT_ATTRS :
             if (!islower(*ptr & 255))
               continue;
@@ -1763,6 +2102,97 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 
 	    fprintf(stderr, "Status Code %s '%s'\n", first, second);
             changed |= add_status_code(xml, first, second, xref, xrefname);
+            break;
+
+        case IN_OBJECTS :
+            first = ptr;
+	    while (*ptr && !isspace(*ptr & 255))
+	      ptr ++;
+
+            if (!*ptr)
+            {
+              fprintf(stderr,
+                      "register: Bad object definition on line %d.\n",
+                      linenum);
+              exit(1);
+            }
+
+            *ptr = '\0';
+
+	    fprintf(stderr, "Object %s\n", first);
+            changed |= add_object(xml, first, xref, xrefname);
+            break;
+
+        case IN_ATTR_GROUP_VALS :
+            if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
+              continue;
+
+            first = ptr;
+	    while (*ptr && !isspace(*ptr & 255))
+	      ptr ++;
+
+            if (!*ptr)
+            {
+              fprintf(stderr,
+                      "register: Bad attribute group value definition on line %d.\n",
+                      linenum);
+              exit(1);
+            }
+
+            while (isspace(*ptr & 255))
+              *ptr++ = '\0';
+
+            second = ptr;
+            if (!islower(*ptr & 255))
+            {
+              fprintf(stderr,
+                      "register: Bad attribute group value definition on line %d.\n",
+                      linenum);
+              exit(1);
+            }
+
+            while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
+              ptr ++;
+            *ptr = '\0';
+
+	    fprintf(stderr, "Attribute Group %s '%s'\n", first, second);
+            changed |= add_attr_group(xml, first, second, xref, xrefname);
+            break;
+
+        case IN_OUT_OF_BAND_VALS :
+            if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
+              continue;
+
+            first = ptr;
+	    while (*ptr && !isspace(*ptr & 255))
+	      ptr ++;
+
+            if (!*ptr)
+            {
+              fprintf(stderr,
+                      "register: Bad out-of-band value definition on line %d.\n",
+                      linenum);
+              exit(1);
+            }
+
+            while (isspace(*ptr & 255))
+              *ptr++ = '\0';
+
+            second = ptr;
+            if (!islower(*ptr & 255))
+            {
+              fprintf(stderr,
+                      "register: Bad out-of-band value definition on line %d.\n",
+                      linenum);
+              exit(1);
+            }
+
+            while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
+              ptr ++;
+            *ptr = '\0';
+
+	    fprintf(stderr, "Out-of-Band Value %s '%s'\n", first, second);
+            changed |= add_out_of_band(xml, first, second, xref, xrefname);
             break;
 
         default :
