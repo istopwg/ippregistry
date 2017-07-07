@@ -23,7 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-CFLAGS	=	-g -Os -Wall -I/usr/local/include -L/usr/local/lib
+CFLAGS	=	-g -Os -Wall -I$(HOME)/oss/include -I/usr/local/include -L$(HOME)/oss/lib -L/usr/local/lib
 TARGETS	=	register regtoc regtosm regtostrings
 
 all:	$(TARGETS)
