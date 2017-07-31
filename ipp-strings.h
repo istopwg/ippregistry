@@ -353,10 +353,13 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
         {
           size += 2;
 	  strlcpy(bufptr, "\\\"", bufend - bufptr + 1);
+	  bufptr += strlen(bufptr);
 	}
 	else
 	  *bufptr++ = *size++;
       }
+
+      *bufptr = '\0';
     }
 
     return (buffer);
