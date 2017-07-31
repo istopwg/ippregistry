@@ -308,16 +308,6 @@ write_strings(
         else
           printf("msgid \"%s.%s\"\nmsgstr \"%s\"\n", attribute, value, ipp_get_localized(attribute, name, value, localized, sizeof(localized)));
       }
-      else if (!strcmp(attribute, "operations-supported") &&
-               strncmp(name, "Reserved (", 10) && !strstr(name, "(deprecated)") && !strstr(name, "(obsolete)"))
-      {
-        if (format == FORMAT_STRINGS)
-          printf("\"%s.%ld\" = \"%s\";\n", attribute, strtol(value, NULL, 0),
-                 name);
-        else
-          printf("msgid \"%s.%ld\"\nmsgstr \"%s\"\n", attribute, strtol(value, NULL, 0),
-                 name);
-      }
     }
   }
 }
