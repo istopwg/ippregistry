@@ -45,3 +45,14 @@ regtosm:	regtosm.c ipp-registry.h
 
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
+
+strings:	ipp.strings ipp.po
+
+iana-ipp-registrations.xml:
+	curl -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
+
+ipp.po:	regtostrings iana-ipp-registrations.xml
+	./regtostrings --po iana-ipp-registrations.xml >ipp.po
+
+ipp.strings:	regtostrings iana-ipp-registrations.xml
+	./regtostrings iana-ipp-registrations.xml >ipp.strings
