@@ -1,0 +1,7 @@
+http://www.pwg.org/pipermail/ipp/2017/019352.html
+
+Attributes (attribute syntax)
+   Keyword Attribute Value   Reference
+   -----------------------   ---------
+ media (type2 keyword | name(MAX))  [RFC8011]
+   jpn_kaku1_270x382mm              [APPLE20171002]
