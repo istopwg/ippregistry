@@ -1,0 +1,12 @@
+http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf
+
+Attributes (attribute syntax)
+   Keyword Attribute Value   Reference
+   -----------------------   ---------
+printer-state-reasons (1setOf type2 keyword)  [RFC8011]
+  chamber-failure                             [PWG5100.21]
+  platform-cooling                            [PWG5100.21]
+  platform-failure                            [PWG5100.21]
+  platform-heating                            [PWG5100.21]
+  platform-temperature-high                   [PWG5100.21]
+  platform-temperature-low                    [PWG5100.21]
