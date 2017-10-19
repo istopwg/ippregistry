@@ -1,0 +1,12 @@
+http://www.pwg.org/pipermail/ipp/2017/???
+
+Attributes (attribute syntax)
+   Keyword Attribute Value   Reference
+   -----------------------   ---------
+printer-state-reasons (1setOf type2 keyword)  [RFC8011]
+  chamber-failure                             [APPLE20171019]
+  platform-cooling                            [APPLE20171019]
+  platform-failure                            [APPLE20171019]
+  platform-heating                            [APPLE20171019]
+  platform-temperature-high                   [APPLE20171019]
+  platform-temperature-low                    [APPLE20171019]

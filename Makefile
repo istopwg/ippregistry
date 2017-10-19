@@ -48,6 +48,8 @@ regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 
 strings:	ipp.strings ipp.po
 
+.PHONY: iana-ipp-registrations.xml
+
 iana-ipp-registrations.xml:
 	curl -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
 
