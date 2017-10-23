@@ -167,6 +167,8 @@ static ipp_loc_t	ipp_strings[] =
   { "media-size-name", "Media Name" },
   { "media-source.by-pass-tray", "By-pass Tray" },
   { "media-tooth", "Media Tooth (Texture)" },
+  { "media-tooth.calendared", "Extra Smooth" },
+  { "media-tooth.uncalendared", "Rough" },
   { "media-type.cd", "CD" },
   { "media-type.disc", "Optical Disc" },
   { "media-type.disc-glossy", "Glossy Optical Disc" },
@@ -220,9 +222,9 @@ static ipp_loc_t	ipp_strings[] =
   { "media-type.stationery-prepunched", "Punched Paper" },
   { "media-weight-metric", "Media Weight (grams per m²)" },
   { "media.choice_iso_a4_210x297mm_na_letter_8.5x11in", "A4 or US Letter" },
-  { "media.iso_b5_176x250mm", "B5 Envelope" },
-  { "media.iso_b6c4_125x324mm", "B6/C4 Envelope" },
-  { "media.iso_dl_110x220mm", "DL Envelope" },
+  { "media.iso_b5_176x250mm", "Envelope B5" },
+  { "media.iso_b6c4_125x324mm", "Envelope B6/C4" },
+  { "media.iso_dl_110x220mm", "Envelope DL" },
   { "media.iso_ra0_860x1220mm", "ISO RA0" },
   { "media.iso_ra1_610x860mm", "ISO RA1" },
   { "media.iso_ra2_430x610mm", "ISO RA2" },
@@ -245,16 +247,16 @@ static ipp_loc_t	ipp_strings[] =
   { "media.jis_b8_64x91mm", "JIS B8" },
   { "media.jis_b9_45x64mm", "JIS B9" },
   { "media.jis_exec_216x330mm", "JIS Executive" },
-  { "media.jpn_chou2_111.1x146mm", "Chou 2 Envelope" },
-  { "media.jpn_chou3_120x235mm", "Chou 3 Envelope" },
-  { "media.jpn_chou4_90x205mm", "Chou 4 Envelope" },
+  { "media.jpn_chou2_111.1x146mm", "Envelope Chou 2" },
+  { "media.jpn_chou3_120x235mm", "Envelope Chou 3" },
+  { "media.jpn_chou4_90x205mm", "Envelope Chou 4" },
   { "media.jpn_hagaki_100x148mm", "Hagaki" },
-  { "media.jpn_kahu_240x322.1mm", "Kahu Envelope" },
-  { "media.jpn_kaku2_240x332mm", "Kahu 2 Envelope" },
+  { "media.jpn_kahu_240x322.1mm", "Envelope Kahu" },
+  { "media.jpn_kaku2_240x332mm", "Envelope Kahu 2" },
   { "media.jpn_oufuku_148x200mm", "Oufuku Reply Postcard" },
-  { "media.jpn_you4_105x235mm", "You 4 Envelope" },
-  { "media.na_a2_4.375x5.75in", "A2 Envelope" },
-  { "media.na_c5_6.5x9.5in", "C5 Envelope" },
+  { "media.jpn_you4_105x235mm", "Envelope You 4" },
+  { "media.na_a2_4.375x5.75in", "Envelope A2" },
+  { "media.na_c5_6.5x9.5in", "Envelope C5" },
   { "media.na_executive_7.25x10.5in", "Executive" },
   { "media.na_fanfold-eur_8.5x12in", "European Fanfold" },
   { "media.na_fanfold-us_11x14.875in", "US Fanfold" },
@@ -265,30 +267,30 @@ static ipp_loc_t	ipp_strings[] =
   { "media.na_letter_8.5x11in", "US Letter" },
   { "media.na_letter-extra_9.5x12in", "US Letter (Extra)" },
   { "media.na_letter-plus_8.5x12.69in", "US Letter (Plus)" },
-  { "media.na_monarch_3.875x7.5in", "Monarch Envelope" },
-  { "media.na_number-10_4.125x9.5in", "#10 Envelope" },
-  { "media.na_number-11_4.5x10.375in", "#11 Envelope" },
-  { "media.na_number-12_4.75x11in", "#12 Envelope" },
-  { "media.na_number-14_5x11.5in", "#14 Envelope" },
-  { "media.na_number-9_3.875x8.875in", "#9 Envelope" },
-  { "media.na_personal_3.625x6.5in", "Personal Envelope" },
+  { "media.na_monarch_3.875x7.5in", "Envelope Monarch" },
+  { "media.na_number-10_4.125x9.5in", "Envelope #10" },
+  { "media.na_number-11_4.5x10.375in", "Envelope #11" },
+  { "media.na_number-12_4.75x11in", "Envelope #12" },
+  { "media.na_number-14_5x11.5in", "Envelope #14" },
+  { "media.na_number-9_3.875x8.875in", "Envelope #9" },
+  { "media.na_personal_3.625x6.5in", "Envelope Personal" },
   { "media.na_quarto_8.5x10.83in", "Quarto" },
   { "media.om_folio_210x330mm", "Folio (Special)" },
   { "media.om_folio-sp_215x315mm", "Folio" },
-  { "media.om_invite_220x220mm", "Invitation Envelope" },
-  { "media.om_italian_110x230mm", "Italian Envelope" },
-  { "media.om_postfix_114x229mm", "Postfix Envelope" },
-  { "media.prc_1_102x165mm", "Chinese #1 Envelope" },
-  { "media.prc_10_324x458mm", "Chinese #10 Envelope" },
+  { "media.om_invite_220x220mm", "Envelope Invitation" },
+  { "media.om_italian_110x230mm", "Envelope Italian" },
+  { "media.om_postfix_114x229mm", "Envelope Postfix" },
+  { "media.prc_1_102x165mm", "Envelope Chinese #1" },
+  { "media.prc_10_324x458mm", "Envelope Chinese #10" },
   { "media.prc_16k_146x215mm", "Chinese 16k" },
-  { "media.prc_2_102x176mm", "Chinese #2 Envelope" },
-  { "media.prc_3_125x176mm", "Chinese #3 Envelope" },
+  { "media.prc_2_102x176mm", "Envelope Chinese #2" },
+  { "media.prc_3_125x176mm", "Envelope Chinese #3" },
   { "media.prc_32k_97x151mm", "Chinese 32k" },
-  { "media.prc_4_110x208mm", "Chinese #4 Envelope" },
-  { "media.prc_5_110x220mm", "Chinese #5 Envelope" },
-  { "media.prc_6_120x320mm", "Chinese #6 Envelope" },
-  { "media.prc_7_160x230mm", "Chinese #7 Envelope" },
-  { "media.prc_8_120x309mm", "Chinese #8 Envelope" },
+  { "media.prc_4_110x208mm", "Envelope Chinese #4" },
+  { "media.prc_5_110x220mm", "Envelope Chinese #5" },
+  { "media.prc_6_120x320mm", "Envelope Chinese #6" },
+  { "media.prc_7_160x230mm", "Envelope Chinese #7" },
+  { "media.prc_8_120x309mm", "Envelope Chinese #8" },
   { "media.roc_16k_7.75x10.75in", "ROC 16k" },
   { "media.roc_8k_10.75x15.5in", "ROC 8k" },
   { "multiple-operation-time-out-action", "On Timeout" },
@@ -443,6 +445,12 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
 
       *bufptr++ = toupper(*value++);
 
+      if (buffer[0] == 'C')
+      {
+        strlcpy(bufptr, "Envelope ", bufend - bufptr + 1);
+        bufptr += strlen(bufptr);
+      }
+
       while (*value && *value != '_' && bufptr < bufend)
       {
         if (!strncmp(value, "-extra", 6))
@@ -462,9 +470,6 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
       }
 
       *bufptr = '\0';
-
-      if (buffer[0] == 'C')
-        strlcpy(bufptr, " Envelope", bufend - bufptr + 1);
     }
     else
     {
