@@ -1,0 +1,7 @@
+http://www.pwg.org/pipermail/ipp/2017/019392.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value   Reference
+  -----------------------   ---------
+print-color-mode (type2 keyword)   [PWG5100.13]
+  auto-monochrome                  [APPLE20171101]
