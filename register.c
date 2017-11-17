@@ -227,11 +227,9 @@ main(int  argc,				/* I - Number of command-line args */
                 return (usage(NULL));
               }
 
-              if (strncmp(argv[i], "rfc", 3) && strncmp(argv[i], "http://", 7) &&
-                  strncmp(argv[i], "ftp://", 6))
+              if (strncmp(argv[i], "rfc", 3) && strncmp(argv[i], "http://", 7) && strncmp(argv[i], "https://", 8) && strncmp(argv[i], "ftp://", 6))
               {
-                fputs("Standard URL must be 'rfcNNNN', 'ftp://...', or 'http://...'.\n",
-                      stderr);
+                fputs("Standard URL must be 'rfcNNNN', 'ftp://...', 'http://...', or 'https://...'.\n", stderr);
                 return (usage(NULL));
               }
 

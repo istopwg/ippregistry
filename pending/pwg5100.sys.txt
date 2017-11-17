@@ -1,4 +1,4 @@
-http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170509.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20171113.pdf
 
 
 N.1 Object Registrations
@@ -341,6 +341,7 @@ operations-supported (1setOf type2 enum)	        [RFC8011]
   0x0062        Set-System-Attributes                   [PWG5100.SYS]
   0x0063        Shutdown-All-Printers                   [PWG5100.SYS]
   0x0064        Startup-All-Printers                    [PWG5100.SYS]
+  0x0065        Get-Printer-Resources                   [PWG5100.SYS]
 resource-state (type1 enum)                             [PWG5100.SYS]
   3             pending                                 [PWG5100.SYS]
   4             available                               [PWG5100.SYS]
@@ -392,6 +393,7 @@ Delete-Printer                          [PWG5100.SYS]
 Disable-All-Printers                    [PWG5100.SYS]
 Enable-All-Printers                     [PWG5100.SYS]
 Get-Printer-Attributes(extension)       [PWG5100.SYS]
+Get-Printer-Resources                   [PWG5100.SYS]
 Get-Printers                            [PWG5100.SYS]
 Get-Resource-Attributes                 [PWG5100.SYS]
 Get-Resources                           [PWG5100.SYS]
