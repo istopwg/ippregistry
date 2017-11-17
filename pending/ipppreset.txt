@@ -1,0 +1,8 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipppreset-20171116.pdf
+
+Printer Description attributes:
+---------------------------------
+job-presets-supported (1setOf collection)	[IPPPRESET]
+  preset-name (keyword | name(MAX))		[IPPPRESET]
+job-triggers-supported (1setOf collection)	[IPPPRESET]
+  preset-name (keyword | name(MAX))		[IPPPRESET]
