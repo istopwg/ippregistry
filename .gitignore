@@ -1,4 +1,7 @@
-iana-ipp-registrations.xml
+iana-ipp-registrations.xml*
+ipp.h
+ipp.po
+ipp.strings
 ipp-registrations.xml*
 pwg-ipp-registrations.xml
 pwg-semantic-model
@@ -10,3 +13,4 @@ regtosm
 regtosm.dSYM
 regtostrings
 regtostrings.dSYM
+smpjt3d*
