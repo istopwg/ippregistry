@@ -1,0 +1,11 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippgupa-20171117.pdf
+
+Attributes (attribute syntax)
+  Enum Value      Enum Symbolic Name                     Reference
+  ----------      ------------------                     ---------
+operations-supported (1setOf type2 enum)                 [RFC8011]
+  0x0066          Get-User-Printer-Attributes            [IPPGUPA]
+
+Operation Name                                           Reference
+--------------                                           ---------
+Get-User-Printer-Attributes                              [IPPGUPA]
