@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20171113.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20171117.pdf
 
 
 N.1 Object Registrations
@@ -29,6 +29,7 @@ The registry entries will contain the following information:
 
 Operation attributes:                                           Reference
 --------------------                                            ---------
+job-resource-ids (1setOf integer(1:MAX))			  [PWG5100.SYS]
 printer-id (integer(1:65535))                                   [PWG5100.SYS]
 printer-ids (1setOf integer(1:65535))                           [PWG5100.SYS]
 printer-geo-location (uri)                                      [PWG5100.SYS]
@@ -155,6 +156,10 @@ system-state-reasons (1setOf type2 keyword)                     [PWG5100.SYS]
 system-up-time (integer(1:MAX))                                 [PWG5100.SYS]
 system-uuid (uri(45))                                           [PWG5100.SYS]
 
+Job Status attributes:	Reference
+---------------------	---------
+job-resource-ids (1setOf integer(1:MAX))			  [PWG5100.SYS]
+
 Printer Description attributes:                                 Reference
 ------------------------------                                  ---------
 printer-owner-col (collection)                                  [PWG5100.SYS]
@@ -211,6 +216,19 @@ Attributes (attribute syntax)
   -----------------------		        ---------
 end-power-state (type1 keyword)                 [PWG5100.SYS]
   < any "power-state" value >                   [PWG5100.SYS]
+notify-events (1setOf type2 keyword)            [RFC3995]
+  printer-created                               [PWG5100.SYS]
+  printer-deleted                               [PWG5100.SYS]
+  resource-canceled                             [PWG5100.SYS]
+  resource-config-changed                       [PWG5100.SYS]
+  resource-created                              [PWG5100.SYS]
+  resource-installed                            [PWG5100.SYS]
+  resource-state-changed                        [PWG5100.SYS]
+  system-config-changed                         [PWG5100.SYS]
+  system-restarted                              [PWG5100.SYS]
+  system-shutdown                               [PWG5100.SYS]
+  system-state-changed                          [PWG5100.SYS]
+  system-stopped                                [PWG5100.SYS]
 power-state (type1 keyword)                     [PWG5100.SYS]
   hibernate                                     [PWG5100.SYS]
   hibernate-vendor1                             [PWG5100.SYS]

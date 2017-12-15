@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippgupa-20171117.pdf
+https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippgupa-20171214.pdf
 
 Attributes (attribute syntax)
   Enum Value      Enum Symbolic Name                     Reference

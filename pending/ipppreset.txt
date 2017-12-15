@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipppreset-20171116.pdf
+https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ipppreset-20171214.pdf
 
 Printer Description attributes:
 ---------------------------------
