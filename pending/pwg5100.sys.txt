@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20171117.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20180214.pdf
 
 
 N.1 Object Registrations
@@ -283,6 +283,12 @@ printer-state-reasons (1setOf type2 keyword)    [RFC8011]
   resuming                                      [PWG5100.SYS]
 request-power-state (type1 keyword)             [PWG5100.SYS]
   < any "power-state" value >                   [PWG5100.SYS]
+requested-attributes (1setOf type2 keyword)
+  resource-description
+  resource-status
+  resource-template
+  system-description
+  system-status
 resource-state-reasons (1setOf type2 keyword)   [PWG5100.SYS]
   < any "job-state-reasons" value >             [PWG5100.SYS]
   cancel-requested                              [PWG5100.SYS]
