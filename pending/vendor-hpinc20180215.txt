@@ -1,0 +1,7 @@
+http://www.pwg.org/pipermail/ipp/2018/019504.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value				Reference
+  -----------------------				---------
+printer-state-reasons (type2 keyword)			[PWG5100.9]
+  subunit-cooling-down					[HPINC20180214]
