@@ -1,7 +1,7 @@
 /*
  * Common IPP registry definitions...
  *
- * Copyright (c) 2008-2017 by Michael R Sweet
+ * Copyright © 2008-2018 by Michael R Sweet
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,6 +51,7 @@ ipp_load_cb(mxml_node_t *node)		/* I - Parent node */
   if (!strcmp(name, "attribute") ||
       !strcmp(name, "collection") ||
       !strcmp(name, "created") ||
+      !strcmp(name, "expert") ||
       !strcmp(name, "member_attribute") ||
       !strcmp(name, "name") ||
       !strcmp(name, "note") ||

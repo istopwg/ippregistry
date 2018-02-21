@@ -5,7 +5,7 @@
  *
  *    ./regtoc filename.xml >filename.h
  *
- * Copyright (c) 2008-2017 by Michael R Sweet
+ * Copyright © 2008-2018 by Michael R Sweet
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -133,13 +133,8 @@ write_strings(
 {
   mxml_node_t	*record_node,		/* Current record node */
 		*attribute_node,	/* Attribute for localization */
-		*collection_node,	/* Collection (for attributes) */
-		*member_node,		/* Member attribute node (for attributes */
-		*name_node,		/* Keyword string to be localized */
-		*syntax_node,		/* Syntax string (for attributes) */
 		*value_node;		/* Value for localization */
   char		localized[1024];	/* Localized string */
-  const char	*last_attribute = NULL;	/* Last attribute written */
 
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
@@ -153,7 +148,7 @@ write_strings(
     value_node      = mxmlFindElement(record_node, record_node, "value",
                                       NULL, NULL, MXML_DESCEND_FIRST);
 
-    if (attribute_node && name_node)
+    if (attribute_node && value_node)
     {
      /*
       * See if this is an attribute we want to localize...
