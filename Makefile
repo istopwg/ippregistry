@@ -3,7 +3,7 @@
 #
 #   http://www.msweet.org/projects.php/mini-xml
 #
-# Copyright (c) 2008-2017 by Michael R Sweet
+# Copyright © 2008-2019 by Michael R Sweet
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -47,6 +47,11 @@ regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
 
 strings:	ipp.strings ipp.po
+
+.PHONY: preview
+
+preview:
+	xsltproc preview/iana-registry.xsl ipp-registrations.xml >preview/ipp-registrations.xhtml
 
 .PHONY: iana-ipp-registrations.xml
 

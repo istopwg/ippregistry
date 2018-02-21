@@ -3,7 +3,7 @@ ipp.h
 ipp.po
 ipp.strings
 ipp-registrations.xml*
-pwg-ipp-registrations.xml
+preview/ipp-registrations.xhtml
 pwg-semantic-model
 register
 register.dSYM
