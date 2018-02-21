@@ -1,8 +1,0 @@
-https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ipppreset-20171214.pdf
-
-Printer Description attributes:
----------------------------------
-job-presets-supported (1setOf collection)	[IPPPRESET]
-  preset-name (keyword | name(MAX))		[IPPPRESET]
-job-triggers-supported (1setOf collection)	[IPPPRESET]
-  preset-name (keyword | name(MAX))		[IPPPRESET]
