@@ -1,0 +1,21 @@
+http://www.pwg.org/pipermail/ipp/2018/019542.html
+
+The following media size names were requested by Canon and approved by the IPP
+workgroup in July of 2014 but never added to the IANA IPP Registry.  The
+following special implementation guidance applies:
+
+- Printers SHOULD report either "iso_id-1_53.98x85.6mm" or "om_card_54x86mm"
+  in the "media-ready" or "media-supported" Printer attributes, but not both,
+  because Clients may be unable to correctly support two media sizes with
+  effectively the same dimensions.
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value              Reference
+  -----------------------              ---------
+media (type2 keyword | name(MAX))      [RFC8011]
+  iso_id-1_53.98x85.6mm                [CANON20180329]
+  iso_id-3_88x125mm                    [CANON20180329]
+  oe_photo-l_3.5x5in                   [CANON20180329]
+  om_card_54x86mm                      [CANON20180329]
+  om_dsc-photo_89x119mm                [CANON20180329]
