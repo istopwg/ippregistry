@@ -1,0 +1,57 @@
+https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippprivacy10-20180412.pdf
+
+Printer Description attributes:	Reference
+------------------------------	---------
+document-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+document-privacy-scope (type2 keyword)	[PRIVACY]
+job-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+job-privacy-scope (type2 keyword)	[PRIVACY]
+printer-privacy-policy-uri (uri)	[PRIVACY]
+subscription-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+subscription-privacy-scope (type2 keyword)	[PRIVACY]
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+document-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+  < any Document object attribute >	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  document-description	[PRIVACY]
+  document-template	[PRIVACY]
+  none	[PRIVACY]
+
+document-privacy-scope (type2 keyword)	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  none	[PRIVACY]
+  owner	[PRIVACY]
+
+job-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+  < any Job object attribute >	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  job-description	[PRIVACY]
+  job-template	[PRIVACY]
+  none	[PRIVACY]
+
+job-privacy-scope (type2 keyword)	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  none	[PRIVACY]
+  owner	[PRIVACY]
+
+subscription-privacy-attributes (1setOf type2 keyword)	[PRIVACY]
+  < any Subscription object attribute >	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  subscription-description	[PRIVACY]
+  subscription-template	[PRIVACY]
+  none	[PRIVACY]
+
+subscription-privacy-scope (type2 keyword)	[PRIVACY]
+  all	[PRIVACY]
+  default	[PRIVACY]
+  none	[PRIVACY]
+  owner	[PRIVACY]
