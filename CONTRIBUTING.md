@@ -1,7 +1,8 @@
-# Guidelines for Contributing
+# Contributing to the IPP Registry Tools
 
-This software is provided under the MIT License.  If you would like to
-contribute to the IPP registry tools, submit an issue or pull request
-against the project at:
+The IPP registry tools are developed and distributed as open source
+software under the Apache License, Version 2.0.
 
-    https://github.com/istopwg/ippregistry/issues
+Contributions should be submitted as pull requests on the Github site:
+
+    http://github.com/istopwg/ippregistry/pulls
