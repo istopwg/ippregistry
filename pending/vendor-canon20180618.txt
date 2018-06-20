@@ -5,8 +5,8 @@ Attributes (attribute syntax)
   -----------------------	---------
 media (type2 keyword | name(MAX))	[RFC8011]
   oe_business-card_2x3.5in
-  oe_photo-square_4x4in
-  oe_photo-square_5x5in
+  oe_square-photo_4x4in
+  oe_square-photo_5x5in
   om_business-card_55x85mm
   om_business-card_55x91mm
-  om_photo-square_89x89mm
+  om_square-photo_89x89mm
