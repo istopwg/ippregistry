@@ -1,0 +1,12 @@
+https://www.pwg.org/archives/ipp/2018/019625.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+media (type2 keyword | name(MAX))	[RFC8011]
+  oe_business-card_2x3.5in
+  oe_photo-square_4x4in
+  oe_photo-square_5x5in
+  om_business-card_55x85mm
+  om_business-card_55x91mm
+  om_photo-square_89x89mm

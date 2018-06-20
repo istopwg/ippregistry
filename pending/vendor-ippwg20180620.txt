@@ -1,0 +1,23 @@
+https://www.pwg.org/archives/ipp/2018/019634.html
+
+The IPP workgroup would like to obsolete the "access-x509-certificate"
+member attribute of the "destination-accesses" [PWG5100.17] and
+"document-access" [PWG5100.18] operation attributes.  This member attribute
+cannot be implemented securely since:
+
+1. Use of an X.509 certificate for TLS authentication requires access to the
+   corresponding private key;
+2. Sending the private key to a Printer would effectively compromise the
+   X.509 certificate, violating security policies; and
+3. Using an unauthenticated X.509 certificate provides no security.
+
+There are no known implementations of this member attribute.
+
+
+Operation attributes:	Reference
+--------------------	---------
+destination-accesses (1setOf collection)	[PWG5100.17]
+  access-x509-certificate(obsolete) (1setOf octetString(MAX))	[IPPWG20180620]
+
+document-access (collection)	[PWG5100.18]
+  access-x509-certificate(obsolete) (1setOf octetString(MAX))	[IPPWG20180620]
