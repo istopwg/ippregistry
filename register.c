@@ -1,6 +1,12 @@
 /*
  * Program to add registration info to the IANA IPP registry.
  *
+ * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2008-2017 by Michael R Sweet
+ *
+ * Licensed under Apache License v2.0.  See the file "LICENSE" for more
+ * information.
+ *
  * Usage:
  *
  *    ./register options filename.xml [regtext.txt]
@@ -13,12 +19,6 @@
  *    -o newfile.xml		New XML file (instead of replacing filename.xml)
  *    -t "Standard Title"	Title of standard
  *    -x "Standard URL"		URL for standard (or rfcNNNN)
- *
- * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
- * Copyright © 2008-2017 by Michael R Sweet
- *
- * Licensed under Apache License v2.0.  See the file "LICENSE" for more
- * information.
  */
 
 #include <mxml.h>
@@ -1705,6 +1705,13 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
   while (fgets(line, sizeof(line), textfile))
   {
     linenum ++;
+
+   /*
+    * Strip "[something]"...
+    */
+
+    if ((ptr = strchr(line, '[')) != NULL)
+      *ptr = '\0';
 
    /*
     * Strip leading and trailing whitespace...
