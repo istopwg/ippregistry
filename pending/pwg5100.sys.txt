@@ -1,21 +1,10 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20180504.pdf
-
-
-13.1 Object Registrations
-The objects defined in this document will be published by IANA according to the procedures in the IPP Model and Semantics [RFC8011] section 7.1 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20180701.pdf
 
 Object Name                     Reference
 -----------                     ---------
-Resource                        [PWG5100.SYS]
-System                          [PWG5100.SYS]
+Resource	[PWG5100.SYS]
+System	[PWG5100.SYS]
 
-
-13.2 Attribute Registrations
-The attributes defined in this document will be published by IANA according to the procedures in IPP Model and Semantics [RFC8011] section 7.2 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
 
 Operation attributes:	Reference
 --------------------	---------
@@ -26,7 +15,6 @@ printer-geo-location (uri)	[PWG5100.SYS]
 printer-location (text(127))	[PWG5100.SYS]
 printer-service-type (1setOf type2 keyword)	[PWG5100.SYS]
 printer-xri-requested (1setOf collection)	[PWG5100.SYS]
-requesting-user-vcard (1setOf text(MAX))	[PWG5100.SYS]
 resource-format (mimeMediaType)	[PWG5100.SYS]
 resource-format-accepted (1setOf mimeMediaType)	[PWG5100.SYS]
 resource-formats (1setOf mimeMediaType)	[PWG5100.SYS]
@@ -77,7 +65,7 @@ power-event-policy-col (1setOf collection)	[PWG5100.SYS]
 power-timeout-policy-col (1setOf collection)	[PWG5100.SYS]
   start-power-state (type1 keyword)	[PWG5100.SYS]
   timeout-id (integer(1:MAX))	[PWG5100.SYS]
-  timeout-predicate (type1 keyword)	[PWG5100.SYS]
+  timeout-predicate (type2 keyword)	[PWG5100.SYS]
   timeout-seconds (integer(0:MAX))	[PWG5100.SYS]
 printer-creation-attributes-supported (1setOf keyword)	[PWG5100.SYS]
 resource-format-supported (1setOf mimeMediaType)	[PWG5100.SYS]
@@ -85,7 +73,6 @@ resource-type-supported (1setOf type2 keyword)	[PWG5100.SYS]
 resource-settable-attributes-supported (1setOf keyword)	[PWG5100.SYS]
 system-current-time (dateTime)	[PWG5100.SYS]
 system-default-printer-id (integer(1:65535) | no-value)	[PWG5100.SYS]
-system-device-id (text(MAX))	[PWG5100.SYS]
 system-geo-location (uri | unknown)	[PWG5100.SYS]
 system-info (text(127))	[PWG5100.SYS]
 system-location (text(127))	[PWG5100.SYS]
@@ -93,8 +80,8 @@ system-mandatory-printer-attributes (1setOf keyword)	[PWG5100.SYS]
 system-make-and-model (text(127))	[PWG5100.SYS]
 system-message-from-operator (text(127))	[PWG5100.SYS]
 system-name (name(127))	[PWG5100.SYS]
-system-owner-col (collection | unknown)	[PWG5100.SYS]
-  < member attributes are the same as "printer-owner-col" >	[PWG5100.SYS]
+system-contact-col (collection | unknown)	[PWG5100.SYS]
+  < member attributes are the same as "printer-contact-col" >	[PWG5100.SYS]
 system-settable-attributes-supported (1setOf keyword)	[PWG5100.SYS]
 system-strings-languages-supported (1setOf naturalLanguage)	[PWG5100.SYS]
 system-strings-uri (uri | no-value)	[PWG5100.SYS]
@@ -174,16 +161,14 @@ xri-uri-scheme-supported (1setOf uriScheme)	[PWG5100.SYS]
 
 Job Status attributes:	Reference
 ---------------------	---------
-job-owner-col (collection | unknown)	[PWG5100.SYS]
-  < member attributes are the same as "printer-owner-col" >	[PWG5100.SYS]
 job-resource-ids (1setOf integer(1:MAX))	[PWG5100.SYS]
 
 Printer Description attributes:	Reference
 ------------------------------	---------
-printer-owner-col (collection | unknown)	[PWG5100.SYS]
-  owner-name (name(MAX))	[PWG5100.SYS]
-  owner-uri (uri)	[PWG5100.SYS]
-  owner-vcard (1setOf text(MAX))	[PWG5100.SYS]
+printer-contact-col (collection | unknown)	[PWG5100.SYS]
+  contact-name (name(MAX))	[PWG5100.SYS]
+  contact-uri (uri)	[PWG5100.SYS]
+  contact-vcard (1setOf text(MAX))	[PWG5100.SYS]
 
 Printer Status attributes:	Reference
 -------------------------	---------
@@ -204,8 +189,6 @@ Resource Description attributes:	Reference
 -------------------------------	---------
 resource-info (text(MAX))	[PWG5100.SYS]
 resource-name (name(MAX))	[PWG5100.SYS]
-resource-owner-col (collection | unknown)	[PWG5100.SYS]
-  < member attributes are the same as "printer-owner-col" >	[PWG5100.SYS]
 
 Resource Status attributes:	Reference
 --------------------------	---------
@@ -228,18 +211,21 @@ time-at-canceled (integer(MIN:MAX) | no-value)	[PWG5100.SYS]
 time-at-creation (integer(MIN:MAX))	[PWG5100.SYS]
 time-at-installed (integer(MIN:MAX) | no-value)	[PWG5100.SYS]
 
+Subscription Status attributes:	Reference
+------------------------------	---------
+notify-resource-id (integer(1:MAX))	[PWG5100.SYS]
+notify-system-uri (uri)	[PWG5100.SYS]
 
-13.3 Type2 keyword Attribute Value Registrations
-The keyword attribute values defined in this document will be published by IANA according to the procedures in the IPP Model and Semantics [RFC8011] section 7.3 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
+Event Notifications attributes:	Reference
+------------------------------	---------
+notify-resource-id (integer(1:MAX))	[PWG5100.SYS]
+notify-system-up-time (integer(0:MAX))	[PWG5100.SYS]
+notify-system-uri (uri)	[PWG5100.SYS]
+
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
 -------------------------	---------
-end-power-state (type1 keyword)	[PWG5100.SYS]
-  < any "power-state" value >	[PWG5100.SYS]
-
 notify-events (1setOf type2 keyword)	[RFC3995]
   printer-created	[PWG5100.SYS]
   printer-deleted	[PWG5100.SYS]
@@ -254,49 +240,6 @@ notify-events (1setOf type2 keyword)	[RFC3995]
   system-state-changed	[PWG5100.SYS]
   system-stopped	[PWG5100.SYS]
 
-power-state (type1 keyword)	[PWG5100.SYS]
-  hibernate	[PWG5100.SYS]
-  hibernate-vendor1	[PWG5100.SYS]
-  hibernate-vendor2	[PWG5100.SYS]
-  hibernate-vendor3	[PWG5100.SYS]
-  hibernate-vendor4	[PWG5100.SYS]
-  hibernate-vendor5	[PWG5100.SYS]
-  off-hard	[PWG5100.SYS]
-  off-hard-graceful	[PWG5100.SYS]
-  off-soft	[PWG5100.SYS]
-  off-soft-graceful	[PWG5100.SYS]
-  off-soft-vendor1	[PWG5100.SYS]
-  off-soft-vendor2	[PWG5100.SYS]
-  off-soft-vendor3	[PWG5100.SYS]
-  off-soft-vendor4	[PWG5100.SYS]
-  off-soft-vendor5	[PWG5100.SYS]
-  on	[PWG5100.SYS]
-  on-vendor1	[PWG5100.SYS]
-  on-vendor2	[PWG5100.SYS]
-  on-vendor3	[PWG5100.SYS]
-  on-vendor4	[PWG5100.SYS]
-  on-vendor5	[PWG5100.SYS]
-  reset-hard	[PWG5100.SYS]
-  reset-hard-graceful	[PWG5100.SYS]
-  reset-init	[PWG5100.SYS]
-  reset-mbr	[PWG5100.SYS]
-  reset-mbr-graceful	[PWG5100.SYS]
-  reset-nmi	[PWG5100.SYS]
-  reset-soft	[PWG5100.SYS]
-  reset-soft-graceful	[PWG5100.SYS]
-  standby	[PWG5100.SYS]
-  standby-vendor1	[PWG5100.SYS]
-  standby-vendor2	[PWG5100.SYS]
-  standby-vendor3	[PWG5100.SYS]
-  standby-vendor4	[PWG5100.SYS]
-  standby-vendor5	[PWG5100.SYS]
-  suspend	[PWG5100.SYS]
-  suspend-vendor1	[PWG5100.SYS]
-  suspend-vendor2	[PWG5100.SYS]
-  suspend-vendor3	[PWG5100.SYS]
-  suspend-vendor4	[PWG5100.SYS]
-  suspend-vendor5	[PWG5100.SYS]
-
 printer-service-type (type2 keyword)	[PWG5100.SYS]
   copy	[PWG5100.SYS]
   faxin	[PWG5100.SYS]
@@ -309,9 +252,6 @@ printer-service-type (type2 keyword)	[PWG5100.SYS]
 printer-state-reasons (1setOf type2 keyword)	[RFC8011]
   deleted	[PWG5100.SYS]
   resuming	[PWG5100.SYS]
-
-request-power-state (type1 keyword)	[PWG5100.SYS]
-  < any "power-state" value >	[PWG5100.SYS]
 
 requested-attributes (1setOf type2 keyword)	[RFC8011]
   resource-description	[PWG5100.SYS]
@@ -340,13 +280,10 @@ resource-type (type2 keyword)	[PWG5100.SYS]
   template-job	[PWG5100.SYS]
   template-printer	[PWG5100.SYS]
 
-start-power-state (type1 keyword)	[PWG5100.SYS]
-  < any "power-state" value >	[PWG5100.SYS]
-
 system-state-reasons (1setOf type2 keyword)	[PWG5100.SYS]
   < any "printer-state-reasons" value >	[PWG5100.SYS]
 
-timeout-predicate (type1 keyword)	[PWG5100.SYS]
+timeout-predicate (type2 keyword)	[PWG5100.SYS]
   activity	[PWG5100.SYS]
   inactivity	[PWG5100.SYS]
   none	[PWG5100.SYS]
@@ -361,14 +298,12 @@ which-printers (type2 keyword)	[PWG5100.SYS]
   testing	[PWG5100.SYS]
 
 
-13.4 Type2 enum Attribute Value Registrations
-The enumerations defined in this document will be published by IANA according to the procedures in the IPP Model and Semantics [RFC8011] section 7.4 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
-
 Attributes (attribute syntax)
   Enum Value    Enum Symbolic Name	Reference
 ------------    ------------------                       ---------
+end-power-state (type1 enum)	[PWG5100.SYS]
+  < any "power-state" value >	[PWG5100.SYS]
+
 operations-supported (1setOf type2 enum)	[RFC8011]
   0x001E        Get-Resource-Attributes                  [PWG5100.SYS]
   0x0020        Get-Resources                            [PWG5100.SYS]
@@ -399,6 +334,55 @@ operations-supported (1setOf type2 enum)	[RFC8011]
   0x0063        Shutdown-All-Printers                    [PWG5100.SYS]
   0x0064        Startup-All-Printers                     [PWG5100.SYS]
   0x0065        Get-Printer-Resources                    [PWG5100.SYS]
+  0x0067        Restart-One-Printer	[PWG5100.SYS]
+
+power-state (type1 enum)	[PWG5100.SYS]
+  20            on	[PWG5100.SYS]
+  21            on-vendor1	[PWG5100.SYS]
+  22            on-vendor2	[PWG5100.SYS]
+  23            on-vendor3	[PWG5100.SYS]
+  24            on-vendor4	[PWG5100.SYS]
+  25            on-vendor5	[PWG5100.SYS]
+  30            standby	[PWG5100.SYS]
+  31            standby-vendor1	[PWG5100.SYS]
+  32            standby-vendor2	[PWG5100.SYS]
+  33            standby-vendor3	[PWG5100.SYS]
+  34            standby-vendor4	[PWG5100.SYS]
+  35            standby-vendor5	[PWG5100.SYS]
+  40            suspend	[PWG5100.SYS]
+  41            suspend-vendor1	[PWG5100.SYS]
+  42            suspend-vendor2	[PWG5100.SYS]
+  43            suspend-vendor3	[PWG5100.SYS]
+  44            suspend-vendor4	[PWG5100.SYS]
+  45            suspend-vendor5	[PWG5100.SYS]
+  50            reset-soft	[PWG5100.SYS]
+  60            off-hard	[PWG5100.SYS]
+  70            hibernate	[PWG5100.SYS]
+  71            hibernate-vendor1	[PWG5100.SYS]
+  72            hibernate-vendor2	[PWG5100.SYS]
+  73            hibernate-vendor3	[PWG5100.SYS]
+  74            hibernate-vendor4	[PWG5100.SYS]
+  75            hibernate-vendor5	[PWG5100.SYS]
+  80            off-soft	[PWG5100.SYS]
+  81            off-soft-vendor1	[PWG5100.SYS]
+  82            off-soft-vendor2	[PWG5100.SYS]
+  83            off-soft-vendor3	[PWG5100.SYS]
+  84            off-soft-vendor4	[PWG5100.SYS]
+  85            off-soft-vendor5	[PWG5100.SYS]
+  90            reset-hard	[PWG5100.SYS]
+  100           reset-mbr	[PWG5100.SYS]
+  110           reset-nmi	[PWG5100.SYS]
+  120           off-soft-graceful	[PWG5100.SYS]
+  130           off-hard-graceful	[PWG5100.SYS]
+  140           reset-mbr-graceful	[PWG5100.SYS]
+  150           reset-soft-graceful	[PWG5100.SYS]
+  160           reset-hard-graceful	[PWG5100.SYS]
+  170           reset-init	[PWG5100.SYS]
+  180           not-applicable	[PWG5100.SYS]
+  190           no-change	[PWG5100.SYS]
+
+request-power-state (type1 enum)	[PWG5100.SYS]
+  < any "power-state" value >	[PWG5100.SYS]
 
 resource-state (type1 enum)                              [PWG5100.SYS]
   3             pending                                  [PWG5100.SYS]
@@ -407,17 +391,14 @@ resource-state (type1 enum)                              [PWG5100.SYS]
   6             canceled                                 [PWG5100.SYS]
   7             aborted                                  [PWG5100.SYS]
 
+start-power-state (type1 enum)	[PWG5100.SYS]
+  < any "power-state" value >	[PWG5100.SYS]
+
 system-state (type1 enum)                                [PWG5100.SYS]
   3             idle                                     [PWG5100.SYS]
   4             processing                               [PWG5100.SYS]
   5             stopped                                  [PWG5100.SYS]
 
-
-13.5 Attribute Group Registrations
-
-The attribute groups defined in this document will be published by IANA according to the procedures in the IPP Model and Semantics [RFC8011] section 7.5 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
 
 Attribute Group Value   Symbolic Name           Reference
 ---------------------   -------------           ---------
@@ -425,17 +406,12 @@ Attribute Group Value   Symbolic Name           Reference
 0x0A                    system-attributes-tag   [PWG5100.SYS]
 
 
-13.6 Operation Registrations
-The operations defined in this document will be published by IANA according to the procedures in the IPP Model and Semantics [RFC8011] section 7.8 in the following file:
-http://www.iana.org/assignments/ipp-registrations
-The registry entries will contain the following information:
-
 Operation Name	Reference
 --------------	---------
 Allocate-Printer-Resources	[PWG5100.SYS]
 Cancel-Resource	[PWG5100.SYS]
 Cancel-Subscription(extension)	[PWG5100.SYS]
-Create-Job(extension)
+Create-Job(extension)	[PWG5100.SYS]
 Create-Printer	[PWG5100.SYS]
 Create-Resource	[PWG5100.SYS]
 Create-Resource-Subscriptions	[PWG5100.SYS]
@@ -460,6 +436,7 @@ Pause-All-Printers-After-Current-Job	[PWG5100.SYS]
 Print-Job(extension)	[PWG5100.SYS]
 Print-URI(extension)	[PWG5100.SYS]
 Register-Output-Device	[PWG5100.SYS]
+Restart-One-Printer	[PWG5100.SYS]
 Restart-System	[PWG5100.SYS]
 Renew-Subscription(extension)	[PWG5100.SYS]
 Resume-All-Printers	[PWG5100.SYS]

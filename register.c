@@ -2111,14 +2111,6 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 
-            if (!*ptr)
-            {
-              fprintf(stderr,
-                      "register: Bad object definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
-
             *ptr = '\0';
 
 	    fprintf(stderr, "Object %s\n", first);
