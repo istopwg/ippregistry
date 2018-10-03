@@ -33,7 +33,7 @@ regtosm:	regtosm.c ipp-registry.h
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
 
-strings:	ipp.strings ipp.po
+strings:	localizations/ipp.strings localizations/ipp.pot
 
 .PHONY: preview
 
@@ -45,8 +45,8 @@ preview:
 iana-ipp-registrations.xml:
 	curl -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
 
-ipp.po:	regtostrings iana-ipp-registrations.xml
-	./regtostrings --po iana-ipp-registrations.xml >ipp.po
+localizations/ipp.pot:	regtostrings iana-ipp-registrations.xml
+	./regtostrings --po iana-ipp-registrations.xml >localizations/ipp.pot
 
-ipp.strings:	regtostrings iana-ipp-registrations.xml
-	./regtostrings iana-ipp-registrations.xml >ipp.strings
+localizations/ipp.strings:	regtostrings iana-ipp-registrations.xml
+	./regtostrings iana-ipp-registrations.xml >localizations/ipp.strings
