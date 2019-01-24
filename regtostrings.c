@@ -5,8 +5,8 @@
  *
  *    ./regtostrings [--po] filename.xml >filename.strings
  *
- * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
- * Copyright © 2008-2017 by Michael R Sweet
+ * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2008-2019 by Michael R Sweet
  *
  * Licensed under Apache License v2.0.  See the file "LICENSE" for more
  * information.
@@ -28,8 +28,9 @@
  * Output formats...
  */
 
-#define FORMAT_STRINGS  0
-#define FORMAT_PO       1
+#define FORMAT_STRINGS	0
+#define FORMAT_PO	1
+#define FORMAT_CODE	2
 
 
 /*
@@ -45,11 +46,11 @@ static ipp_loc_t        *strings = NULL;
  * Local functions...
  */
 
-static int              add_string(const char *locid, const char *str);
-static int		add_strings(mxml_node_t *registry_node);
-static int              check_string(const char *locid);
-static int		usage(void);
-static void             write_strings(int format);
+static int	add_string(const char *locid, const char *str);
+static int	add_strings(mxml_node_t *registry_node);
+static int	check_string(const char *locid);
+static int	usage(void);
+static void	write_strings(int format);
 
 
 /*
@@ -73,7 +74,9 @@ main(int  argc,				/* I - Number of command-line args */
   */
 
   for (i = 1; i < argc; i ++)
-    if (!strcmp(argv[i], "--po"))
+    if (!strcmp(argv[i], "--code"))
+      format = FORMAT_CODE;
+    else if (!strcmp(argv[i], "--po"))
       format = FORMAT_PO;
     else if (argv[i][0] == '-')
     {
@@ -425,7 +428,7 @@ check_string(const char *locid)         /* I - String */
 static int				/* O - Exit status */
 usage(void)
 {
-  puts("\nUsage: ./regtostrings [--po] filename.xml >filename.strings\n");
+  puts("\nUsage: ./regtostrings [--code] [--po] filename.xml >filename.{c,po,strings}\n");
   return (1);
 }
 
@@ -443,17 +446,28 @@ write_strings(int format)               /* I - Output format - strings or PO */
 
   qsort(strings, num_strings, sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc);
 
-  if (format == FORMAT_STRINGS)
+  switch (format)
   {
-    for (loc = strings, count = num_strings; count > 0; loc ++, count --)
-      printf("\"%s\" = \"%s\";\n", loc->id, loc->str);
-  }
-  else
-  {
-    for (loc = strings, count = num_strings; count > 0; loc ++, count --)
-    {
-      printf("msgid \"%s\"\n", loc->id);
-      printf("msgstr \"%s\"\n", loc->str);
-    }
+    case FORMAT_CODE :
+	for (loc = strings, count = num_strings; count > 0; loc ++, count --)
+	{
+	  printf("/* TRANSLATORS: %s */\n", loc->str);
+	  printf("_(\"%s\");\n", loc->id);
+	}
+	break;
+
+    case FORMAT_PO :
+	for (loc = strings, count = num_strings; count > 0; loc ++, count --)
+	{
+	  printf("msgid \"%s\"\n", loc->id);
+	  printf("msgstr \"%s\"\n", loc->str);
+	}
+	break;
+
+    default :
+    case FORMAT_STRINGS :
+	for (loc = strings, count = num_strings; count > 0; loc ++, count --)
+	  printf("\"%s\" = \"%s\";\n", loc->id, loc->str);
+	break;
   }
 }
