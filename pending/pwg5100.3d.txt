@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20190114.pdf
 
 Document Status attributes:	Reference
 --------------------------	---------
