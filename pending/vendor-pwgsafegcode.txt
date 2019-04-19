@@ -1,0 +1,12 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-pwgsafegcode10-2019318.pdf
+
+Job Template attributes:	Reference
+--------------------------	---------
+materials-col (1setOf collection)	[PWG5100.21]
+  material-extruder-diameter (integer(0:MAX))	[SAFEGCODE]
+  material-retraction (boolean)	[SAFEGCODE]
+
+Printer Description attributes:	Reference
+------------------------------	---------
+material-extruder-diameter-supported (1setOf (integer(0:MAX) | rangeOfInteger(0:MAX))	[SAFEGCODE]
+pwg-safe-gcode-supported (1setOf text(MAX))	[SAFEGCODE]

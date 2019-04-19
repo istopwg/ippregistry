@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20180701.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190130.pdf
 
 Object Name                     Reference
 -----------                     ---------
@@ -9,6 +9,7 @@ System	[PWG5100.SYS]
 Operation attributes:	Reference
 --------------------	---------
 job-resource-ids (1setOf integer(1:MAX))	[PWG5100.SYS]
+notify-printer-ids (1setOf integer(1:65535))	[PWG5100.SYS]
 printer-id (integer(1:65535))	[PWG5100.SYS]
 printer-ids (1setOf integer(1:65535))	[PWG5100.SYS]
 printer-geo-location (uri)	[PWG5100.SYS]
@@ -23,8 +24,10 @@ resource-ids (1setOf integer(1:MAX))	[PWG5100.SYS]
 resource-k-octets (integer(0:MAX))	[PWG5100.SYS]
 resource-signature (1setOf octetString)	[PWG5100.SYS]
 resource-states (1setOf type1 enum)	[PWG5100.SYS]
+resource-string-version (text(MAX))	[PWG5100.SYS]
 resource-type (type2 keyword)	[PWG5100.SYS]
 resource-types (1setOf type2 keyword)	[PWG5100.SYS]
+resource-version (octetString(64))	[PWG5100.SYS]
 restart-get-interval (integer(0:MAX))	[PWG5100.SYS]
 system-uri (uri)	[PWG5100.SYS]
 which-printers (type2 keyword)	[PWG5100.SYS]
@@ -199,6 +202,7 @@ resource-data-uri (uri | no-value)	[PWG5100.SYS]
 resource-format (mimeMediaType)	[PWG5100.SYS]
 resource-id (integer(1:MAX))	[PWG5100.SYS]
 resource-k-octets (integer(0:MAX))	[PWG5100.SYS]
+resource-signature (1setOf octetString(MAX))	[PWG5100.SYS]
 resource-state (type1 enum)	[PWG5100.SYS]
 resource-state-message (text(MAX))	[PWG5100.SYS]
 resource-state-reasons (1setOf type2 keyword)	[PWG5100.SYS]
