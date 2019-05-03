@@ -1,0 +1,18 @@
+https://github.com/istopwg/ippsample/blob/master/server/EXTENSIONS.md
+
+
+Printer Description attributes:                         Reference
+------------------------------                          ---------
+smi2699-auth-print-group (name(MAX))                    [IPPSERVER]
+smi2699-auth-proxy-group (name(MAX))                    [IPPSERVER]
+smi2699-device-command (name(MAX))                      [IPPSERVER]
+smi2699-device-format (mimeMediaType)                   [IPPSERVER]
+smi2699-device-name (name(MAX))                         [IPPSERVER]
+smi2699-device-uri (uri)                                [IPPSERVER]
+
+System Description attributes:                          Reference
+------------------------------                          ---------
+smi2699-auth-group-supported (1setOf name(MAX))         [IPPSERVER]
+smi2699-device-command-supported (1setOf name(MAX))     [IPPSERVER]
+smi2699-device-format-supported (1setOf mimeMediaType)  [IPPSERVER]
+smi2699-device-uri-schemes-supported (1setOf uriScheme) [IPPSERVER]
