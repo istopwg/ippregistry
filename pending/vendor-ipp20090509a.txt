@@ -1,0 +1,10 @@
+https://www.pwg.org/pipermail/ipp/2019/020085.html
+
+
+Job Template attributes:	Reference
+--------------------------	---------
+pages-per-subset(deprecated) (1setOf integer(1:MAX))	[PWG5100.13]
+
+Printer Description attributes:	Reference
+------------------------------	---------
+pages-per-subset-supported(deprecated) (boolean)	[PWG5100.13]

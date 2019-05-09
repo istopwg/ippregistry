@@ -1,0 +1,23 @@
+https://www.pwg.org/pipermail/ipp/2019/020083.html
+
+
+Document Template attributes:	Reference
+--------------------------	---------
+page-order-received(obsolete) (type2 keyword)	[PWG5100.5]
+
+Job Status attributes:	Reference
+--------------------------	---------
+page-order-received-actual(obsolete) (type2 keyword)	[PWG5100.8]
+
+Job Description attributes:	Reference
+--------------------------	---------
+current-page-order(obsolete) (type2 keyword)	[PWG5100.3]
+
+Job Template attributes:	Reference
+--------------------------	---------
+page-order-received(obsolete) (type2 keyword)	[PWG5100.3]
+
+Printer Description attributes:	Reference
+------------------------------	---------
+page-order-received-default(obsolete) (type2 keyword)	[PWG5100.3]
+page-order-received-supported(obsolete) (1setOf type2 keyword)	[PWG5100.3]
