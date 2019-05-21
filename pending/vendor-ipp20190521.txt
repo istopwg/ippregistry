@@ -1,0 +1,27 @@
+https://www.pwg.org/pipermail/ipp/2019/020107.html
+
+RFC: "oauth-authorization-scope (1setOf name(MAX))" Printer Description attribute
+
+All,
+
+During some side discussions regarding OAuth 2.0, I realized that we currently have no way for a Printer to tell a Client which OAuth scope(s) to request for printing - currently a Client would just request the default list which sometimes means all scopes and sometimes a restrictive scope that doesn't convey any rights. Scopes can be thought of as a rough equivalent of user groups and are used to specify access roles or convey specific access rights, so if an Authorization Server is used to control
+access to many different services (and not just to a printing service, as is the case for most federated OpenID services) we want to be able to ask for the right scope(s).
+
+The following is my proposed solution...
+
+
+oauth-authorization-scope (1setOf name(MAX))
+
+The "oauth-authorization-scope" Printer Description attribute provides an
+ordered list of OAuth 2.0 scopes that SHOULD be used in an authorization
+request.  If the attribute lists more than one scope name, the first name
+provides the least access, e.g., the "End User" role in IPP, while the last name
+provides the most access, e.g., the "Administrator" role in IPP.  Clients
+SHOULD provide the full list of scopes in the initial authorization request and
+only prune the list if the OAuth 2.0 Authorization Server returns the
+"invalid_scope" error.
+
+
+Printer Description attributes:                 Reference
+------------------------------                  ---------
+oauth-authorization-scope (1setOf name(MAX))    [IPP20190521]
