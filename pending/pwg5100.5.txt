@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippdocobject11-20190418.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf
 
 Document Description attributes:	Reference
 --------------------------	---------
