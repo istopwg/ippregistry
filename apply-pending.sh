@@ -19,7 +19,7 @@ echo Applying pending registrations:
 for file in $files; do
 	title=`basename $file .txt | sed -e '1,$s/^vendor-//' | awk '{print toupper($1);}'`
 	url=`head -1 $file`
-	echo "    $file: $url"
+	echo "$file: $url"
 	./register $dst -x $url -t $title $src $file || exit 1
 	src="ipp-registrations.xml"
 	dst=""

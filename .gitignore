@@ -3,6 +3,7 @@ ipp.h
 ipp.po
 ipp.strings
 ipp-registrations.xml*
+pending/*.log
 preview/ipp-registrations.xhtml
 pwg-semantic-model
 register

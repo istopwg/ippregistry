@@ -4,7 +4,7 @@
  * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2017 by Michael R Sweet
  *
- * Licensed under Apache License v2.0.  See the file "LICENSE" for more
+ * Licensed under Apache License v2.0.	See the file "LICENSE" for more
  * information.
  *
  * Usage:
@@ -18,6 +18,7 @@
  *    -f			Force writing of new file
  *    -o newfile.xml		New XML file (instead of replacing filename.xml)
  *    -t "Standard Title"	Title of standard
+ *    -v			Be verbose
  *    -x "Standard URL"		URL for standard (or rfcNNNN)
  */
 
@@ -29,6 +30,11 @@
 
 /* Common IPP registry stuff */
 #include "ipp-registry.h"
+
+/* Windows case insensitive string compare */
+#if _WIN32
+#  define strcasecmp _stricmp
+#endif /* _WIN32 */
 
 
 /*
@@ -59,9 +65,9 @@ enum
   IN_ENUM_VALS,				/* Enum Attribute values */
   IN_OPERATIONS,			/* Operations */
   IN_STATUS_CODES,			/* Status codes */
-  IN_OBJECTS,                           /* Objects */
-  IN_ATTR_GROUP_VALS,                   /* Attribute Group Values */
-  IN_OUT_OF_BAND_VALS,                  /* Out-of-Band Values */
+  IN_OBJECTS,				/* Objects */
+  IN_ATTR_GROUP_VALS,			/* Attribute Group Values */
+  IN_OUT_OF_BAND_VALS,			/* Out-of-Band Values */
   IN_MAX
 };
 
@@ -77,44 +83,45 @@ typedef struct				/* Record for sorting */
   const char	*keys[4];		/* Sorting keys */
 } reg_record_t;
 
+typedef struct				/* Work counters */
+{
+  int		added,			/* Items added */
+		updated,		/* Items updated/extended */
+		ignored;		/* Items ignored */
+} reg_counter_t;
+
+
+/*
+ * Local globals...
+ */
+
+static reg_counter_t	Attributes = { 0, 0, 0 };
+static reg_counter_t	Enums = { 0, 0, 0 };
+static reg_counter_t	Keywords = { 0, 0, 0 };
+static reg_counter_t	Operations = { 0, 0, 0 };
+static reg_counter_t	StatusCodes = { 0, 0, 0 };
+static int		Verbosity = 0;
+
 
 /*
  * Local functions...
  */
 
-static int		add_attr(mxml_node_t *xml, const char *collection,
-			         const char *attrname, const char *membername,
-			         const char *submembername, const char *syntax,
-			         const char *xref, const char *xrefname);
-static int		add_attr_group(mxml_node_t *xml, const char *value, const char *name, const char *xref, const char *xrefname);
-static int		add_object(mxml_node_t *xml, const char *name, const char *xref, const char *xrefname);
-static int		add_operation(mxml_node_t *xml, const char *name,
-			              const char *xref, const char *xrefname);
-static int		add_out_of_band(mxml_node_t *xml, const char *value, const char *name, const char *xref, const char *xrefname);
-static int		add_status_code(mxml_node_t *xml, const char *value,
-			                const char *name, const char *xref,
-			                const char *xrefname);
-static int		add_value(mxml_node_t *xml, const char *enumval,
-			          const char *keyword, const char *attrname,
-			          const char *syntax, const char *xref,
-			          const char *xrefname);
-static int		add_valattr(mxml_node_t *xml, const char *registry,
-			            const char *attrname, const char *syntax,
-			            const char *xref, const char *xrefname);
-static int		add_value(mxml_node_t *xml, const char *enumval,
-			          const char *keyword, const char *attrname,
-			          const char *syntax, const char *xref,
-			          const char *xrefname);
+static int		add_attr(mxml_node_t *xml, FILE *logfile, const char *collection, const char *attrname, const char *membername, const char *submembername, const char *syntax, const char *xref, const char *xrefname);
+static int		add_attr_group(mxml_node_t *xml, FILE *logfile, const char *value, const char *name, const char *xref, const char *xrefname);
+static int		add_object(mxml_node_t *xml, FILE *logfile, const char *name, const char *xref, const char *xrefname);
+static int		add_operation(mxml_node_t *xml, FILE *logfile, const char *name, const char *xref, const char *xrefname);
+static int		add_out_of_band(mxml_node_t *xml, FILE *logfile, const char *value, const char *name, const char *xref, const char *xrefname);
+static int		add_status_code(mxml_node_t *xml, FILE *logfile, const char *value, const char *name, const char *xref, const char *xrefname);
+static int		add_value(mxml_node_t *xml, FILE *logfile, const char *enumval, const char *keyword, const char *attrname, const char *syntax, const char *xref, const char *xrefname);
+static int		add_valattr(mxml_node_t *xml, FILE *logfile, const char *registry, const char *attrname, const char *syntax, const char *xref, const char *xrefname);
+static int		add_value(mxml_node_t *xml, FILE *logfile, const char *enumval, const char *keyword, const char *attrname, const char *syntax, const char *xref, const char *xrefname);
 static int		compare_record(reg_record_t *a, reg_record_t *b);
 static int		compare_strings(const char *s, const char *t);
-static int		read_text(mxml_node_t *xml, FILE *textfile,
-			          const char *title,
-			          const char *xref);
+static int		read_text(mxml_node_t *xml, FILE *textfile, FILE *logfile, const char *title, const char *xref);
 static const char	*save_cb(mxml_node_t *node, int column);
 static int		usage(const char *opt);
-static int		validate_registry(mxml_node_t *xml, const char *registry,
-			                  const char *regname, int num_keys,
-			                  const char * const *keys);
+static int		validate_registry(mxml_node_t *xml, const char *registry, const char *regname, int num_keys, const char * const *keys);
 static const char	*xref_name(const char *xref, const char *title);
 
 
@@ -136,7 +143,8 @@ main(int  argc,				/* I - Number of command-line args */
   mxml_node_t	*xml;			/* XML registration file top node */
   char		xmlbackup[1024];	/* Backup file */
   FILE		*xmlfile,		/* XML registration file pointer */
-		*textfile;		/* Text registration file */
+		*textfile,		/* Text registration file */
+		*logfile;		/* Log file */
   int		changed = 0;		/* Was the registration data changed? */
   static const char * const attribute_keys[] = { "collection", "name", "member_attribute", "sub-member_attribute" };
   static const char * const attribute_group_keys[] = { "value" };
@@ -159,72 +167,76 @@ main(int  argc,				/* I - Number of command-line args */
     {
       for (opt = argv[i] + 1; *opt; opt ++)
       {
-        switch (*opt)
-        {
-          case 'f' : /* Force output */
-              changed = 1;
-              break;
+	switch (*opt)
+	{
+	  case 'f' : /* Force output */
+	      changed = 1;
+	      break;
 
-          case 'o' : /* Output file */
-              if (xmlout)
-              {
-                fputs("Output file may only be specified once.\n", stderr);
-                return (usage(NULL));
-              }
+	  case 'o' : /* Output file */
+	      if (xmlout)
+	      {
+		fputs("Output file may only be specified once.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              i ++;
-              if (i >= argc)
-              {
-                fputs("Expected filename after '-o'.\n", stderr);
-                return (usage(NULL));
-              }
+	      i ++;
+	      if (i >= argc)
+	      {
+		fputs("Expected filename after '-o'.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              xmlout = argv[i];
-              break;
+	      xmlout = argv[i];
+	      break;
 
-          case 't' : /* Standard title */
-              if (title)
-              {
-                fputs("Title may only be specified once.\n", stderr);
-                return (usage(NULL));
-              }
+	  case 't' : /* Standard title */
+	      if (title)
+	      {
+		fputs("Title may only be specified once.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              i ++;
-              if (i >= argc)
-              {
-                fputs("Expected title after '-t'.\n", stderr);
-                return (usage(NULL));
-              }
+	      i ++;
+	      if (i >= argc)
+	      {
+		fputs("Expected title after '-t'.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              title = argv[i];
-              break;
+	      title = argv[i];
+	      break;
 
-          case 'x' :	/* Standard URL or RFC number */
-              if (xref)
-              {
-                fputs("URL may only be specified once.\n", stderr);
-                return (usage(NULL));
-              }
+	  case 'v' :	/* Be verbose */
+	      Verbosity ++;
+	      break;
 
-              i ++;
-              if (i >= argc)
-              {
-                fputs("Expected URL or RFC number after '-x'.\n", stderr);
-                return (usage(NULL));
-              }
+	  case 'x' :	/* Standard URL or RFC number */
+	      if (xref)
+	      {
+		fputs("URL may only be specified once.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              if (strncmp(argv[i], "rfc", 3) && strncmp(argv[i], "http://", 7) && strncmp(argv[i], "https://", 8) && strncmp(argv[i], "ftp://", 6))
-              {
-                fputs("Standard URL must be 'rfcNNNN', 'ftp://...', 'http://...', or 'https://...'.\n", stderr);
-                return (usage(NULL));
-              }
+	      i ++;
+	      if (i >= argc)
+	      {
+		fputs("Expected URL or RFC number after '-x'.\n", stderr);
+		return (usage(NULL));
+	      }
 
-              xref = argv[i];
-              break;
+	      if (strncmp(argv[i], "rfc", 3) && strncmp(argv[i], "http://", 7) && strncmp(argv[i], "https://", 8))
+	      {
+		fputs("Standard URL must be 'rfcNNNN', 'http://...', or 'https://...'.\n", stderr);
+		return (usage(NULL));
+	      }
 
-          default :
-              return (usage(opt));
-        }
+	      xref = argv[i];
+	      break;
+
+	  default :
+	      return (usage(opt));
+	}
       }
     }
     else if (!xmlin)
@@ -279,36 +291,36 @@ main(int  argc,				/* I - Number of command-line args */
   */
 
   changed |= validate_registry(xml, IPP_REGISTRY_OBJECTS, "Objects",
-                               (int)(sizeof(object_keys) /
-                                     sizeof(object_keys[0])),
-                               object_keys);
+			       (int)(sizeof(object_keys) /
+				     sizeof(object_keys[0])),
+			       object_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_ATTRIBUTES, "Attributes",
-                               (int)(sizeof(attribute_keys) /
-                                     sizeof(attribute_keys[0])),
+			       (int)(sizeof(attribute_keys) /
+				     sizeof(attribute_keys[0])),
 			       attribute_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_KEYWORDS, "Keyword Values",
-                               (int)(sizeof(keyword_keys) /
-                                     sizeof(keyword_keys[0])),
+			       (int)(sizeof(keyword_keys) /
+				     sizeof(keyword_keys[0])),
 			       keyword_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_ENUMS, "Enum Values",
-                               (int)(sizeof(enum_keys) /
-                                     sizeof(enum_keys[0])),
+			       (int)(sizeof(enum_keys) /
+				     sizeof(enum_keys[0])),
 			       enum_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_ATTRIBUTE_GROUPS, "Attribute Groups",
-                               (int)(sizeof(attribute_group_keys) /
-                                     sizeof(attribute_group_keys[0])),
+			       (int)(sizeof(attribute_group_keys) /
+				     sizeof(attribute_group_keys[0])),
 			       attribute_group_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_OUT_OF_BANDS, "Out-of-Band Values",
-                               (int)(sizeof(out_of_band_keys) /
-                                     sizeof(out_of_band_keys[0])),
+			       (int)(sizeof(out_of_band_keys) /
+				     sizeof(out_of_band_keys[0])),
 			       out_of_band_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_OPERATIONS, "Operations",
-                               (int)(sizeof(operation_keys) /
-                                     sizeof(operation_keys[0])),
+			       (int)(sizeof(operation_keys) /
+				     sizeof(operation_keys[0])),
 			       operation_keys);
   changed |= validate_registry(xml, IPP_REGISTRY_STATUS_CODES, "Status Codes",
-                               (int)(sizeof(status_code_keys) /
-                                     sizeof(status_code_keys[0])),
+			       (int)(sizeof(status_code_keys) /
+				     sizeof(status_code_keys[0])),
 			       status_code_keys);
 
  /*
@@ -316,22 +328,67 @@ main(int  argc,				/* I - Number of command-line args */
   */
 
   if (textin)
-    textfile = fopen(textin, "rb");
-  else
-    textfile = stdin;
+  {
+    char	logname[1024],		/* Log filename */
+		*logext;		/* Extension */
 
-  changed |= read_text(xml, textfile, title, xref);
+    if ((textfile = fopen(textin, "rb")) == NULL)
+    {
+      fprintf(stderr, "Unable to open '%s': %s\n", textin, strerror(errno));
+      return (1);
+    }
+
+    strncpy(logname, textin, sizeof(logname) - 1);
+    logname[sizeof(logname) - 1] = '\0';
+    if ((logext = strrchr(logname, '.')) == NULL || strcasecmp(logext, ".txt"))
+      logext = logname + strlen(logname);
+
+    strncpy(logext, ".log", sizeof(logname) - 1 - (size_t)(logext - logname));
+    if ((logfile = fopen(logname, "w")) == NULL)
+    {
+      fprintf(stderr, "Unable to create '%s': %s\n", logname, strerror(errno));
+      logfile = stdout;
+    }
+  }
+  else
+  {
+    textfile = stdin;
+    logfile  = stdout;
+  }
+
+  changed |= read_text(xml, textfile, logfile, title, xref);
 
   if (textfile != stdin)
     fclose(textfile);
+
+  if (logfile != stdout)
+    fclose(logfile);
 
  /*
   * Save the XML registration file if there were changes...
   */
 
+  if (changed || Verbosity)
+  {
+    if (Attributes.added || Attributes.updated || Attributes.ignored)
+      printf("Attributes: %d added, %d updated, %d ignored\n", Attributes.added, Attributes.updated, Attributes.ignored);
+
+    if (Enums.added || Enums.updated || Enums.ignored)
+      printf("Enums: %d added, %d updated, %d ignored\n", Enums.added, Enums.updated, Enums.ignored);
+
+    if (Keywords.added || Keywords.updated || Keywords.ignored)
+      printf("Keywords: %d added, %d updated, %d ignored\n", Keywords.added, Keywords.updated, Keywords.ignored);
+
+    if (Operations.added || Operations.updated || Operations.ignored)
+      printf("Operations: %d added, %d updated, %d ignored\n", Operations.added, Operations.updated, Operations.ignored);
+
+    if (StatusCodes.added || StatusCodes.updated || StatusCodes.ignored)
+      printf("Status Codes: %d added, %d updated, %d ignored\n", StatusCodes.added, StatusCodes.updated, StatusCodes.ignored);
+  }
+
   if (changed)
   {
-    mxml_node_t	*updated = mxmlFindElement(xml, xml, "updated", NULL, NULL, MXML_DESCEND);
+    mxml_node_t *updated = mxmlFindElement(xml, xml, "updated", NULL, NULL, MXML_DESCEND);
 
     if (updated)
     {
@@ -350,8 +407,8 @@ main(int  argc,				/* I - Number of command-line args */
       snprintf(xmlbackup, sizeof(xmlbackup), "%s.O", xmlin);
       if (rename(xmlin, xmlbackup))
       {
-        perror(xmlin);
-        return (1);
+	perror(xmlin);
+	return (1);
       }
     }
 
@@ -359,7 +416,7 @@ main(int  argc,				/* I - Number of command-line args */
     {
       perror(xmlout);
       if (xmlin == xmlout)
-        rename(xmlbackup, xmlin);
+	rename(xmlbackup, xmlin);
       return (1);
     }
 
@@ -370,14 +427,14 @@ main(int  argc,				/* I - Number of command-line args */
     {
       perror(xmlout);
       if (xmlin == xmlout)
-        rename(xmlbackup, xmlin);
+	rename(xmlbackup, xmlin);
       return (1);
     }
     else
-      fprintf(stderr, "register: Wrote '%s'.\n", xmlout);
+      printf("Wrote '%s'.\n", xmlout);
   }
   else
-    fputs("register: No changes written.\n", stderr);
+    puts("No changes written.");
 
   return (!changed);
 }
@@ -389,7 +446,8 @@ main(int  argc,				/* I - Number of command-line args */
 
 static int				/* O - 1 if something was added, 0 if not */
 add_attr(mxml_node_t *xml,		/* I - XML registry */
-         const char  *collection,	/* I - Collection within the attributes registry */
+         FILE        *logfile,		/* I - Log file */
+	 const char  *collection,	/* I - Collection within the attributes registry */
 	 const char  *attrname,		/* I - Attribute name */
 	 const char  *membername,	/* I - Member attribute name or NULL */
 	 const char  *submembername,	/* I - Sub-member attribute name or NULL */
@@ -411,7 +469,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   const char	*last_collection = NULL,/* Last collection */
 		*last_name = NULL,	/* Last attribute name */
 		*last_member = NULL,	/* Last member attribute */
-		*last_submember = NULL;	/* Last sub-member attribute */
+		*last_submember = NULL; /* Last sub-member attribute */
   char		extname[256];		/* attribute-name(extension) */
 
 
@@ -420,24 +478,24 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) == NULL)
+				       IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_ATTRIBUTES "' registry in XML file.\n",
-          stderr);
+    fputs("Unable to find '" IPP_REGISTRY_ATTRIBUTES "' registry in XML file.\n",
+	  stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL,
-                                      MXML_DESCEND_FIRST);
+				      MXML_DESCEND_FIRST);
     if (!collection_node || !mxmlGetOpaque(collection_node))
     {
-      fputs("register: Attribute record missing <collection> in XML file.\n", stderr);
+      fputs("Attribute record missing <collection> in XML file.\n", stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
@@ -446,7 +504,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     {
       if (compare_strings(last_collection, mxmlGetOpaque(collection_node)))
       {
-        last_name = last_member = last_submember = NULL;
+	last_name = last_member = last_submember = NULL;
 
 	if (!compare_strings(last_collection, collection))
 	  break;
@@ -462,20 +520,20 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     if (!name_node)
     {
       name_node = mxmlFindElement(record_node, record_node, "attribute", NULL,
-                                  NULL, MXML_DESCEND_FIRST);
+				  NULL, MXML_DESCEND_FIRST);
 
       if (!name_node)
       {
-	fputs("register: Attribute record missing <name> in XML file.\n", stderr);
+	fputs("Attribute record missing <name> in XML file.\n", stderr);
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
       else
       {
-        fprintf(stderr, "register: Fixing attribute record for %s.\n",
-                mxmlGetOpaque(name_node));
-        mxmlSetElement(name_node, "name");
-        changed = 1;
+	fprintf(logfile, "Fixing attribute record for %s.\n", mxmlGetOpaque(name_node));
+	mxmlSetElement(name_node, "name");
+	changed = 1;
+	Attributes.updated ++;
       }
     }
 
@@ -483,13 +541,13 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     {
       if ((result = compare_strings(last_name, mxmlGetOpaque(name_node))) > 0)
       {
-	fputs("register: Attribute record out-of-order in XML file.\n", stderr);
+	fputs("Attribute record out-of-order in XML file.\n", stderr);
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
 
       if (result)
-        last_member = last_submember = NULL;
+	last_member = last_submember = NULL;
     }
 
     last_name = mxmlGetOpaque(name_node);
@@ -504,13 +562,13 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     {
       if ((result = compare_strings(last_member, mxmlGetOpaque(membername_node))) > 0)
       {
-	fputs("register: Attribute record out-of-order in XML file.\n", stderr);
+	fputs("Attribute record out-of-order in XML file.\n", stderr);
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
 
       if (result)
-        last_submember = NULL;
+	last_submember = NULL;
     }
 
     last_member = mxmlGetOpaque(membername_node);
@@ -527,9 +585,9 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     else if (membername)
     {
       if ((result = compare_strings(membername, last_member)) > 0)
-        continue;
+	continue;
       else if (result < 0)
-        break;
+	break;
     }
 
     submembername_node = mxmlFindElement(record_node, record_node, "sub-member_attribute",
@@ -538,7 +596,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     {
       if (compare_strings(last_submember, mxmlGetOpaque(submembername_node)) > 0)
       {
-	fputs("register: Attribute record out-of-order in XML file.\n", stderr);
+	fputs("Attribute record out-of-order in XML file.\n", stderr);
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
@@ -558,9 +616,9 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     else if (submembername)
     {
       if ((result = compare_strings(submembername, last_submember)) > 0)
-        continue;
+	continue;
       else if (result < 0)
-        break;
+	break;
     }
 
    /*
@@ -574,31 +632,32 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 				  NULL, NULL, MXML_DESCEND_FIRST);
     if (!syntax_node)
     {
-      fputs("register: Attribute record missing <syntax> in XML file.\n", stderr);
+      fputs("Attribute record missing <syntax> in XML file.\n", stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
-      fprintf(stderr, "register: Extending syntax for %s to '%s'.\n",
-              submembername ? submembername : membername ? membername : attrname, syntax);
+      fprintf(logfile, "Extending syntax for %s to '%s'.\n", submembername ? submembername : membername ? membername : attrname, syntax);
 
       if (submembername)
       {
-        snprintf(extname, sizeof(extname), "%s(extension)", submembername);
-        submembername = extname;
+	snprintf(extname, sizeof(extname), "%s(extension)", submembername);
+	submembername = extname;
       }
       else if (membername)
       {
-        snprintf(extname, sizeof(extname), "%s(extension)", membername);
-        membername = extname;
+	snprintf(extname, sizeof(extname), "%s(extension)", membername);
+	membername = extname;
       }
       else
       {
-        snprintf(extname, sizeof(extname), "%s(extension)", attrname);
-        attrname = extname;
+	snprintf(extname, sizeof(extname), "%s(extension)", attrname);
+	attrname = extname;
       }
+
+      Attributes.updated ++;
     }
     else
       return (changed);
@@ -608,6 +667,13 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   * If we get here the attribute does not exist.  Build a new record and add it
   * to the registry in the right place.
   */
+
+  if (submembername)
+    fprintf(logfile, "Adding member attribute %s/%s/%s (%s)...\n", attrname, membername, submembername, syntax);
+  else if (membername)
+    fprintf(logfile, "Adding member attribute %s/%s (%s)...\n", attrname, membername, syntax);
+  else
+    fprintf(logfile, "Adding attribute %s (%s)...\n", attrname, syntax);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -642,8 +708,9 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   else
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+  Attributes.added ++;
+
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -655,10 +722,11 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_attr_group(mxml_node_t *xml,	/* I - XML registry */
-               const char  *value,	/* I - Attribute group value */
-               const char  *name,	/* I - Attribute group name */
-               const char  *xref,	/* I - Standard URL/number */
-               const char  *xrefname)	/* I - Standard name or NULL */
+	       FILE        *logfile,	/* I - Log file */
+	       const char  *value,	/* I - Attribute group value */
+	       const char  *name,	/* I - Attribute group name */
+	       const char  *xref,	/* I - Standard URL/number */
+	       const char  *xrefname)	/* I - Standard name or NULL */
 {
   int		changed = 0,		/* Did something change? */
 		result;			/* Result of comparison */
@@ -679,29 +747,29 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
 				       IPP_REGISTRY_ATTRIBUTE_GROUPS,
 				       MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_ATTRIBUTE_GROUPS
-          "' registry in XML file.\n", stderr);
+    fputs("Unable to find '" IPP_REGISTRY_ATTRIBUTE_GROUPS
+	  "' registry in XML file.\n", stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     value_node = mxmlFindElement(record_node, record_node, "value", NULL, NULL,
 				 MXML_DESCEND_FIRST);
     if (!value_node)
     {
-      fputs("register: Status code record missing <value> in XML file.\n",
-            stderr);
+      fputs("Status code record missing <value> in XML file.\n",
+	    stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if ((result = strtol(value, NULL, 0) -
-                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
+		  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
       continue;
     else if (result < 0)
       break;
@@ -726,23 +794,22 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
     */
 
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
-                                MXML_DESCEND_FIRST);
+				MXML_DESCEND_FIRST);
     if (!name_node)
     {
-      fprintf(stderr, "register: Fixing record for attribute group '%s'.\n",
-              value);
+      fprintf(logfile, "Fixing record for attribute group '%s'.\n", value);
       name_node = mxmlNewElement(record_node, "name");
     }
 
     if (!mxmlGetOpaque(name_node))
     {
+      fprintf(logfile, "Updating record for attribute group '%s'.\n", value);
       mxmlNewOpaque(name_node, name);
       return (1);
     }
     else if (compare_strings(name, mxmlGetOpaque(name_node)))
     {
-      fprintf(stderr, "register: Updating record for attribute group '%s'.\n",
-              value);
+      fprintf(logfile, "Updating record for attribute group '%s'.\n", value);
       mxmlSetOpaque(name_node, name);
       return (1);
     }
@@ -754,6 +821,8 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  fprintf(logfile, "Adding attribute group %s '%s'...\n", value, name);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -774,7 +843,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+	  node);
 
   return (1);
 }
@@ -786,11 +855,12 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_valattr(mxml_node_t *xml,		/* I - XML registry */
-            const char  *registry,	/* I - Registry ID */
-            const char  *attrname,	/* I - Attribute name */
-            const char  *syntax,	/* I - Attribute syntax */
-            const char  *xref,		/* I - Standard URL/number */
-            const char  *xrefname)	/* I - Standard name or NULL */
+	    FILE        *logfile,	/* I - Log file */
+	    const char	*registry,	/* I - Registry ID */
+	    const char	*attrname,	/* I - Attribute name */
+	    const char	*syntax,	/* I - Attribute syntax */
+	    const char	*xref,		/* I - Standard URL/number */
+	    const char	*xrefname)	/* I - Standard name or NULL */
 {
   int		changed = 0,		/* Did something change? */
 		compare_enums,		/* Compare enum values? */
@@ -809,20 +879,20 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", registry,
-                                       MXML_DESCEND)) == NULL)
+				       MXML_DESCEND)) == NULL)
   {
-    fprintf(stderr, "register: Unable to find '%s' registry in XML file.\n",
-            registry);
+    fprintf(stderr, "Unable to find '%s' registry in XML file.\n",
+	    registry);
     exit(1);
   }
 
   compare_enums = !strcmp(registry, IPP_REGISTRY_ENUMS);
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     attr_node = mxmlFindElement(record_node, record_node, "attribute", NULL, NULL,
 				MXML_DESCEND_FIRST);
@@ -833,17 +903,21 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 
       if (!attr_node)
       {
-	fprintf(stderr, "register: %s record missing <attribute> in XML file.\n",
-	        compare_enums ? "enum" : "keyword");
+	fprintf(stderr, "%s record missing <attribute> in XML file.\n",
+		compare_enums ? "enum" : "keyword");
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
       else
       {
-        fprintf(stderr, "register: Fixing %s record for %s.\n",
-                compare_enums ? "enum" : "keyword", mxmlGetOpaque(attr_node));
-        mxmlSetElement(attr_node, "attribute");
-        changed = 1;
+	if (compare_enums)
+	  Enums.updated ++;
+	else
+	  Keywords.updated ++;
+
+	fprintf(logfile, "Fixing %s record for '%s'.\n", compare_enums ? "enum" : "keyword", mxmlGetOpaque(attr_node));
+	mxmlSetElement(attr_node, "attribute");
+	changed = 1;
       }
     }
 
@@ -851,8 +925,8 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
     {
       if (compare_strings(last_attr, mxmlGetOpaque(attr_node)) > 0)
       {
-	fprintf(stderr, "register: %s record out-of-order in XML file.\n",
-	        compare_enums ? "Enum" : "Keyword");
+	fprintf(stderr, "%s record out-of-order in XML file.\n",
+		compare_enums ? "Enum" : "Keyword");
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
@@ -877,14 +951,19 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 				  NULL, NULL, MXML_DESCEND_FIRST);
     if (!syntax_node)
     {
-      fputs("register: Attribute record missing <syntax> in XML file.\n", stderr);
+      fputs("Attribute record missing <syntax> in XML file.\n", stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
-      fprintf(stderr, "register: Changing syntax for %s to '%s'.\n", attrname, syntax);
+      if (compare_enums)
+        Enums.updated ++;
+      else
+        Keywords.updated ++;
+
+      fprintf(logfile, "Changing syntax for '%s' to '%s'.\n", attrname, syntax);
       mxmlSetOpaque(syntax_node, syntax);
       return (1);
     }
@@ -896,6 +975,17 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
   * If we get here the attribute does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  if (compare_enums)
+  {
+    Enums.added ++;
+    fprintf(logfile, "Adding enum attribute '%s'...\n", attrname);
+  }
+  else
+  {
+    Keywords.added ++;
+    fprintf(logfile, "Adding keyword attribute '%s'...\n", attrname);
+  }
 
   node = mxmlNewElement(NULL, "record");
 
@@ -916,7 +1006,7 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+	  node);
 
   return (1);
 }
@@ -928,9 +1018,10 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_object(mxml_node_t *xml,		/* I - XML registry */
-           const char  *name,   	/* I - Object name */
-           const char  *xref,   	/* I - Standard URL/number */
-           const char  *xrefname)	/* I - Standard name or NULL */
+	   FILE        *logfile,	/* I - Log file */
+	   const char  *name,		/* I - Object name */
+	   const char  *xref,		/* I - Standard URL/number */
+	   const char  *xrefname)	/* I - Standard name or NULL */
 {
   int		result;			/* Result of comparison */
   mxml_node_t	*node,			/* New <registry> node */
@@ -946,28 +1037,31 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_OBJECTS, MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_OBJECTS "' registry in XML file.\n",
-          stderr);
+    fputs("Unable to find '" IPP_REGISTRY_OBJECTS "' registry in XML file.\n",
+	  stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
 				MXML_DESCEND_FIRST);
     if (!name_node)
     {
-      fputs("register: Object record missing <name> in XML file.\n", stderr);
+      fputs("Object record missing <name> in XML file.\n", stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
+    {
+      fprintf(logfile, "Duplicate object '%s'.\n", name);
       return (0);
+    }
     else if (result < 0)
       break;
   }
@@ -976,6 +1070,8 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  fprintf(logfile, "Adding object '%s'...\n", name);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -993,7 +1089,7 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
-          record_node, node);
+	  record_node, node);
 
   return (1);
 }
@@ -1005,7 +1101,8 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_operation(mxml_node_t *xml,		/* I - XML registry */
-              const char  *name,	/* I - Operation name */
+	      FILE        *logfile,	/* I - Log file */
+	      const char  *name,	/* I - Operation name */
 	      const char  *xref,	/* I - Standard URL/number */
 	      const char  *xrefname)	/* I - Standard name or NULL */
 {
@@ -1022,31 +1119,35 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id",
-                                       IPP_REGISTRY_OPERATIONS, MXML_DESCEND)) == NULL)
+				       IPP_REGISTRY_OPERATIONS, MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_OPERATIONS "' registry in XML file.\n",
-          stderr);
+    fputs("Unable to find '" IPP_REGISTRY_OPERATIONS "' registry in XML file.\n",
+	  stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
 				MXML_DESCEND_FIRST);
     if (!name_node)
     {
-      fputs("register: Operation record missing <name> in XML file.\n",
-            stderr);
+      fputs("Operation record missing <name> in XML file.\n",
+	    stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
+    {
+      Operations.ignored ++;
+      fprintf(logfile, "Duplicate operation '%s'.\n", name);
       return (0);
+    }
     else if (result < 0)
       break;
   }
@@ -1055,6 +1156,9 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  Operations.added ++;
+  fprintf(logfile, "Adding operation '%s'...\n", name);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -1072,7 +1176,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
-          record_node, node);
+	  record_node, node);
 
   return (1);
 }
@@ -1084,8 +1188,9 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
-                const char  *value,	/* I - Out-of-band value */
-	        const char  *name,	/* I - Out-of-band name */
+		FILE        *logfile,	/* I - Log file */
+		const char  *value,	/* I - Out-of-band value */
+		const char  *name,	/* I - Out-of-band name */
 		const char  *xref,	/* I - Standard URL/number */
 		const char  *xrefname)	/* I - Standard name or NULL */
 {
@@ -1108,29 +1213,29 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
 				       IPP_REGISTRY_OUT_OF_BANDS,
 				       MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_OUT_OF_BANDS
-          "' registry in XML file.\n", stderr);
+    fputs("Unable to find '" IPP_REGISTRY_OUT_OF_BANDS
+	  "' registry in XML file.\n", stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     value_node = mxmlFindElement(record_node, record_node, "value", NULL, NULL,
 				 MXML_DESCEND_FIRST);
     if (!value_node)
     {
-      fputs("register: Out-of-band record missing <value> in XML file.\n",
-            stderr);
+      fputs("Out-of-band record missing <value> in XML file.\n",
+	    stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if ((result = strtol(value, NULL, 0) -
-                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
+		  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
       continue;
     else if (result < 0)
       break;
@@ -1155,23 +1260,22 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
     */
 
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
-                                MXML_DESCEND_FIRST);
+				MXML_DESCEND_FIRST);
     if (!name_node)
     {
-      fprintf(stderr, "register: Fixing record for out-of-band value '%s'.\n",
-              value);
+      fprintf(logfile, "Fixing record for out-of-band value %s.\n", value);
       name_node = mxmlNewElement(record_node, "name");
     }
 
     if (!mxmlGetOpaque(name_node))
     {
+      fprintf(logfile, "Updating record for out-of-band value %s.\n", value);
       mxmlNewOpaque(name_node, name);
       return (1);
     }
     else if (compare_strings(name, mxmlGetOpaque(name_node)))
     {
-      fprintf(stderr, "register: Updating record for out-of-band value '%s'.\n",
-              value);
+      fprintf(logfile, "Updating record for out-of-band value %s.\n", value);
       mxmlSetOpaque(name_node, name);
       return (1);
     }
@@ -1183,6 +1287,8 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  fprintf(logfile, "Adding out-of-band value %s '%s'\n", value, name);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -1203,7 +1309,7 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+	  node);
 
   return (1);
 }
@@ -1215,8 +1321,9 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_status_code(mxml_node_t *xml,	/* I - XML registry */
-                const char  *value,	/* I - Status code value */
-	        const char  *name,	/* I - Status code name */
+		FILE        *logfile,	/* I - Log file */
+		const char  *value,	/* I - Status code value */
+		const char  *name,	/* I - Status code name */
 		const char  *xref,	/* I - Standard URL/number */
 		const char  *xrefname)	/* I - Standard name or NULL */
 {
@@ -1239,29 +1346,29 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
 				       IPP_REGISTRY_STATUS_CODES,
 				       MXML_DESCEND)) == NULL)
   {
-    fputs("register: Unable to find '" IPP_REGISTRY_STATUS_CODES
-          "' registry in XML file.\n", stderr);
+    fputs("Unable to find '" IPP_REGISTRY_STATUS_CODES
+	  "' registry in XML file.\n", stderr);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     value_node = mxmlFindElement(record_node, record_node, "value", NULL, NULL,
 				 MXML_DESCEND_FIRST);
     if (!value_node)
     {
-      fputs("register: Status code record missing <value> in XML file.\n",
-            stderr);
+      fputs("Status code record missing <value> in XML file.\n",
+	    stderr);
       mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
       exit(1);
     }
 
     if ((result = strtol(value, NULL, 0) -
-                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
+		  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
       continue;
     else if (result < 0)
       break;
@@ -1286,23 +1393,24 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
     */
 
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
-                                MXML_DESCEND_FIRST);
+				MXML_DESCEND_FIRST);
     if (!name_node)
     {
-      fprintf(stderr, "register: Fixing record for status code '%s'.\n",
-              value);
+      fprintf(logfile, "Fixing record for status code '%s'.\n", value);
       name_node = mxmlNewElement(record_node, "name");
     }
 
     if (!mxmlGetOpaque(name_node))
     {
+      StatusCodes.updated ++;
+      fprintf(logfile, "Updating record for status code '%s'.\n", value);
       mxmlNewOpaque(name_node, name);
       return (1);
     }
     else if (compare_strings(name, mxmlGetOpaque(name_node)))
     {
-      fprintf(stderr, "register: Updating record for status code '%s'.\n",
-              value);
+      StatusCodes.updated ++;
+      fprintf(logfile, "Updating record for status code '%s'.\n", value);
       mxmlSetOpaque(name_node, name);
       return (1);
     }
@@ -1314,6 +1422,10 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  StatusCodes.added ++;
+
+  fprintf(logfile, "Adding status code %s '%s'...\n", value, name);
 
   node = mxmlNewElement(NULL, "record");
 
@@ -1334,7 +1446,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+	  node);
 
   return (1);
 }
@@ -1346,8 +1458,9 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
 
 static int				/* O - 1 if something changed, 0 otherwise */
 add_value(mxml_node_t *xml,		/* I - XML registry */
-          const char  *enumval,		/* I - Enumeration value or NULL */
-          const char  *keyword,		/* I - Keyword */
+	  FILE        *logfile,		/* I - Log file */
+	  const char  *enumval,		/* I - Enumeration value or NULL */
+	  const char  *keyword,		/* I - Keyword */
 	  const char  *attrname,	/* I - Attribute name */
 	  const char  *syntax,		/* I - Attribute syntax */
 	  const char  *xref,		/* I - Standard URL/number */
@@ -1376,16 +1489,16 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", registry,
 				       MXML_DESCEND)) == NULL)
   {
-    fprintf(stderr, "register: Unable to find '%s' registry in XML file.\n",
-            registry);
+    fprintf(stderr, "Unable to find '%s' registry in XML file.\n",
+	    registry);
     exit(1);
   }
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
+				     NULL, NULL, MXML_DESCEND_FIRST);
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND))
+				     NULL, NULL, MXML_NO_DESCEND))
   {
     attr_node = mxmlFindElement(record_node, record_node, "attribute", NULL, NULL,
 				MXML_DESCEND_FIRST);
@@ -1396,17 +1509,21 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 
       if (!attr_node)
       {
-	fprintf(stderr, "register: %s record missing <attribute> in XML file.\n",
+	fprintf(stderr, "%s record missing <attribute> in XML file.\n",
 		enumval ? "enum" : "keyword");
 	mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
 	exit(1);
       }
       else
       {
-        fprintf(stderr, "register: Fixing %s record for %s.\n",
-                enumval ? "enum" : "keyword", mxmlGetOpaque(attr_node));
-        mxmlSetElement(attr_node, "attribute");
-        changed = 1;
+        if (enumval)
+          Enums.updated ++;
+        else
+          Keywords.updated ++;
+
+	fprintf(logfile, "Fixing %s record for %s.\n", enumval ? "enum" : "keyword", mxmlGetOpaque(attr_node));
+	mxmlSetElement(attr_node, "attribute");
+	changed = 1;
       }
     }
 
@@ -1416,19 +1533,19 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
       break;
 
     if ((value_node = mxmlFindElement(record_node, record_node, "value", NULL,
-                                      NULL, MXML_DESCEND_FIRST)) == NULL)
+				      NULL, MXML_DESCEND_FIRST)) == NULL)
       continue;
     else if (enumval)
     {
       if ((result = compare_strings(enumval,
-                                    mxmlGetOpaque(value_node))) > 0)
-        continue;
+				    mxmlGetOpaque(value_node))) > 0)
+	continue;
       else if (result < 0)
-        break;
+	break;
       else if (result == 0 && strstr(keyword, "(deprecated)") != NULL)
       {
 	record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND);
-        break;
+	break;
       }
     }
     else if ((result = compare_strings(keyword, mxmlGetOpaque(value_node))) > 0)
@@ -1441,7 +1558,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
     */
 
     name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
-                                MXML_DESCEND_FIRST);
+				MXML_DESCEND_FIRST);
     name      = mxmlGetOpaque(name_node);
 
     if (enumval)
@@ -1452,24 +1569,34 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 
       if (!name_node)
       {
-        fprintf(stderr, "register: Fixing bad enum record '%s' for attribute %s.\n",
-                enumval, attrname);
-        name_node = mxmlNewElement(record_node, "name");
+        Enums.updated ++;
+	fprintf(logfile, "Fixing bad enum record %s for attribute '%s'.\n", enumval, attrname);
+	name_node = mxmlNewElement(record_node, "name");
       }
 
       if (!name)
-        mxmlNewOpaque(name_node, keyword);
+	mxmlNewOpaque(name_node, keyword);
       else
       {
-        fprintf(stderr, "register: Renaming keyword for enum record '%s' for attribute %s.\n", enumval, attrname);
-        mxmlSetOpaque(name_node, keyword);
+        Enums.updated ++;
+	fprintf(logfile, "Renaming keyword for enum record %s for attribute '%s'.\n", enumval, attrname);
+	mxmlSetOpaque(name_node, keyword);
       }
 
       return (1);
     }
 
-    fprintf(stderr, "register: Duplicate %s value '%s' for attribute %s.\n",
-            enumval ? "enum" : "keyword", enumval ? enumval : keyword, attrname);
+    if (enumval)
+    {
+      Enums.ignored ++;
+      fprintf(logfile, "Duplicate enum value %s for attribute '%s'.\n", enumval, attrname);
+    }
+    else
+    {
+      Keywords.ignored ++;
+      fprintf(logfile, "Duplicate keyword value '%s' for attribute '%s'.\n", keyword, attrname);
+    }
+
     return (changed);
   }
 
@@ -1477,6 +1604,17 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
   * If we get here the value does not exist.  Build a new record and add it to the
   * registry in the right place.
   */
+
+  if (enumval)
+  {
+    Enums.added ++;
+    fprintf(logfile, "Adding enum %s '%s' for '%s (%s)'...\n", enumval, keyword, attrname, syntax);
+  }
+  else
+  {
+    Keywords.added ++;
+    fprintf(logfile, "Adding keyword '%s' for '%s (%s)'...\n", keyword, attrname, syntax);
+  }
 
   node = mxmlNewElement(NULL, "record");
 
@@ -1515,7 +1653,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
     mxmlElementSetAttr(xref_node, "type", "rfc");
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-          node);
+	  node);
 
   return (1);
 }
@@ -1527,7 +1665,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 
 static int				/* O - Result of comparison */
 compare_record(reg_record_t *a,		/* I - First record */
-               reg_record_t *b)		/* I - Second record */
+	       reg_record_t *b)		/* I - Second record */
 {
   int	i,				/* Looping var */
 	result;				/* Result of comparison */
@@ -1550,7 +1688,7 @@ compare_record(reg_record_t *a,		/* I - First record */
 
 static int				/* O - Result of comparison */
 compare_strings(const char *s,		/* I - First string */
-                const char *t)		/* I - Second string */
+		const char *t)		/* I - Second string */
 {
   int		diff;			/* Difference between digits */
 
@@ -1582,7 +1720,7 @@ compare_strings(const char *s,		/* I - First string */
       int tn = (int)strtol(t, (char **)&t, 0);
 
       if ((diff = sn - tn) != 0)
-        return (diff);
+	return (diff);
     }
     else if ((diff = *s - *t) != 0)
       return (diff);
@@ -1612,12 +1750,13 @@ compare_strings(const char *s,		/* I - First string */
 
 static int				/* O - 1 if something was added, 0 if not */
 read_text(mxml_node_t *xml,		/* I - XML registration document */
-          FILE        *textfile,	/* I - Text registration file */
-          const char  *title,		/* I - Standard title */
-          const char  *xref)		/* I - Standard URL */
+	  FILE	      *textfile,	/* I - Text registration file */
+	  FILE        *logfile,		/* I - Log file */
+	  const char  *title,		/* I - Standard title */
+	  const char  *xref)		/* I - Standard URL */
 {
   int		i,			/* Looping var */
-                blanks = 0,             /* Number of blank lines */
+		blanks = 0,		/* Number of blank lines */
 		changed = 0,		/* Was something changed? */
 		state = IN_NOTHING,	/* Current state */
 		linenum = 0,		/* Current line number */
@@ -1657,7 +1796,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     { "Keyword Attribute Value", 23 },
     { "Enum Value", 10 },
     { "Operation Name", 14 },
-    { "Value    Status Code Name", 25 },
+    { "Value	Status Code Name", 25 },
     { "Object Name", 11 },
     { "Attribute Group Value", 21 },
     { "Out-of-Band Value", 17 }
@@ -1720,9 +1859,9 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     ptr = line + strlen(line) - 1;
     while (ptr >= line)
       if (isspace(*ptr & 255))
-        *ptr-- = '\0';
+	*ptr-- = '\0';
       else
-        break;
+	break;
 
     for (ptr = line; *ptr && isspace(*ptr & 255); ptr ++);
 
@@ -1734,7 +1873,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     {
       blanks ++;
       if (blanks > 1)
-        state = IN_NOTHING;
+	state = IN_NOTHING;
 
       continue;
     }
@@ -1750,7 +1889,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     for (i = IN_OPER_ATTRS; i < IN_MAX; i ++)
       if (!strncmp(ptr, states[i].header, states[i].headerlen))
       {
-	state         = i;
+	state	      = i;
 	attrname[0]   = '\0';
 	membername[0] = '\0';
 	syntax[0]     = '\0';
@@ -1761,157 +1900,223 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
     {
       switch (state)
       {
-        case IN_OPER_ATTRS :
-        case IN_PDESC_ATTRS :
-        case IN_PSTAT_ATTRS :
-        case IN_JDESC_ATTRS :
-        case IN_JSTAT_ATTRS :
-        case IN_JTMPL_ATTRS :
-        case IN_DDESC_ATTRS :
-        case IN_DSTAT_ATTRS :
-        case IN_DTMPL_ATTRS :
-        case IN_RDESC_ATTRS :
-        case IN_RSTAT_ATTRS :
-        case IN_SDESC_ATTRS :
-        case IN_SSTAT_ATTRS :
-        case IN_STMPL_ATTRS :
-        case IN_SYSDESC_ATTRS :
-        case IN_SYSSTAT_ATTRS :
-        case IN_EVENT_ATTRS :
-            if (!islower(*ptr & 255))
-              continue;
+	case IN_OPER_ATTRS :
+	case IN_PDESC_ATTRS :
+	case IN_PSTAT_ATTRS :
+	case IN_JDESC_ATTRS :
+	case IN_JSTAT_ATTRS :
+	case IN_JTMPL_ATTRS :
+	case IN_DDESC_ATTRS :
+	case IN_DSTAT_ATTRS :
+	case IN_DTMPL_ATTRS :
+	case IN_RDESC_ATTRS :
+	case IN_RSTAT_ATTRS :
+	case IN_SDESC_ATTRS :
+	case IN_SSTAT_ATTRS :
+	case IN_STMPL_ATTRS :
+	case IN_SYSDESC_ATTRS :
+	case IN_SYSSTAT_ATTRS :
+	case IN_EVENT_ATTRS :
+	    if (!islower(*ptr & 255))
+	      continue;
 
-           /*
-            * Attributes are not indented, member attributes *are*.
-            */
+	   /*
+	    * Attributes are not indented, member attributes *are*.
+	    */
 
-            first = ptr;
-            while (*ptr && !isspace(*ptr & 255))
-              ptr ++;
-            if (!*ptr)
-            {
-              fprintf(stderr, "register: Bad attribute definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    first = ptr;
+	    while (*ptr && !isspace(*ptr & 255))
+	      ptr ++;
+	    if (!*ptr)
+	    {
+	      fprintf(stderr, "Bad attribute definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
 
-            if (*ptr != '(')
-            {
-              fprintf(stderr, "register: Bad attribute definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    if (*ptr != '(')
+	    {
+	      fprintf(stderr, "Bad attribute definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            ptr ++;
-            second = ptr;
-            for (paren = 1; *ptr && paren > 0; ptr ++)
-            {
-              if (*ptr == '(')
-                paren ++;
-              else if (*ptr == ')')
-              {
-                paren --;
-                if (paren == 0)
-                  *ptr = '\0';
-              }
-            }
+	    ptr ++;
+	    second = ptr;
+	    for (paren = 1; *ptr && paren > 0; ptr ++)
+	    {
+	      if (*ptr == '(')
+		paren ++;
+	      else if (*ptr == ')')
+	      {
+		paren --;
+		if (paren == 0)
+		  *ptr = '\0';
+	      }
+	    }
 
-            if (first == line)
-            {
-             /*
-              * attribute syntax
-              */
+	    if (first == line)
+	    {
+	     /*
+	      * attribute syntax
+	      */
 
-              fprintf(stderr, "Attribute \"%s (%s)\"\n", first, second);
-              changed |= add_attr(xml, collections[state], first, NULL, NULL, second,
-                                  xref, xrefname);
+	      changed |= add_attr(xml, logfile, collections[state], first, NULL, NULL, second, xref, xrefname);
 
-              strncpy(attrname, first, sizeof(attrname));
-            }
-            else if ((first - 2) == line)
-            {
-             /*
-              * member syntax
-              */
+	      strncpy(attrname, first, sizeof(attrname));
+	    }
+	    else if ((first - 2) == line)
+	    {
+	     /*
+	      * member syntax
+	      */
 
-              if (!attrname[0])
-              {
-		fprintf(stderr, "register: Bad member attribute definition on line %d.\n",
+	      if (!attrname[0])
+	      {
+		fprintf(stderr, "Bad member attribute definition on line %d.\n",
 			linenum);
 		exit(1);
-              }
+	      }
 
-              fprintf(stderr, "Member attribute \"%s.%s (%s)\"\n", attrname, first,
-                      second);
+	      changed |= add_attr(xml, logfile, collections[state], attrname, first, NULL, second, xref, xrefname);
 
-              changed |= add_attr(xml, collections[state], attrname, first, NULL,
-                                  second, xref, xrefname);
+	      strncpy(membername, first, sizeof(membername));
+	    }
+	    else
+	    {
+	     /*
+	      * sub-member syntax
+	      */
 
-              strncpy(membername, first, sizeof(membername));
-            }
-            else
-            {
-             /*
-              * sub-member syntax
-              */
-
-              if (!attrname[0] || !membername[0])
-              {
-		fprintf(stderr,
-		        "register: Bad sub-memeber attribute definition on line %d.\n",
-			linenum);
+	      if (!attrname[0] || !membername[0])
+	      {
+		fprintf(stderr, "Bad sub-member attribute definition on line %d.\n", linenum);
 		exit(1);
-              }
+	      }
 
-              fprintf(stderr, "Sub-member attribute \"%s.%s.%s (%s)\"\n", attrname,
-                      membername, first, second);
+	      changed |= add_attr(xml, logfile, collections[state], attrname, membername, first, second, xref, xrefname);
+	    }
+	    break;
 
-              changed |= add_attr(xml, collections[state], attrname, membername, first,
-                                  second, xref, xrefname);
-            }
-            break;
+	case IN_KEYWORD_VALS :
+	    if (*ptr != '<' && !islower(*ptr & 255))
+	      continue;
 
-        case IN_KEYWORD_VALS :
-            if (*ptr != '<' && !islower(*ptr & 255))
-              continue;
+	   /*
+	    * Attributes are not indented, keywords *are*.
+	    */
 
-           /*
-            * Attributes are not indented, keywords *are*.
-            */
+	    first = ptr;
+	    if (*ptr == '<')
+	    {
+	      while (*ptr && *ptr != '>')
+		ptr ++;
 
-            first = ptr;
-            if (*ptr == '<')
-            {
-              while (*ptr && *ptr != '>')
-                ptr ++;
-
-              if (*ptr == '>')
-                ptr ++;
-            }
-            else
-            {
+	      if (*ptr == '>')
+		ptr ++;
+	    }
+	    else
+	    {
 	      while (*ptr && !isspace(*ptr & 255))
 		ptr ++;
-            }
+	    }
 
-            if (!*ptr && first == line)
-            {
-              fprintf(stderr, "register: Bad attribute/keyword definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    if (!*ptr && first == line)
+	    {
+	      fprintf(stderr, "Bad attribute/keyword definition on line %d.\n", linenum);
+	      exit(1);
+	    }
 
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
 
-            if (first == line)
-            {
+	    if (first == line)
+	    {
 	      if (*ptr != '(')
 	      {
-		fprintf(stderr, "register: Bad attribute definition on line %d.\n",
+		fprintf(stderr, "Bad attribute definition on line %d.\n", linenum);
+		exit(1);
+	      }
+
+	      ptr ++;
+	      second = ptr;
+	      for (paren = 1; *ptr && paren > 0; ptr ++)
+	      {
+		if (*ptr == '(')
+		  paren ++;
+		else if (*ptr == ')')
+		{
+		  paren --;
+		  if (paren == 0)
+		    *ptr = '\0';
+		}
+	      }
+
+	     /*
+	      * attribute syntax
+	      */
+
+	      changed |= add_valattr(xml, logfile, IPP_REGISTRY_KEYWORDS, first, second, xref, xrefname);
+
+	      strncpy(attrname, first, sizeof(attrname));
+	      strncpy(syntax, second, sizeof(syntax));
+	    }
+	    else if (!attrname[0])
+	    {
+	      fprintf(stderr, "Missing attribute before keyword value on line %d.\n", linenum);
+	      exit(1);
+	    }
+	    else
+	    {
+	     /*
+	      * keyword
+	      */
+
+	      changed |= add_value(xml, logfile, NULL, first, attrname, syntax, xref, xrefname);
+	    }
+	    break;
+
+	case IN_ENUM_VALS :
+	    if (*ptr != '<' && !islower(line[0] & 255) && !isdigit(*ptr & 255))
+	      continue;
+
+	   /*
+	    * Attributes are not indented, enums *are*.
+	    */
+
+	    first = ptr;
+	    if (*ptr == '<')
+	    {
+	      while (*ptr && *ptr != '>')
+		ptr ++;
+
+	      if (*ptr == '>')
+		ptr ++;
+	    }
+	    else
+	    {
+	      while (*ptr && !isspace(*ptr & 255))
+		ptr ++;
+	    }
+
+	    if (!*ptr && first == line)
+	    {
+	      fprintf(stderr, "Bad attribute/enum definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
+
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
+
+	    if (first == line)
+	    {
+	      if (*ptr != '(')
+	      {
+		fprintf(stderr, "Bad attribute definition on line %d.\n",
 			linenum);
 		exit(1);
 	      }
@@ -1930,267 +2135,174 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 		}
 	      }
 
-             /*
-              * attribute syntax
-              */
+	     /*
+	      * attribute syntax
+	      */
 
-              fprintf(stderr, "Attribute \"%s (%s)\"\n", first, second);
-              changed |= add_valattr(xml, IPP_REGISTRY_KEYWORDS, first, second, xref, xrefname);
+	      changed |= add_valattr(xml, logfile, IPP_REGISTRY_ENUMS, first, second, xref, xrefname);
 
-              strncpy(attrname, first, sizeof(attrname));
-              strncpy(syntax, second, sizeof(syntax));
-            }
-            else if (!attrname[0])
-            {
-              fprintf(stderr, "Missing attribute before keyword value on line %d.\n",
-                      linenum);
-              exit(1);
-            }
-            else
-            {
-             /*
-              * keyword
-              */
-
-              fprintf(stderr, "Keyword '%s' \"%s (%s)\"\n", first, attrname, syntax);
-
-              changed |= add_value(xml, NULL, first, attrname, syntax, xref, xrefname);
-            }
-            break;
-
-        case IN_ENUM_VALS :
-            if (*ptr != '<' && !islower(line[0] & 255) && !isdigit(*ptr & 255))
-              continue;
-
-           /*
-            * Attributes are not indented, enums *are*.
-            */
-
-            first = ptr;
-            if (*ptr == '<')
-            {
-              while (*ptr && *ptr != '>')
-                ptr ++;
-
-              if (*ptr == '>')
-                ptr ++;
-            }
-            else
-            {
-	      while (*ptr && !isspace(*ptr & 255))
-		ptr ++;
-            }
-
-            if (!*ptr && first == line)
-            {
-              fprintf(stderr, "register: Bad attribute/enum definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
-
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
-
-            if (first == line)
-            {
-	      if (*ptr != '(')
-	      {
-		fprintf(stderr, "register: Bad attribute definition on line %d.\n",
-			linenum);
-		exit(1);
-	      }
-
-	      ptr ++;
-	      second = ptr;
-	      for (paren = 1; *ptr && paren > 0; ptr ++)
-	      {
-		if (*ptr == '(')
-		  paren ++;
-		else if (*ptr == ')')
-		{
-		  paren --;
-		  if (paren == 0)
-		    *ptr = '\0';
-		}
-	      }
-
-             /*
-              * attribute syntax
-              */
-
-              fprintf(stderr, "Attribute \"%s (%s)\"\n", first, second);
-              changed |= add_valattr(xml, IPP_REGISTRY_ENUMS, first, second, xref, xrefname);
-
-              strncpy(attrname, first, sizeof(attrname));
-              strncpy(syntax, second, sizeof(syntax));
-            }
-            else if (!attrname[0])
-            {
-              fprintf(stderr, "Missing attribute before enum value on line %d.\n",
-                      linenum);
-              exit(1);
-            }
-            else if (!*ptr && first[0] != '<')
-            {
-              fprintf(stderr, "register: Bad enum definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
-            else
-            {
-             /*
-              * enum keyword
-              */
+	      strncpy(attrname, first, sizeof(attrname));
+	      strncpy(syntax, second, sizeof(syntax));
+	    }
+	    else if (!attrname[0])
+	    {
+	      fprintf(stderr, "Missing attribute before enum value on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
+	    else if (!*ptr && first[0] != '<')
+	    {
+	      fprintf(stderr, "Bad enum definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
+	    else
+	    {
+	     /*
+	      * enum keyword
+	      */
 
 	      for (second = ptr, ptr ++; *ptr && !isspace(*ptr); ptr ++);
 
 	      *ptr = '\0';
 	      if (first[0] == '<')
-	        second = NULL;
+		second = NULL;
 
-              fprintf(stderr, "Enum %s '%s' \"%s (%s)\"\n", first, second, attrname,
-                      syntax);
+	      changed |= add_value(xml, logfile, first, second, attrname, syntax, xref, xrefname);
+	    }
+	    break;
 
-              changed |= add_value(xml, first, second, attrname, syntax, xref, xrefname);
-            }
-            break;
+	case IN_OPERATIONS :
+	    if (!isupper(*ptr & 255))
+	      continue;
 
-        case IN_OPERATIONS :
-            if (!isupper(*ptr & 255))
-              continue;
-
-            first = ptr;
+	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 	    if (!strncmp(ptr, " (extension)", 12))
 	      ptr += 12;
-            *ptr = '\0';
+	    *ptr = '\0';
 
-	    fprintf(stderr, "Operation '%s'\n", first);
-            changed |= add_operation(xml, first, xref, xrefname);
-            break;
+	    changed |= add_operation(xml, logfile, first, xref, xrefname);
+	    break;
 
-        case IN_STATUS_CODES :
-            if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
-              continue;
+	case IN_STATUS_CODES :
+	    if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
+	      continue;
 
-            first = ptr;
+	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 
-            if (!*ptr)
-            {
-              fprintf(stderr,
-                      "register: Bad status code definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    if (!*ptr)
+	    {
+	      fprintf(stderr,
+		      "Bad status code definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
 
-            second = ptr;
-            if (!islower(*ptr & 255))
-            {
-              fprintf(stderr,
-                      "register: Bad status code definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    second = ptr;
+	    if (!islower(*ptr & 255))
+	    {
+	      fprintf(stderr,
+		      "Bad status code definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
-              ptr ++;
-            *ptr = '\0';
+	    while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
+	      ptr ++;
+	    *ptr = '\0';
 
-	    fprintf(stderr, "Status Code %s '%s'\n", first, second);
-            changed |= add_status_code(xml, first, second, xref, xrefname);
-            break;
+	    changed |= add_status_code(xml, logfile, first, second, xref, xrefname);
+	    break;
 
-        case IN_OBJECTS :
-            first = ptr;
+	case IN_OBJECTS :
+	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 
-            *ptr = '\0';
+	    *ptr = '\0';
 
-	    fprintf(stderr, "Object %s\n", first);
-            changed |= add_object(xml, first, xref, xrefname);
-            break;
+	    changed |= add_object(xml, logfile, first, xref, xrefname);
+	    break;
 
-        case IN_ATTR_GROUP_VALS :
-            if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
-              continue;
+	case IN_ATTR_GROUP_VALS :
+	    if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
+	      continue;
 
-            first = ptr;
+	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 
-            if (!*ptr)
-            {
-              fprintf(stderr,
-                      "register: Bad attribute group value definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    if (!*ptr)
+	    {
+	      fprintf(stderr,
+		      "Bad attribute group value definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
 
-            second = ptr;
-            if (!islower(*ptr & 255))
-            {
-              fprintf(stderr,
-                      "register: Bad attribute group value definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    second = ptr;
+	    if (!islower(*ptr & 255))
+	    {
+	      fprintf(stderr,
+		      "Bad attribute group value definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
-              ptr ++;
-            *ptr = '\0';
+	    while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
+	      ptr ++;
+	    *ptr = '\0';
 
-	    fprintf(stderr, "Attribute Group %s '%s'\n", first, second);
-            changed |= add_attr_group(xml, first, second, xref, xrefname);
-            break;
+	    changed |= add_attr_group(xml, logfile, first, second, xref, xrefname);
+	    break;
 
-        case IN_OUT_OF_BAND_VALS :
-            if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
-              continue;
+	case IN_OUT_OF_BAND_VALS :
+	    if (strncmp(ptr, "0x", 2) || strchr(ptr, ':'))
+	      continue;
 
-            first = ptr;
+	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
 
-            if (!*ptr)
-            {
-              fprintf(stderr,
-                      "register: Bad out-of-band value definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    if (!*ptr)
+	    {
+	      fprintf(stderr,
+		      "Bad out-of-band value definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (isspace(*ptr & 255))
-              *ptr++ = '\0';
+	    while (isspace(*ptr & 255))
+	      *ptr++ = '\0';
 
-            second = ptr;
-            if (!islower(*ptr & 255))
-            {
-              fprintf(stderr,
-                      "register: Bad out-of-band value definition on line %d.\n",
-                      linenum);
-              exit(1);
-            }
+	    second = ptr;
+	    if (!islower(*ptr & 255))
+	    {
+	      fprintf(stderr,
+		      "Bad out-of-band value definition on line %d.\n",
+		      linenum);
+	      exit(1);
+	    }
 
-            while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
-              ptr ++;
-            *ptr = '\0';
+	    while (*ptr && (islower(*ptr & 255) || *ptr == '-'))
+	      ptr ++;
+	    *ptr = '\0';
 
-	    fprintf(stderr, "Out-of-Band Value %s '%s'\n", first, second);
-            changed |= add_out_of_band(xml, first, second, xref, xrefname);
-            break;
+	    changed |= add_out_of_band(xml, logfile, first, second, xref, xrefname);
+	    break;
 
-        default :
-            break;
+	default :
+	    break;
       }
     }
   }
@@ -2205,10 +2317,10 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 
 static const char *			/* O - Whitespace to output */
 save_cb(mxml_node_t *node,		/* I - Current node */
-        int         where)		/* I - Where we are */
+	int	    where)		/* I - Where we are */
 {
   int	level;				/* Indentation level */
-  static const char *spaces = "                                        ";
+  static const char *spaces = "					       ";
 					/* 40 spaces */
 
 
@@ -2220,8 +2332,8 @@ save_cb(mxml_node_t *node,		/* I - Current node */
     const char *name = mxmlGetElement(node);
 
     if (name[0] == '!' || name[0] == '?' ||
-        !strcmp(name, "registry") || !strcmp(name, "record") || !strcmp(name, "range") ||
-        (!mxmlGetFirstChild(node) && strcmp(mxmlGetElement(mxmlGetParent(node)), "note")))
+	!strcmp(name, "registry") || !strcmp(name, "record") || !strcmp(name, "range") ||
+	(!mxmlGetFirstChild(node) && strcmp(mxmlGetElement(mxmlGetParent(node)), "note")))
       return ("\n");
     else
       return (NULL);
@@ -2259,9 +2371,9 @@ usage(const char *opt)			/* I - Pointer to option or NULL */
 
   puts("\nUsage: ./register options filename.xml [filename.txt]\n");
   puts("Options:");
-  puts("  -o newfile.xml            New XML file instead of replacing filename.xml");
-  puts("  -t Title                  Title of standard");
-  puts("  -x {rfcNNNN|URL}          URL or RFC for standard");
+  puts("  -o newfile.xml	    New XML file instead of replacing filename.xml");
+  puts("  -t Title		    Title of standard");
+  puts("  -x {rfcNNNN|URL}	    URL or RFC for standard");
   return (1);
 }
 
@@ -2272,10 +2384,10 @@ usage(const char *opt)			/* I - Pointer to option or NULL */
 
 static int				/* O - 1 if changed, 0 otherwise... */
 validate_registry(
-    mxml_node_t         *xml,		/* I - XML registry */
-    const char          *registry,	/* I - Registry to validate */
-    const char          *regname,	/* I - Name for message output */
-    int                 num_keys,	/* I - Number of sorting keys */
+    mxml_node_t		*xml,		/* I - XML registry */
+    const char		*registry,	/* I - Registry to validate */
+    const char		*regname,	/* I - Name for message output */
+    int			num_keys,	/* I - Number of sorting keys */
     const char * const *keys)		/* I - Sorting keys */
 {
   int		i,			/* Looping var */
@@ -2300,10 +2412,10 @@ validate_registry(
   */
 
   if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", registry,
-                                       MXML_DESCEND)) == NULL)
+				       MXML_DESCEND)) == NULL)
   {
-    fprintf(stderr, "register: Unable to find registry '%s' (%s) in XML file.\n",
-            registry, regname);
+    fprintf(stderr, "Unable to find registry '%s' (%s) in XML file.\n",
+	    registry, regname);
     exit(1);
   }
 
@@ -2352,15 +2464,15 @@ validate_registry(
   */
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST),
-           num_records = 0;
+				     NULL, NULL, MXML_DESCEND_FIRST),
+	   num_records = 0;
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND),
-           num_records ++);
+				     NULL, NULL, MXML_NO_DESCEND),
+	   num_records ++);
 
-  fprintf(stderr, "register: Registry '%s' (%s) has %d record%s.\n", registry,
-	  regname, num_records, num_records != 1 ? "s" : "");
+  if (Verbosity > 1)
+    printf("Registry '%s' (%s) has %d records.\n", registry, regname, num_records);
 
   if (num_records == 0)
     return (0);
@@ -2372,12 +2484,12 @@ validate_registry(
   */
 
   for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST),
-           record = records;
+				     NULL, NULL, MXML_DESCEND_FIRST),
+	   record = records;
        record_node;
        record_node = mxmlFindElement(record_node, registry_node, "record",
-                                     NULL, NULL, MXML_NO_DESCEND),
-           record ++)
+				     NULL, NULL, MXML_NO_DESCEND),
+	   record ++)
   {
     record->index = (int)(record - records);
     record->node  = record_node;
@@ -2385,33 +2497,33 @@ validate_registry(
     for (i = 0; i < num_keys; i ++)
     {
       key_node = mxmlFindElement(record_node, record_node, keys[i], NULL, NULL,
-                                 MXML_DESCEND_FIRST);
+				 MXML_DESCEND_FIRST);
       if (!key_node && !strcmp(keys[i], "name"))
       {
-        key_node = mxmlFindElement(record_node, record_node, "attribute",
-                                   NULL, NULL, MXML_DESCEND_FIRST);
+	key_node = mxmlFindElement(record_node, record_node, "attribute",
+				   NULL, NULL, MXML_DESCEND_FIRST);
 
-        if (key_node)
-        {
-          fprintf(stderr, "register: Fixing record for '%s' to use <name>.\n",
-                  mxmlGetOpaque(key_node));
-          mxmlSetElement(key_node, "name");
-          changed = 1;
-        }
+	if (key_node)
+	{
+	  fprintf(stderr, "Fixing record for '%s' to use <name>.\n",
+		  mxmlGetOpaque(key_node));
+	  mxmlSetElement(key_node, "name");
+	  changed = 1;
+	}
       }
       else if (!key_node && !strcmp(keys[i], "attribute"))
       {
-        key_node = mxmlFindElement(record_node, record_node, "name",
-                                   NULL, NULL, MXML_DESCEND_FIRST);
+	key_node = mxmlFindElement(record_node, record_node, "name",
+				   NULL, NULL, MXML_DESCEND_FIRST);
 
-        if (key_node)
-        {
-          fprintf(stderr,
-                  "register: Fixing record for '%s' to use <attribute>.\n",
-                  mxmlGetOpaque(key_node));
-          mxmlSetElement(key_node, "attribute");
-          changed = 1;
-        }
+	if (key_node)
+	{
+	  fprintf(stderr,
+		  "Fixing record for '%s' to use <attribute>.\n",
+		  mxmlGetOpaque(key_node));
+	  mxmlSetElement(key_node, "attribute");
+	  changed = 1;
+	}
       }
 
       record->keys[i] = mxmlGetOpaque(key_node);
@@ -2423,7 +2535,7 @@ validate_registry(
   */
 
   qsort(records, num_records, sizeof(reg_record_t),
-        (int (*)(const void *, const void *))compare_record);
+	(int (*)(const void *, const void *))compare_record);
 
   for (i = 0, record = records; i < num_records; i ++, record ++)
     if (record->index != i)
@@ -2431,20 +2543,20 @@ validate_registry(
 
   if (i < num_records)
   {
-    fprintf(stderr, "register: Fixing sorting of records in '%s' (%s).\n",
-            registry, regname);
+    fprintf(stderr, "Fixing sorting of records in '%s' (%s).\n",
+	    registry, regname);
     changed = 1;
 
     last_node = mxmlFindElement(registry_node, registry_node, "note",
-                                NULL, NULL, MXML_DESCEND_FIRST);
+				NULL, NULL, MXML_DESCEND_FIRST);
 
     for (i = 0, record = records; i < num_records; i ++, record ++)
     {
       if (last_node)
-        mxmlAdd(registry_node, MXML_ADD_AFTER, last_node, record->node);
+	mxmlAdd(registry_node, MXML_ADD_AFTER, last_node, record->node);
       else
-        mxmlAdd(registry_node, MXML_ADD_BEFORE, MXML_ADD_TO_PARENT,
-                record->node);
+	mxmlAdd(registry_node, MXML_ADD_BEFORE, MXML_ADD_TO_PARENT,
+		record->node);
 
       last_node = record->node;
     }
@@ -2462,7 +2574,7 @@ validate_registry(
 
 static const char *			/* O - Name or NULL */
 xref_name(const char *xref,		/* I - URL or "rfcNNNN" reference */
-          const char *title)		/* I - Title */
+	  const char *title)		/* I - Title */
 {
   char	*ptr;				/* Pointer into URL/name */
   static char	name[128];		/* Name */
