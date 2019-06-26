@@ -1,7 +1,7 @@
 /*
  * Program to add registration info to the IANA IPP registry.
  *
- * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2017 by Michael R Sweet
  *
  * Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -2212,7 +2212,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
 					/* 40 spaces */
 
 
-  if (node->parent && !strcmp(node->parent->value.element.name, "note"))
+  if (mxmlGetParent(node) && !strcmp(mxmlGetElement(mxmlGetParent(node)), "note"))
     return (NULL);
 
   if (where == MXML_WS_AFTER_OPEN)
@@ -2221,7 +2221,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
 
     if (name[0] == '!' || name[0] == '?' ||
         !strcmp(name, "registry") || !strcmp(name, "record") || !strcmp(name, "range") ||
-        (!node->child && strcmp(node->parent->value.element.name, "note")))
+        (!mxmlGetFirstChild(node) && strcmp(mxmlGetElement(mxmlGetParent(node)), "note")))
       return ("\n");
     else
       return (NULL);
@@ -2236,7 +2236,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
   else if (where == MXML_WS_AFTER_CLOSE)
     return ("\n");
 
-  for (level = -4; node; node = node->parent, level += 2);
+  for (level = -4; node; node = mxmlGetParent(node), level += 2);
 
   if (level <= 0)
     return (NULL);

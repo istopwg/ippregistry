@@ -6,7 +6,7 @@
  *    ./regtosm [-a attribute-list] [-n namespace-url] [-s service-name]
  *              [-v version] filename.xml output-directory
  *
- * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2017 by Michael R Sweet
  *
  * Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -1915,7 +1915,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
         if (!strcmp(mxmlGetElement(node), "xs:documentation"))
           return (NULL);
     case MXML_WS_BEFORE_OPEN :
-	for (level = -4; node; node = node->parent, level += 2);
+	for (level = -4; node; node = mxmlGetParent(node), level += 2);
 
 	if (level <= 0)
 	  return (NULL);
