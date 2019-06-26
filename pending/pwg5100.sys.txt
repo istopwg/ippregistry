@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190130.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190626.pdf
 
 Object Name                     Reference
 -----------                     ---------
