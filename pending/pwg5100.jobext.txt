@@ -2,8 +2,8 @@ https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190624.pdf
 
 Document Status attributes:	Reference
 ---------------------------	---------
-document-format-details(deprecated)(collection)	[PWG5100.7]
-document-format-details-detected(deprecated)(collection)	[PWG5100.7]
+document-format-details(deprecated) (collection)	[PWG5100.7]
+document-format-details-detected(deprecated) (collection)	[PWG5100.7]
 document-format-supplied(obsolete) (mimeMediaType)	[PWG5100.7]
 document-format-version-supplied(obsolete) (text(127))	[PWG5100.7]
 document-message-supplied(obsolete) (text(MAX))	[PWG5100.7]
@@ -23,8 +23,8 @@ Job Status attributes:	Reference
 compression-supplied(obsolete) (type2 keyword)	[PWG5100.7]
 document-charset-supplied(obsolete) (charset)	[PWG5100.7]
 document-digital-signature-supplied(obsolete) (type2 keyword)	[PWG5100.7]
-document-format-details(deprecated)(collection)	[PWG5100.7]
-document-format-details-detected(deprecated)(collection)	[PWG5100.7]
+document-format-details(deprecated) (collection)	[PWG5100.7]
+document-format-details-detected(deprecated) (collection)	[PWG5100.7]
 document-format-details-supplied(obsolete) (1setOf collection)	[PWG5100.7]
 document-format-supplied(obsolete) (mimeMediaType)	[PWG5100.7]
 document-format-version-supplied(obsolete) (text(127))	[PWG5100.7]
