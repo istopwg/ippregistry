@@ -2320,7 +2320,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
 	int	    where)		/* I - Where we are */
 {
   int	level;				/* Indentation level */
-  static const char *spaces = "					       ";
+  static const char *spaces = "                                        ";
 					/* 40 spaces */
 
 
@@ -2348,7 +2348,8 @@ save_cb(mxml_node_t *node,		/* I - Current node */
   else if (where == MXML_WS_AFTER_CLOSE)
     return ("\n");
 
-  for (level = -4; node; node = mxmlGetParent(node), level += 2);
+  for (level = -4; node; node = mxmlGetParent(node))
+    level += 2;
 
   if (level <= 0)
     return (NULL);
