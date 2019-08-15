@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190624.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf
 
 Document Status attributes:	Reference
 ---------------------------	---------

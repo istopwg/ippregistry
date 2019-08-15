@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604.pdf
+https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604-5199.7.pdf
 
 Printer Description attributes:	Reference
 ------------------------------	---------
