@@ -1,8 +1,0 @@
-https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf
-
-
-Attributes (attribute syntax)
-  Keyword Attribute Value	Reference
-  -----------------------	---------
-media (type2 keyword | name(MAX))	[RFC8011]
-  jpn_chou40_90x225mm			[PWG5101.1]

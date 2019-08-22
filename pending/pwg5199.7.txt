@@ -1,5 +1,0 @@
-https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604-5199.7.pdf
-
-Printer Description attributes:	Reference
-------------------------------	---------
-pwg-safe-gcode-supported (1setOf text(MAX))	[SAFEGCODE]
