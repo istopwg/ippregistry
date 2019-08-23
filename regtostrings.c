@@ -3,7 +3,7 @@
  *
  * Usage:
  *
- *    ./regtostrings [--po] filename.xml >filename.strings
+ *    ./regtostrings [--code] [--po] filename.xml >filename.ext
  *
  * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2019 by Michael R Sweet
