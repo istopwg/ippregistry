@@ -1,0 +1,9 @@
+https://ftp.pwg.org/pub/pwg/candidates/cs-wimspower10-20110214-5106.4.pdf
+
+Attribute (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+printer-state-reasons		[RFC8011]
+  standby			[PWG5106.4]
+  suspend			[PWG5106.4]
+  hibernate			[PWG5106.4]
