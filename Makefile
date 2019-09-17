@@ -3,7 +3,7 @@
 #
 #   http://www.msweet.org/projects.php/mini-xml
 #
-# Copyright © 2018 by The IEEE-ISTO Printer Working Group.
+# Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
 # Copyright © 2008-2018 by Michael R Sweet
 #
 # Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -32,6 +32,9 @@ regtosm:	regtosm.c ipp-registry.h
 
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
+
+regtostrings-google:	regtostrings-google.c ipp-registry.h ipp-strings.h
+	cc $(CFLAGS) -o regtostrings-google regtostrings-google.c -lmxml -lcups
 
 strings:	localizations/ipp.c localizations/ipp.pot localizations/ipp.strings
 
