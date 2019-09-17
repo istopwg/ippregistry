@@ -25,6 +25,7 @@ typedef struct
 static int		ipp_strings_sorted = 0;
 static ipp_loc_t	ipp_strings[] =
 {
+  { "accuracy-units", "Units" },
   { "accuracy-units.mm", "Millimeters" },
   { "accuracy-units.nm", "Nanometers" },
   { "accuracy-units.um", "Micrometers" },
@@ -37,24 +38,22 @@ static ipp_loc_t	ipp_strings[] =
   { "charge-info-message", "Print Job Cost" },
   { "coating", "Coat Sheets" },
   { "coating-sides", "Add Coating To" },
-  { "coating-sides.both", "Front and Back" },
+  { "coating-sides.both", "Front and back" },
   { "coating-type", "Type of Coating" },
   { "confirmation-sheet-print", "Print Confirmation Sheet" },
   { "cover-back", "Back Cover" },
   { "cover-front", "Front Cover" },
   { "cover-type", "Printed Cover" },
-  { "cover-type.print-back", "Back Only" },
-  { "cover-type.print-both", "Front and Back" },
-  { "cover-type.print-front", "Front Only" },
+  { "cover-type.print-back", "Back only" },
+  { "cover-type.print-both", "Front and back" },
+  { "cover-type.print-front", "Front only" },
   { "cover-type.print-none", "None" },
   { "covering", "Cover Output" },
   { "covering-name", "Add Cover" },
-  { "document-copies", "Copies" },
-  { "document-state-reasons", "Detailed Document State" },
-  { "finishing-template.trim-after-copies", "Trim After Every Set" },
-  { "finishing-template.trim-after-documents", "Trim After Every Document" },
-  { "finishing-template.trim-after-job", "Trim After Job" },
-  { "finishing-template.trim-after-pages", "Trim After Every Page" },
+  { "finishing-template.trim-after-copies", "Cut after every set" },
+  { "finishing-template.trim-after-documents", "Cut after every document" },
+  { "finishing-template.trim-after-job", "Cut after job" },
+  { "finishing-template.trim-after-pages", "Cut after every page" },
   { "folding", "Fold" },
   { "folding-direction", "Fold Direction" },
   { "folding-offset", "Fold Position" },
@@ -67,9 +66,9 @@ static ipp_loc_t	ipp_strings[] =
   { "input-color-mode.cmyk_16", "16-bit CMYK" },
   { "input-color-mode.cmyk_8", "8-bit CMYK" },
   { "input-color-mode.color_8", "8-bit Color" },
-  { "input-color-mode.monochrome_16", "16-bit Monochrome" },
-  { "input-color-mode.monochrome_4", "4-bit Monochrome" },
-  { "input-color-mode.monochrome_8", "8-bit Monochrome" },
+  { "input-color-mode.monochrome_16", "16-bit monochrome" },
+  { "input-color-mode.monochrome_4", "4-bit monochrome" },
+  { "input-color-mode.monochrome_8", "8-bit monochrome" },
   { "input-color-mode.rgb_16", "16-bit RGB" },
   { "input-color-mode.rgba_16", "16-bit RGBA" },
   { "input-color-mode.rgba_8", "8-bit RGBA" },
@@ -78,15 +77,10 @@ static ipp_loc_t	ipp_strings[] =
   { "input-scan-regions", "Scan Regions" },
   { "input-sides", "2-Sided Scanning" },
   { "input-source.adf", "Automatic Document Feeder" },
-  { "job-accounting-sheets-type", "Type of Job Accounting Sheets" },
-  { "job-collation-type", "Collate Copies" },
-  { "job-copies", "Copies" },
-  { "job-cover-back", "Back Cover" },
-  { "job-cover-front", "Front Cover" },
   { "job-delay-output-until", "Delay Output Until" },
   { "job-delay-output-until.day-time", "Daytime" },
   { "job-delay-output-until.indefinite", "Released" },
-  { "job-delay-output-until.no-delay-output", "No Delay" },
+  { "job-delay-output-until.no-delay-output", "No delay" },
   { "job-delay-output-until-time", "Delay Output Until" },
   { "job-error-action", "On Error" },
   { "job-error-sheet", "Print Error Sheet" },
@@ -99,11 +93,10 @@ static ipp_loc_t	ipp_strings[] =
   { "job-name", "Title" },
   { "job-sheets", "Banner Page" },
   { "job-sheets-col", "Banner Page" },
-  { "job-sheets.first-print-stream-page", "First Page in Document" },
-  { "job-sheets.job-both-sheet", "Start and End Sheets" },
-  { "job-sheets.job-end-sheet", "End Sheet" },
-  { "job-sheets.job-start-sheet", "Start Sheet" },
-  { "job-state-reasons", "Detailed Job State" },
+  { "job-sheets.first-print-stream-page", "First page in document" },
+  { "job-sheets.job-both-sheet", "Start and end sheets" },
+  { "job-sheets.job-end-sheet", "End sheet" },
+  { "job-sheets.job-start-sheet", "Start sheet" },
   { "job-state-reasons.aborted-by-system", "Stopping" },
   { "job-state-reasons.compression-error", "Decompression error" },
   { "job-state-reasons.hold-new-jobs", "Printer holding new jobs" },
@@ -133,12 +126,12 @@ static ipp_loc_t	ipp_strings[] =
   { "job-state-reasons.service-off-line", "Service offline" },
   { "laminating", "Laminate Pages" },
   { "laminating-sides", "Laminate" },
-  { "laminating-sides.back", "Back Only" },
-  { "laminating-sides.both", "Front and Back" },
-  { "laminating-sides.front", "Front Only" },
+  { "laminating-sides.back", "Back only" },
+  { "laminating-sides.both", "Front and back" },
+  { "laminating-sides.front", "Front only" },
   { "laminating-type", "Type of Lamination" },
   { "material-amount", "Amount of Material" },
-  { "material-amount-units", "Amount Units" },
+  { "material-amount-units", "Units" },
   { "material-amount-units.g", "Grams" },
   { "material-amount-units.kg", "Kilograms" },
   { "material-amount-units.l", "Liters" },
@@ -152,13 +145,13 @@ static ipp_loc_t	ipp_strings[] =
   { "material-purpose.shell", "Shell" },
   { "material-purpose.support", "Supports" },
   { "material-rate", "Feed Rate" },
-  { "material-rate-units", "Feed Rate Units" },
+  { "material-rate-units", "Units" },
   { "material-rate-units.mg_second", "Milligrams per second" },
   { "material-rate-units.ml_second", "Milliliters per second" },
   { "material-rate-units.mm_second", "Millimeters per second" },
   { "material-type.abs", "ABS" },
-  { "material-type.abs-carbon-fiber", "Carbon Fiber ABS" },
-  { "material-type.abs-carbon-nanotube", "Carbon Nanotube ABS" },
+  { "material-type.abs-carbon-fiber", "Carbon fiber ABS" },
+  { "material-type.abs-carbon-nanotube", "Carbon nanotube ABS" },
   { "material-type.pla", "PLA" },
   { "material-type.pla-conductive", "Conductive PLA" },
   { "material-type.pla-flexible", "Flexible PLA" },
@@ -167,72 +160,73 @@ static ipp_loc_t	ipp_strings[] =
   { "material-type.pla-stone", "Stone PLA" },
   { "material-type.pla-wood", "Wood PLA" },
   { "material-type.pva-dissolvable", "Dissolvable PVA" },
+  { "media", "Media Size" },
   { "media-back-coating", "Back Coating of Media" },
+  { "media-col", "Media" },
   { "media-front-coating", "Front Coating of Media" },
   { "media-grain.x-direction", "Cross-Feed Direction" },
   { "media-grain.y-direction", "Feed Direction" },
-  { "media-input-tray-check", "Force Media" },
   { "media-pre-printed.blank", "Blank" },
   { "media-pre-printed.letter-head", "Letterhead" },
   { "media-pre-printed", "Pre-printed Media" },
   { "media-recycled", "Recycled Media" },
   { "media-size", "Media Dimensions" },
   { "media-size-name", "Media Name" },
-  { "media-source.by-pass-tray", "By-pass Tray" },
+  { "media-source.by-pass-tray", "Multipurpose tray" },
   { "media-tooth", "Media Tooth (Texture)" },
-  { "media-tooth.calendared", "Extra Smooth" },
+  { "media-tooth.calendared", "Extra smooth" },
   { "media-tooth.uncalendared", "Rough" },
   { "media-type.cd", "CD" },
-  { "media-type.disc", "Optical Disc" },
-  { "media-type.disc-glossy", "Glossy Optical Disc" },
-  { "media-type.disc-high-gloss", "High Gloss Optical Disc" },
-  { "media-type.disc-matte", "Matte Optical Disc" },
-  { "media-type.disc-satin", "Satin Optical Disc" },
-  { "media-type.disc-semi-gloss", "Semi-Gloss Optical Disc" },
+  { "media-type.disc", "Optical disc" },
+  { "media-type.disc-glossy", "Glossy optical disc" },
+  { "media-type.disc-high-gloss", "High gloss optical disc" },
+  { "media-type.disc-matte", "Matte optical disc" },
+  { "media-type.disc-satin", "Satin optical disc" },
+  { "media-type.disc-semi-gloss", "Semi-gloss optical disc" },
   { "media-type.dvd", "DVD" },
-  { "media-type.envelope-archival", "Archival Envelope" },
-  { "media-type.envelope-bond", "Bond Envelope" },
-  { "media-type.envelope-coated", "Coated Envelope" },
-  { "media-type.envelope-colored", "Colored Envelope" },
-  { "media-type.envelope-cotton", "Cotton Envelope" },
-  { "media-type.envelope-fine", "Fine Envelope" },
-  { "media-type.envelope-heavyweight", "Heavyweight Envelope" },
-  { "media-type.envelope-inkjet", "Inkjet Envelope" },
-  { "media-type.envelope-lightweight", "Lightweight Envelope" },
-  { "media-type.envelope-plain", "Plain Envelope" },
-  { "media-type.envelope-preprinted", "Preprinted Envelope" },
-  { "media-type.envelope-window", "Windowed Envelope" },
+  { "media-type.envelope-archival", "Archival envelope" },
+  { "media-type.envelope-bond", "Bond envelope" },
+  { "media-type.envelope-coated", "Coated envelope" },
+  { "media-type.envelope-colored", "Colored envelope" },
+  { "media-type.envelope-cotton", "Cotton envelope" },
+  { "media-type.envelope-fine", "Fine envelope" },
+  { "media-type.envelope-heavyweight", "Heavyweight envelope" },
+  { "media-type.envelope-inkjet", "Inkjet envelope" },
+  { "media-type.envelope-lightweight", "Lightweight envelope" },
+  { "media-type.envelope-plain", "Plain envelope" },
+  { "media-type.envelope-preprinted", "Preprinted envelope" },
+  { "media-type.envelope-window", "Windowed envelope" },
   { "media-type.fabric", "Fabric" },
-  { "media-type.fabric-archival", "Archival Fabric" },
-  { "media-type.fabric-glossy", "Glossy Fabric" },
-  { "media-type.fabric-high-gloss", "High Gloss Fabric" },
-  { "media-type.fabric-matte", "Matte Fabric" },
-  { "media-type.fabric-semi-gloss", "Semi-Gloss Fabric" },
-  { "media-type.fabric-waterproof", "Waterproof Fabric" },
-  { "media-type.labels-colored", "Colored Labels" },
-  { "media-type.labels-glossy", "Glossy Labels" },
-  { "media-type.labels-high-gloss", "High Gloss Labels" },
-  { "media-type.labels-inkjet", "Inkjet Labels" },
-  { "media-type.labels-matte", "Matte Labels" },
-  { "media-type.labels-permanent", "Permanent Labels" },
-  { "media-type.labels-satin", "Satin Labels" },
-  { "media-type.labels-security", "Security Labels" },
-  { "media-type.labels-semi-gloss", "Semi-Gloss Labels" },
-  { "media-type.photographic", "Photo Paper" },
-  { "media-type.photographic-film", "Photo Film" },
-  { "media-type.photographic-glossy", "Glossy Photo Paper" },
-  { "media-type.photographic-high-gloss", "High Gloss Photo Paper" },
-  { "media-type.photographic-matte", "Matte Photo Paper" },
-  { "media-type.photographic-satin", "Satin Photo Paper" },
-  { "media-type.photographic-semi-gloss", "Semi-Gloss Photo Paper" },
-  { "media-type.stationery-coated", "Coated Paper" },
-  { "media-type.stationery-fine", "Vellum Paper" },
-  { "media-type.stationery-heavyweight", "Heavyweight Paper" },
-  { "media-type.stationery-inkjet", "Stationery Inkjet Paper" },
+  { "media-type.fabric-archival", "Archival fabric" },
+  { "media-type.fabric-glossy", "Glossy fabric" },
+  { "media-type.fabric-high-gloss", "High gloss fabric" },
+  { "media-type.fabric-matte", "Matte fabric" },
+  { "media-type.fabric-semi-gloss", "Semi-gloss fabric" },
+  { "media-type.fabric-waterproof", "Waterproof fabric" },
+  { "media-type.labels-colored", "Colored labels" },
+  { "media-type.labels-glossy", "Glossy labels" },
+  { "media-type.labels-high-gloss", "High gloss labels" },
+  { "media-type.labels-inkjet", "Inkjet labels" },
+  { "media-type.labels-matte", "Matte labels" },
+  { "media-type.labels-permanent", "Permanent labels" },
+  { "media-type.labels-satin", "Satin labels" },
+  { "media-type.labels-security", "Security labels" },
+  { "media-type.labels-semi-gloss", "Semi-gloss labels" },
+  { "media-type.photographic", "Photo paper" },
+  { "media-type.photographic-film", "Photo film" },
+  { "media-type.photographic-glossy", "Glossy photo paper" },
+  { "media-type.photographic-high-gloss", "High gloss photo paper" },
+  { "media-type.photographic-matte", "Matte photo paper" },
+  { "media-type.photographic-satin", "Satin photo paper" },
+  { "media-type.photographic-semi-gloss", "Semi-gloss photo paper" },
+  { "media-type.stationery-coated", "Coated paper" },
+  { "media-type.stationery-fine", "Vellum paper" },
+  { "media-type.stationery-heavyweight", "Heavyweight paper" },
+  { "media-type.stationery-inkjet", "Stationery inkjet paper" },
   { "media-type.stationery-letterhead", "Letterhead" },
-  { "media-type.stationery-lightweight", "Lightweight Paper" },
-  { "media-type.stationery-preprinted", "Preprinted Paper" },
-  { "media-type.stationery-prepunched", "Punched Paper" },
+  { "media-type.stationery-lightweight", "Lightweight paper" },
+  { "media-type.stationery-preprinted", "Preprinted paper" },
+  { "media-type.stationery-prepunched", "Punched paper" },
   { "media-weight-metric", "Media Weight (grams per m²)" },
   { "media.choice_iso_a4_210x297mm_na_letter_8.5x11in", "A4 or US Letter" },
   { "media.iso_b5_176x250mm", "Envelope B5" },
@@ -307,39 +301,34 @@ static ipp_loc_t	ipp_strings[] =
   { "media.prc_8_120x309mm", "Envelope chinese #8" },
   { "media.roc_16k_7.75x10.75in", "ROC 16k" },
   { "media.roc_8k_10.75x15.5in", "ROC 8k" },
-  { "multiple-operation-time-out-action", "On Timeout" },
-  { "notify-recipient-uri", "Notify Recipient" },
-  { "notify-subscribed-event", "Notify Event" },
   { "number-up", "Number-Up" },
   { "orientation-requested", "Orientation" },
   { "output-attributes", "Scanned Image Options" },
   { "output-bin", "Output Tray" },
   { "output-compression-quality-factor", "Scanned Image Quality" },
-  { "page-order-received.1-to-n-order", "1 To N" },
-  { "page-order-received.n-to-1-order", "N To 1" },
+  { "page-order-received.1-to-n-order", "1 to N" },
+  { "page-order-received.n-to-1-order", "N to 1" },
   { "platform-shape.ellipse", "Round" },
   { "post-dial-string", "Post-Dial String" },
   { "pre-dial-string", "Pre-Dial String" },
   { "presentation-direction-number-up", "Number-Up Layout" },
-  { "presentation-direction-number-up.tobottom-toleft", "Top-bottom, Right-left" },
-  { "presentation-direction-number-up.tobottom-toright", "Top-bottom, Left-right" },
-  { "presentation-direction-number-up.toleft-tobottom", "Right-left, Top-bottom" },
-  { "presentation-direction-number-up.toleft-totop", "Right-left, Bottom-top" },
-  { "presentation-direction-number-up.toright-tobottom", "Left-right, Top-bottom" },
-  { "presentation-direction-number-up.toright-totop", "Left-right, Bottom-top" },
-  { "presentation-direction-number-up.totop-toleft", "Bottom-top, Right-left" },
-  { "presentation-direction-number-up.totop-toright", "Bottom-top, Left-right" },
+  { "presentation-direction-number-up.tobottom-toleft", "Top-bottom, right-left" },
+  { "presentation-direction-number-up.tobottom-toright", "Top-bottom, left-right" },
+  { "presentation-direction-number-up.toleft-tobottom", "Right-left, top-bottom" },
+  { "presentation-direction-number-up.toleft-totop", "Right-left, bottom-top" },
+  { "presentation-direction-number-up.toright-tobottom", "Left-right, top-bottom" },
+  { "presentation-direction-number-up.toright-totop", "Left-right, bottom-top" },
+  { "presentation-direction-number-up.totop-toleft", "Bottom-top, right-left" },
+  { "presentation-direction-number-up.totop-toright", "Bottom-top, left-right" },
   { "print-color-mode.bi-level", "Text" },
   { "print-color-mode.process-bi-level", "Process Text" },
   { "print-content-optimize", "Print Optimization" },
   { "print-content-optimize.graphic", "Graphics" },
   { "print-content-optimize.text-and-graphic", "Text and Graphics" },
-  { "print-rendering-intent.relative-bpc", "Relative w/Black Point Compensation" },
+  { "print-rendering-intent.relative-bpc", "Relative w/black point compensation" },
   { "print-scaling.auto-fit", "Auto-fit" },
-  { "print-supports.material", "With Specified Material" },
-  { "printer-message-from-operator", "Message From Operator" },
+  { "print-supports.material", "With specified material" },
   { "printer-resolution", "Print Resolution" },
-  { "printer-state-reasons", "Detailed Printer State" },
   { "printer-state-reasons.alert-removal-of-binary-change-entry", "Old Alerts Have Been Removed" },
   { "printer-state-reasons.bander-life-almost-over", "Replace bander soon" },
   { "printer-state-reasons.bander-life-over", "Replace bander" },
@@ -523,6 +512,7 @@ static ipp_loc_t	ipp_strings[] =
   { "printer-state-reasons.puncher-timing-failure", "Puncher failed" },
   { "printer-state-reasons.puncher-under-temperature", "Puncher temperature low" },
   { "printer-state-reasons.scan-media-path-failure", "Scanner ADF failed" },
+  { "printer-state-reasons.scan-media-path-input-empty", "Scanner ADF empty" },
   { "printer-state-reasons.scan-media-path-input-feed-error", "Scanner ADF load error " },
   { "printer-state-reasons.scan-media-path-input-jam", "Scanner ADF jammed" },
   { "printer-state-reasons.scan-media-path-input-request", "Load document" },
@@ -650,20 +640,14 @@ static ipp_loc_t	ipp_strings[] =
   { "printer-state-reasons.wrapper-thermistor-failure", "Wrapper temperature sensor failed" },
   { "printer-state-reasons.wrapper-timing-failure", "Wrapper failed" },
   { "printer-state-reasons.wrapper-under-temperature", "Wrapper temperature low" },
-  { "printer-up-time", "Printer Uptime" },
-  { "profile-uri-actual", "Actual Profile URI" },
   { "punching-reference-edge", "Punch Edge" },
   { "retry-time-out", "Retry Timeout" },
-  { "save-disposition.print-save", "Print and Save" },
   { "separator-sheets-type", "Type of Separator Sheets" },
-  { "separator-sheets-type.both-sheets", "Start and End Sheets" },
-  { "sheet-collate", "Collate Copies" },
-  { "sheet-collate.collated", "Yes" },
-  { "sheet-collate.uncollated", "No" },
+  { "separator-sheets-type.both-sheets", "Start and end sheets" },
   { "sides", "2-Sided Printing" },
   { "sides.one-sided", "Off" },
-  { "sides.two-sided-long-edge", "On (Portrait)" },
-  { "sides.two-sided-short-edge", "On (Landscape)" },
+  { "sides.two-sided-long-edge", "On (portrait)" },
+  { "sides.two-sided-short-edge", "On (landscape)" },
   { "stitching", "Staple" },
   { "stitching-method", "Staple Method" },
   { "stitching-reference-edge", "Staple Edge" },
@@ -673,36 +657,10 @@ static ipp_loc_t	ipp_strings[] =
   { "trimming-reference-edge", "Cut Edge" },
   { "trimming-type", "Type of Cut" },
   { "trimming-when", "Cut After" },
-  { "trimming-when.after-documents", "Every Document" },
+  { "trimming-when.after-documents", "Every document" },
   { "trimming-when.after-job", "Job" },
-  { "trimming-when.after-sets", "Every Set" },
-  { "trimming-when.after-sheets", "Every Page" }
-  
-  
-    { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-  { "printer-state-reasons.", "" },
-
+  { "trimming-when.after-sets", "Every set" },
+  { "trimming-when.after-sheets", "Every page" }
 };
 
 
@@ -921,7 +879,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 14;
 
-      strlcpy(bufptr, "Envelope Maker ", bufend - bufptr + 1);
+      strlcpy(bufptr, "Envelope maker ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -931,7 +889,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 11;
 
-      strlcpy(bufptr, "2-hole Punch ", bufend - bufptr + 1);
+      strlcpy(bufptr, "2-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -941,7 +899,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 13;
 
-      strlcpy(bufptr, "3-hole Punch ", bufend - bufptr + 1);
+      strlcpy(bufptr, "3-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -951,7 +909,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 11;
 
-      strlcpy(bufptr, "4-hole Punch ", bufend - bufptr + 1);
+      strlcpy(bufptr, "4-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -961,7 +919,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 15;
 
-      strlcpy(bufptr, "Multi-hole Punch ", bufend - bufptr + 1);
+      strlcpy(bufptr, "Multi-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -971,7 +929,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 12;
 
-      strlcpy(bufptr, "2 Staples on ", bufend - bufptr + 1);
+      strlcpy(bufptr, "2 staples on ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -981,7 +939,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 14;
 
-      strlcpy(bufptr, "3 Staples on ", bufend - bufptr + 1);
+      strlcpy(bufptr, "3 staples on ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -1019,7 +977,10 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
         break;
     }
 
-    *bufptr++ = toupper(*name++ & 255);
+    if (bufptr > buffer)
+      *bufptr++ = *name++;
+    else
+      *bufptr++ = toupper(*name++ & 255);
 
     while (*name && bufptr < bufend)
     {
