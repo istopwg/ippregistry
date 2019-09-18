@@ -10,14 +10,14 @@
 # information.
 #
 
-CFLAGS	=	-g -Os -Wall -I$(HOME)/oss/include -I/usr/local/include -L$(HOME)/oss/lib -L/usr/local/lib
+CFLAGS	=	-g -Wall -I$(HOME)/oss/include -I/usr/local/include -L$(HOME)/oss/lib -L/usr/local/lib
 TARGETS	=	register regtoc regtosm regtostrings
 
 all:	$(TARGETS)
 
 clean:
 	/bin/rm -f $(TARGETS)
-	for file i $(TARGETS); do \
+	for file in $(TARGETS); do \
 		test -d $$file.dSYM && /bin/rm -rf $$file.dSYM; \
 	done
 
@@ -46,7 +46,7 @@ preview:
 .PHONY: iana-ipp-registrations.xml
 
 iana-ipp-registrations.xml:
-	curl -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
+	curl -z $@ -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
 
 localizations/ipp.c:	regtostrings iana-ipp-registrations.xml
 	./regtostrings --code iana-ipp-registrations.xml >localizations/ipp.c

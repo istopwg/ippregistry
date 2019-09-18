@@ -50,16 +50,24 @@ static ipp_loc_t	ipp_strings[] =
   { "cover-type.print-none", "None" },
   { "covering", "Cover Output" },
   { "covering-name", "Add Cover" },
+  { "finishing-template.fold-half-z", "Half Z fold" },
+  { "finishing-template.fold-engineering-z", "Engineering Z fold" },
+  { "finishing-template.trim", "Cut" },
   { "finishing-template.trim-after-copies", "Cut after every set" },
   { "finishing-template.trim-after-documents", "Cut after every document" },
   { "finishing-template.trim-after-job", "Cut after job" },
   { "finishing-template.trim-after-pages", "Cut after every page" },
+  { "finishings.101", "Engineering Z fold" },
+  { "finishings.11", "Cut" },
+  { "finishings.60", "Cut after every page" },
+  { "finishings.61", "Cut after every document" },
+  { "finishings.62", "Cut after every set" },
+  { "finishings.63", "Cut after job" },
+  { "finishings.94", "Half Z fold" },
   { "folding", "Fold" },
   { "folding-direction", "Fold Direction" },
   { "folding-offset", "Fold Position" },
   { "folding-reference-edge", "Fold Edge" },
-  { "font-name-requested", "Font Name" },
-  { "font-size-requested", "Font Size" },
   { "input-attributes", "Scanner Options" },
   { "input-color-mode", "Scanning Mode" },
   { "input-color-mode.bi-level", "Text" },
@@ -81,7 +89,6 @@ static ipp_loc_t	ipp_strings[] =
   { "job-delay-output-until.day-time", "Daytime" },
   { "job-delay-output-until.indefinite", "Released" },
   { "job-delay-output-until.no-delay-output", "No delay" },
-  { "job-delay-output-until-time", "Delay Output Until" },
   { "job-error-action", "On Error" },
   { "job-error-sheet", "Print Error Sheet" },
   { "job-error-sheet-type", "Type of Error Sheet" },
@@ -89,10 +96,12 @@ static ipp_loc_t	ipp_strings[] =
   { "job-hold-until", "Hold Until" },
   { "job-hold-until.day-time", "Daytime" },
   { "job-hold-until.indefinite", "Released" },
-  { "job-hold-until-time", "Hold Until" },
   { "job-name", "Title" },
-  { "job-sheets", "Banner Page" },
-  { "job-sheets-col", "Banner Page" },
+  { "job-retain-until", "Retain Job" },
+  { "job-retain-until.indefinite", "Forever" },
+  { "job-retain-until.none", "Never" },
+  { "job-sheets", "Banner Pages" },
+  { "job-sheets-col", "Banner Pages" },
   { "job-sheets.first-print-stream-page", "First page in document" },
   { "job-sheets.job-both-sheet", "Start and end sheets" },
   { "job-sheets.job-end-sheet", "End sheet" },
@@ -152,8 +161,10 @@ static ipp_loc_t	ipp_strings[] =
   { "material-type.abs", "ABS" },
   { "material-type.abs-carbon-fiber", "Carbon fiber ABS" },
   { "material-type.abs-carbon-nanotube", "Carbon nanotube ABS" },
+  { "material-type.pet", "PET" },
   { "material-type.pla", "PLA" },
   { "material-type.pla-conductive", "Conductive PLA" },
+  { "material-type.pla-dissolvable", "Dissolvable PLA" },
   { "material-type.pla-flexible", "Flexible PLA" },
   { "material-type.pla-magnetic", "Magnetic PLA" },
   { "material-type.pla-steel", "Steel PLA" },
@@ -168,7 +179,8 @@ static ipp_loc_t	ipp_strings[] =
   { "media-grain.y-direction", "Feed Direction" },
   { "media-pre-printed.blank", "Blank" },
   { "media-pre-printed.letter-head", "Letterhead" },
-  { "media-pre-printed", "Pre-printed Media" },
+  { "media-pre-printed.pre-printed", "Preprinted" },
+  { "media-pre-printed", "Media Markings" },
   { "media-recycled", "Recycled Media" },
   { "media-size", "Media Dimensions" },
   { "media-size-name", "Media Name" },
@@ -306,9 +318,6 @@ static ipp_loc_t	ipp_strings[] =
   { "output-attributes", "Scanned Image Options" },
   { "output-bin", "Output Tray" },
   { "output-compression-quality-factor", "Scanned Image Quality" },
-  { "page-order-received.1-to-n-order", "1 to N" },
-  { "page-order-received.n-to-1-order", "N to 1" },
-  { "platform-shape.ellipse", "Round" },
   { "post-dial-string", "Post-Dial String" },
   { "pre-dial-string", "Pre-Dial String" },
   { "presentation-direction-number-up", "Number-Up Layout" },
@@ -324,7 +333,7 @@ static ipp_loc_t	ipp_strings[] =
   { "print-color-mode.process-bi-level", "Process Text" },
   { "print-content-optimize", "Print Optimization" },
   { "print-content-optimize.graphic", "Graphics" },
-  { "print-content-optimize.text-and-graphic", "Text and Graphics" },
+  { "print-content-optimize.text-and-graphic", "Text and graphics" },
   { "print-rendering-intent.relative-bpc", "Relative w/black point compensation" },
   { "print-scaling.auto-fit", "Auto-fit" },
   { "print-supports.material", "With specified material" },
@@ -721,6 +730,8 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
   key.id = id;
   if ((match = (ipp_loc_t *)bsearch(&key, ipp_strings, sizeof(ipp_strings) / sizeof(ipp_strings[0]), sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc)) != NULL)
     return (match->str);
+  else if (!*attribute)
+    return (NULL);
 
  /*
   * Not a canned localization, is this a media size name?
@@ -757,13 +768,13 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
         if (!strncmp(value, "-extra", 6))
         {
           value += 6;
-          strlcpy(bufptr, " (Extra)", bufend - bufptr + 1);
+          strlcpy(bufptr, " (extra)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else if (!strncmp(value, "-tab", 4))
         {
           value += 4;
-          strlcpy(bufptr, " (Tab)", bufend - bufptr + 1);
+          strlcpy(bufptr, " (tab)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else
@@ -841,7 +852,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     if (!strncmp(name, "fold-", 5))
     {
       name += 5;
-      suffix = " Fold";
+      suffix = " fold";
 
       if (!*name)
         break;

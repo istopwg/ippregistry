@@ -1,4 +1,4 @@
-/* TRANSLATORS: Accuracy Units */
+/* TRANSLATORS: Units */
 _("accuracy-units");
 /* TRANSLATORS: Millimeters */
 _("accuracy-units.mm");
@@ -12,7 +12,7 @@ _("baling");
 _("baling-type");
 /* TRANSLATORS: Band */
 _("baling-type.band");
-/* TRANSLATORS: Shrink Wrap */
+/* TRANSLATORS: Shrink wrap */
 _("baling-type.shrink-wrap");
 /* TRANSLATORS: Wrap */
 _("baling-type.wrap");
@@ -52,19 +52,13 @@ _("binding-type.spiral");
 _("binding-type.tape");
 /* TRANSLATORS: Velo */
 _("binding-type.velo");
-/* TRANSLATORS: Chamber Humidity */
-_("chamber-humidity");
-/* TRANSLATORS: Chamber Temperature */
-_("chamber-temperature");
-/* TRANSLATORS: Print Job Cost */
-_("charge-info-message");
 /* TRANSLATORS: Coat Sheets */
 _("coating");
 /* TRANSLATORS: Add Coating To */
 _("coating-sides");
 /* TRANSLATORS: Back */
 _("coating-sides.back");
-/* TRANSLATORS: Front and Back */
+/* TRANSLATORS: Front and back */
 _("coating-sides.both");
 /* TRANSLATORS: Front */
 _("coating-sides.front");
@@ -72,15 +66,15 @@ _("coating-sides.front");
 _("coating-type");
 /* TRANSLATORS: Archival */
 _("coating-type.archival");
-/* TRANSLATORS: Archival Glossy */
+/* TRANSLATORS: Archival glossy */
 _("coating-type.archival-glossy");
-/* TRANSLATORS: Archival Matte */
+/* TRANSLATORS: Archival matte */
 _("coating-type.archival-matte");
-/* TRANSLATORS: Archival Semi Gloss */
+/* TRANSLATORS: Archival semi gloss */
 _("coating-type.archival-semi-gloss");
 /* TRANSLATORS: Glossy */
 _("coating-type.glossy");
-/* TRANSLATORS: High Gloss */
+/* TRANSLATORS: High gloss */
 _("coating-type.high-gloss");
 /* TRANSLATORS: Matte */
 _("coating-type.matte");
@@ -92,37 +86,19 @@ _("coating-type.silicone");
 _("coating-type.translucent");
 /* TRANSLATORS: Print Confirmation Sheet */
 _("confirmation-sheet-print");
-/* TRANSLATORS: Copies */
-_("copies");
 /* TRANSLATORS: Back Cover */
 _("cover-back");
 /* TRANSLATORS: Front Cover */
 _("cover-front");
-/* TRANSLATORS: Cover Sheet Info */
-_("cover-sheet-info");
-/* TRANSLATORS: Date Time */
-_("cover-sheet-info-supported.date-time");
-/* TRANSLATORS: From Name */
-_("cover-sheet-info-supported.from-name");
-/* TRANSLATORS: Logo */
-_("cover-sheet-info-supported.logo");
-/* TRANSLATORS: Message */
-_("cover-sheet-info-supported.message");
-/* TRANSLATORS: Organization */
-_("cover-sheet-info-supported.organization");
-/* TRANSLATORS: Subject */
-_("cover-sheet-info-supported.subject");
-/* TRANSLATORS: To Name */
-_("cover-sheet-info-supported.to-name");
 /* TRANSLATORS: Printed Cover */
 _("cover-type");
-/* TRANSLATORS: No Cover */
+/* TRANSLATORS: No cover */
 _("cover-type.no-cover");
-/* TRANSLATORS: Back Only */
+/* TRANSLATORS: Back only */
 _("cover-type.print-back");
-/* TRANSLATORS: Front and Back */
+/* TRANSLATORS: Front and back */
 _("cover-type.print-both");
-/* TRANSLATORS: Front Only */
+/* TRANSLATORS: Front only */
 _("cover-type.print-front");
 /* TRANSLATORS: None */
 _("cover-type.print-none");
@@ -136,75 +112,45 @@ _("covering-name.plain");
 _("covering-name.pre-cut");
 /* TRANSLATORS: Pre-printed */
 _("covering-name.pre-printed");
-/* TRANSLATORS: Detailed Status Message */
-_("detailed-status-message");
-/* TRANSLATORS: Copies */
-_("document-copies");
-/* TRANSLATORS: Document Privacy Attributes */
-_("document-privacy-attributes");
-/* TRANSLATORS: All */
-_("document-privacy-attributes.all");
-/* TRANSLATORS: Default */
-_("document-privacy-attributes.default");
-/* TRANSLATORS: Document Description */
-_("document-privacy-attributes.document-description");
-/* TRANSLATORS: Document Template */
-_("document-privacy-attributes.document-template");
-/* TRANSLATORS: None */
-_("document-privacy-attributes.none");
-/* TRANSLATORS: Document Privacy Scope */
-_("document-privacy-scope");
-/* TRANSLATORS: All */
-_("document-privacy-scope.all");
-/* TRANSLATORS: Default */
-_("document-privacy-scope.default");
-/* TRANSLATORS: None */
-_("document-privacy-scope.none");
-/* TRANSLATORS: Owner */
-_("document-privacy-scope.owner");
-/* TRANSLATORS: Document State */
-_("document-state");
-/* TRANSLATORS: Detailed Document State */
-_("document-state-reasons");
-/* TRANSLATORS: Aborted By System */
+/* TRANSLATORS: Aborted by system */
 _("document-state-reasons.aborted-by-system");
-/* TRANSLATORS: Canceled At Device */
+/* TRANSLATORS: Canceled at device */
 _("document-state-reasons.canceled-at-device");
-/* TRANSLATORS: Canceled By Operator */
+/* TRANSLATORS: Canceled by operator */
 _("document-state-reasons.canceled-by-operator");
-/* TRANSLATORS: Canceled By User */
+/* TRANSLATORS: Canceled by user */
 _("document-state-reasons.canceled-by-user");
-/* TRANSLATORS: Completed Successfully */
+/* TRANSLATORS: Completed successfully */
 _("document-state-reasons.completed-successfully");
-/* TRANSLATORS: Completed With Errors */
+/* TRANSLATORS: Completed with errors */
 _("document-state-reasons.completed-with-errors");
-/* TRANSLATORS: Completed With Warnings */
+/* TRANSLATORS: Completed with warnings */
 _("document-state-reasons.completed-with-warnings");
-/* TRANSLATORS: Compression Error */
+/* TRANSLATORS: Compression error */
 _("document-state-reasons.compression-error");
-/* TRANSLATORS: Data Insufficient */
+/* TRANSLATORS: Data insufficient */
 _("document-state-reasons.data-insufficient");
-/* TRANSLATORS: Digital Signature Did Not Verify */
+/* TRANSLATORS: Digital signature did not verify */
 _("document-state-reasons.digital-signature-did-not-verify");
-/* TRANSLATORS: Digital Signature Type Not Supported */
+/* TRANSLATORS: Digital signature type not supported */
 _("document-state-reasons.digital-signature-type-not-supported");
-/* TRANSLATORS: Digital Signature Wait */
+/* TRANSLATORS: Digital signature wait */
 _("document-state-reasons.digital-signature-wait");
-/* TRANSLATORS: Document Access Error */
+/* TRANSLATORS: Document access error */
 _("document-state-reasons.document-access-error");
-/* TRANSLATORS: Document Fetchable */
+/* TRANSLATORS: Document fetchable */
 _("document-state-reasons.document-fetchable");
-/* TRANSLATORS: Document Format Error */
+/* TRANSLATORS: Document format error */
 _("document-state-reasons.document-format-error");
-/* TRANSLATORS: Document Password Error */
+/* TRANSLATORS: Document password error */
 _("document-state-reasons.document-password-error");
-/* TRANSLATORS: Document Permission Error */
+/* TRANSLATORS: Document permission error */
 _("document-state-reasons.document-permission-error");
-/* TRANSLATORS: Document Security Error */
+/* TRANSLATORS: Document security error */
 _("document-state-reasons.document-security-error");
-/* TRANSLATORS: Document Unprintable Error */
+/* TRANSLATORS: Document unprintable error */
 _("document-state-reasons.document-unprintable-error");
-/* TRANSLATORS: Errors Detected */
+/* TRANSLATORS: Errors detected */
 _("document-state-reasons.errors-detected");
 /* TRANSLATORS: Incoming */
 _("document-state-reasons.incoming");
@@ -216,27 +162,27 @@ _("document-state-reasons.none");
 _("document-state-reasons.outgoing");
 /* TRANSLATORS: Printing */
 _("document-state-reasons.printing");
-/* TRANSLATORS: Processing To Stop Point */
+/* TRANSLATORS: Processing to stop point */
 _("document-state-reasons.processing-to-stop-point");
 /* TRANSLATORS: Queued */
 _("document-state-reasons.queued");
-/* TRANSLATORS: Queued For Marker */
+/* TRANSLATORS: Queued for marker */
 _("document-state-reasons.queued-for-marker");
-/* TRANSLATORS: Queued In Device */
+/* TRANSLATORS: Queued in device */
 _("document-state-reasons.queued-in-device");
-/* TRANSLATORS: Resources Are Not Ready */
+/* TRANSLATORS: Resources are not ready */
 _("document-state-reasons.resources-are-not-ready");
-/* TRANSLATORS: Resources Are Not Supported */
+/* TRANSLATORS: Resources are not supported */
 _("document-state-reasons.resources-are-not-supported");
-/* TRANSLATORS: Submission Interrupted */
+/* TRANSLATORS: Submission interrupted */
 _("document-state-reasons.submission-interrupted");
 /* TRANSLATORS: Transforming */
 _("document-state-reasons.transforming");
-/* TRANSLATORS: Unsupported Compression */
+/* TRANSLATORS: Unsupported compression */
 _("document-state-reasons.unsupported-compression");
-/* TRANSLATORS: Unsupported Document Format */
+/* TRANSLATORS: Unsupported document format */
 _("document-state-reasons.unsupported-document-format");
-/* TRANSLATORS: Warnings Detected */
+/* TRANSLATORS: Warnings detected */
 _("document-state-reasons.warnings-detected");
 /* TRANSLATORS: Pending */
 _("document-state.3");
@@ -250,69 +196,59 @@ _("document-state.7");
 _("document-state.8");
 /* TRANSLATORS: Completed */
 _("document-state.9");
-/* TRANSLATORS: Feed Orientation */
-_("feed-orientation");
-/* TRANSLATORS: Long Edge First */
-_("feed-orientation.long-edge-first");
-/* TRANSLATORS: Short Edge First */
-_("feed-orientation.short-edge-first");
-/* TRANSLATORS: Fetch Status Code */
-_("fetch-status-code");
-/* TRANSLATORS: Finishing Template */
-_("finishing-template");
 /* TRANSLATORS: Bale */
 _("finishing-template.bale");
 /* TRANSLATORS: Bind */
 _("finishing-template.bind");
-/* TRANSLATORS: Bind Bottom */
+/* TRANSLATORS: Bind bottom */
 _("finishing-template.bind-bottom");
-/* TRANSLATORS: Bind Left */
+/* TRANSLATORS: Bind left */
 _("finishing-template.bind-left");
-/* TRANSLATORS: Bind Right */
+/* TRANSLATORS: Bind right */
 _("finishing-template.bind-right");
-/* TRANSLATORS: Bind Top */
+/* TRANSLATORS: Bind top */
 _("finishing-template.bind-top");
-/* TRANSLATORS: Booklet Maker */
+/* TRANSLATORS: Booklet maker */
 _("finishing-template.booklet-maker");
 /* TRANSLATORS: Coat */
 _("finishing-template.coat");
 /* TRANSLATORS: Cover */
 _("finishing-template.cover");
-/* TRANSLATORS: Edge Stitch */
+/* TRANSLATORS: Edge stitch */
 _("finishing-template.edge-stitch");
-/* TRANSLATORS: Edge Stitch Bottom */
+/* TRANSLATORS: Edge stitch bottom */
 _("finishing-template.edge-stitch-bottom");
-/* TRANSLATORS: Edge Stitch Left */
+/* TRANSLATORS: Edge stitch left */
 _("finishing-template.edge-stitch-left");
-/* TRANSLATORS: Edge Stitch Right */
+/* TRANSLATORS: Edge stitch right */
 _("finishing-template.edge-stitch-right");
-/* TRANSLATORS: Edge Stitch Top */
+/* TRANSLATORS: Edge stitch top */
 _("finishing-template.edge-stitch-top");
 /* TRANSLATORS: Fold */
 _("finishing-template.fold");
-/* TRANSLATORS: Accordion Fold */
+/* TRANSLATORS: Accordion fold */
 _("finishing-template.fold-accordion");
-/* TRANSLATORS: Double Gate Fold */
+/* TRANSLATORS: Double gate fold */
 _("finishing-template.fold-double-gate");
-/* TRANSLATORS: Engineering Z Fold */
+/* TRANSLATORS: Engineering Z fold */
 _("finishing-template.fold-engineering-z");
-/* TRANSLATORS: Gate Fold */
+/* TRANSLATORS: Gate fold */
 _("finishing-template.fold-gate");
-/* TRANSLATORS: Half Fold */
+/* TRANSLATORS: Half fold */
 _("finishing-template.fold-half");
-/* TRANSLATORS: Half Z Fold */
+/* TRANSLATORS: Half Z fold */
 _("finishing-template.fold-half-z");
-/* TRANSLATORS: Left Gate Fold */
+/* TRANSLATORS: Left gate fold */
 _("finishing-template.fold-left-gate");
-/* TRANSLATORS: Letter Fold */
+/* TRANSLATORS: Letter fold */
 _("finishing-template.fold-letter");
-/* TRANSLATORS: Parallel Fold */
+/* TRANSLATORS: Parallel fold */
 _("finishing-template.fold-parallel");
-/* TRANSLATORS: Poster Fold */
+/* TRANSLATORS: Poster fold */
 _("finishing-template.fold-poster");
-/* TRANSLATORS: Right Gate Fold */
+/* TRANSLATORS: Right gate fold */
 _("finishing-template.fold-right-gate");
-/* TRANSLATORS: Z Fold */
+/* TRANSLATORS: Z fold */
 _("finishing-template.fold-z");
 /* TRANSLATORS: JDF F10-1 */
 _("finishing-template.jdf-f10-1");
@@ -492,233 +428,229 @@ _("finishing-template.jdf-f8-5");
 _("finishing-template.jdf-f8-6");
 /* TRANSLATORS: JDF F8-7 */
 _("finishing-template.jdf-f8-7");
-/* TRANSLATORS: Jog Offset */
+/* TRANSLATORS: Jog offset */
 _("finishing-template.jog-offset");
 /* TRANSLATORS: Laminate */
 _("finishing-template.laminate");
 /* TRANSLATORS: Punch */
 _("finishing-template.punch");
-/* TRANSLATORS: Punch Bottom Left */
+/* TRANSLATORS: Punch bottom left */
 _("finishing-template.punch-bottom-left");
-/* TRANSLATORS: Punch Bottom Right */
+/* TRANSLATORS: Punch bottom right */
 _("finishing-template.punch-bottom-right");
-/* TRANSLATORS: 2-hole Punch Bottom */
+/* TRANSLATORS: 2-hole punch bottom */
 _("finishing-template.punch-dual-bottom");
-/* TRANSLATORS: 2-hole Punch Left */
+/* TRANSLATORS: 2-hole punch left */
 _("finishing-template.punch-dual-left");
-/* TRANSLATORS: 2-hole Punch Right */
+/* TRANSLATORS: 2-hole punch right */
 _("finishing-template.punch-dual-right");
-/* TRANSLATORS: 2-hole Punch Top */
+/* TRANSLATORS: 2-hole punch top */
 _("finishing-template.punch-dual-top");
-/* TRANSLATORS: Multi-hole Punch Bottom */
+/* TRANSLATORS: Multi-hole punch bottom */
 _("finishing-template.punch-multiple-bottom");
-/* TRANSLATORS: Multi-hole Punch Left */
+/* TRANSLATORS: Multi-hole punch left */
 _("finishing-template.punch-multiple-left");
-/* TRANSLATORS: Multi-hole Punch Right */
+/* TRANSLATORS: Multi-hole punch right */
 _("finishing-template.punch-multiple-right");
-/* TRANSLATORS: Multi-hole Punch Top */
+/* TRANSLATORS: Multi-hole punch top */
 _("finishing-template.punch-multiple-top");
-/* TRANSLATORS: 4-hole Punch Bottom */
+/* TRANSLATORS: 4-hole punch bottom */
 _("finishing-template.punch-quad-bottom");
-/* TRANSLATORS: 4-hole Punch Left */
+/* TRANSLATORS: 4-hole punch left */
 _("finishing-template.punch-quad-left");
-/* TRANSLATORS: 4-hole Punch Right */
+/* TRANSLATORS: 4-hole punch right */
 _("finishing-template.punch-quad-right");
-/* TRANSLATORS: 4-hole Punch Top */
+/* TRANSLATORS: 4-hole punch top */
 _("finishing-template.punch-quad-top");
-/* TRANSLATORS: Punch Top Left */
+/* TRANSLATORS: Punch top left */
 _("finishing-template.punch-top-left");
-/* TRANSLATORS: Punch Top Right */
+/* TRANSLATORS: Punch top right */
 _("finishing-template.punch-top-right");
-/* TRANSLATORS: 3-hole Punch Bottom */
+/* TRANSLATORS: 3-hole punch bottom */
 _("finishing-template.punch-triple-bottom");
-/* TRANSLATORS: 3-hole Punch Left */
+/* TRANSLATORS: 3-hole punch left */
 _("finishing-template.punch-triple-left");
-/* TRANSLATORS: 3-hole Punch Right */
+/* TRANSLATORS: 3-hole punch right */
 _("finishing-template.punch-triple-right");
-/* TRANSLATORS: 3-hole Punch Top */
+/* TRANSLATORS: 3-hole punch top */
 _("finishing-template.punch-triple-top");
-/* TRANSLATORS: Saddle Stitch */
+/* TRANSLATORS: Saddle stitch */
 _("finishing-template.saddle-stitch");
 /* TRANSLATORS: Staple */
 _("finishing-template.staple");
-/* TRANSLATORS: Staple Bottom Left */
+/* TRANSLATORS: Staple bottom left */
 _("finishing-template.staple-bottom-left");
-/* TRANSLATORS: Staple Bottom Right */
+/* TRANSLATORS: Staple bottom right */
 _("finishing-template.staple-bottom-right");
-/* TRANSLATORS: 2 Staples on Bottom */
+/* TRANSLATORS: 2 staples on bottom */
 _("finishing-template.staple-dual-bottom");
-/* TRANSLATORS: 2 Staples on Left */
+/* TRANSLATORS: 2 staples on left */
 _("finishing-template.staple-dual-left");
-/* TRANSLATORS: 2 Staples on Right */
+/* TRANSLATORS: 2 staples on right */
 _("finishing-template.staple-dual-right");
-/* TRANSLATORS: 2 Staples on Top */
+/* TRANSLATORS: 2 staples on top */
 _("finishing-template.staple-dual-top");
-/* TRANSLATORS: Staple Top Left */
+/* TRANSLATORS: Staple top left */
 _("finishing-template.staple-top-left");
-/* TRANSLATORS: Staple Top Right */
+/* TRANSLATORS: Staple top right */
 _("finishing-template.staple-top-right");
-/* TRANSLATORS: 3 Staples on Bottom */
+/* TRANSLATORS: 3 staples on bottom */
 _("finishing-template.staple-triple-bottom");
-/* TRANSLATORS: 3 Staples on Left */
+/* TRANSLATORS: 3 staples on left */
 _("finishing-template.staple-triple-left");
-/* TRANSLATORS: 3 Staples on Right */
+/* TRANSLATORS: 3 staples on right */
 _("finishing-template.staple-triple-right");
-/* TRANSLATORS: 3 Staples on Top */
+/* TRANSLATORS: 3 staples on top */
 _("finishing-template.staple-triple-top");
-/* TRANSLATORS: Trim */
+/* TRANSLATORS: Cut */
 _("finishing-template.trim");
-/* TRANSLATORS: Trim After Every Set */
+/* TRANSLATORS: Cut after every set */
 _("finishing-template.trim-after-copies");
-/* TRANSLATORS: Trim After Every Document */
+/* TRANSLATORS: Cut after every document */
 _("finishing-template.trim-after-documents");
-/* TRANSLATORS: Trim After Job */
+/* TRANSLATORS: Cut after job */
 _("finishing-template.trim-after-job");
-/* TRANSLATORS: Trim After Every Page */
+/* TRANSLATORS: Cut after every page */
 _("finishing-template.trim-after-pages");
-/* TRANSLATORS: Finishings */
-_("finishings");
-/* TRANSLATORS: Finishings */
-_("finishings-col");
 /* TRANSLATORS: Fold */
 _("finishings.10");
-/* TRANSLATORS: Z Fold */
+/* TRANSLATORS: Z fold */
 _("finishings.100");
-/* TRANSLATORS: Engineering Z Fold */
+/* TRANSLATORS: Engineering Z fold */
 _("finishings.101");
-/* TRANSLATORS: Trim */
+/* TRANSLATORS: Cut */
 _("finishings.11");
 /* TRANSLATORS: Bale */
 _("finishings.12");
-/* TRANSLATORS: Booklet Maker */
+/* TRANSLATORS: Booklet maker */
 _("finishings.13");
-/* TRANSLATORS: Jog Offset */
+/* TRANSLATORS: Jog offset */
 _("finishings.14");
 /* TRANSLATORS: Coat */
 _("finishings.15");
 /* TRANSLATORS: Laminate */
 _("finishings.16");
-/* TRANSLATORS: Staple Top Left */
+/* TRANSLATORS: Staple top left */
 _("finishings.20");
-/* TRANSLATORS: Staple Bottom Left */
+/* TRANSLATORS: Staple bottom left */
 _("finishings.21");
-/* TRANSLATORS: Staple Top Right */
+/* TRANSLATORS: Staple top right */
 _("finishings.22");
-/* TRANSLATORS: Staple Bottom Right */
+/* TRANSLATORS: Staple bottom right */
 _("finishings.23");
-/* TRANSLATORS: Edge Stitch Left */
+/* TRANSLATORS: Edge stitch left */
 _("finishings.24");
-/* TRANSLATORS: Edge Stitch Top */
+/* TRANSLATORS: Edge stitch top */
 _("finishings.25");
-/* TRANSLATORS: Edge Stitch Right */
+/* TRANSLATORS: Edge stitch right */
 _("finishings.26");
-/* TRANSLATORS: Edge Stitch Bottom */
+/* TRANSLATORS: Edge stitch bottom */
 _("finishings.27");
-/* TRANSLATORS: 2 Staples on Left */
+/* TRANSLATORS: 2 staples on left */
 _("finishings.28");
-/* TRANSLATORS: 2 Staples on Top */
+/* TRANSLATORS: 2 staples on top */
 _("finishings.29");
 /* TRANSLATORS: None */
 _("finishings.3");
-/* TRANSLATORS: 2 Staples on Right */
+/* TRANSLATORS: 2 staples on right */
 _("finishings.30");
-/* TRANSLATORS: 2 Staples on Bottom */
+/* TRANSLATORS: 2 staples on bottom */
 _("finishings.31");
-/* TRANSLATORS: 3 Staples on Left */
+/* TRANSLATORS: 3 staples on left */
 _("finishings.32");
-/* TRANSLATORS: 3 Staples on Top */
+/* TRANSLATORS: 3 staples on top */
 _("finishings.33");
-/* TRANSLATORS: 3 Staples on Right */
+/* TRANSLATORS: 3 staples on right */
 _("finishings.34");
-/* TRANSLATORS: 3 Staples on Bottom */
+/* TRANSLATORS: 3 staples on bottom */
 _("finishings.35");
 /* TRANSLATORS: Staple */
 _("finishings.4");
 /* TRANSLATORS: Punch */
 _("finishings.5");
-/* TRANSLATORS: Bind Left */
+/* TRANSLATORS: Bind left */
 _("finishings.50");
-/* TRANSLATORS: Bind Top */
+/* TRANSLATORS: Bind top */
 _("finishings.51");
-/* TRANSLATORS: Bind Right */
+/* TRANSLATORS: Bind right */
 _("finishings.52");
-/* TRANSLATORS: Bind Bottom */
+/* TRANSLATORS: Bind bottom */
 _("finishings.53");
 /* TRANSLATORS: Cover */
 _("finishings.6");
-/* TRANSLATORS: Trim Pages */
+/* TRANSLATORS: Cut after every page */
 _("finishings.60");
-/* TRANSLATORS: Trim Documents */
+/* TRANSLATORS: Cut after every document */
 _("finishings.61");
-/* TRANSLATORS: Trim Copies */
+/* TRANSLATORS: Cut after every set */
 _("finishings.62");
-/* TRANSLATORS: Trim Job */
+/* TRANSLATORS: Cut after job */
 _("finishings.63");
 /* TRANSLATORS: Bind */
 _("finishings.7");
-/* TRANSLATORS: Punch Top Left */
+/* TRANSLATORS: Punch top left */
 _("finishings.70");
-/* TRANSLATORS: Punch Bottom Left */
+/* TRANSLATORS: Punch bottom left */
 _("finishings.71");
-/* TRANSLATORS: Punch Top Right */
+/* TRANSLATORS: Punch top right */
 _("finishings.72");
-/* TRANSLATORS: Punch Bottom Right */
+/* TRANSLATORS: Punch bottom right */
 _("finishings.73");
-/* TRANSLATORS: 2-hole Punch Left */
+/* TRANSLATORS: 2-hole punch left */
 _("finishings.74");
-/* TRANSLATORS: 2-hole Punch Top */
+/* TRANSLATORS: 2-hole punch top */
 _("finishings.75");
-/* TRANSLATORS: 2-hole Punch Right */
+/* TRANSLATORS: 2-hole punch right */
 _("finishings.76");
-/* TRANSLATORS: 2-hole Punch Bottom */
+/* TRANSLATORS: 2-hole punch bottom */
 _("finishings.77");
-/* TRANSLATORS: 3-hole Punch Left */
+/* TRANSLATORS: 3-hole punch left */
 _("finishings.78");
-/* TRANSLATORS: 3-hole Punch Top */
+/* TRANSLATORS: 3-hole punch top */
 _("finishings.79");
-/* TRANSLATORS: Saddle Stitch */
+/* TRANSLATORS: Saddle stitch */
 _("finishings.8");
-/* TRANSLATORS: 3-hole Punch Right */
+/* TRANSLATORS: 3-hole punch right */
 _("finishings.80");
-/* TRANSLATORS: 3-hole Punch Bottom */
+/* TRANSLATORS: 3-hole punch bottom */
 _("finishings.81");
-/* TRANSLATORS: 4-hole Punch Left */
+/* TRANSLATORS: 4-hole punch left */
 _("finishings.82");
-/* TRANSLATORS: 4-hole Punch Top */
+/* TRANSLATORS: 4-hole punch top */
 _("finishings.83");
-/* TRANSLATORS: 4-hole Punch Right */
+/* TRANSLATORS: 4-hole punch right */
 _("finishings.84");
-/* TRANSLATORS: 4-hole Punch Bottom */
+/* TRANSLATORS: 4-hole punch bottom */
 _("finishings.85");
-/* TRANSLATORS: Multi-hole Punch Left */
+/* TRANSLATORS: Multi-hole punch left */
 _("finishings.86");
-/* TRANSLATORS: Multi-hole Punch Top */
+/* TRANSLATORS: Multi-hole punch top */
 _("finishings.87");
-/* TRANSLATORS: Multi-hole Punch Right */
+/* TRANSLATORS: Multi-hole punch right */
 _("finishings.88");
-/* TRANSLATORS: Multi-hole Punch Bottom */
+/* TRANSLATORS: Multi-hole punch bottom */
 _("finishings.89");
-/* TRANSLATORS: Edge Stitch */
+/* TRANSLATORS: Edge stitch */
 _("finishings.9");
-/* TRANSLATORS: Accordion Fold */
+/* TRANSLATORS: Accordion fold */
 _("finishings.90");
-/* TRANSLATORS: Double Gate Fold */
+/* TRANSLATORS: Double gate fold */
 _("finishings.91");
-/* TRANSLATORS: Gate Fold */
+/* TRANSLATORS: Gate fold */
 _("finishings.92");
-/* TRANSLATORS: Half Fold */
+/* TRANSLATORS: Half fold */
 _("finishings.93");
-/* TRANSLATORS: Half Z Fold */
+/* TRANSLATORS: Half Z fold */
 _("finishings.94");
-/* TRANSLATORS: Left Gate Fold */
+/* TRANSLATORS: Left gate fold */
 _("finishings.95");
-/* TRANSLATORS: Letter Fold */
+/* TRANSLATORS: Letter fold */
 _("finishings.96");
-/* TRANSLATORS: Parallel Fold */
+/* TRANSLATORS: Parallel fold */
 _("finishings.97");
-/* TRANSLATORS: Poster Fold */
+/* TRANSLATORS: Poster fold */
 _("finishings.98");
-/* TRANSLATORS: Right Gate Fold */
+/* TRANSLATORS: Right gate fold */
 _("finishings.99");
 /* TRANSLATORS: Fold */
 _("folding");
@@ -740,28 +672,10 @@ _("folding-reference-edge.left");
 _("folding-reference-edge.right");
 /* TRANSLATORS: Top */
 _("folding-reference-edge.top");
-/* TRANSLATORS: Font Name */
-_("font-name-requested");
-/* TRANSLATORS: Font Size */
-_("font-size-requested");
-/* TRANSLATORS: Force Front Side */
-_("force-front-side");
-/* TRANSLATORS: From Name */
-_("from-name");
-/* TRANSLATORS: Imposition Template */
-_("imposition-template");
 /* TRANSLATORS: None */
 _("imposition-template.none");
 /* TRANSLATORS: Signature */
 _("imposition-template.signature");
-/* TRANSLATORS: Scanner Options */
-_("input-attributes");
-/* TRANSLATORS: Scan Auto Scaling */
-_("input-auto-scaling");
-/* TRANSLATORS: Scan Auto Skew Correction */
-_("input-auto-skew-correction");
-/* TRANSLATORS: Scan Brightness */
-_("input-brightness");
 /* TRANSLATORS: Scanning Mode */
 _("input-color-mode");
 /* TRANSLATORS: Automatic */
@@ -778,11 +692,11 @@ _("input-color-mode.color");
 _("input-color-mode.color_8");
 /* TRANSLATORS: Monochrome */
 _("input-color-mode.monochrome");
-/* TRANSLATORS: 16-bit Monochrome */
+/* TRANSLATORS: 16-bit monochrome */
 _("input-color-mode.monochrome_16");
-/* TRANSLATORS: 4-bit Monochrome */
+/* TRANSLATORS: 4-bit monochrome */
 _("input-color-mode.monochrome_4");
-/* TRANSLATORS: 8-bit Monochrome */
+/* TRANSLATORS: 8-bit monochrome */
 _("input-color-mode.monochrome_8");
 /* TRANSLATORS: 16-bit RGB */
 _("input-color-mode.rgb_16");
@@ -796,7 +710,7 @@ _("input-content-type");
 _("input-content-type.auto");
 /* TRANSLATORS: Halftone */
 _("input-content-type.halftone");
-/* TRANSLATORS: Line Art */
+/* TRANSLATORS: Line art */
 _("input-content-type.line-art");
 /* TRANSLATORS: Magazine */
 _("input-content-type.magazine");
@@ -804,90 +718,30 @@ _("input-content-type.magazine");
 _("input-content-type.photo");
 /* TRANSLATORS: Text */
 _("input-content-type.text");
-/* TRANSLATORS: Text And Photo */
+/* TRANSLATORS: Text and photo */
 _("input-content-type.text-and-photo");
-/* TRANSLATORS: Scan Contrast */
-_("input-contrast");
 /* TRANSLATORS: Film Type */
 _("input-film-scan-mode");
-/* TRANSLATORS: Black And White Negative Film */
+/* TRANSLATORS: Black and white negative film */
 _("input-film-scan-mode.black-and-white-negative-film");
-/* TRANSLATORS: Color Negative Film */
+/* TRANSLATORS: Color negative film */
 _("input-film-scan-mode.color-negative-film");
-/* TRANSLATORS: Color Slide Film */
+/* TRANSLATORS: Color slide film */
 _("input-film-scan-mode.color-slide-film");
-/* TRANSLATORS: Not Applicable */
+/* TRANSLATORS: Not applicable */
 _("input-film-scan-mode.not-applicable");
-/* TRANSLATORS: Scan Images To Transfer */
-_("input-images-to-transfer");
-/* TRANSLATORS: Scan Media */
-_("input-media");
 /* TRANSLATORS: Automatic */
 _("input-media.auto");
-/* TRANSLATORS: Scan Orientation */
-_("input-orientation-requested");
-/* TRANSLATORS: Scan Quality */
-_("input-quality");
-/* TRANSLATORS: Scan Resolution */
-_("input-resolution");
-/* TRANSLATORS: Scan Scaling Height */
-_("input-scaling-height");
-/* TRANSLATORS: Scan Scaling Width */
-_("input-scaling-width");
-/* TRANSLATORS: Scan Regions */
-_("input-scan-regions");
-/* TRANSLATORS: Scan Sharpness */
-_("input-sharpness");
 /* TRANSLATORS: 2-Sided Scanning */
 _("input-sides");
-/* TRANSLATORS: Scan Source */
-_("input-source");
 /* TRANSLATORS: Automatic Document Feeder */
 _("input-source.adf");
-/* TRANSLATORS: Film Reader */
+/* TRANSLATORS: Film reader */
 _("input-source.film-reader");
 /* TRANSLATORS: Platen */
 _("input-source.platen");
-/* TRANSLATORS: Insert Page Number */
-_("insert-after-page-number");
-/* TRANSLATORS: Insert Count */
-_("insert-count");
-/* TRANSLATORS: Insert Sheet */
-_("insert-sheet");
-/* TRANSLATORS: Job Account ID */
-_("job-account-id");
-/* TRANSLATORS: Job Account Type */
-_("job-account-type");
-/* TRANSLATORS: General */
-_("job-account-type.general");
-/* TRANSLATORS: Group */
-_("job-account-type.group");
-/* TRANSLATORS: None */
-_("job-account-type.none");
-/* TRANSLATORS: Job Accounting Output Bin */
-_("job-accounting-output-bin");
-/* TRANSLATORS: Job Accounting Sheets */
-_("job-accounting-sheets");
-/* TRANSLATORS: Type of Job Accounting Sheets */
-_("job-accounting-sheets-type");
-/* TRANSLATORS: None */
-_("job-accounting-sheets-type.none");
-/* TRANSLATORS: Standard */
-_("job-accounting-sheets-type.standard");
-/* TRANSLATORS: Job Accounting User ID */
-_("job-accounting-user-id");
-/* TRANSLATORS: Job Cancel After */
-_("job-cancel-after");
-/* TRANSLATORS: Copies */
-_("job-copies");
-/* TRANSLATORS: Back Cover */
-_("job-cover-back");
-/* TRANSLATORS: Front Cover */
-_("job-cover-front");
 /* TRANSLATORS: Delay Output Until */
 _("job-delay-output-until");
-/* TRANSLATORS: Delay Output Until */
-_("job-delay-output-until-time");
 /* TRANSLATORS: Daytime */
 _("job-delay-output-until.day-time");
 /* TRANSLATORS: Evening */
@@ -896,23 +750,23 @@ _("job-delay-output-until.evening");
 _("job-delay-output-until.indefinite");
 /* TRANSLATORS: Night */
 _("job-delay-output-until.night");
-/* TRANSLATORS: No Delay */
+/* TRANSLATORS: No delay */
 _("job-delay-output-until.no-delay-output");
-/* TRANSLATORS: Second Shift */
+/* TRANSLATORS: Second shift */
 _("job-delay-output-until.second-shift");
-/* TRANSLATORS: Third Shift */
+/* TRANSLATORS: Third shift */
 _("job-delay-output-until.third-shift");
 /* TRANSLATORS: Weekend */
 _("job-delay-output-until.weekend");
 /* TRANSLATORS: On Error */
 _("job-error-action");
-/* TRANSLATORS: Abort Job */
+/* TRANSLATORS: Abort job */
 _("job-error-action.abort-job");
-/* TRANSLATORS: Cancel Job */
+/* TRANSLATORS: Cancel job */
 _("job-error-action.cancel-job");
-/* TRANSLATORS: Continue Job */
+/* TRANSLATORS: Continue job */
 _("job-error-action.continue-job");
-/* TRANSLATORS: Suspend Job */
+/* TRANSLATORS: Suspend job */
 _("job-error-action.suspend-job");
 /* TRANSLATORS: Print Error Sheet */
 _("job-error-sheet");
@@ -926,14 +780,10 @@ _("job-error-sheet-type.standard");
 _("job-error-sheet-when");
 /* TRANSLATORS: Always */
 _("job-error-sheet-when.always");
-/* TRANSLATORS: On Error */
+/* TRANSLATORS: On error */
 _("job-error-sheet-when.on-error");
-/* TRANSLATORS: Job Finishings */
-_("job-finishings");
 /* TRANSLATORS: Hold Until */
 _("job-hold-until");
-/* TRANSLATORS: Hold Until */
-_("job-hold-until-time");
 /* TRANSLATORS: Daytime */
 _("job-hold-until.day-time");
 /* TRANSLATORS: Evening */
@@ -942,129 +792,79 @@ _("job-hold-until.evening");
 _("job-hold-until.indefinite");
 /* TRANSLATORS: Night */
 _("job-hold-until.night");
-/* TRANSLATORS: No Hold */
+/* TRANSLATORS: No hold */
 _("job-hold-until.no-hold");
-/* TRANSLATORS: Second Shift */
+/* TRANSLATORS: Second shift */
 _("job-hold-until.second-shift");
-/* TRANSLATORS: Third Shift */
+/* TRANSLATORS: Third shift */
 _("job-hold-until.third-shift");
 /* TRANSLATORS: Weekend */
 _("job-hold-until.weekend");
-/* TRANSLATORS: Job Mandatory Attributes */
-_("job-mandatory-attributes");
-/* TRANSLATORS: Title */
-_("job-name");
-/* TRANSLATORS: Job Pages */
-_("job-pages");
-/* TRANSLATORS: Job Pages */
-_("job-pages-col");
-/* TRANSLATORS: Job Phone Number */
-_("job-phone-number");
-/* TRANSLATORS: Job Priority */
-_("job-priority");
-/* TRANSLATORS: Job Privacy Attributes */
-_("job-privacy-attributes");
-/* TRANSLATORS: All */
-_("job-privacy-attributes.all");
-/* TRANSLATORS: Default */
-_("job-privacy-attributes.default");
-/* TRANSLATORS: Job Description */
-_("job-privacy-attributes.job-description");
-/* TRANSLATORS: Job Template */
-_("job-privacy-attributes.job-template");
-/* TRANSLATORS: None */
-_("job-privacy-attributes.none");
-/* TRANSLATORS: Job Privacy Scope */
-_("job-privacy-scope");
-/* TRANSLATORS: All */
-_("job-privacy-scope.all");
-/* TRANSLATORS: Default */
-_("job-privacy-scope.default");
-/* TRANSLATORS: None */
-_("job-privacy-scope.none");
-/* TRANSLATORS: Owner */
-_("job-privacy-scope.owner");
-/* TRANSLATORS: Job Recipient Name */
-_("job-recipient-name");
-/* TRANSLATORS: Job Retain Until */
+/* TRANSLATORS: Retain Job */
 _("job-retain-until");
-/* TRANSLATORS: Job Retain Until Interval */
-_("job-retain-until-interval");
-/* TRANSLATORS: Job Retain Until Time */
-_("job-retain-until-time");
-/* TRANSLATORS: End Of Day */
+/* TRANSLATORS: End of day */
 _("job-retain-until.end-of-day");
-/* TRANSLATORS: End Of Month */
+/* TRANSLATORS: End of month */
 _("job-retain-until.end-of-month");
-/* TRANSLATORS: End Of Week */
+/* TRANSLATORS: End of week */
 _("job-retain-until.end-of-week");
-/* TRANSLATORS: Indefinite */
+/* TRANSLATORS: Forever */
 _("job-retain-until.indefinite");
-/* TRANSLATORS: None */
+/* TRANSLATORS: Never */
 _("job-retain-until.none");
-/* TRANSLATORS: Job Save Disposition */
-_("job-save-disposition");
-/* TRANSLATORS: Job Sheet Message */
-_("job-sheet-message");
-/* TRANSLATORS: Banner Page */
+/* TRANSLATORS: Banner Pages */
 _("job-sheets");
-/* TRANSLATORS: Banner Page */
+/* TRANSLATORS: Banner Pages */
 _("job-sheets-col");
-/* TRANSLATORS: First Page in Document */
+/* TRANSLATORS: First page in document */
 _("job-sheets.first-print-stream-page");
-/* TRANSLATORS: Start and End Sheets */
+/* TRANSLATORS: Start and end sheets */
 _("job-sheets.job-both-sheet");
-/* TRANSLATORS: End Sheet */
+/* TRANSLATORS: End sheet */
 _("job-sheets.job-end-sheet");
-/* TRANSLATORS: Start Sheet */
+/* TRANSLATORS: Start sheet */
 _("job-sheets.job-start-sheet");
 /* TRANSLATORS: None */
 _("job-sheets.none");
 /* TRANSLATORS: Standard */
 _("job-sheets.standard");
-/* TRANSLATORS: Job State */
-_("job-state");
-/* TRANSLATORS: Job State Message */
-_("job-state-message");
-/* TRANSLATORS: Detailed Job State */
-_("job-state-reasons");
 /* TRANSLATORS: Stopping */
 _("job-state-reasons.aborted-by-system");
-/* TRANSLATORS: Account Authorization Failed */
+/* TRANSLATORS: Account authorization failed */
 _("job-state-reasons.account-authorization-failed");
-/* TRANSLATORS: Account Closed */
+/* TRANSLATORS: Account closed */
 _("job-state-reasons.account-closed");
-/* TRANSLATORS: Account Info Needed */
+/* TRANSLATORS: Account info needed */
 _("job-state-reasons.account-info-needed");
-/* TRANSLATORS: Account Limit Reached */
+/* TRANSLATORS: Account limit reached */
 _("job-state-reasons.account-limit-reached");
 /* TRANSLATORS: Decompression error */
 _("job-state-reasons.compression-error");
-/* TRANSLATORS: Conflicting Attributes */
+/* TRANSLATORS: Conflicting attributes */
 _("job-state-reasons.conflicting-attributes");
-/* TRANSLATORS: Connected To Destination */
+/* TRANSLATORS: Connected to destination */
 _("job-state-reasons.connected-to-destination");
-/* TRANSLATORS: Connecting To Destination */
+/* TRANSLATORS: Connecting to destination */
 _("job-state-reasons.connecting-to-destination");
-/* TRANSLATORS: Destination Uri Failed */
+/* TRANSLATORS: Destination uri failed */
 _("job-state-reasons.destination-uri-failed");
-/* TRANSLATORS: Digital Signature Did Not Verify */
+/* TRANSLATORS: Digital signature did not verify */
 _("job-state-reasons.digital-signature-did-not-verify");
-/* TRANSLATORS: Digital Signature Type Not Supported */
+/* TRANSLATORS: Digital signature type not supported */
 _("job-state-reasons.digital-signature-type-not-supported");
-/* TRANSLATORS: Document Access Error */
+/* TRANSLATORS: Document access error */
 _("job-state-reasons.document-access-error");
-/* TRANSLATORS: Document Format Error */
+/* TRANSLATORS: Document format error */
 _("job-state-reasons.document-format-error");
-/* TRANSLATORS: Document Password Error */
+/* TRANSLATORS: Document password error */
 _("job-state-reasons.document-password-error");
-/* TRANSLATORS: Document Permission Error */
+/* TRANSLATORS: Document permission error */
 _("job-state-reasons.document-permission-error");
-/* TRANSLATORS: Document Security Error */
+/* TRANSLATORS: Document security error */
 _("job-state-reasons.document-security-error");
-/* TRANSLATORS: Document Unprintable Error */
+/* TRANSLATORS: Document unprintable error */
 _("job-state-reasons.document-unprintable-error");
-/* TRANSLATORS: Errors Detected */
+/* TRANSLATORS: Errors detected */
 _("job-state-reasons.errors-detected");
 /* TRANSLATORS: Canceled at printer */
 _("job-state-reasons.job-canceled-at-device");
@@ -1080,13 +880,13 @@ _("job-state-reasons.job-completed-with-errors");
 _("job-state-reasons.job-completed-with-warnings");
 /* TRANSLATORS: Insufficient data */
 _("job-state-reasons.job-data-insufficient");
-/* TRANSLATORS: Job Delay Output Until Specified */
+/* TRANSLATORS: Job delay output until specified */
 _("job-state-reasons.job-delay-output-until-specified");
-/* TRANSLATORS: Job Digital Signature Wait */
+/* TRANSLATORS: Job digital signature wait */
 _("job-state-reasons.job-digital-signature-wait");
-/* TRANSLATORS: Job Fetchable */
+/* TRANSLATORS: Job fetchable */
 _("job-state-reasons.job-fetchable");
-/* TRANSLATORS: Job Held For Review */
+/* TRANSLATORS: Job held for review */
 _("job-state-reasons.job-held-for-review");
 /* TRANSLATORS: Job held */
 _("job-state-reasons.job-hold-until-specified");
@@ -1096,13 +896,13 @@ _("job-state-reasons.job-incoming");
 _("job-state-reasons.job-interpreting");
 /* TRANSLATORS: Outgoing */
 _("job-state-reasons.job-outgoing");
-/* TRANSLATORS: Job Password Wait */
+/* TRANSLATORS: Job password wait */
 _("job-state-reasons.job-password-wait");
-/* TRANSLATORS: Job Printed Successfully */
+/* TRANSLATORS: Job printed successfully */
 _("job-state-reasons.job-printed-successfully");
-/* TRANSLATORS: Job Printed With Errors */
+/* TRANSLATORS: Job printed with errors */
 _("job-state-reasons.job-printed-with-errors");
-/* TRANSLATORS: Job Printed With Warnings */
+/* TRANSLATORS: Job printed with warnings */
 _("job-state-reasons.job-printed-with-warnings");
 /* TRANSLATORS: Printing */
 _("job-state-reasons.job-printing");
@@ -1110,35 +910,35 @@ _("job-state-reasons.job-printing");
 _("job-state-reasons.job-queued");
 /* TRANSLATORS: Processing document */
 _("job-state-reasons.job-queued-for-marker");
-/* TRANSLATORS: Job Release Wait */
+/* TRANSLATORS: Job release wait */
 _("job-state-reasons.job-release-wait");
 /* TRANSLATORS: Restartable */
 _("job-state-reasons.job-restartable");
-/* TRANSLATORS: Job Resuming */
+/* TRANSLATORS: Job resuming */
 _("job-state-reasons.job-resuming");
-/* TRANSLATORS: Job Saved Successfully */
+/* TRANSLATORS: Job saved successfully */
 _("job-state-reasons.job-saved-successfully");
-/* TRANSLATORS: Job Saved With Errors */
+/* TRANSLATORS: Job saved with errors */
 _("job-state-reasons.job-saved-with-errors");
-/* TRANSLATORS: Job Saved With Warnings */
+/* TRANSLATORS: Job saved with warnings */
 _("job-state-reasons.job-saved-with-warnings");
-/* TRANSLATORS: Job Saving */
+/* TRANSLATORS: Job saving */
 _("job-state-reasons.job-saving");
-/* TRANSLATORS: Job Spooling */
+/* TRANSLATORS: Job spooling */
 _("job-state-reasons.job-spooling");
-/* TRANSLATORS: Job Streaming */
+/* TRANSLATORS: Job streaming */
 _("job-state-reasons.job-streaming");
 /* TRANSLATORS: Suspended */
 _("job-state-reasons.job-suspended");
-/* TRANSLATORS: Job Suspended By Operator */
+/* TRANSLATORS: Job suspended by operator */
 _("job-state-reasons.job-suspended-by-operator");
-/* TRANSLATORS: Job Suspended By System */
+/* TRANSLATORS: Job suspended by system */
 _("job-state-reasons.job-suspended-by-system");
-/* TRANSLATORS: Job Suspended By User */
+/* TRANSLATORS: Job suspended by user */
 _("job-state-reasons.job-suspended-by-user");
-/* TRANSLATORS: Job Suspending */
+/* TRANSLATORS: Job suspending */
 _("job-state-reasons.job-suspending");
-/* TRANSLATORS: Job Transferring */
+/* TRANSLATORS: Job transferring */
 _("job-state-reasons.job-transferring");
 /* TRANSLATORS: Transforming */
 _("job-state-reasons.job-transforming");
@@ -1152,23 +952,23 @@ _("job-state-reasons.printer-stopped-partly");
 _("job-state-reasons.processing-to-stop-point");
 /* TRANSLATORS: Ready */
 _("job-state-reasons.queued-in-device");
-/* TRANSLATORS: Resources Are Not Ready */
+/* TRANSLATORS: Resources are not ready */
 _("job-state-reasons.resources-are-not-ready");
-/* TRANSLATORS: Resources Are Not Supported */
+/* TRANSLATORS: Resources are not supported */
 _("job-state-reasons.resources-are-not-supported");
 /* TRANSLATORS: Service offline */
 _("job-state-reasons.service-off-line");
-/* TRANSLATORS: Submission Interrupted */
+/* TRANSLATORS: Submission interrupted */
 _("job-state-reasons.submission-interrupted");
-/* TRANSLATORS: Unsupported Attributes Or Values */
+/* TRANSLATORS: Unsupported attributes or values */
 _("job-state-reasons.unsupported-attributes-or-values");
-/* TRANSLATORS: Unsupported Compression */
+/* TRANSLATORS: Unsupported compression */
 _("job-state-reasons.unsupported-compression");
-/* TRANSLATORS: Unsupported Document Format */
+/* TRANSLATORS: Unsupported document format */
 _("job-state-reasons.unsupported-document-format");
-/* TRANSLATORS: Waiting For User Action */
+/* TRANSLATORS: Waiting for user action */
 _("job-state-reasons.waiting-for-user-action");
-/* TRANSLATORS: Warnings Detected */
+/* TRANSLATORS: Warnings detected */
 _("job-state-reasons.warnings-detected");
 /* TRANSLATORS: Pending */
 _("job-state.3");
@@ -1188,11 +988,11 @@ _("job-state.9");
 _("laminating");
 /* TRANSLATORS: Laminate */
 _("laminating-sides");
-/* TRANSLATORS: Back Only */
+/* TRANSLATORS: Back only */
 _("laminating-sides.back");
-/* TRANSLATORS: Front and Back */
+/* TRANSLATORS: Front and back */
 _("laminating-sides.both");
-/* TRANSLATORS: Front Only */
+/* TRANSLATORS: Front only */
 _("laminating-sides.front");
 /* TRANSLATORS: Type of Lamination */
 _("laminating-type");
@@ -1200,7 +1000,7 @@ _("laminating-type");
 _("laminating-type.archival");
 /* TRANSLATORS: Glossy */
 _("laminating-type.glossy");
-/* TRANSLATORS: High Gloss */
+/* TRANSLATORS: High gloss */
 _("laminating-type.high-gloss");
 /* TRANSLATORS: Matte */
 _("laminating-type.matte");
@@ -1208,11 +1008,9 @@ _("laminating-type.matte");
 _("laminating-type.semi-gloss");
 /* TRANSLATORS: Translucent */
 _("laminating-type.translucent");
-/* TRANSLATORS: Logo */
-_("logo");
 /* TRANSLATORS: Amount of Material */
 _("material-amount");
-/* TRANSLATORS: Amount Units */
+/* TRANSLATORS: Units */
 _("material-amount-units");
 /* TRANSLATORS: Grams */
 _("material-amount-units.g");
@@ -1226,18 +1024,6 @@ _("material-amount-units.m");
 _("material-amount-units.ml");
 /* TRANSLATORS: Millimeters */
 _("material-amount-units.mm");
-/* TRANSLATORS: Material Color */
-_("material-color");
-/* TRANSLATORS: Material Diameter */
-_("material-diameter");
-/* TRANSLATORS: Material Diameter Tolerance */
-_("material-diameter-tolerance");
-/* TRANSLATORS: Material Fill Density */
-_("material-fill-density");
-/* TRANSLATORS: Material Name */
-_("material-name");
-/* TRANSLATORS: Material Nozzle Diameter */
-_("material-nozzle-diameter");
 /* TRANSLATORS: Use Material For */
 _("material-purpose");
 /* TRANSLATORS: Everything */
@@ -1252,7 +1038,7 @@ _("material-purpose.shell");
 _("material-purpose.support");
 /* TRANSLATORS: Feed Rate */
 _("material-rate");
-/* TRANSLATORS: Feed Rate Units */
+/* TRANSLATORS: Units */
 _("material-rate-units");
 /* TRANSLATORS: Milligrams per second */
 _("material-rate-units.mg_second");
@@ -1260,19 +1046,11 @@ _("material-rate-units.mg_second");
 _("material-rate-units.ml_second");
 /* TRANSLATORS: Millimeters per second */
 _("material-rate-units.mm_second");
-/* TRANSLATORS: Material Retraction */
-_("material-retraction");
-/* TRANSLATORS: Material Shell Thickness */
-_("material-shell-thickness");
-/* TRANSLATORS: Material Temperature */
-_("material-temperature");
-/* TRANSLATORS: Material Type */
-_("material-type");
 /* TRANSLATORS: ABS */
 _("material-type.abs");
-/* TRANSLATORS: Carbon Fiber ABS */
+/* TRANSLATORS: Carbon fiber ABS */
 _("material-type.abs-carbon-fiber");
-/* TRANSLATORS: Carbon Nanotube ABS */
+/* TRANSLATORS: Carbon nanotube ABS */
 _("material-type.abs-carbon-nanotube");
 /* TRANSLATORS: Chocolate */
 _("material-type.chocolate");
@@ -1280,7 +1058,7 @@ _("material-type.chocolate");
 _("material-type.gold");
 /* TRANSLATORS: Nylon */
 _("material-type.nylon");
-/* TRANSLATORS: Pet */
+/* TRANSLATORS: PET */
 _("material-type.pet");
 /* TRANSLATORS: Photopolymer */
 _("material-type.photopolymer");
@@ -1288,7 +1066,7 @@ _("material-type.photopolymer");
 _("material-type.pla");
 /* TRANSLATORS: Conductive PLA */
 _("material-type.pla-conductive");
-/* TRANSLATORS: Pla Dissolvable */
+/* TRANSLATORS: Dissolvable PLA */
 _("material-type.pla-dissolvable");
 /* TRANSLATORS: Flexible PLA */
 _("material-type.pla-flexible");
@@ -1310,15 +1088,13 @@ _("material-type.silver");
 _("material-type.titanium");
 /* TRANSLATORS: Wax */
 _("material-type.wax");
-/* TRANSLATORS: Materials */
-_("materials-col");
-/* TRANSLATORS: Media */
+/* TRANSLATORS: Media Size */
 _("media");
 /* TRANSLATORS: Back Coating of Media */
 _("media-back-coating");
 /* TRANSLATORS: Glossy */
 _("media-back-coating.glossy");
-/* TRANSLATORS: High Gloss */
+/* TRANSLATORS: High gloss */
 _("media-back-coating.high-gloss");
 /* TRANSLATORS: Matte */
 _("media-back-coating.matte");
@@ -1328,12 +1104,8 @@ _("media-back-coating.none");
 _("media-back-coating.satin");
 /* TRANSLATORS: Semi-gloss */
 _("media-back-coating.semi-gloss");
-/* TRANSLATORS: Media Bottom Margin */
-_("media-bottom-margin");
 /* TRANSLATORS: Media */
 _("media-col");
-/* TRANSLATORS: Media Color */
-_("media-color");
 /* TRANSLATORS: Black */
 _("media-color.black");
 /* TRANSLATORS: Blue */
@@ -1342,85 +1114,85 @@ _("media-color.blue");
 _("media-color.brown");
 /* TRANSLATORS: Buff */
 _("media-color.buff");
-/* TRANSLATORS: Clear Black */
+/* TRANSLATORS: Clear black */
 _("media-color.clear-black");
-/* TRANSLATORS: Clear Blue */
+/* TRANSLATORS: Clear blue */
 _("media-color.clear-blue");
-/* TRANSLATORS: Clear Brown */
+/* TRANSLATORS: Clear brown */
 _("media-color.clear-brown");
-/* TRANSLATORS: Clear Buff */
+/* TRANSLATORS: Clear buff */
 _("media-color.clear-buff");
-/* TRANSLATORS: Clear Cyan */
+/* TRANSLATORS: Clear cyan */
 _("media-color.clear-cyan");
-/* TRANSLATORS: Clear Gold */
+/* TRANSLATORS: Clear gold */
 _("media-color.clear-gold");
-/* TRANSLATORS: Clear Goldenrod */
+/* TRANSLATORS: Clear goldenrod */
 _("media-color.clear-goldenrod");
-/* TRANSLATORS: Clear Gray */
+/* TRANSLATORS: Clear gray */
 _("media-color.clear-gray");
-/* TRANSLATORS: Clear Green */
+/* TRANSLATORS: Clear green */
 _("media-color.clear-green");
-/* TRANSLATORS: Clear Ivory */
+/* TRANSLATORS: Clear ivory */
 _("media-color.clear-ivory");
-/* TRANSLATORS: Clear Magenta */
+/* TRANSLATORS: Clear magenta */
 _("media-color.clear-magenta");
-/* TRANSLATORS: Clear Multi Color */
+/* TRANSLATORS: Clear multi color */
 _("media-color.clear-multi-color");
-/* TRANSLATORS: Clear Mustard */
+/* TRANSLATORS: Clear mustard */
 _("media-color.clear-mustard");
-/* TRANSLATORS: Clear Orange */
+/* TRANSLATORS: Clear orange */
 _("media-color.clear-orange");
-/* TRANSLATORS: Clear Pink */
+/* TRANSLATORS: Clear pink */
 _("media-color.clear-pink");
-/* TRANSLATORS: Clear Red */
+/* TRANSLATORS: Clear red */
 _("media-color.clear-red");
-/* TRANSLATORS: Clear Silver */
+/* TRANSLATORS: Clear silver */
 _("media-color.clear-silver");
-/* TRANSLATORS: Clear Turquoise */
+/* TRANSLATORS: Clear turquoise */
 _("media-color.clear-turquoise");
-/* TRANSLATORS: Clear Violet */
+/* TRANSLATORS: Clear violet */
 _("media-color.clear-violet");
-/* TRANSLATORS: Clear White */
+/* TRANSLATORS: Clear white */
 _("media-color.clear-white");
-/* TRANSLATORS: Clear Yellow */
+/* TRANSLATORS: Clear yellow */
 _("media-color.clear-yellow");
 /* TRANSLATORS: Cyan */
 _("media-color.cyan");
-/* TRANSLATORS: Dark Blue */
+/* TRANSLATORS: Dark blue */
 _("media-color.dark-blue");
-/* TRANSLATORS: Dark Brown */
+/* TRANSLATORS: Dark brown */
 _("media-color.dark-brown");
-/* TRANSLATORS: Dark Buff */
+/* TRANSLATORS: Dark buff */
 _("media-color.dark-buff");
-/* TRANSLATORS: Dark Cyan */
+/* TRANSLATORS: Dark cyan */
 _("media-color.dark-cyan");
-/* TRANSLATORS: Dark Gold */
+/* TRANSLATORS: Dark gold */
 _("media-color.dark-gold");
-/* TRANSLATORS: Dark Goldenrod */
+/* TRANSLATORS: Dark goldenrod */
 _("media-color.dark-goldenrod");
-/* TRANSLATORS: Dark Gray */
+/* TRANSLATORS: Dark gray */
 _("media-color.dark-gray");
-/* TRANSLATORS: Dark Green */
+/* TRANSLATORS: Dark green */
 _("media-color.dark-green");
-/* TRANSLATORS: Dark Ivory */
+/* TRANSLATORS: Dark ivory */
 _("media-color.dark-ivory");
-/* TRANSLATORS: Dark Magenta */
+/* TRANSLATORS: Dark magenta */
 _("media-color.dark-magenta");
-/* TRANSLATORS: Dark Mustard */
+/* TRANSLATORS: Dark mustard */
 _("media-color.dark-mustard");
-/* TRANSLATORS: Dark Orange */
+/* TRANSLATORS: Dark orange */
 _("media-color.dark-orange");
-/* TRANSLATORS: Dark Pink */
+/* TRANSLATORS: Dark pink */
 _("media-color.dark-pink");
-/* TRANSLATORS: Dark Red */
+/* TRANSLATORS: Dark red */
 _("media-color.dark-red");
-/* TRANSLATORS: Dark Silver */
+/* TRANSLATORS: Dark silver */
 _("media-color.dark-silver");
-/* TRANSLATORS: Dark Turquoise */
+/* TRANSLATORS: Dark turquoise */
 _("media-color.dark-turquoise");
-/* TRANSLATORS: Dark Violet */
+/* TRANSLATORS: Dark violet */
 _("media-color.dark-violet");
-/* TRANSLATORS: Dark Yellow */
+/* TRANSLATORS: Dark yellow */
 _("media-color.dark-yellow");
 /* TRANSLATORS: Gold */
 _("media-color.gold");
@@ -1432,43 +1204,43 @@ _("media-color.gray");
 _("media-color.green");
 /* TRANSLATORS: Ivory */
 _("media-color.ivory");
-/* TRANSLATORS: Light Black */
+/* TRANSLATORS: Light black */
 _("media-color.light-black");
-/* TRANSLATORS: Light Blue */
+/* TRANSLATORS: Light blue */
 _("media-color.light-blue");
-/* TRANSLATORS: Light Brown */
+/* TRANSLATORS: Light brown */
 _("media-color.light-brown");
-/* TRANSLATORS: Light Buff */
+/* TRANSLATORS: Light buff */
 _("media-color.light-buff");
-/* TRANSLATORS: Light Cyan */
+/* TRANSLATORS: Light cyan */
 _("media-color.light-cyan");
-/* TRANSLATORS: Light Gold */
+/* TRANSLATORS: Light gold */
 _("media-color.light-gold");
-/* TRANSLATORS: Light Goldenrod */
+/* TRANSLATORS: Light goldenrod */
 _("media-color.light-goldenrod");
-/* TRANSLATORS: Light Gray */
+/* TRANSLATORS: Light gray */
 _("media-color.light-gray");
-/* TRANSLATORS: Light Green */
+/* TRANSLATORS: Light green */
 _("media-color.light-green");
-/* TRANSLATORS: Light Ivory */
+/* TRANSLATORS: Light ivory */
 _("media-color.light-ivory");
-/* TRANSLATORS: Light Magenta */
+/* TRANSLATORS: Light magenta */
 _("media-color.light-magenta");
-/* TRANSLATORS: Light Mustard */
+/* TRANSLATORS: Light mustard */
 _("media-color.light-mustard");
-/* TRANSLATORS: Light Orange */
+/* TRANSLATORS: Light orange */
 _("media-color.light-orange");
-/* TRANSLATORS: Light Pink */
+/* TRANSLATORS: Light pink */
 _("media-color.light-pink");
-/* TRANSLATORS: Light Red */
+/* TRANSLATORS: Light red */
 _("media-color.light-red");
-/* TRANSLATORS: Light Silver */
+/* TRANSLATORS: Light silver */
 _("media-color.light-silver");
-/* TRANSLATORS: Light Turquoise */
+/* TRANSLATORS: Light turquoise */
 _("media-color.light-turquoise");
-/* TRANSLATORS: Light Violet */
+/* TRANSLATORS: Light violet */
 _("media-color.light-violet");
-/* TRANSLATORS: Light Yellow */
+/* TRANSLATORS: Light yellow */
 _("media-color.light-yellow");
 /* TRANSLATORS: Magenta */
 _("media-color.magenta");
@@ -1476,7 +1248,7 @@ _("media-color.magenta");
 _("media-color.multi-color");
 /* TRANSLATORS: Mustard */
 _("media-color.mustard");
-/* TRANSLATORS: No Color */
+/* TRANSLATORS: No color */
 _("media-color.no-color");
 /* TRANSLATORS: Orange */
 _("media-color.orange");
@@ -1496,27 +1268,17 @@ _("media-color.white");
 _("media-color.yellow");
 /* TRANSLATORS: Front Coating of Media */
 _("media-front-coating");
-/* TRANSLATORS: Media Grain */
-_("media-grain");
 /* TRANSLATORS: Cross-Feed Direction */
 _("media-grain.x-direction");
 /* TRANSLATORS: Feed Direction */
 _("media-grain.y-direction");
-/* TRANSLATORS: Media Hole Count */
-_("media-hole-count");
-/* TRANSLATORS: Media Info */
-_("media-info");
-/* TRANSLATORS: Force Media */
-_("media-input-tray-check");
-/* TRANSLATORS: Media Left Margin */
-_("media-left-margin");
-/* TRANSLATORS: Pre-printed Media */
+/* TRANSLATORS: Media Markings */
 _("media-pre-printed");
 /* TRANSLATORS: Blank */
 _("media-pre-printed.blank");
 /* TRANSLATORS: Letterhead */
 _("media-pre-printed.letter-head");
-/* TRANSLATORS: Pre-printed */
+/* TRANSLATORS: Preprinted */
 _("media-pre-printed.pre-printed");
 /* TRANSLATORS: Recycled Media */
 _("media-recycled");
@@ -1524,23 +1286,19 @@ _("media-recycled");
 _("media-recycled.none");
 /* TRANSLATORS: Standard */
 _("media-recycled.standard");
-/* TRANSLATORS: Media Right Margin */
-_("media-right-margin");
 /* TRANSLATORS: Media Dimensions */
 _("media-size");
 /* TRANSLATORS: Media Name */
 _("media-size-name");
-/* TRANSLATORS: Media Source */
-_("media-source");
 /* TRANSLATORS: Alternate */
 _("media-source.alternate");
-/* TRANSLATORS: Alternate Roll */
+/* TRANSLATORS: Alternate roll */
 _("media-source.alternate-roll");
 /* TRANSLATORS: Automatic */
 _("media-source.auto");
 /* TRANSLATORS: Bottom */
 _("media-source.bottom");
-/* TRANSLATORS: By-pass Tray */
+/* TRANSLATORS: Multipurpose tray */
 _("media-source.by-pass-tray");
 /* TRANSLATORS: Center */
 _("media-source.center");
@@ -1550,13 +1308,13 @@ _("media-source.disc");
 _("media-source.envelope");
 /* TRANSLATORS: Hagaki */
 _("media-source.hagaki");
-/* TRANSLATORS: Large Capacity */
+/* TRANSLATORS: Large capacity */
 _("media-source.large-capacity");
 /* TRANSLATORS: Left */
 _("media-source.left");
 /* TRANSLATORS: Main */
 _("media-source.main");
-/* TRANSLATORS: Main Roll */
+/* TRANSLATORS: Main roll */
 _("media-source.main-roll");
 /* TRANSLATORS: Manual */
 _("media-source.manual");
@@ -1632,13 +1390,11 @@ _("media-source.tray-7");
 _("media-source.tray-8");
 /* TRANSLATORS: Tray 9 */
 _("media-source.tray-9");
-/* TRANSLATORS: Media Thickness */
-_("media-thickness");
 /* TRANSLATORS: Media Tooth (Texture) */
 _("media-tooth");
 /* TRANSLATORS: Antique */
 _("media-tooth.antique");
-/* TRANSLATORS: Extra Smooth */
+/* TRANSLATORS: Extra smooth */
 _("media-tooth.calendared");
 /* TRANSLATORS: Coarse */
 _("media-tooth.coarse");
@@ -1656,15 +1412,11 @@ _("media-tooth.stipple");
 _("media-tooth.uncalendared");
 /* TRANSLATORS: Vellum */
 _("media-tooth.vellum");
-/* TRANSLATORS: Media Top Margin */
-_("media-top-margin");
-/* TRANSLATORS: Media Type */
-_("media-type");
 /* TRANSLATORS: Aluminum */
 _("media-type.aluminum");
 /* TRANSLATORS: Automatic */
 _("media-type.auto");
-/* TRANSLATORS: Back Print Film */
+/* TRANSLATORS: Back print film */
 _("media-type.back-print-film");
 /* TRANSLATORS: Cardboard */
 _("media-type.cardboard");
@@ -1674,227 +1426,227 @@ _("media-type.cardstock");
 _("media-type.cd");
 /* TRANSLATORS: Continuous */
 _("media-type.continuous");
-/* TRANSLATORS: Continuous Long */
+/* TRANSLATORS: Continuous long */
 _("media-type.continuous-long");
-/* TRANSLATORS: Continuous Short */
+/* TRANSLATORS: Continuous short */
 _("media-type.continuous-short");
-/* TRANSLATORS: Corrugated Board */
+/* TRANSLATORS: Corrugated board */
 _("media-type.corrugated-board");
-/* TRANSLATORS: Optical Disc */
+/* TRANSLATORS: Optical disc */
 _("media-type.disc");
-/* TRANSLATORS: Glossy Optical Disc */
+/* TRANSLATORS: Glossy optical disc */
 _("media-type.disc-glossy");
-/* TRANSLATORS: High Gloss Optical Disc */
+/* TRANSLATORS: High gloss optical disc */
 _("media-type.disc-high-gloss");
-/* TRANSLATORS: Matte Optical Disc */
+/* TRANSLATORS: Matte optical disc */
 _("media-type.disc-matte");
-/* TRANSLATORS: Satin Optical Disc */
+/* TRANSLATORS: Satin optical disc */
 _("media-type.disc-satin");
-/* TRANSLATORS: Semi-Gloss Optical Disc */
+/* TRANSLATORS: Semi-gloss optical disc */
 _("media-type.disc-semi-gloss");
-/* TRANSLATORS: Double Wall */
+/* TRANSLATORS: Double wall */
 _("media-type.double-wall");
-/* TRANSLATORS: Dry Film */
+/* TRANSLATORS: Dry film */
 _("media-type.dry-film");
 /* TRANSLATORS: DVD */
 _("media-type.dvd");
-/* TRANSLATORS: Embossing Foil */
+/* TRANSLATORS: Embossing foil */
 _("media-type.embossing-foil");
-/* TRANSLATORS: End Board */
+/* TRANSLATORS: End board */
 _("media-type.end-board");
 /* TRANSLATORS: Envelope */
 _("media-type.envelope");
-/* TRANSLATORS: Archival Envelope */
+/* TRANSLATORS: Archival envelope */
 _("media-type.envelope-archival");
-/* TRANSLATORS: Bond Envelope */
+/* TRANSLATORS: Bond envelope */
 _("media-type.envelope-bond");
-/* TRANSLATORS: Coated Envelope */
+/* TRANSLATORS: Coated envelope */
 _("media-type.envelope-coated");
-/* TRANSLATORS: Cotton Envelope */
+/* TRANSLATORS: Cotton envelope */
 _("media-type.envelope-cotton");
-/* TRANSLATORS: Fine Envelope */
+/* TRANSLATORS: Fine envelope */
 _("media-type.envelope-fine");
-/* TRANSLATORS: Heavyweight Envelope */
+/* TRANSLATORS: Heavyweight envelope */
 _("media-type.envelope-heavyweight");
-/* TRANSLATORS: Inkjet Envelope */
+/* TRANSLATORS: Inkjet envelope */
 _("media-type.envelope-inkjet");
-/* TRANSLATORS: Lightweight Envelope */
+/* TRANSLATORS: Lightweight envelope */
 _("media-type.envelope-lightweight");
-/* TRANSLATORS: Plain Envelope */
+/* TRANSLATORS: Plain envelope */
 _("media-type.envelope-plain");
-/* TRANSLATORS: Preprinted Envelope */
+/* TRANSLATORS: Preprinted envelope */
 _("media-type.envelope-preprinted");
-/* TRANSLATORS: Windowed Envelope */
+/* TRANSLATORS: Windowed envelope */
 _("media-type.envelope-window");
 /* TRANSLATORS: Fabric */
 _("media-type.fabric");
-/* TRANSLATORS: Archival Fabric */
+/* TRANSLATORS: Archival fabric */
 _("media-type.fabric-archival");
-/* TRANSLATORS: Glossy Fabric */
+/* TRANSLATORS: Glossy fabric */
 _("media-type.fabric-glossy");
-/* TRANSLATORS: High Gloss Fabric */
+/* TRANSLATORS: High gloss fabric */
 _("media-type.fabric-high-gloss");
-/* TRANSLATORS: Matte Fabric */
+/* TRANSLATORS: Matte fabric */
 _("media-type.fabric-matte");
-/* TRANSLATORS: Semi-Gloss Fabric */
+/* TRANSLATORS: Semi-gloss fabric */
 _("media-type.fabric-semi-gloss");
-/* TRANSLATORS: Waterproof Fabric */
+/* TRANSLATORS: Waterproof fabric */
 _("media-type.fabric-waterproof");
 /* TRANSLATORS: Film */
 _("media-type.film");
-/* TRANSLATORS: Flexo Base */
+/* TRANSLATORS: Flexo base */
 _("media-type.flexo-base");
-/* TRANSLATORS: Flexo Photo Polymer */
+/* TRANSLATORS: Flexo photo polymer */
 _("media-type.flexo-photo-polymer");
 /* TRANSLATORS: Flute */
 _("media-type.flute");
 /* TRANSLATORS: Foil */
 _("media-type.foil");
-/* TRANSLATORS: Full Cut Tabs */
+/* TRANSLATORS: Full cut tabs */
 _("media-type.full-cut-tabs");
 /* TRANSLATORS: Glass */
 _("media-type.glass");
-/* TRANSLATORS: Glass Colored */
+/* TRANSLATORS: Glass colored */
 _("media-type.glass-colored");
-/* TRANSLATORS: Glass Opaque */
+/* TRANSLATORS: Glass opaque */
 _("media-type.glass-opaque");
-/* TRANSLATORS: Glass Surfaced */
+/* TRANSLATORS: Glass surfaced */
 _("media-type.glass-surfaced");
-/* TRANSLATORS: Glass Textured */
+/* TRANSLATORS: Glass textured */
 _("media-type.glass-textured");
-/* TRANSLATORS: Gravure Cylinder */
+/* TRANSLATORS: Gravure cylinder */
 _("media-type.gravure-cylinder");
-/* TRANSLATORS: Image Setter Paper */
+/* TRANSLATORS: Image setter paper */
 _("media-type.image-setter-paper");
-/* TRANSLATORS: Imaging Cylinder */
+/* TRANSLATORS: Imaging cylinder */
 _("media-type.imaging-cylinder");
 /* TRANSLATORS: Labels */
 _("media-type.labels");
-/* TRANSLATORS: Colored Labels */
+/* TRANSLATORS: Colored labels */
 _("media-type.labels-colored");
-/* TRANSLATORS: Glossy Labels */
+/* TRANSLATORS: Glossy labels */
 _("media-type.labels-glossy");
-/* TRANSLATORS: High Gloss Labels */
+/* TRANSLATORS: High gloss labels */
 _("media-type.labels-high-gloss");
-/* TRANSLATORS: Inkjet Labels */
+/* TRANSLATORS: Inkjet labels */
 _("media-type.labels-inkjet");
-/* TRANSLATORS: Matte Labels */
+/* TRANSLATORS: Matte labels */
 _("media-type.labels-matte");
-/* TRANSLATORS: Permanent Labels */
+/* TRANSLATORS: Permanent labels */
 _("media-type.labels-permanent");
-/* TRANSLATORS: Satin Labels */
+/* TRANSLATORS: Satin labels */
 _("media-type.labels-satin");
-/* TRANSLATORS: Security Labels */
+/* TRANSLATORS: Security labels */
 _("media-type.labels-security");
-/* TRANSLATORS: Semi-Gloss Labels */
+/* TRANSLATORS: Semi-gloss labels */
 _("media-type.labels-semi-gloss");
-/* TRANSLATORS: Laminating Foil */
+/* TRANSLATORS: Laminating foil */
 _("media-type.laminating-foil");
 /* TRANSLATORS: Letterhead */
 _("media-type.letterhead");
 /* TRANSLATORS: Metal */
 _("media-type.metal");
-/* TRANSLATORS: Metal Glossy */
+/* TRANSLATORS: Metal glossy */
 _("media-type.metal-glossy");
-/* TRANSLATORS: Metal High Gloss */
+/* TRANSLATORS: Metal high gloss */
 _("media-type.metal-high-gloss");
-/* TRANSLATORS: Metal Matte */
+/* TRANSLATORS: Metal matte */
 _("media-type.metal-matte");
-/* TRANSLATORS: Metal Satin */
+/* TRANSLATORS: Metal satin */
 _("media-type.metal-satin");
-/* TRANSLATORS: Metal Semi Gloss */
+/* TRANSLATORS: Metal semi gloss */
 _("media-type.metal-semi-gloss");
-/* TRANSLATORS: Mounting Tape */
+/* TRANSLATORS: Mounting tape */
 _("media-type.mounting-tape");
-/* TRANSLATORS: Multi Layer */
+/* TRANSLATORS: Multi layer */
 _("media-type.multi-layer");
-/* TRANSLATORS: Multi Part Form */
+/* TRANSLATORS: Multi part form */
 _("media-type.multi-part-form");
 /* TRANSLATORS: Other */
 _("media-type.other");
 /* TRANSLATORS: Paper */
 _("media-type.paper");
-/* TRANSLATORS: Photo Paper */
+/* TRANSLATORS: Photo paper */
 _("media-type.photographic");
-/* TRANSLATORS: Photographic Archival */
+/* TRANSLATORS: Photographic archival */
 _("media-type.photographic-archival");
-/* TRANSLATORS: Photo Film */
+/* TRANSLATORS: Photo film */
 _("media-type.photographic-film");
-/* TRANSLATORS: Glossy Photo Paper */
+/* TRANSLATORS: Glossy photo paper */
 _("media-type.photographic-glossy");
-/* TRANSLATORS: High Gloss Photo Paper */
+/* TRANSLATORS: High gloss photo paper */
 _("media-type.photographic-high-gloss");
-/* TRANSLATORS: Matte Photo Paper */
+/* TRANSLATORS: Matte photo paper */
 _("media-type.photographic-matte");
-/* TRANSLATORS: Satin Photo Paper */
+/* TRANSLATORS: Satin photo paper */
 _("media-type.photographic-satin");
-/* TRANSLATORS: Semi-Gloss Photo Paper */
+/* TRANSLATORS: Semi-gloss photo paper */
 _("media-type.photographic-semi-gloss");
 /* TRANSLATORS: Plastic */
 _("media-type.plastic");
-/* TRANSLATORS: Plastic Archival */
+/* TRANSLATORS: Plastic archival */
 _("media-type.plastic-archival");
-/* TRANSLATORS: Plastic Colored */
+/* TRANSLATORS: Plastic colored */
 _("media-type.plastic-colored");
-/* TRANSLATORS: Plastic Glossy */
+/* TRANSLATORS: Plastic glossy */
 _("media-type.plastic-glossy");
-/* TRANSLATORS: Plastic High Gloss */
+/* TRANSLATORS: Plastic high gloss */
 _("media-type.plastic-high-gloss");
-/* TRANSLATORS: Plastic Matte */
+/* TRANSLATORS: Plastic matte */
 _("media-type.plastic-matte");
-/* TRANSLATORS: Plastic Satin */
+/* TRANSLATORS: Plastic satin */
 _("media-type.plastic-satin");
-/* TRANSLATORS: Plastic Semi Gloss */
+/* TRANSLATORS: Plastic semi gloss */
 _("media-type.plastic-semi-gloss");
 /* TRANSLATORS: Plate */
 _("media-type.plate");
 /* TRANSLATORS: Polyester */
 _("media-type.polyester");
-/* TRANSLATORS: Pre Cut Tabs */
+/* TRANSLATORS: Pre cut tabs */
 _("media-type.pre-cut-tabs");
 /* TRANSLATORS: Roll */
 _("media-type.roll");
 /* TRANSLATORS: Screen */
 _("media-type.screen");
-/* TRANSLATORS: Screen Paged */
+/* TRANSLATORS: Screen paged */
 _("media-type.screen-paged");
-/* TRANSLATORS: Self Adhesive */
+/* TRANSLATORS: Self adhesive */
 _("media-type.self-adhesive");
-/* TRANSLATORS: Self Adhesive Film */
+/* TRANSLATORS: Self adhesive film */
 _("media-type.self-adhesive-film");
-/* TRANSLATORS: Shrink Foil */
+/* TRANSLATORS: Shrink foil */
 _("media-type.shrink-foil");
-/* TRANSLATORS: Single Face */
+/* TRANSLATORS: Single face */
 _("media-type.single-face");
-/* TRANSLATORS: Single Wall */
+/* TRANSLATORS: Single wall */
 _("media-type.single-wall");
 /* TRANSLATORS: Sleeve */
 _("media-type.sleeve");
 /* TRANSLATORS: Stationery */
 _("media-type.stationery");
-/* TRANSLATORS: Stationery Archival */
+/* TRANSLATORS: Stationery archival */
 _("media-type.stationery-archival");
-/* TRANSLATORS: Coated Paper */
+/* TRANSLATORS: Coated paper */
 _("media-type.stationery-coated");
-/* TRANSLATORS: Stationery Cotton */
+/* TRANSLATORS: Stationery cotton */
 _("media-type.stationery-cotton");
-/* TRANSLATORS: Vellum Paper */
+/* TRANSLATORS: Vellum paper */
 _("media-type.stationery-fine");
-/* TRANSLATORS: Heavyweight Paper */
+/* TRANSLATORS: Heavyweight paper */
 _("media-type.stationery-heavyweight");
-/* TRANSLATORS: Stationery Heavyweight Coated */
+/* TRANSLATORS: Stationery heavyweight coated */
 _("media-type.stationery-heavyweight-coated");
-/* TRANSLATORS: Stationery Inkjet Paper */
+/* TRANSLATORS: Stationery inkjet paper */
 _("media-type.stationery-inkjet");
 /* TRANSLATORS: Letterhead */
 _("media-type.stationery-letterhead");
-/* TRANSLATORS: Lightweight Paper */
+/* TRANSLATORS: Lightweight paper */
 _("media-type.stationery-lightweight");
-/* TRANSLATORS: Preprinted Paper */
+/* TRANSLATORS: Preprinted paper */
 _("media-type.stationery-preprinted");
-/* TRANSLATORS: Punched Paper */
+/* TRANSLATORS: Punched paper */
 _("media-type.stationery-prepunched");
-/* TRANSLATORS: Tab Stock */
+/* TRANSLATORS: Tab stock */
 _("media-type.tab-stock");
 /* TRANSLATORS: Tractor */
 _("media-type.tractor");
@@ -1902,9 +1654,9 @@ _("media-type.tractor");
 _("media-type.transfer");
 /* TRANSLATORS: Transparency */
 _("media-type.transparency");
-/* TRANSLATORS: Triple Wall */
+/* TRANSLATORS: Triple wall */
 _("media-type.triple-wall");
-/* TRANSLATORS: Wet Film */
+/* TRANSLATORS: Wet film */
 _("media-type.wet-film");
 /* TRANSLATORS: Media Weight (grams per m²) */
 _("media-weight-metric");
@@ -1934,7 +1686,7 @@ _("media.iso_a2x3_594x1261mm");
 _("media.iso_a2x4_594x1682mm");
 /* TRANSLATORS: A2x5 */
 _("media.iso_a2x5_594x2102mm");
-/* TRANSLATORS: A3 (Extra) */
+/* TRANSLATORS: A3 (extra) */
 _("media.iso_a3-extra_322x445mm");
 /* TRANSLATORS: A3 */
 _("media.iso_a3_297x420mm");
@@ -1948,9 +1700,9 @@ _("media.iso_a3x5_420x1486mm");
 _("media.iso_a3x6_420x1783mm");
 /* TRANSLATORS: A3x7 */
 _("media.iso_a3x7_420x2080mm");
-/* TRANSLATORS: A4 (Extra) */
+/* TRANSLATORS: A4 (extra) */
 _("media.iso_a4-extra_235.5x322.3mm");
-/* TRANSLATORS: A4 (Tab) */
+/* TRANSLATORS: A4 (tab) */
 _("media.iso_a4-tab_225x297mm");
 /* TRANSLATORS: A4 */
 _("media.iso_a4_210x297mm");
@@ -1968,7 +1720,7 @@ _("media.iso_a4x7_297x1471mm");
 _("media.iso_a4x8_297x1682mm");
 /* TRANSLATORS: A4x9 */
 _("media.iso_a4x9_297x1892mm");
-/* TRANSLATORS: A5 (Extra) */
+/* TRANSLATORS: A5 (extra) */
 _("media.iso_a5-extra_174x235mm");
 /* TRANSLATORS: A5 */
 _("media.iso_a5_148x210mm");
@@ -1992,7 +1744,7 @@ _("media.iso_b2_500x707mm");
 _("media.iso_b3_353x500mm");
 /* TRANSLATORS: B4 */
 _("media.iso_b4_250x353mm");
-/* TRANSLATORS: B5 (Extra) */
+/* TRANSLATORS: B5 (extra) */
 _("media.iso_b5-extra_201x276mm");
 /* TRANSLATORS: Envelope B5 */
 _("media.iso_b5_176x250mm");
@@ -2284,160 +2036,46 @@ _("media.om_small-photo_100x150mm");
 _("media.om_square-photo_89x89mm");
 /* TRANSLATORS: 100 x 200mm */
 _("media.om_wide-photo_100x200mm");
-/* TRANSLATORS: Envelope Chinese #10 */
+/* TRANSLATORS: Envelope chinese #10 */
 _("media.prc_10_324x458mm");
 /* TRANSLATORS: Chinese 16k */
 _("media.prc_16k_146x215mm");
-/* TRANSLATORS: Envelope Chinese #1 */
+/* TRANSLATORS: Envelope chinese #1 */
 _("media.prc_1_102x165mm");
-/* TRANSLATORS: Envelope Chinese #2 */
+/* TRANSLATORS: Envelope chinese #2 */
 _("media.prc_2_102x176mm");
 /* TRANSLATORS: Chinese 32k */
 _("media.prc_32k_97x151mm");
-/* TRANSLATORS: Envelope Chinese #3 */
+/* TRANSLATORS: Envelope chinese #3 */
 _("media.prc_3_125x176mm");
-/* TRANSLATORS: Envelope Chinese #4 */
+/* TRANSLATORS: Envelope chinese #4 */
 _("media.prc_4_110x208mm");
-/* TRANSLATORS: Envelope Chinese #5 */
+/* TRANSLATORS: Envelope chinese #5 */
 _("media.prc_5_110x220mm");
-/* TRANSLATORS: Envelope Chinese #6 */
+/* TRANSLATORS: Envelope chinese #6 */
 _("media.prc_6_120x320mm");
-/* TRANSLATORS: Envelope Chinese #7 */
+/* TRANSLATORS: Envelope chinese #7 */
 _("media.prc_7_160x230mm");
-/* TRANSLATORS: Envelope Chinese #8 */
+/* TRANSLATORS: Envelope chinese #8 */
 _("media.prc_8_120x309mm");
 /* TRANSLATORS: ROC 16k */
 _("media.roc_16k_7.75x10.75in");
 /* TRANSLATORS: ROC 8k */
 _("media.roc_8k_10.75x15.5in");
-/* TRANSLATORS: Multiple Document Handling */
-_("multiple-document-handling");
-/* TRANSLATORS: Separate Documents Collated Copies */
-_("multiple-document-handling.separate-documents-collated-copies");
-/* TRANSLATORS: Separate Documents Uncollated Copies */
-_("multiple-document-handling.separate-documents-uncollated-copies");
-/* TRANSLATORS: Single Document */
-_("multiple-document-handling.single-document");
-/* TRANSLATORS: Single Document New Sheet */
-_("multiple-document-handling.single-document-new-sheet");
-/* TRANSLATORS: Multiple Object Handling */
-_("multiple-object-handling");
-/* TRANSLATORS: Multiple Object Handling Actual */
-_("multiple-object-handling-actual");
-/* TRANSLATORS: Automatic */
-_("multiple-object-handling.auto");
-/* TRANSLATORS: Best Fit */
-_("multiple-object-handling.best-fit");
-/* TRANSLATORS: Best Quality */
-_("multiple-object-handling.best-quality");
-/* TRANSLATORS: Best Speed */
-_("multiple-object-handling.best-speed");
-/* TRANSLATORS: One At A Time */
-_("multiple-object-handling.one-at-a-time");
-/* TRANSLATORS: On Timeout */
-_("multiple-operation-time-out-action");
-/* TRANSLATORS: Abort Job */
-_("multiple-operation-time-out-action.abort-job");
-/* TRANSLATORS: Hold Job */
-_("multiple-operation-time-out-action.hold-job");
-/* TRANSLATORS: Process Job */
-_("multiple-operation-time-out-action.process-job");
-/* TRANSLATORS: Noise Removal */
-_("noise-removal");
-/* TRANSLATORS: Notify Attributes */
-_("notify-attributes");
-/* TRANSLATORS: Notify Charset */
-_("notify-charset");
-/* TRANSLATORS: Notify Events */
-_("notify-events");
-/* TRANSLATORS: Document Completed */
-_("notify-events.document-completed");
-/* TRANSLATORS: Document Config Changed */
-_("notify-events.document-config-changed");
-/* TRANSLATORS: Document Created */
-_("notify-events.document-created");
-/* TRANSLATORS: Document Fetchable */
-_("notify-events.document-fetchable");
-/* TRANSLATORS: Document State Changed */
-_("notify-events.document-state-changed");
-/* TRANSLATORS: Document Stopped */
-_("notify-events.document-stopped");
-/* TRANSLATORS: Job Completed */
-_("notify-events.job-completed");
-/* TRANSLATORS: Job Config Changed */
-_("notify-events.job-config-changed");
-/* TRANSLATORS: Job Created */
-_("notify-events.job-created");
-/* TRANSLATORS: Job Fetchable */
-_("notify-events.job-fetchable");
-/* TRANSLATORS: Job Progress */
-_("notify-events.job-progress");
-/* TRANSLATORS: Job State Changed */
-_("notify-events.job-state-changed");
-/* TRANSLATORS: Job Stopped */
-_("notify-events.job-stopped");
-/* TRANSLATORS: None */
-_("notify-events.none");
-/* TRANSLATORS: Printer Config Changed */
-_("notify-events.printer-config-changed");
-/* TRANSLATORS: Printer Finishings Changed */
-_("notify-events.printer-finishings-changed");
-/* TRANSLATORS: Printer Media Changed */
-_("notify-events.printer-media-changed");
-/* TRANSLATORS: Printer Queue Order Changed */
-_("notify-events.printer-queue-order-changed");
-/* TRANSLATORS: Printer Restarted */
-_("notify-events.printer-restarted");
-/* TRANSLATORS: Printer Shutdown */
-_("notify-events.printer-shutdown");
-/* TRANSLATORS: Printer State Changed */
-_("notify-events.printer-state-changed");
-/* TRANSLATORS: Printer Stopped */
-_("notify-events.printer-stopped");
-/* TRANSLATORS: Notify Get Interval */
-_("notify-get-interval");
-/* TRANSLATORS: Notify Lease Duration */
-_("notify-lease-duration");
-/* TRANSLATORS: Notify Natural Language */
-_("notify-natural-language");
-/* TRANSLATORS: Notify Pull Method */
-_("notify-pull-method");
-/* TRANSLATORS: Notify Recipient */
-_("notify-recipient-uri");
-/* TRANSLATORS: Notify Sequence Numbers */
-_("notify-sequence-numbers");
-/* TRANSLATORS: Notify Subscription Ids */
-_("notify-subscription-ids");
-/* TRANSLATORS: Notify Time Interval */
-_("notify-time-interval");
-/* TRANSLATORS: Notify User Data */
-_("notify-user-data");
-/* TRANSLATORS: Notify Wait */
-_("notify-wait");
-/* TRANSLATORS: Number Of Retries */
-_("number-of-retries");
 /* TRANSLATORS: Number-Up */
 _("number-up");
-/* TRANSLATORS: Object Offset */
-_("object-offset");
-/* TRANSLATORS: Object Size */
-_("object-size");
-/* TRANSLATORS: Organization Name */
-_("organization-name");
 /* TRANSLATORS: Orientation */
 _("orientation-requested");
 /* TRANSLATORS: Portrait */
 _("orientation-requested.3");
 /* TRANSLATORS: Landscape */
 _("orientation-requested.4");
-/* TRANSLATORS: Reverse Landscape */
+/* TRANSLATORS: Reverse landscape */
 _("orientation-requested.5");
-/* TRANSLATORS: Reverse Portrait */
+/* TRANSLATORS: Reverse portrait */
 _("orientation-requested.6");
 /* TRANSLATORS: None */
 _("orientation-requested.7");
-/* TRANSLATORS: Scanned Image Options */
-_("output-attributes");
 /* TRANSLATORS: Output Tray */
 _("output-bin");
 /* TRANSLATORS: Automatic */
@@ -2446,11 +2084,11 @@ _("output-bin.auto");
 _("output-bin.bottom");
 /* TRANSLATORS: Center */
 _("output-bin.center");
-/* TRANSLATORS: Face Down */
+/* TRANSLATORS: Face down */
 _("output-bin.face-down");
-/* TRANSLATORS: Face Up */
+/* TRANSLATORS: Face up */
 _("output-bin.face-up");
-/* TRANSLATORS: Large Capacity */
+/* TRANSLATORS: Large capacity */
 _("output-bin.large-capacity");
 /* TRANSLATORS: Left */
 _("output-bin.left");
@@ -2476,7 +2114,7 @@ _("output-bin.mailbox-8");
 _("output-bin.mailbox-9");
 /* TRANSLATORS: Middle */
 _("output-bin.middle");
-/* TRANSLATORS: My Mailbox */
+/* TRANSLATORS: My mailbox */
 _("output-bin.my-mailbox");
 /* TRANSLATORS: Rear */
 _("output-bin.rear");
@@ -2526,78 +2164,12 @@ _("output-bin.tray-7");
 _("output-bin.tray-8");
 /* TRANSLATORS: Tray 9 */
 _("output-bin.tray-9");
-/* TRANSLATORS: Scanned Image Quality */
-_("output-compression-quality-factor");
-/* TRANSLATORS: Page Delivery */
-_("page-delivery");
-/* TRANSLATORS: Reverse Order Face-down */
-_("page-delivery.reverse-order-face-down");
-/* TRANSLATORS: Reverse Order Face-up */
-_("page-delivery.reverse-order-face-up");
-/* TRANSLATORS: Same Order Face-down */
-_("page-delivery.same-order-face-down");
-/* TRANSLATORS: Same Order Face-up */
-_("page-delivery.same-order-face-up");
-/* TRANSLATORS: System Specified */
-_("page-delivery.system-specified");
-/* TRANSLATORS: Page Order Received */
-_("page-order-received");
-/* TRANSLATORS: 1 To N */
-_("page-order-received.1-to-n-order");
-/* TRANSLATORS: N To 1 */
-_("page-order-received.n-to-1-order");
-/* TRANSLATORS: Page Ranges */
-_("page-ranges");
-/* TRANSLATORS: Pages */
-_("pages");
-/* TRANSLATORS: Pages Per Subset */
-_("pages-per-subset");
-/* TRANSLATORS: Pclm Raster Back Side */
-_("pclm-raster-back-side");
-/* TRANSLATORS: Flipped */
-_("pclm-raster-back-side.flipped");
-/* TRANSLATORS: Normal */
-_("pclm-raster-back-side.normal");
-/* TRANSLATORS: Rotated */
-_("pclm-raster-back-side.rotated");
-/* TRANSLATORS: Pclm Source Resolution */
-_("pclm-source-resolution");
-/* TRANSLATORS: Platform Shape */
-_("platform-shape");
-/* TRANSLATORS: Round */
-_("platform-shape.ellipse");
-/* TRANSLATORS: Rectangle */
-_("platform-shape.rectangle");
-/* TRANSLATORS: Platform Temperature */
-_("platform-temperature");
-/* TRANSLATORS: Post-dial String */
+/* TRANSLATORS: Post-Dial String */
 _("post-dial-string");
-/* TRANSLATORS: Pre-dial String */
+/* TRANSLATORS: Pre-Dial String */
 _("pre-dial-string");
 /* TRANSLATORS: Number-Up Layout */
 _("presentation-direction-number-up");
-/* TRANSLATORS: Top-bottom, Right-left */
-_("presentation-direction-number-up.tobottom-toleft");
-/* TRANSLATORS: Top-bottom, Left-right */
-_("presentation-direction-number-up.tobottom-toright");
-/* TRANSLATORS: Right-left, Top-bottom */
-_("presentation-direction-number-up.toleft-tobottom");
-/* TRANSLATORS: Right-left, Bottom-top */
-_("presentation-direction-number-up.toleft-totop");
-/* TRANSLATORS: Left-right, Top-bottom */
-_("presentation-direction-number-up.toright-tobottom");
-/* TRANSLATORS: Left-right, Bottom-top */
-_("presentation-direction-number-up.toright-totop");
-/* TRANSLATORS: Bottom-top, Right-left */
-_("presentation-direction-number-up.totop-toleft");
-/* TRANSLATORS: Bottom-top, Left-right */
-_("presentation-direction-number-up.totop-toright");
-/* TRANSLATORS: Print Accuracy */
-_("print-accuracy");
-/* TRANSLATORS: Print Base */
-_("print-base");
-/* TRANSLATORS: Print Base Actual */
-_("print-base-actual");
 /* TRANSLATORS: Brim */
 _("print-base.brim");
 /* TRANSLATORS: None */
@@ -2608,11 +2180,9 @@ _("print-base.raft");
 _("print-base.skirt");
 /* TRANSLATORS: Standard */
 _("print-base.standard");
-/* TRANSLATORS: Print Color Mode */
-_("print-color-mode");
 /* TRANSLATORS: Automatic */
 _("print-color-mode.auto");
-/* TRANSLATORS: Auto Monochrome */
+/* TRANSLATORS: Auto monochrome */
 _("print-color-mode.auto-monochrome");
 /* TRANSLATORS: Text */
 _("print-color-mode.bi-level");
@@ -2624,12 +2194,10 @@ _("print-color-mode.highlight");
 _("print-color-mode.monochrome");
 /* TRANSLATORS: Process Text */
 _("print-color-mode.process-bi-level");
-/* TRANSLATORS: Process Monochrome */
+/* TRANSLATORS: Process monochrome */
 _("print-color-mode.process-monochrome");
 /* TRANSLATORS: Print Optimization */
 _("print-content-optimize");
-/* TRANSLATORS: Print Content Optimize Actual */
-_("print-content-optimize-actual");
 /* TRANSLATORS: Automatic */
 _("print-content-optimize.auto");
 /* TRANSLATORS: Graphics */
@@ -2640,22 +2208,16 @@ _("print-content-optimize.graphics");
 _("print-content-optimize.photo");
 /* TRANSLATORS: Text */
 _("print-content-optimize.text");
-/* TRANSLATORS: Text and Graphics */
+/* TRANSLATORS: Text and graphics */
 _("print-content-optimize.text-and-graphic");
-/* TRANSLATORS: Text And Graphics */
+/* TRANSLATORS: Text and graphics */
 _("print-content-optimize.text-and-graphics");
-/* TRANSLATORS: Print Objects */
-_("print-objects");
-/* TRANSLATORS: Print Quality */
-_("print-quality");
 /* TRANSLATORS: Draft */
 _("print-quality.3");
 /* TRANSLATORS: Normal */
 _("print-quality.4");
 /* TRANSLATORS: High */
 _("print-quality.5");
-/* TRANSLATORS: Print Rendering Intent */
-_("print-rendering-intent");
 /* TRANSLATORS: Absolute */
 _("print-rendering-intent.absolute");
 /* TRANSLATORS: Automatic */
@@ -2664,12 +2226,10 @@ _("print-rendering-intent.auto");
 _("print-rendering-intent.perceptual");
 /* TRANSLATORS: Relative */
 _("print-rendering-intent.relative");
-/* TRANSLATORS: Relative w/Black Point Compensation */
+/* TRANSLATORS: Relative w/black point compensation */
 _("print-rendering-intent.relative-bpc");
 /* TRANSLATORS: Saturation */
 _("print-rendering-intent.saturation");
-/* TRANSLATORS: Print Scaling */
-_("print-scaling");
 /* TRANSLATORS: Automatic */
 _("print-scaling.auto");
 /* TRANSLATORS: Auto-fit */
@@ -2680,745 +2240,715 @@ _("print-scaling.fill");
 _("print-scaling.fit");
 /* TRANSLATORS: None */
 _("print-scaling.none");
-/* TRANSLATORS: Print Supports */
-_("print-supports");
-/* TRANSLATORS: Print Supports Actual */
-_("print-supports-actual");
-/* TRANSLATORS: With Specified Material */
+/* TRANSLATORS: With specified material */
 _("print-supports.material");
 /* TRANSLATORS: None */
 _("print-supports.none");
 /* TRANSLATORS: Standard */
 _("print-supports.standard");
-/* TRANSLATORS: Printer Kind */
-_("printer-kind");
-/* TRANSLATORS: Disc */
-_("printer-kind.disc");
-/* TRANSLATORS: Document */
-_("printer-kind.document");
-/* TRANSLATORS: Envelope */
-_("printer-kind.envelope");
-/* TRANSLATORS: Label */
-_("printer-kind.label");
-/* TRANSLATORS: Large Format */
-_("printer-kind.large-format");
-/* TRANSLATORS: Photo */
-_("printer-kind.photo");
-/* TRANSLATORS: Postcard */
-_("printer-kind.postcard");
-/* TRANSLATORS: Receipt */
-_("printer-kind.receipt");
-/* TRANSLATORS: Roll */
-_("printer-kind.roll");
-/* TRANSLATORS: Message From Operator */
-_("printer-message-from-operator");
 /* TRANSLATORS: Print Resolution */
 _("printer-resolution");
-/* TRANSLATORS: Printer State */
-_("printer-state");
-/* TRANSLATORS: Detailed Printer State */
-_("printer-state-reasons");
 /* TRANSLATORS: Old Alerts Have Been Removed */
 _("printer-state-reasons.alert-removal-of-binary-change-entry");
-/* TRANSLATORS: Bander Added */
+/* TRANSLATORS: Bander added */
 _("printer-state-reasons.bander-added");
-/* TRANSLATORS: Bander Almost Empty */
+/* TRANSLATORS: Bander almost empty */
 _("printer-state-reasons.bander-almost-empty");
-/* TRANSLATORS: Bander Almost Full */
+/* TRANSLATORS: Bander almost full */
 _("printer-state-reasons.bander-almost-full");
-/* TRANSLATORS: Bander At Limit */
+/* TRANSLATORS: Bander at limit */
 _("printer-state-reasons.bander-at-limit");
-/* TRANSLATORS: Bander Closed */
+/* TRANSLATORS: Bander closed */
 _("printer-state-reasons.bander-closed");
-/* TRANSLATORS: Bander Configuration Change */
+/* TRANSLATORS: Bander configuration change */
 _("printer-state-reasons.bander-configuration-change");
-/* TRANSLATORS: Bander Cover Closed */
+/* TRANSLATORS: Bander cover closed */
 _("printer-state-reasons.bander-cover-closed");
-/* TRANSLATORS: Bander Cover Open */
+/* TRANSLATORS: Bander cover open */
 _("printer-state-reasons.bander-cover-open");
-/* TRANSLATORS: Bander Empty */
+/* TRANSLATORS: Bander empty */
 _("printer-state-reasons.bander-empty");
-/* TRANSLATORS: Bander Full */
+/* TRANSLATORS: Bander full */
 _("printer-state-reasons.bander-full");
-/* TRANSLATORS: Bander Interlock Closed */
+/* TRANSLATORS: Bander interlock closed */
 _("printer-state-reasons.bander-interlock-closed");
-/* TRANSLATORS: Bander Interlock Open */
+/* TRANSLATORS: Bander interlock open */
 _("printer-state-reasons.bander-interlock-open");
-/* TRANSLATORS: Bander Jam */
+/* TRANSLATORS: Bander jam */
 _("printer-state-reasons.bander-jam");
-/* TRANSLATORS: Bander Life Almost Over */
+/* TRANSLATORS: Replace bander soon */
 _("printer-state-reasons.bander-life-almost-over");
-/* TRANSLATORS: Bander Life Over */
+/* TRANSLATORS: Replace bander */
 _("printer-state-reasons.bander-life-over");
-/* TRANSLATORS: Bander Memory Exhausted */
+/* TRANSLATORS: Bander memory exhausted */
 _("printer-state-reasons.bander-memory-exhausted");
-/* TRANSLATORS: Bander Missing */
+/* TRANSLATORS: Install bander */
 _("printer-state-reasons.bander-missing");
-/* TRANSLATORS: Bander Motor Failure */
+/* TRANSLATORS: Bander motor failed */
 _("printer-state-reasons.bander-motor-failure");
-/* TRANSLATORS: Bander Near Limit */
+/* TRANSLATORS: Bander near limit */
 _("printer-state-reasons.bander-near-limit");
-/* TRANSLATORS: Bander Offline */
+/* TRANSLATORS: Bander offline */
 _("printer-state-reasons.bander-offline");
-/* TRANSLATORS: Bander Opened */
+/* TRANSLATORS: Bander opened */
 _("printer-state-reasons.bander-opened");
-/* TRANSLATORS: Bander Over Temperature */
+/* TRANSLATORS: Bander temperature high */
 _("printer-state-reasons.bander-over-temperature");
-/* TRANSLATORS: Bander Power Saver */
+/* TRANSLATORS: Bander power saver */
 _("printer-state-reasons.bander-power-saver");
-/* TRANSLATORS: Bander Recoverable Failure */
+/* TRANSLATORS: Bander recoverable failure */
 _("printer-state-reasons.bander-recoverable-failure");
-/* TRANSLATORS: Bander Recoverable Storage */
+/* TRANSLATORS: Bander recoverable storage */
 _("printer-state-reasons.bander-recoverable-storage");
-/* TRANSLATORS: Bander Removed */
+/* TRANSLATORS: Bander removed */
 _("printer-state-reasons.bander-removed");
-/* TRANSLATORS: Bander Resource Added */
+/* TRANSLATORS: Bander resource added */
 _("printer-state-reasons.bander-resource-added");
-/* TRANSLATORS: Bander Resource Removed */
+/* TRANSLATORS: Bander resource removed */
 _("printer-state-reasons.bander-resource-removed");
-/* TRANSLATORS: Bander Thermistor Failure */
+/* TRANSLATORS: Bander temperature sensor failed */
 _("printer-state-reasons.bander-thermistor-failure");
-/* TRANSLATORS: Bander Timing Failure */
+/* TRANSLATORS: Bander failed */
 _("printer-state-reasons.bander-timing-failure");
-/* TRANSLATORS: Bander Turned Off */
+/* TRANSLATORS: Bander turned off */
 _("printer-state-reasons.bander-turned-off");
-/* TRANSLATORS: Bander Turned On */
+/* TRANSLATORS: Bander turned on */
 _("printer-state-reasons.bander-turned-on");
-/* TRANSLATORS: Bander Under Temperature */
+/* TRANSLATORS: Bander temperature low */
 _("printer-state-reasons.bander-under-temperature");
-/* TRANSLATORS: Bander Unrecoverable Failure */
+/* TRANSLATORS: Bander unrecoverable failure */
 _("printer-state-reasons.bander-unrecoverable-failure");
-/* TRANSLATORS: Bander Unrecoverable Storage Error */
+/* TRANSLATORS: Bander unrecoverable storage error */
 _("printer-state-reasons.bander-unrecoverable-storage-error");
-/* TRANSLATORS: Bander Warming Up */
+/* TRANSLATORS: Bander warming up */
 _("printer-state-reasons.bander-warming-up");
-/* TRANSLATORS: Binder Added */
+/* TRANSLATORS: Binder added */
 _("printer-state-reasons.binder-added");
-/* TRANSLATORS: Binder Almost Empty */
+/* TRANSLATORS: Binder almost empty */
 _("printer-state-reasons.binder-almost-empty");
-/* TRANSLATORS: Binder Almost Full */
+/* TRANSLATORS: Binder almost full */
 _("printer-state-reasons.binder-almost-full");
-/* TRANSLATORS: Binder At Limit */
+/* TRANSLATORS: Binder at limit */
 _("printer-state-reasons.binder-at-limit");
-/* TRANSLATORS: Binder Closed */
+/* TRANSLATORS: Binder closed */
 _("printer-state-reasons.binder-closed");
-/* TRANSLATORS: Binder Configuration Change */
+/* TRANSLATORS: Binder configuration change */
 _("printer-state-reasons.binder-configuration-change");
-/* TRANSLATORS: Binder Cover Closed */
+/* TRANSLATORS: Binder cover closed */
 _("printer-state-reasons.binder-cover-closed");
-/* TRANSLATORS: Binder Cover Open */
+/* TRANSLATORS: Binder cover open */
 _("printer-state-reasons.binder-cover-open");
-/* TRANSLATORS: Binder Empty */
+/* TRANSLATORS: Binder empty */
 _("printer-state-reasons.binder-empty");
-/* TRANSLATORS: Binder Full */
+/* TRANSLATORS: Binder full */
 _("printer-state-reasons.binder-full");
-/* TRANSLATORS: Binder Interlock Closed */
+/* TRANSLATORS: Binder interlock closed */
 _("printer-state-reasons.binder-interlock-closed");
-/* TRANSLATORS: Binder Interlock Open */
+/* TRANSLATORS: Binder interlock open */
 _("printer-state-reasons.binder-interlock-open");
-/* TRANSLATORS: Binder Jam */
+/* TRANSLATORS: Binder jam */
 _("printer-state-reasons.binder-jam");
-/* TRANSLATORS: Binder Life Almost Over */
+/* TRANSLATORS: Binder life almost over */
 _("printer-state-reasons.binder-life-almost-over");
-/* TRANSLATORS: Binder Life Over */
+/* TRANSLATORS: Binder life over */
 _("printer-state-reasons.binder-life-over");
-/* TRANSLATORS: Binder Memory Exhausted */
+/* TRANSLATORS: Binder memory exhausted */
 _("printer-state-reasons.binder-memory-exhausted");
-/* TRANSLATORS: Binder Missing */
+/* TRANSLATORS: Binder missing */
 _("printer-state-reasons.binder-missing");
-/* TRANSLATORS: Binder Motor Failure */
+/* TRANSLATORS: Binder motor failure */
 _("printer-state-reasons.binder-motor-failure");
-/* TRANSLATORS: Binder Near Limit */
+/* TRANSLATORS: Binder near limit */
 _("printer-state-reasons.binder-near-limit");
-/* TRANSLATORS: Binder Offline */
+/* TRANSLATORS: Binder offline */
 _("printer-state-reasons.binder-offline");
-/* TRANSLATORS: Binder Opened */
+/* TRANSLATORS: Binder opened */
 _("printer-state-reasons.binder-opened");
-/* TRANSLATORS: Binder Over Temperature */
+/* TRANSLATORS: Binder over temperature */
 _("printer-state-reasons.binder-over-temperature");
-/* TRANSLATORS: Binder Power Saver */
+/* TRANSLATORS: Binder power saver */
 _("printer-state-reasons.binder-power-saver");
-/* TRANSLATORS: Binder Recoverable Failure */
+/* TRANSLATORS: Binder recoverable failure */
 _("printer-state-reasons.binder-recoverable-failure");
-/* TRANSLATORS: Binder Recoverable Storage */
+/* TRANSLATORS: Binder recoverable storage */
 _("printer-state-reasons.binder-recoverable-storage");
-/* TRANSLATORS: Binder Removed */
+/* TRANSLATORS: Binder removed */
 _("printer-state-reasons.binder-removed");
-/* TRANSLATORS: Binder Resource Added */
+/* TRANSLATORS: Binder resource added */
 _("printer-state-reasons.binder-resource-added");
-/* TRANSLATORS: Binder Resource Removed */
+/* TRANSLATORS: Binder resource removed */
 _("printer-state-reasons.binder-resource-removed");
-/* TRANSLATORS: Binder Thermistor Failure */
+/* TRANSLATORS: Binder thermistor failure */
 _("printer-state-reasons.binder-thermistor-failure");
-/* TRANSLATORS: Binder Timing Failure */
+/* TRANSLATORS: Binder timing failure */
 _("printer-state-reasons.binder-timing-failure");
-/* TRANSLATORS: Binder Turned Off */
+/* TRANSLATORS: Binder turned off */
 _("printer-state-reasons.binder-turned-off");
-/* TRANSLATORS: Binder Turned On */
+/* TRANSLATORS: Binder turned on */
 _("printer-state-reasons.binder-turned-on");
-/* TRANSLATORS: Binder Under Temperature */
+/* TRANSLATORS: Binder under temperature */
 _("printer-state-reasons.binder-under-temperature");
-/* TRANSLATORS: Binder Unrecoverable Failure */
+/* TRANSLATORS: Binder unrecoverable failure */
 _("printer-state-reasons.binder-unrecoverable-failure");
-/* TRANSLATORS: Binder Unrecoverable Storage Error */
+/* TRANSLATORS: Binder unrecoverable storage error */
 _("printer-state-reasons.binder-unrecoverable-storage-error");
-/* TRANSLATORS: Binder Warming Up */
+/* TRANSLATORS: Binder warming up */
 _("printer-state-reasons.binder-warming-up");
-/* TRANSLATORS: Camera Failure */
+/* TRANSLATORS: Camera failed */
 _("printer-state-reasons.camera-failure");
-/* TRANSLATORS: Chamber Cooling */
+/* TRANSLATORS: Chamber cooling */
 _("printer-state-reasons.chamber-cooling");
-/* TRANSLATORS: Chamber Failure */
+/* TRANSLATORS: Chamber failure */
 _("printer-state-reasons.chamber-failure");
-/* TRANSLATORS: Chamber Heating */
+/* TRANSLATORS: Chamber heating */
 _("printer-state-reasons.chamber-heating");
-/* TRANSLATORS: Chamber Temperature High */
+/* TRANSLATORS: Chamber temperature high */
 _("printer-state-reasons.chamber-temperature-high");
-/* TRANSLATORS: Chamber Temperature Low */
+/* TRANSLATORS: Chamber temperature low */
 _("printer-state-reasons.chamber-temperature-low");
-/* TRANSLATORS: Cleaner Life Almost Over */
+/* TRANSLATORS: Replace cleaner soon */
 _("printer-state-reasons.cleaner-life-almost-over");
-/* TRANSLATORS: Cleaner Life Over */
+/* TRANSLATORS: Replace cleaner */
 _("printer-state-reasons.cleaner-life-over");
-/* TRANSLATORS: Configuration Change */
+/* TRANSLATORS: Configuration change */
 _("printer-state-reasons.configuration-change");
-/* TRANSLATORS: Connecting To Device */
+/* TRANSLATORS: Connecting to device */
 _("printer-state-reasons.connecting-to-device");
-/* TRANSLATORS: Cover Open */
+/* TRANSLATORS: Cover open */
 _("printer-state-reasons.cover-open");
 /* TRANSLATORS: Deactivated */
 _("printer-state-reasons.deactivated");
-/* TRANSLATORS: Developer Empty */
+/* TRANSLATORS: Developer empty */
 _("printer-state-reasons.developer-empty");
-/* TRANSLATORS: Developer Low */
+/* TRANSLATORS: Developer low */
 _("printer-state-reasons.developer-low");
-/* TRANSLATORS: Die Cutter Added */
+/* TRANSLATORS: Die cutter added */
 _("printer-state-reasons.die-cutter-added");
-/* TRANSLATORS: Die Cutter Almost Empty */
+/* TRANSLATORS: Die cutter almost empty */
 _("printer-state-reasons.die-cutter-almost-empty");
-/* TRANSLATORS: Die Cutter Almost Full */
+/* TRANSLATORS: Die cutter almost full */
 _("printer-state-reasons.die-cutter-almost-full");
-/* TRANSLATORS: Die Cutter At Limit */
+/* TRANSLATORS: Die cutter at limit */
 _("printer-state-reasons.die-cutter-at-limit");
-/* TRANSLATORS: Die Cutter Closed */
+/* TRANSLATORS: Die cutter closed */
 _("printer-state-reasons.die-cutter-closed");
-/* TRANSLATORS: Die Cutter Configuration Change */
+/* TRANSLATORS: Die cutter configuration change */
 _("printer-state-reasons.die-cutter-configuration-change");
-/* TRANSLATORS: Die Cutter Cover Closed */
+/* TRANSLATORS: Die cutter cover closed */
 _("printer-state-reasons.die-cutter-cover-closed");
-/* TRANSLATORS: Die Cutter Cover Open */
+/* TRANSLATORS: Die cutter cover open */
 _("printer-state-reasons.die-cutter-cover-open");
-/* TRANSLATORS: Die Cutter Empty */
+/* TRANSLATORS: Die cutter empty */
 _("printer-state-reasons.die-cutter-empty");
-/* TRANSLATORS: Die Cutter Full */
+/* TRANSLATORS: Die cutter full */
 _("printer-state-reasons.die-cutter-full");
-/* TRANSLATORS: Die Cutter Interlock Closed */
+/* TRANSLATORS: Die cutter interlock closed */
 _("printer-state-reasons.die-cutter-interlock-closed");
-/* TRANSLATORS: Die Cutter Interlock Open */
+/* TRANSLATORS: Die cutter interlock open */
 _("printer-state-reasons.die-cutter-interlock-open");
-/* TRANSLATORS: Die Cutter Jam */
+/* TRANSLATORS: Die cutter jam */
 _("printer-state-reasons.die-cutter-jam");
-/* TRANSLATORS: Die Cutter Life Almost Over */
+/* TRANSLATORS: Replace die cutter soon */
 _("printer-state-reasons.die-cutter-life-almost-over");
-/* TRANSLATORS: Die Cutter Life Over */
+/* TRANSLATORS: Die cutter life over */
 _("printer-state-reasons.die-cutter-life-over");
-/* TRANSLATORS: Die Cutter Memory Exhausted */
+/* TRANSLATORS: Die cutter memory exhausted */
 _("printer-state-reasons.die-cutter-memory-exhausted");
-/* TRANSLATORS: Die Cutter Missing */
+/* TRANSLATORS: Install die cutter */
 _("printer-state-reasons.die-cutter-missing");
-/* TRANSLATORS: Die Cutter Motor Failure */
+/* TRANSLATORS: Die cutter motor failed */
 _("printer-state-reasons.die-cutter-motor-failure");
-/* TRANSLATORS: Die Cutter Near Limit */
+/* TRANSLATORS: Die cutter near limit */
 _("printer-state-reasons.die-cutter-near-limit");
-/* TRANSLATORS: Die Cutter Offline */
+/* TRANSLATORS: Die cutter offline */
 _("printer-state-reasons.die-cutter-offline");
-/* TRANSLATORS: Die Cutter Opened */
+/* TRANSLATORS: Die cutter opened */
 _("printer-state-reasons.die-cutter-opened");
-/* TRANSLATORS: Die Cutter Over Temperature */
+/* TRANSLATORS: Die cutter temperature high */
 _("printer-state-reasons.die-cutter-over-temperature");
-/* TRANSLATORS: Die Cutter Power Saver */
+/* TRANSLATORS: Die cutter power saver */
 _("printer-state-reasons.die-cutter-power-saver");
-/* TRANSLATORS: Die Cutter Recoverable Failure */
+/* TRANSLATORS: Die cutter recoverable failure */
 _("printer-state-reasons.die-cutter-recoverable-failure");
-/* TRANSLATORS: Die Cutter Recoverable Storage */
+/* TRANSLATORS: Die cutter recoverable storage */
 _("printer-state-reasons.die-cutter-recoverable-storage");
-/* TRANSLATORS: Die Cutter Removed */
+/* TRANSLATORS: Die cutter removed */
 _("printer-state-reasons.die-cutter-removed");
-/* TRANSLATORS: Die Cutter Resource Added */
+/* TRANSLATORS: Die cutter resource added */
 _("printer-state-reasons.die-cutter-resource-added");
-/* TRANSLATORS: Die Cutter Resource Removed */
+/* TRANSLATORS: Die cutter resource removed */
 _("printer-state-reasons.die-cutter-resource-removed");
-/* TRANSLATORS: Die Cutter Thermistor Failure */
+/* TRANSLATORS: Die cutter temperature sensor failed */
 _("printer-state-reasons.die-cutter-thermistor-failure");
-/* TRANSLATORS: Die Cutter Timing Failure */
+/* TRANSLATORS: Die cutter failed */
 _("printer-state-reasons.die-cutter-timing-failure");
-/* TRANSLATORS: Die Cutter Turned Off */
+/* TRANSLATORS: Die cutter turned off */
 _("printer-state-reasons.die-cutter-turned-off");
-/* TRANSLATORS: Die Cutter Turned On */
+/* TRANSLATORS: Die cutter turned on */
 _("printer-state-reasons.die-cutter-turned-on");
-/* TRANSLATORS: Die Cutter Under Temperature */
+/* TRANSLATORS: Die cutter temperature low */
 _("printer-state-reasons.die-cutter-under-temperature");
-/* TRANSLATORS: Die Cutter Unrecoverable Failure */
+/* TRANSLATORS: Die cutter unrecoverable failure */
 _("printer-state-reasons.die-cutter-unrecoverable-failure");
-/* TRANSLATORS: Die Cutter Unrecoverable Storage Error */
+/* TRANSLATORS: Die cutter unrecoverable storage error */
 _("printer-state-reasons.die-cutter-unrecoverable-storage-error");
-/* TRANSLATORS: Die Cutter Warming Up */
+/* TRANSLATORS: Die cutter warming up */
 _("printer-state-reasons.die-cutter-warming-up");
-/* TRANSLATORS: Door Open */
+/* TRANSLATORS: Door open */
 _("printer-state-reasons.door-open");
-/* TRANSLATORS: Extruder Cooling */
+/* TRANSLATORS: Extruder cooling */
 _("printer-state-reasons.extruder-cooling");
-/* TRANSLATORS: Extruder Failure */
+/* TRANSLATORS: Extruder failure */
 _("printer-state-reasons.extruder-failure");
-/* TRANSLATORS: Extruder Heating */
+/* TRANSLATORS: Extruder heating */
 _("printer-state-reasons.extruder-heating");
-/* TRANSLATORS: Extruder Jam */
+/* TRANSLATORS: Extruder jammed */
 _("printer-state-reasons.extruder-jam");
-/* TRANSLATORS: Extruder Temperature High */
+/* TRANSLATORS: Extruder temperature high */
 _("printer-state-reasons.extruder-temperature-high");
-/* TRANSLATORS: Extruder Temperature Low */
+/* TRANSLATORS: Extruder temperature low */
 _("printer-state-reasons.extruder-temperature-low");
-/* TRANSLATORS: Fan Failure */
+/* TRANSLATORS: Fan failed */
 _("printer-state-reasons.fan-failure");
-/* TRANSLATORS: Fax Modem Life Almost Over */
+/* TRANSLATORS: Replace fax modem soon */
 _("printer-state-reasons.fax-modem-life-almost-over");
-/* TRANSLATORS: Fax Modem Life Over */
+/* TRANSLATORS: Replace fax modem */
 _("printer-state-reasons.fax-modem-life-over");
-/* TRANSLATORS: Fax Modem Missing */
+/* TRANSLATORS: Install fax modem */
 _("printer-state-reasons.fax-modem-missing");
-/* TRANSLATORS: Fax Modem Turned Off */
+/* TRANSLATORS: Fax modem turned off */
 _("printer-state-reasons.fax-modem-turned-off");
-/* TRANSLATORS: Fax Modem Turned On */
+/* TRANSLATORS: Fax modem turned on */
 _("printer-state-reasons.fax-modem-turned-on");
-/* TRANSLATORS: Folder Added */
+/* TRANSLATORS: Folder added */
 _("printer-state-reasons.folder-added");
-/* TRANSLATORS: Folder Almost Empty */
+/* TRANSLATORS: Folder almost empty */
 _("printer-state-reasons.folder-almost-empty");
-/* TRANSLATORS: Folder Almost Full */
+/* TRANSLATORS: Folder almost full */
 _("printer-state-reasons.folder-almost-full");
-/* TRANSLATORS: Folder At Limit */
+/* TRANSLATORS: Folder at limit */
 _("printer-state-reasons.folder-at-limit");
-/* TRANSLATORS: Folder Closed */
+/* TRANSLATORS: Folder closed */
 _("printer-state-reasons.folder-closed");
-/* TRANSLATORS: Folder Configuration Change */
+/* TRANSLATORS: Folder configuration change */
 _("printer-state-reasons.folder-configuration-change");
-/* TRANSLATORS: Folder Cover Closed */
+/* TRANSLATORS: Folder cover closed */
 _("printer-state-reasons.folder-cover-closed");
-/* TRANSLATORS: Folder Cover Open */
+/* TRANSLATORS: Folder cover open */
 _("printer-state-reasons.folder-cover-open");
-/* TRANSLATORS: Folder Empty */
+/* TRANSLATORS: Folder empty */
 _("printer-state-reasons.folder-empty");
-/* TRANSLATORS: Folder Full */
+/* TRANSLATORS: Folder full */
 _("printer-state-reasons.folder-full");
-/* TRANSLATORS: Folder Interlock Closed */
+/* TRANSLATORS: Folder interlock closed */
 _("printer-state-reasons.folder-interlock-closed");
-/* TRANSLATORS: Folder Interlock Open */
+/* TRANSLATORS: Folder interlock open */
 _("printer-state-reasons.folder-interlock-open");
-/* TRANSLATORS: Folder Jam */
+/* TRANSLATORS: Folder jammed */
 _("printer-state-reasons.folder-jam");
-/* TRANSLATORS: Folder Life Almost Over */
+/* TRANSLATORS: Replace folder soon */
 _("printer-state-reasons.folder-life-almost-over");
-/* TRANSLATORS: Folder Life Over */
+/* TRANSLATORS: Replace folder */
 _("printer-state-reasons.folder-life-over");
-/* TRANSLATORS: Folder Memory Exhausted */
+/* TRANSLATORS: Folder memory exhausted */
 _("printer-state-reasons.folder-memory-exhausted");
-/* TRANSLATORS: Folder Missing */
+/* TRANSLATORS: Install folder */
 _("printer-state-reasons.folder-missing");
-/* TRANSLATORS: Folder Motor Failure */
+/* TRANSLATORS: Folder motor failure */
 _("printer-state-reasons.folder-motor-failure");
-/* TRANSLATORS: Folder Near Limit */
+/* TRANSLATORS: Folder near limit */
 _("printer-state-reasons.folder-near-limit");
-/* TRANSLATORS: Folder Offline */
+/* TRANSLATORS: Folder offline */
 _("printer-state-reasons.folder-offline");
-/* TRANSLATORS: Folder Opened */
+/* TRANSLATORS: Folder opened */
 _("printer-state-reasons.folder-opened");
-/* TRANSLATORS: Folder Over Temperature */
+/* TRANSLATORS: Folder temperature high */
 _("printer-state-reasons.folder-over-temperature");
-/* TRANSLATORS: Folder Power Saver */
+/* TRANSLATORS: Folder power saver */
 _("printer-state-reasons.folder-power-saver");
-/* TRANSLATORS: Folder Recoverable Failure */
+/* TRANSLATORS: Folder recoverable failure */
 _("printer-state-reasons.folder-recoverable-failure");
-/* TRANSLATORS: Folder Recoverable Storage */
+/* TRANSLATORS: Folder recoverable storage */
 _("printer-state-reasons.folder-recoverable-storage");
-/* TRANSLATORS: Folder Removed */
+/* TRANSLATORS: Folder removed */
 _("printer-state-reasons.folder-removed");
-/* TRANSLATORS: Folder Resource Added */
+/* TRANSLATORS: Folder resource added */
 _("printer-state-reasons.folder-resource-added");
-/* TRANSLATORS: Folder Resource Removed */
+/* TRANSLATORS: Folder resource removed */
 _("printer-state-reasons.folder-resource-removed");
-/* TRANSLATORS: Folder Thermistor Failure */
+/* TRANSLATORS: Folder temperature sensor failed */
 _("printer-state-reasons.folder-thermistor-failure");
-/* TRANSLATORS: Folder Timing Failure */
+/* TRANSLATORS: Folder failed */
 _("printer-state-reasons.folder-timing-failure");
-/* TRANSLATORS: Folder Turned Off */
+/* TRANSLATORS: Folder turned off */
 _("printer-state-reasons.folder-turned-off");
-/* TRANSLATORS: Folder Turned On */
+/* TRANSLATORS: Folder turned on */
 _("printer-state-reasons.folder-turned-on");
-/* TRANSLATORS: Folder Under Temperature */
+/* TRANSLATORS: Folder temperature low */
 _("printer-state-reasons.folder-under-temperature");
-/* TRANSLATORS: Folder Unrecoverable Failure */
+/* TRANSLATORS: Folder unrecoverable failure */
 _("printer-state-reasons.folder-unrecoverable-failure");
-/* TRANSLATORS: Folder Unrecoverable Storage Error */
+/* TRANSLATORS: Folder unrecoverable storage error */
 _("printer-state-reasons.folder-unrecoverable-storage-error");
-/* TRANSLATORS: Folder Warming Up */
+/* TRANSLATORS: Folder warming up */
 _("printer-state-reasons.folder-warming-up");
 /* TRANSLATORS: Fuser temperature high */
 _("printer-state-reasons.fuser-over-temp");
 /* TRANSLATORS: Fuser temperature low */
 _("printer-state-reasons.fuser-under-temp");
-/* TRANSLATORS: Hold New Jobs */
+/* TRANSLATORS: Hold new jobs */
 _("printer-state-reasons.hold-new-jobs");
-/* TRANSLATORS: Identify Printer */
+/* TRANSLATORS: Identify printer */
 _("printer-state-reasons.identify-printer-requested");
-/* TRANSLATORS: Imprinter Added */
+/* TRANSLATORS: Imprinter added */
 _("printer-state-reasons.imprinter-added");
-/* TRANSLATORS: Imprinter Almost Empty */
+/* TRANSLATORS: Imprinter almost empty */
 _("printer-state-reasons.imprinter-almost-empty");
-/* TRANSLATORS: Imprinter Almost Full */
+/* TRANSLATORS: Imprinter almost full */
 _("printer-state-reasons.imprinter-almost-full");
-/* TRANSLATORS: Imprinter At Limit */
+/* TRANSLATORS: Imprinter at limit */
 _("printer-state-reasons.imprinter-at-limit");
-/* TRANSLATORS: Imprinter Closed */
+/* TRANSLATORS: Imprinter closed */
 _("printer-state-reasons.imprinter-closed");
-/* TRANSLATORS: Imprinter Configuration Change */
+/* TRANSLATORS: Imprinter configuration change */
 _("printer-state-reasons.imprinter-configuration-change");
-/* TRANSLATORS: Imprinter Cover Closed */
+/* TRANSLATORS: Imprinter cover closed */
 _("printer-state-reasons.imprinter-cover-closed");
-/* TRANSLATORS: Imprinter Cover Open */
+/* TRANSLATORS: Imprinter cover open */
 _("printer-state-reasons.imprinter-cover-open");
-/* TRANSLATORS: Imprinter Empty */
+/* TRANSLATORS: Imprinter empty */
 _("printer-state-reasons.imprinter-empty");
-/* TRANSLATORS: Imprinter Full */
+/* TRANSLATORS: Imprinter full */
 _("printer-state-reasons.imprinter-full");
-/* TRANSLATORS: Imprinter Interlock Closed */
+/* TRANSLATORS: Imprinter interlock closed */
 _("printer-state-reasons.imprinter-interlock-closed");
-/* TRANSLATORS: Imprinter Interlock Open */
+/* TRANSLATORS: Imprinter interlock open */
 _("printer-state-reasons.imprinter-interlock-open");
-/* TRANSLATORS: Imprinter Jam */
+/* TRANSLATORS: Imprinter jammed */
 _("printer-state-reasons.imprinter-jam");
-/* TRANSLATORS: Imprinter Life Almost Over */
+/* TRANSLATORS: Replace imprinter soon */
 _("printer-state-reasons.imprinter-life-almost-over");
-/* TRANSLATORS: Imprinter Life Over */
+/* TRANSLATORS: Replace imprinter */
 _("printer-state-reasons.imprinter-life-over");
-/* TRANSLATORS: Imprinter Memory Exhausted */
+/* TRANSLATORS: Imprinter memory exhausted */
 _("printer-state-reasons.imprinter-memory-exhausted");
-/* TRANSLATORS: Imprinter Missing */
+/* TRANSLATORS: Install imprinter */
 _("printer-state-reasons.imprinter-missing");
-/* TRANSLATORS: Imprinter Motor Failure */
+/* TRANSLATORS: Imprinter motor failed */
 _("printer-state-reasons.imprinter-motor-failure");
-/* TRANSLATORS: Imprinter Near Limit */
+/* TRANSLATORS: Imprinter near limit */
 _("printer-state-reasons.imprinter-near-limit");
-/* TRANSLATORS: Imprinter Offline */
+/* TRANSLATORS: Imprinter offline */
 _("printer-state-reasons.imprinter-offline");
-/* TRANSLATORS: Imprinter Opened */
+/* TRANSLATORS: Imprinter opened */
 _("printer-state-reasons.imprinter-opened");
-/* TRANSLATORS: Imprinter Over Temperature */
+/* TRANSLATORS: Imprinter temperature high */
 _("printer-state-reasons.imprinter-over-temperature");
-/* TRANSLATORS: Imprinter Power Saver */
+/* TRANSLATORS: Imprinter power saver */
 _("printer-state-reasons.imprinter-power-saver");
-/* TRANSLATORS: Imprinter Recoverable Failure */
+/* TRANSLATORS: Imprinter recoverable failure */
 _("printer-state-reasons.imprinter-recoverable-failure");
-/* TRANSLATORS: Imprinter Recoverable Storage */
+/* TRANSLATORS: Imprinter recoverable storage */
 _("printer-state-reasons.imprinter-recoverable-storage");
-/* TRANSLATORS: Imprinter Removed */
+/* TRANSLATORS: Imprinter removed */
 _("printer-state-reasons.imprinter-removed");
-/* TRANSLATORS: Imprinter Resource Added */
+/* TRANSLATORS: Imprinter resource added */
 _("printer-state-reasons.imprinter-resource-added");
-/* TRANSLATORS: Imprinter Resource Removed */
+/* TRANSLATORS: Imprinter resource removed */
 _("printer-state-reasons.imprinter-resource-removed");
-/* TRANSLATORS: Imprinter Thermistor Failure */
+/* TRANSLATORS: Imprinter temperature sensor failed */
 _("printer-state-reasons.imprinter-thermistor-failure");
-/* TRANSLATORS: Imprinter Timing Failure */
+/* TRANSLATORS: Imprinter failed */
 _("printer-state-reasons.imprinter-timing-failure");
-/* TRANSLATORS: Imprinter Turned Off */
+/* TRANSLATORS: Imprinter turned off */
 _("printer-state-reasons.imprinter-turned-off");
-/* TRANSLATORS: Imprinter Turned On */
+/* TRANSLATORS: Imprinter turned on */
 _("printer-state-reasons.imprinter-turned-on");
-/* TRANSLATORS: Imprinter Under Temperature */
+/* TRANSLATORS: Imprinter temperature low */
 _("printer-state-reasons.imprinter-under-temperature");
-/* TRANSLATORS: Imprinter Unrecoverable Failure */
+/* TRANSLATORS: Imprinter unrecoverable failure */
 _("printer-state-reasons.imprinter-unrecoverable-failure");
-/* TRANSLATORS: Imprinter Unrecoverable Storage Error */
+/* TRANSLATORS: Imprinter unrecoverable storage error */
 _("printer-state-reasons.imprinter-unrecoverable-storage-error");
-/* TRANSLATORS: Imprinter Warming Up */
+/* TRANSLATORS: Imprinter warming up */
 _("printer-state-reasons.imprinter-warming-up");
-/* TRANSLATORS: Input Cannot Feed Size Selected */
+/* TRANSLATORS: Input cannot feed size selected */
 _("printer-state-reasons.input-cannot-feed-size-selected");
-/* TRANSLATORS: Input Manual Input Request */
+/* TRANSLATORS: Load paper */
 _("printer-state-reasons.input-manual-input-request");
-/* TRANSLATORS: Input Media Color Change */
+/* TRANSLATORS: Paper changed */
 _("printer-state-reasons.input-media-color-change");
-/* TRANSLATORS: Input Media Form Parts Change */
+/* TRANSLATORS: Paper changed */
 _("printer-state-reasons.input-media-form-parts-change");
-/* TRANSLATORS: Input Media Size Change */
+/* TRANSLATORS: Paper changed */
 _("printer-state-reasons.input-media-size-change");
-/* TRANSLATORS: Input Media Tray Failure */
+/* TRANSLATORS: Paper tray failed */
 _("printer-state-reasons.input-media-tray-failure");
-/* TRANSLATORS: Input Media Tray Feed Error */
+/* TRANSLATORS: Paper tray feed error */
 _("printer-state-reasons.input-media-tray-feed-error");
-/* TRANSLATORS: Input Media Tray Jam */
+/* TRANSLATORS: Input media tray jam */
 _("printer-state-reasons.input-media-tray-jam");
-/* TRANSLATORS: Input Media Type Change */
+/* TRANSLATORS: Paper changed */
 _("printer-state-reasons.input-media-type-change");
-/* TRANSLATORS: Input Media Weight Change */
+/* TRANSLATORS: Paper changed */
 _("printer-state-reasons.input-media-weight-change");
-/* TRANSLATORS: Input Pick Roller Failure */
+/* TRANSLATORS: Pick roller failed */
 _("printer-state-reasons.input-pick-roller-failure");
-/* TRANSLATORS: Input Pick Roller Life Over */
+/* TRANSLATORS: Replace pick roller */
 _("printer-state-reasons.input-pick-roller-life-over");
-/* TRANSLATORS: Input Pick Roller Life Warn */
+/* TRANSLATORS: Replace pick roller soon */
 _("printer-state-reasons.input-pick-roller-life-warn");
-/* TRANSLATORS: Input Pick Roller Missing */
+/* TRANSLATORS: Input pick roller missing */
 _("printer-state-reasons.input-pick-roller-missing");
-/* TRANSLATORS: Input Tray Elevation Failure */
+/* TRANSLATORS: Paper tray elevation failed */
 _("printer-state-reasons.input-tray-elevation-failure");
 /* TRANSLATORS: Paper tray is missing */
 _("printer-state-reasons.input-tray-missing");
-/* TRANSLATORS: Input Tray Position Failure */
+/* TRANSLATORS: Paper tray position failed */
 _("printer-state-reasons.input-tray-position-failure");
-/* TRANSLATORS: Inserter Added */
+/* TRANSLATORS: Inserter added */
 _("printer-state-reasons.inserter-added");
-/* TRANSLATORS: Inserter Almost Empty */
+/* TRANSLATORS: Inserter almost empty */
 _("printer-state-reasons.inserter-almost-empty");
-/* TRANSLATORS: Inserter Almost Full */
+/* TRANSLATORS: Inserter almost full */
 _("printer-state-reasons.inserter-almost-full");
-/* TRANSLATORS: Inserter At Limit */
+/* TRANSLATORS: Inserter at limit */
 _("printer-state-reasons.inserter-at-limit");
-/* TRANSLATORS: Inserter Closed */
+/* TRANSLATORS: Inserter closed */
 _("printer-state-reasons.inserter-closed");
-/* TRANSLATORS: Inserter Configuration Change */
+/* TRANSLATORS: Inserter configuration change */
 _("printer-state-reasons.inserter-configuration-change");
-/* TRANSLATORS: Inserter Cover Closed */
+/* TRANSLATORS: Inserter cover closed */
 _("printer-state-reasons.inserter-cover-closed");
-/* TRANSLATORS: Inserter Cover Open */
+/* TRANSLATORS: Inserter cover open */
 _("printer-state-reasons.inserter-cover-open");
-/* TRANSLATORS: Inserter Empty */
+/* TRANSLATORS: Inserter empty */
 _("printer-state-reasons.inserter-empty");
-/* TRANSLATORS: Inserter Full */
+/* TRANSLATORS: Inserter full */
 _("printer-state-reasons.inserter-full");
-/* TRANSLATORS: Inserter Interlock Closed */
+/* TRANSLATORS: Inserter interlock closed */
 _("printer-state-reasons.inserter-interlock-closed");
-/* TRANSLATORS: Inserter Interlock Open */
+/* TRANSLATORS: Inserter interlock open */
 _("printer-state-reasons.inserter-interlock-open");
-/* TRANSLATORS: Inserter Jam */
+/* TRANSLATORS: Inserter jammed */
 _("printer-state-reasons.inserter-jam");
-/* TRANSLATORS: Inserter Life Almost Over */
+/* TRANSLATORS: Replace inserter soon */
 _("printer-state-reasons.inserter-life-almost-over");
-/* TRANSLATORS: Inserter Life Over */
+/* TRANSLATORS: Replace inserter */
 _("printer-state-reasons.inserter-life-over");
-/* TRANSLATORS: Inserter Memory Exhausted */
+/* TRANSLATORS: Inserter memory exhausted */
 _("printer-state-reasons.inserter-memory-exhausted");
-/* TRANSLATORS: Inserter Missing */
+/* TRANSLATORS: Install inserter */
 _("printer-state-reasons.inserter-missing");
-/* TRANSLATORS: Inserter Motor Failure */
+/* TRANSLATORS: Inserter motor failed */
 _("printer-state-reasons.inserter-motor-failure");
-/* TRANSLATORS: Inserter Near Limit */
+/* TRANSLATORS: Inserter near limit */
 _("printer-state-reasons.inserter-near-limit");
-/* TRANSLATORS: Inserter Offline */
+/* TRANSLATORS: Inserter offline */
 _("printer-state-reasons.inserter-offline");
-/* TRANSLATORS: Inserter Opened */
+/* TRANSLATORS: Inserter opened */
 _("printer-state-reasons.inserter-opened");
-/* TRANSLATORS: Inserter Over Temperature */
+/* TRANSLATORS: Inserter temperature high */
 _("printer-state-reasons.inserter-over-temperature");
-/* TRANSLATORS: Inserter Power Saver */
+/* TRANSLATORS: Inserter power saver */
 _("printer-state-reasons.inserter-power-saver");
-/* TRANSLATORS: Inserter Recoverable Failure */
+/* TRANSLATORS: Inserter recoverable failure */
 _("printer-state-reasons.inserter-recoverable-failure");
-/* TRANSLATORS: Inserter Recoverable Storage */
+/* TRANSLATORS: Inserter recoverable storage */
 _("printer-state-reasons.inserter-recoverable-storage");
-/* TRANSLATORS: Inserter Removed */
+/* TRANSLATORS: Inserter removed */
 _("printer-state-reasons.inserter-removed");
-/* TRANSLATORS: Inserter Resource Added */
+/* TRANSLATORS: Inserter resource added */
 _("printer-state-reasons.inserter-resource-added");
-/* TRANSLATORS: Inserter Resource Removed */
+/* TRANSLATORS: Inserter resource removed */
 _("printer-state-reasons.inserter-resource-removed");
-/* TRANSLATORS: Inserter Thermistor Failure */
+/* TRANSLATORS: Inserter temperature sensor failed */
 _("printer-state-reasons.inserter-thermistor-failure");
-/* TRANSLATORS: Inserter Timing Failure */
+/* TRANSLATORS: Inserter failed */
 _("printer-state-reasons.inserter-timing-failure");
-/* TRANSLATORS: Inserter Turned Off */
+/* TRANSLATORS: Inserter turned off */
 _("printer-state-reasons.inserter-turned-off");
-/* TRANSLATORS: Inserter Turned On */
+/* TRANSLATORS: Inserter turned on */
 _("printer-state-reasons.inserter-turned-on");
-/* TRANSLATORS: Inserter Under Temperature */
+/* TRANSLATORS: Inserter temperature low */
 _("printer-state-reasons.inserter-under-temperature");
-/* TRANSLATORS: Inserter Unrecoverable Failure */
+/* TRANSLATORS: Inserter unrecoverable failure */
 _("printer-state-reasons.inserter-unrecoverable-failure");
-/* TRANSLATORS: Inserter Unrecoverable Storage Error */
+/* TRANSLATORS: Inserter unrecoverable storage error */
 _("printer-state-reasons.inserter-unrecoverable-storage-error");
-/* TRANSLATORS: Inserter Warming Up */
+/* TRANSLATORS: Inserter warming up */
 _("printer-state-reasons.inserter-warming-up");
-/* TRANSLATORS: Interlock Closed */
+/* TRANSLATORS: Interlock closed */
 _("printer-state-reasons.interlock-closed");
-/* TRANSLATORS: Interlock Open */
+/* TRANSLATORS: Interlock open */
 _("printer-state-reasons.interlock-open");
-/* TRANSLATORS: Interpreter Cartridge Added */
+/* TRANSLATORS: Interpreter cartridge added */
 _("printer-state-reasons.interpreter-cartridge-added");
-/* TRANSLATORS: Interpreter Cartridge Removed */
+/* TRANSLATORS: Interpreter cartridge removed */
 _("printer-state-reasons.interpreter-cartridge-deleted");
-/* TRANSLATORS: Interpreter Complex Page Encountered */
+/* TRANSLATORS: Interpreter complex page encountered */
 _("printer-state-reasons.interpreter-complex-page-encountered");
-/* TRANSLATORS: Interpreter Memory Decrease */
+/* TRANSLATORS: Interpreter memory decrease */
 _("printer-state-reasons.interpreter-memory-decrease");
-/* TRANSLATORS: Interpreter Memory Increase */
+/* TRANSLATORS: Interpreter memory increase */
 _("printer-state-reasons.interpreter-memory-increase");
-/* TRANSLATORS: Interpreter Resource Added */
+/* TRANSLATORS: Interpreter resource added */
 _("printer-state-reasons.interpreter-resource-added");
-/* TRANSLATORS: Interpreter Resource Deleted */
+/* TRANSLATORS: Interpreter resource deleted */
 _("printer-state-reasons.interpreter-resource-deleted");
 /* TRANSLATORS: Printer resource unavailable */
 _("printer-state-reasons.interpreter-resource-unavailable");
-/* TRANSLATORS: Lamp At End of Life */
+/* TRANSLATORS: Replace lamp */
 _("printer-state-reasons.lamp-at-eol");
-/* TRANSLATORS: Lamp Failure */
+/* TRANSLATORS: Lamp failed */
 _("printer-state-reasons.lamp-failure");
-/* TRANSLATORS: Lamp Near End of Life */
+/* TRANSLATORS: Replace lamp soon */
 _("printer-state-reasons.lamp-near-eol");
-/* TRANSLATORS: Laser At End of Life */
+/* TRANSLATORS: Replace laser */
 _("printer-state-reasons.laser-at-eol");
-/* TRANSLATORS: Laser Failure */
+/* TRANSLATORS: Laser failed */
 _("printer-state-reasons.laser-failure");
-/* TRANSLATORS: Laser Near End of Life */
+/* TRANSLATORS: Replace laser soon */
 _("printer-state-reasons.laser-near-eol");
-/* TRANSLATORS: Envelope Maker Added */
+/* TRANSLATORS: Envelope maker added */
 _("printer-state-reasons.make-envelope-added");
-/* TRANSLATORS: Envelope Maker Almost Empty */
+/* TRANSLATORS: Envelope maker almost empty */
 _("printer-state-reasons.make-envelope-almost-empty");
-/* TRANSLATORS: Envelope Maker Almost Full */
+/* TRANSLATORS: Envelope maker almost full */
 _("printer-state-reasons.make-envelope-almost-full");
-/* TRANSLATORS: Envelope Maker At Limit */
+/* TRANSLATORS: Envelope maker at limit */
 _("printer-state-reasons.make-envelope-at-limit");
-/* TRANSLATORS: Envelope Maker Closed */
+/* TRANSLATORS: Envelope maker closed */
 _("printer-state-reasons.make-envelope-closed");
-/* TRANSLATORS: Envelope Maker Configuration Change */
+/* TRANSLATORS: Envelope maker configuration change */
 _("printer-state-reasons.make-envelope-configuration-change");
-/* TRANSLATORS: Envelope Maker Cover Closed */
+/* TRANSLATORS: Envelope maker cover closed */
 _("printer-state-reasons.make-envelope-cover-closed");
-/* TRANSLATORS: Envelope Maker Cover Open */
+/* TRANSLATORS: Envelope maker cover open */
 _("printer-state-reasons.make-envelope-cover-open");
-/* TRANSLATORS: Envelope Maker Empty */
+/* TRANSLATORS: Envelope maker empty */
 _("printer-state-reasons.make-envelope-empty");
-/* TRANSLATORS: Envelope Maker Full */
+/* TRANSLATORS: Envelope maker full */
 _("printer-state-reasons.make-envelope-full");
-/* TRANSLATORS: Envelope Maker Interlock Closed */
+/* TRANSLATORS: Envelope maker interlock closed */
 _("printer-state-reasons.make-envelope-interlock-closed");
-/* TRANSLATORS: Envelope Maker Interlock Open */
+/* TRANSLATORS: Envelope maker interlock open */
 _("printer-state-reasons.make-envelope-interlock-open");
-/* TRANSLATORS: Envelope Maker Jam */
+/* TRANSLATORS: Envelope maker jammed */
 _("printer-state-reasons.make-envelope-jam");
-/* TRANSLATORS: Envelope Maker Life Almost Over */
+/* TRANSLATORS: Replace envelope maker soon */
 _("printer-state-reasons.make-envelope-life-almost-over");
-/* TRANSLATORS: Envelope Maker Life Over */
+/* TRANSLATORS: Replace envelope maker */
 _("printer-state-reasons.make-envelope-life-over");
-/* TRANSLATORS: Envelope Maker Memory Exhausted */
+/* TRANSLATORS: Envelope maker memory exhausted */
 _("printer-state-reasons.make-envelope-memory-exhausted");
-/* TRANSLATORS: Envelope Maker Missing */
+/* TRANSLATORS: Install envelope maker */
 _("printer-state-reasons.make-envelope-missing");
-/* TRANSLATORS: Envelope Maker Motor Failure */
+/* TRANSLATORS: Envelope maker motor failed */
 _("printer-state-reasons.make-envelope-motor-failure");
-/* TRANSLATORS: Envelope Maker Near Limit */
+/* TRANSLATORS: Envelope maker near limit */
 _("printer-state-reasons.make-envelope-near-limit");
-/* TRANSLATORS: Envelope Maker Offline */
+/* TRANSLATORS: Envelope maker offline */
 _("printer-state-reasons.make-envelope-offline");
-/* TRANSLATORS: Envelope Maker Opened */
+/* TRANSLATORS: Envelope maker opened */
 _("printer-state-reasons.make-envelope-opened");
-/* TRANSLATORS: Envelope Maker Over Temperature */
+/* TRANSLATORS: Envelope maker temperature high */
 _("printer-state-reasons.make-envelope-over-temperature");
-/* TRANSLATORS: Envelope Maker Power Saver */
+/* TRANSLATORS: Envelope maker in power save mode */
 _("printer-state-reasons.make-envelope-power-saver");
-/* TRANSLATORS: Envelope Maker Recoverable Failure */
+/* TRANSLATORS: Envelope maker recoverable failure */
 _("printer-state-reasons.make-envelope-recoverable-failure");
-/* TRANSLATORS: Envelope Maker Recoverable Storage */
+/* TRANSLATORS: Envelope maker recoverable storage */
 _("printer-state-reasons.make-envelope-recoverable-storage");
-/* TRANSLATORS: Envelope Maker Removed */
+/* TRANSLATORS: Envelope maker removed */
 _("printer-state-reasons.make-envelope-removed");
-/* TRANSLATORS: Envelope Maker Resource Added */
+/* TRANSLATORS: Envelope maker resource added */
 _("printer-state-reasons.make-envelope-resource-added");
-/* TRANSLATORS: Envelope Maker Resource Removed */
+/* TRANSLATORS: Envelope maker resource removed */
 _("printer-state-reasons.make-envelope-resource-removed");
-/* TRANSLATORS: Envelope Maker Thermistor Failure */
+/* TRANSLATORS: Envelope maker temperature sensor failed */
 _("printer-state-reasons.make-envelope-thermistor-failure");
-/* TRANSLATORS: Envelope Maker Timing Failure */
+/* TRANSLATORS: Envelope maker failed */
 _("printer-state-reasons.make-envelope-timing-failure");
-/* TRANSLATORS: Envelope Maker Turned Off */
+/* TRANSLATORS: Envelope maker turned off */
 _("printer-state-reasons.make-envelope-turned-off");
-/* TRANSLATORS: Envelope Maker Turned On */
+/* TRANSLATORS: Envelope maker turned on */
 _("printer-state-reasons.make-envelope-turned-on");
-/* TRANSLATORS: Envelope Maker Under Temperature */
+/* TRANSLATORS: Envelope maker temperature low */
 _("printer-state-reasons.make-envelope-under-temperature");
-/* TRANSLATORS: Envelope Maker Unrecoverable Failure */
+/* TRANSLATORS: Envelope maker unrecoverable failure */
 _("printer-state-reasons.make-envelope-unrecoverable-failure");
-/* TRANSLATORS: Envelope Maker Unrecoverable Storage Error */
+/* TRANSLATORS: Envelope maker unrecoverable storage error */
 _("printer-state-reasons.make-envelope-unrecoverable-storage-error");
-/* TRANSLATORS: Envelope Maker Warming Up */
+/* TRANSLATORS: Envelope maker warming up */
 _("printer-state-reasons.make-envelope-warming-up");
-/* TRANSLATORS: Marker Adjusting Print Quality */
+/* TRANSLATORS: Optimizing print quality */
 _("printer-state-reasons.marker-adjusting-print-quality");
-/* TRANSLATORS: Marker Cleaner Missing */
+/* TRANSLATORS: Install cleaner */
 _("printer-state-reasons.marker-cleaner-missing");
-/* TRANSLATORS: Marker Developer Almost Empty */
+/* TRANSLATORS: Developer almost empty */
 _("printer-state-reasons.marker-developer-almost-empty");
-/* TRANSLATORS: Marker Developer Empty */
+/* TRANSLATORS: Developer empty */
 _("printer-state-reasons.marker-developer-empty");
-/* TRANSLATORS: Marker Developer Missing */
+/* TRANSLATORS: Replace developer */
 _("printer-state-reasons.marker-developer-missing");
-/* TRANSLATORS: Marker Fuser Missing */
+/* TRANSLATORS: Install fuser */
 _("printer-state-reasons.marker-fuser-missing");
-/* TRANSLATORS: Marker Fuser Thermistor Failure */
+/* TRANSLATORS: Fuser temperature sensor failed */
 _("printer-state-reasons.marker-fuser-thermistor-failure");
-/* TRANSLATORS: Marker Fuser Timing Failure */
+/* TRANSLATORS: Fuser failed */
 _("printer-state-reasons.marker-fuser-timing-failure");
-/* TRANSLATORS: Marker Ink Almost Empty */
+/* TRANSLATORS: Ink low */
 _("printer-state-reasons.marker-ink-almost-empty");
-/* TRANSLATORS: Marker Ink Empty */
+/* TRANSLATORS: Ink empty */
 _("printer-state-reasons.marker-ink-empty");
-/* TRANSLATORS: Marker Ink Missing */
+/* TRANSLATORS: Install ink */
 _("printer-state-reasons.marker-ink-missing");
-/* TRANSLATORS: Marker Opc Missing */
+/* TRANSLATORS: Install OPC */
 _("printer-state-reasons.marker-opc-missing");
-/* TRANSLATORS: Marker Print Ribbon Almost Empty */
+/* TRANSLATORS: Print ribbon low */
 _("printer-state-reasons.marker-print-ribbon-almost-empty");
-/* TRANSLATORS: Marker Print Ribbon Empty */
+/* TRANSLATORS: Print ribbon empty */
 _("printer-state-reasons.marker-print-ribbon-empty");
-/* TRANSLATORS: Marker Print Ribbon Missing */
+/* TRANSLATORS: Install print ribbon */
 _("printer-state-reasons.marker-print-ribbon-missing");
-/* TRANSLATORS: Marker Supply Almost Empty */
+/* TRANSLATORS: Ink/toner very low */
 _("printer-state-reasons.marker-supply-almost-empty");
 /* TRANSLATORS: Ink/toner empty */
 _("printer-state-reasons.marker-supply-empty");
 /* TRANSLATORS: Ink/toner low */
 _("printer-state-reasons.marker-supply-low");
-/* TRANSLATORS: Marker Supply Missing */
+/* TRANSLATORS: Marker supply missing */
 _("printer-state-reasons.marker-supply-missing");
-/* TRANSLATORS: Marker Toner Cartridge Missing */
+/* TRANSLATORS: Replace toner cartridge */
 _("printer-state-reasons.marker-toner-cartridge-missing");
-/* TRANSLATORS: Marker Toner Missing */
+/* TRANSLATORS: Install toner */
 _("printer-state-reasons.marker-toner-missing");
 /* TRANSLATORS: Ink/toner waste bin almost full */
 _("printer-state-reasons.marker-waste-almost-full");
 /* TRANSLATORS: Ink/toner waste bin full */
 _("printer-state-reasons.marker-waste-full");
-/* TRANSLATORS: Marker Waste Ink Receptacle Almost Full */
+/* TRANSLATORS: Ink waste bin almost full */
 _("printer-state-reasons.marker-waste-ink-receptacle-almost-full");
-/* TRANSLATORS: Marker Waste Ink Receptacle Full */
+/* TRANSLATORS: Ink waste bin full */
 _("printer-state-reasons.marker-waste-ink-receptacle-full");
-/* TRANSLATORS: Marker Waste Ink Receptacle Missing */
+/* TRANSLATORS: Replace ink waste bin */
 _("printer-state-reasons.marker-waste-ink-receptacle-missing");
-/* TRANSLATORS: Marker Waste Missing */
+/* TRANSLATORS: Install waste bin */
 _("printer-state-reasons.marker-waste-missing");
-/* TRANSLATORS: Marker Waste Toner Receptacle Almost Full */
+/* TRANSLATORS: Toner waste bin almost full */
 _("printer-state-reasons.marker-waste-toner-receptacle-almost-full");
-/* TRANSLATORS: Marker Waste Toner Receptacle Full */
+/* TRANSLATORS: Toner waste bin full */
 _("printer-state-reasons.marker-waste-toner-receptacle-full");
-/* TRANSLATORS: Marker Waste Toner Receptacle Missing */
+/* TRANSLATORS: Install toner waste bin */
 _("printer-state-reasons.marker-waste-toner-receptacle-missing");
-/* TRANSLATORS: Material Empty */
+/* TRANSLATORS: Material empty */
 _("printer-state-reasons.material-empty");
-/* TRANSLATORS: Material Low */
+/* TRANSLATORS: Material low */
 _("printer-state-reasons.material-low");
-/* TRANSLATORS: Material Needed */
+/* TRANSLATORS: Load material */
 _("printer-state-reasons.material-needed");
-/* TRANSLATORS: Media Drying */
+/* TRANSLATORS: Paper drying */
 _("printer-state-reasons.media-drying");
 /* TRANSLATORS: Paper tray is empty */
 _("printer-state-reasons.media-empty");
@@ -3428,779 +2958,779 @@ _("printer-state-reasons.media-jam");
 _("printer-state-reasons.media-low");
 /* TRANSLATORS: Load paper */
 _("printer-state-reasons.media-needed");
-/* TRANSLATORS: Media Path Cannot Do 2-Sided Printing */
+/* TRANSLATORS: Cannot print 2-sided */
 _("printer-state-reasons.media-path-cannot-duplex-media-selected");
-/* TRANSLATORS: Media Path Failure */
+/* TRANSLATORS: Paper path failed */
 _("printer-state-reasons.media-path-failure");
-/* TRANSLATORS: Media Path Input Empty */
+/* TRANSLATORS: Paper input empty */
 _("printer-state-reasons.media-path-input-empty");
-/* TRANSLATORS: Media Path Input Feed Error */
+/* TRANSLATORS: Paper input error */
 _("printer-state-reasons.media-path-input-feed-error");
-/* TRANSLATORS: Media Path Input Jam */
+/* TRANSLATORS: Paper input jam */
 _("printer-state-reasons.media-path-input-jam");
-/* TRANSLATORS: Media Path Input Request */
+/* TRANSLATORS: Load paper */
 _("printer-state-reasons.media-path-input-request");
-/* TRANSLATORS: Media Path Jam */
+/* TRANSLATORS: Paper path jam */
 _("printer-state-reasons.media-path-jam");
-/* TRANSLATORS: Media Path Media Tray Almost Full */
+/* TRANSLATORS: Output tray almost full */
 _("printer-state-reasons.media-path-media-tray-almost-full");
-/* TRANSLATORS: Media Path Media Tray Full */
+/* TRANSLATORS: Output tray full */
 _("printer-state-reasons.media-path-media-tray-full");
-/* TRANSLATORS: Media Path Media Tray Missing */
+/* TRANSLATORS: Install output tray */
 _("printer-state-reasons.media-path-media-tray-missing");
-/* TRANSLATORS: Media Path Output Feed Error */
+/* TRANSLATORS: Paper output error */
 _("printer-state-reasons.media-path-output-feed-error");
-/* TRANSLATORS: Media Path Output Full */
+/* TRANSLATORS: Paper output full */
 _("printer-state-reasons.media-path-output-full");
-/* TRANSLATORS: Media Path Output Jam */
+/* TRANSLATORS: Paper output jam */
 _("printer-state-reasons.media-path-output-jam");
-/* TRANSLATORS: Media Path Pick Roller Failure */
+/* TRANSLATORS: Pickup roller failed */
 _("printer-state-reasons.media-path-pick-roller-failure");
-/* TRANSLATORS: Media Path Pick Roller Life Over */
+/* TRANSLATORS: Replace pickup roller */
 _("printer-state-reasons.media-path-pick-roller-life-over");
-/* TRANSLATORS: Media Path Pick Roller Life Warn */
+/* TRANSLATORS: Replace pickup roller soon */
 _("printer-state-reasons.media-path-pick-roller-life-warn");
-/* TRANSLATORS: Media Path Pick Roller Missing */
+/* TRANSLATORS: Install pickup roller */
 _("printer-state-reasons.media-path-pick-roller-missing");
-/* TRANSLATORS: Motor Failure */
+/* TRANSLATORS: Motor failed */
 _("printer-state-reasons.motor-failure");
 /* TRANSLATORS: Printer going offline */
 _("printer-state-reasons.moving-to-paused");
 /* TRANSLATORS: None */
 _("printer-state-reasons.none");
-/* TRANSLATORS: Optical Photoconductor Life Over */
+/* TRANSLATORS: Replace OPC */
 _("printer-state-reasons.opc-life-over");
-/* TRANSLATORS: OPC almost at end-of-life */
+/* TRANSLATORS: Replace OPC soon */
 _("printer-state-reasons.opc-near-eol");
-/* TRANSLATORS: Check the printer for errors */
+/* TRANSLATORS: Check printer */
 _("printer-state-reasons.other");
-/* TRANSLATORS: Output bin is almost full */
+/* TRANSLATORS: Output bin almost full */
 _("printer-state-reasons.output-area-almost-full");
-/* TRANSLATORS: Output bin is full */
+/* TRANSLATORS: Output bin full */
 _("printer-state-reasons.output-area-full");
-/* TRANSLATORS: Output Mailbox Select Failure */
+/* TRANSLATORS: Mailbox failed */
 _("printer-state-reasons.output-mailbox-select-failure");
-/* TRANSLATORS: Output Media Tray Failure */
+/* TRANSLATORS: Output bin failed */
 _("printer-state-reasons.output-media-tray-failure");
-/* TRANSLATORS: Output Media Tray Feed Error */
+/* TRANSLATORS: Output bin feeder failed */
 _("printer-state-reasons.output-media-tray-feed-error");
-/* TRANSLATORS: Output Media Tray Jam */
+/* TRANSLATORS: Output bin jammed */
 _("printer-state-reasons.output-media-tray-jam");
-/* TRANSLATORS: Output tray is missing */
+/* TRANSLATORS: Install output tray */
 _("printer-state-reasons.output-tray-missing");
 /* TRANSLATORS: Paused */
 _("printer-state-reasons.paused");
-/* TRANSLATORS: Perforater Added */
+/* TRANSLATORS: Perforater added */
 _("printer-state-reasons.perforater-added");
-/* TRANSLATORS: Perforater Almost Empty */
+/* TRANSLATORS: Perforater almost empty */
 _("printer-state-reasons.perforater-almost-empty");
-/* TRANSLATORS: Perforater Almost Full */
+/* TRANSLATORS: Perforater almost full */
 _("printer-state-reasons.perforater-almost-full");
-/* TRANSLATORS: Perforater At Limit */
+/* TRANSLATORS: Perforater at limit */
 _("printer-state-reasons.perforater-at-limit");
-/* TRANSLATORS: Perforater Closed */
+/* TRANSLATORS: Perforater closed */
 _("printer-state-reasons.perforater-closed");
-/* TRANSLATORS: Perforater Configuration Change */
+/* TRANSLATORS: Perforater configuration change */
 _("printer-state-reasons.perforater-configuration-change");
-/* TRANSLATORS: Perforater Cover Closed */
+/* TRANSLATORS: Perforater cover closed */
 _("printer-state-reasons.perforater-cover-closed");
-/* TRANSLATORS: Perforater Cover Open */
+/* TRANSLATORS: Perforater cover open */
 _("printer-state-reasons.perforater-cover-open");
-/* TRANSLATORS: Perforater Empty */
+/* TRANSLATORS: Perforater empty */
 _("printer-state-reasons.perforater-empty");
-/* TRANSLATORS: Perforater Full */
+/* TRANSLATORS: Perforater full */
 _("printer-state-reasons.perforater-full");
-/* TRANSLATORS: Perforater Interlock Closed */
+/* TRANSLATORS: Perforater interlock closed */
 _("printer-state-reasons.perforater-interlock-closed");
-/* TRANSLATORS: Perforater Interlock Open */
+/* TRANSLATORS: Perforater interlock open */
 _("printer-state-reasons.perforater-interlock-open");
-/* TRANSLATORS: Perforater Jam */
+/* TRANSLATORS: Perforater jam */
 _("printer-state-reasons.perforater-jam");
-/* TRANSLATORS: Perforater Life Almost Over */
+/* TRANSLATORS: Perforater life almost over */
 _("printer-state-reasons.perforater-life-almost-over");
-/* TRANSLATORS: Perforater Life Over */
+/* TRANSLATORS: Perforater life over */
 _("printer-state-reasons.perforater-life-over");
-/* TRANSLATORS: Perforater Memory Exhausted */
+/* TRANSLATORS: Perforater memory exhausted */
 _("printer-state-reasons.perforater-memory-exhausted");
-/* TRANSLATORS: Perforater Missing */
+/* TRANSLATORS: Perforater missing */
 _("printer-state-reasons.perforater-missing");
-/* TRANSLATORS: Perforater Motor Failure */
+/* TRANSLATORS: Perforater motor failure */
 _("printer-state-reasons.perforater-motor-failure");
-/* TRANSLATORS: Perforater Near Limit */
+/* TRANSLATORS: Perforater near limit */
 _("printer-state-reasons.perforater-near-limit");
-/* TRANSLATORS: Perforater Offline */
+/* TRANSLATORS: Perforater offline */
 _("printer-state-reasons.perforater-offline");
-/* TRANSLATORS: Perforater Opened */
+/* TRANSLATORS: Perforater opened */
 _("printer-state-reasons.perforater-opened");
-/* TRANSLATORS: Perforater Over Temperature */
+/* TRANSLATORS: Perforater over temperature */
 _("printer-state-reasons.perforater-over-temperature");
-/* TRANSLATORS: Perforater Power Saver */
+/* TRANSLATORS: Perforater power saver */
 _("printer-state-reasons.perforater-power-saver");
-/* TRANSLATORS: Perforater Recoverable Failure */
+/* TRANSLATORS: Perforater recoverable failure */
 _("printer-state-reasons.perforater-recoverable-failure");
-/* TRANSLATORS: Perforater Recoverable Storage */
+/* TRANSLATORS: Perforater recoverable storage */
 _("printer-state-reasons.perforater-recoverable-storage");
-/* TRANSLATORS: Perforater Removed */
+/* TRANSLATORS: Perforater removed */
 _("printer-state-reasons.perforater-removed");
-/* TRANSLATORS: Perforater Resource Added */
+/* TRANSLATORS: Perforater resource added */
 _("printer-state-reasons.perforater-resource-added");
-/* TRANSLATORS: Perforater Resource Removed */
+/* TRANSLATORS: Perforater resource removed */
 _("printer-state-reasons.perforater-resource-removed");
-/* TRANSLATORS: Perforater Thermistor Failure */
+/* TRANSLATORS: Perforater thermistor failure */
 _("printer-state-reasons.perforater-thermistor-failure");
-/* TRANSLATORS: Perforater Timing Failure */
+/* TRANSLATORS: Perforater timing failure */
 _("printer-state-reasons.perforater-timing-failure");
-/* TRANSLATORS: Perforater Turned Off */
+/* TRANSLATORS: Perforater turned off */
 _("printer-state-reasons.perforater-turned-off");
-/* TRANSLATORS: Perforater Turned On */
+/* TRANSLATORS: Perforater turned on */
 _("printer-state-reasons.perforater-turned-on");
-/* TRANSLATORS: Perforater Under Temperature */
+/* TRANSLATORS: Perforater under temperature */
 _("printer-state-reasons.perforater-under-temperature");
-/* TRANSLATORS: Perforater Unrecoverable Failure */
+/* TRANSLATORS: Perforater unrecoverable failure */
 _("printer-state-reasons.perforater-unrecoverable-failure");
-/* TRANSLATORS: Perforater Unrecoverable Storage Error */
+/* TRANSLATORS: Perforater unrecoverable storage error */
 _("printer-state-reasons.perforater-unrecoverable-storage-error");
-/* TRANSLATORS: Perforater Warming Up */
+/* TRANSLATORS: Perforater warming up */
 _("printer-state-reasons.perforater-warming-up");
-/* TRANSLATORS: Platform Cooling */
+/* TRANSLATORS: Platform cooling */
 _("printer-state-reasons.platform-cooling");
-/* TRANSLATORS: Platform Failure */
+/* TRANSLATORS: Platform failed */
 _("printer-state-reasons.platform-failure");
-/* TRANSLATORS: Platform Heating */
+/* TRANSLATORS: Platform heating */
 _("printer-state-reasons.platform-heating");
-/* TRANSLATORS: Platform Temperature High */
+/* TRANSLATORS: Platform temperature high */
 _("printer-state-reasons.platform-temperature-high");
-/* TRANSLATORS: Platform Temperature Low */
+/* TRANSLATORS: Platform temperature low */
 _("printer-state-reasons.platform-temperature-low");
-/* TRANSLATORS: Power Down */
+/* TRANSLATORS: Power down */
 _("printer-state-reasons.power-down");
-/* TRANSLATORS: Power Up */
+/* TRANSLATORS: Power up */
 _("printer-state-reasons.power-up");
-/* TRANSLATORS: Printer Reset Manually */
+/* TRANSLATORS: Printer reset manually */
 _("printer-state-reasons.printer-manual-reset");
-/* TRANSLATORS: Printer Reset Remotely */
+/* TRANSLATORS: Printer reset remotely */
 _("printer-state-reasons.printer-nms-reset");
-/* TRANSLATORS: Printer Ready To Print */
+/* TRANSLATORS: Printer ready to print */
 _("printer-state-reasons.printer-ready-to-print");
-/* TRANSLATORS: Puncher Added */
+/* TRANSLATORS: Puncher added */
 _("printer-state-reasons.puncher-added");
-/* TRANSLATORS: Puncher Almost Empty */
+/* TRANSLATORS: Puncher almost empty */
 _("printer-state-reasons.puncher-almost-empty");
-/* TRANSLATORS: Puncher Almost Full */
+/* TRANSLATORS: Puncher almost full */
 _("printer-state-reasons.puncher-almost-full");
-/* TRANSLATORS: Puncher At Limit */
+/* TRANSLATORS: Puncher at limit */
 _("printer-state-reasons.puncher-at-limit");
-/* TRANSLATORS: Puncher Closed */
+/* TRANSLATORS: Puncher closed */
 _("printer-state-reasons.puncher-closed");
-/* TRANSLATORS: Puncher Configuration Change */
+/* TRANSLATORS: Puncher changed */
 _("printer-state-reasons.puncher-configuration-change");
-/* TRANSLATORS: Puncher Cover Closed */
+/* TRANSLATORS: Puncher cover closed */
 _("printer-state-reasons.puncher-cover-closed");
-/* TRANSLATORS: Puncher Cover Open */
+/* TRANSLATORS: Puncher cover open */
 _("printer-state-reasons.puncher-cover-open");
-/* TRANSLATORS: Puncher Empty */
+/* TRANSLATORS: Puncher empty */
 _("printer-state-reasons.puncher-empty");
-/* TRANSLATORS: Puncher Full */
+/* TRANSLATORS: Puncher full */
 _("printer-state-reasons.puncher-full");
-/* TRANSLATORS: Puncher Interlock Closed */
+/* TRANSLATORS: Puncher interlock closed */
 _("printer-state-reasons.puncher-interlock-closed");
-/* TRANSLATORS: Puncher Interlock Open */
+/* TRANSLATORS: Puncher interlock open */
 _("printer-state-reasons.puncher-interlock-open");
-/* TRANSLATORS: Puncher Jam */
+/* TRANSLATORS: Puncher jammed */
 _("printer-state-reasons.puncher-jam");
-/* TRANSLATORS: Puncher Life Almost Over */
+/* TRANSLATORS: Replace puncher soon */
 _("printer-state-reasons.puncher-life-almost-over");
-/* TRANSLATORS: Puncher Life Over */
+/* TRANSLATORS: Replace puncher */
 _("printer-state-reasons.puncher-life-over");
-/* TRANSLATORS: Puncher Memory Exhausted */
+/* TRANSLATORS: Puncher memory exhausted */
 _("printer-state-reasons.puncher-memory-exhausted");
-/* TRANSLATORS: Puncher Missing */
+/* TRANSLATORS: Install puncher */
 _("printer-state-reasons.puncher-missing");
-/* TRANSLATORS: Puncher Motor Failure */
+/* TRANSLATORS: Puncher motor failed */
 _("printer-state-reasons.puncher-motor-failure");
-/* TRANSLATORS: Puncher Near Limit */
+/* TRANSLATORS: Puncher near limit */
 _("printer-state-reasons.puncher-near-limit");
-/* TRANSLATORS: Puncher Offline */
+/* TRANSLATORS: Puncher offline */
 _("printer-state-reasons.puncher-offline");
-/* TRANSLATORS: Puncher Opened */
+/* TRANSLATORS: Puncher opened */
 _("printer-state-reasons.puncher-opened");
-/* TRANSLATORS: Puncher Over Temperature */
+/* TRANSLATORS: Puncher temperature high */
 _("printer-state-reasons.puncher-over-temperature");
-/* TRANSLATORS: Puncher Power Saver */
+/* TRANSLATORS: Puncher in power save mode */
 _("printer-state-reasons.puncher-power-saver");
-/* TRANSLATORS: Puncher Recoverable Failure */
+/* TRANSLATORS: Puncher recoverable failure */
 _("printer-state-reasons.puncher-recoverable-failure");
-/* TRANSLATORS: Puncher Recoverable Storage */
+/* TRANSLATORS: Puncher recoverable storage */
 _("printer-state-reasons.puncher-recoverable-storage");
-/* TRANSLATORS: Puncher Removed */
+/* TRANSLATORS: Puncher removed */
 _("printer-state-reasons.puncher-removed");
-/* TRANSLATORS: Puncher Resource Added */
+/* TRANSLATORS: Puncher resource added */
 _("printer-state-reasons.puncher-resource-added");
-/* TRANSLATORS: Puncher Resource Removed */
+/* TRANSLATORS: Puncher resource removed */
 _("printer-state-reasons.puncher-resource-removed");
-/* TRANSLATORS: Puncher Thermistor Failure */
+/* TRANSLATORS: Puncher temperature sensor failed */
 _("printer-state-reasons.puncher-thermistor-failure");
-/* TRANSLATORS: Puncher Timing Failure */
+/* TRANSLATORS: Puncher failed */
 _("printer-state-reasons.puncher-timing-failure");
-/* TRANSLATORS: Puncher Turned Off */
+/* TRANSLATORS: Puncher turned off */
 _("printer-state-reasons.puncher-turned-off");
-/* TRANSLATORS: Puncher Turned On */
+/* TRANSLATORS: Puncher turned on */
 _("printer-state-reasons.puncher-turned-on");
-/* TRANSLATORS: Puncher Under Temperature */
+/* TRANSLATORS: Puncher temperature low */
 _("printer-state-reasons.puncher-under-temperature");
-/* TRANSLATORS: Puncher Unrecoverable Failure */
+/* TRANSLATORS: Puncher unrecoverable failure */
 _("printer-state-reasons.puncher-unrecoverable-failure");
-/* TRANSLATORS: Puncher Unrecoverable Storage Error */
+/* TRANSLATORS: Puncher unrecoverable storage error */
 _("printer-state-reasons.puncher-unrecoverable-storage-error");
-/* TRANSLATORS: Puncher Warming Up */
+/* TRANSLATORS: Puncher warming up */
 _("printer-state-reasons.puncher-warming-up");
-/* TRANSLATORS: Scan Media Path Failure */
+/* TRANSLATORS: Scanner ADF failed */
 _("printer-state-reasons.scan-media-path-failure");
-/* TRANSLATORS: Scan Media Path Input Feed Error */
+/* TRANSLATORS: Scanner ADF load error  */
 _("printer-state-reasons.scan-media-path-input-feed-error");
-/* TRANSLATORS: Scan Media Path Input Jam */
+/* TRANSLATORS: Scanner ADF jammed */
 _("printer-state-reasons.scan-media-path-input-jam");
-/* TRANSLATORS: Scan Media Path Input Request */
+/* TRANSLATORS: Load document */
 _("printer-state-reasons.scan-media-path-input-request");
-/* TRANSLATORS: Scan Media Path Jam */
+/* TRANSLATORS: Scanner ADF jammed */
 _("printer-state-reasons.scan-media-path-jam");
-/* TRANSLATORS: Scan Media Path Output Feed Error */
+/* TRANSLATORS: Scanner ADF eject error */
 _("printer-state-reasons.scan-media-path-output-feed-error");
-/* TRANSLATORS: Scan Media Path Output Full */
+/* TRANSLATORS: Scanner ADF full */
 _("printer-state-reasons.scan-media-path-output-full");
-/* TRANSLATORS: Scan Media Path Output Jam */
+/* TRANSLATORS: Scanner ADF jammed */
 _("printer-state-reasons.scan-media-path-output-jam");
-/* TRANSLATORS: Scan Media Path Pick Roller Failure */
+/* TRANSLATORS: Scanner ADF pick roller failed */
 _("printer-state-reasons.scan-media-path-pick-roller-failure");
-/* TRANSLATORS: Scan Media Path Pick Roller Life Over */
+/* TRANSLATORS: Replace scanner ADF pick roller */
 _("printer-state-reasons.scan-media-path-pick-roller-life-over");
-/* TRANSLATORS: Scan Media Path Pick Roller Life Warn */
+/* TRANSLATORS: Replace scanner ADF pick roller soon */
 _("printer-state-reasons.scan-media-path-pick-roller-life-warn");
-/* TRANSLATORS: Scan Media Path Pick Roller Missing */
+/* TRANSLATORS: Install scanner ADF pick roller */
 _("printer-state-reasons.scan-media-path-pick-roller-missing");
-/* TRANSLATORS: Scan Media Path Tray Almost Full */
+/* TRANSLATORS: Scanner ADF output tray almost full */
 _("printer-state-reasons.scan-media-path-tray-almost-full");
-/* TRANSLATORS: Scan Media Path Tray Full */
+/* TRANSLATORS: Scanner ADF output tray full */
 _("printer-state-reasons.scan-media-path-tray-full");
-/* TRANSLATORS: Scan Media Path Tray Missing */
+/* TRANSLATORS: Install scanner ADF output tray */
 _("printer-state-reasons.scan-media-path-tray-missing");
-/* TRANSLATORS: Scanner Light Failure */
+/* TRANSLATORS: Scan light failed */
 _("printer-state-reasons.scanner-light-failure");
-/* TRANSLATORS: Scanner Light Life Almost Over */
+/* TRANSLATORS: Replace scan light soon */
 _("printer-state-reasons.scanner-light-life-almost-over");
-/* TRANSLATORS: Scanner Light Life Over */
+/* TRANSLATORS: Replace scan light */
 _("printer-state-reasons.scanner-light-life-over");
-/* TRANSLATORS: Scanner Light Missing */
+/* TRANSLATORS: Install scan light */
 _("printer-state-reasons.scanner-light-missing");
-/* TRANSLATORS: Scanner Sensor Failure */
+/* TRANSLATORS: Scan sensor failed */
 _("printer-state-reasons.scanner-sensor-failure");
-/* TRANSLATORS: Scanner Sensor Life Almost Over */
+/* TRANSLATORS: Replace scan sensor soon */
 _("printer-state-reasons.scanner-sensor-life-almost-over");
-/* TRANSLATORS: Scanner Sensor Life Over */
+/* TRANSLATORS: Replace scan sensor */
 _("printer-state-reasons.scanner-sensor-life-over");
-/* TRANSLATORS: Scanner Sensor Missing */
+/* TRANSLATORS: Install scan sensor */
 _("printer-state-reasons.scanner-sensor-missing");
-/* TRANSLATORS: Separation Cutter Added */
+/* TRANSLATORS: Separation cutter added */
 _("printer-state-reasons.separation-cutter-added");
-/* TRANSLATORS: Separation Cutter Almost Empty */
+/* TRANSLATORS: Separation cutter almost empty */
 _("printer-state-reasons.separation-cutter-almost-empty");
-/* TRANSLATORS: Separation Cutter Almost Full */
+/* TRANSLATORS: Separation cutter almost full */
 _("printer-state-reasons.separation-cutter-almost-full");
-/* TRANSLATORS: Separation Cutter At Limit */
+/* TRANSLATORS: Separation cutter at limit */
 _("printer-state-reasons.separation-cutter-at-limit");
-/* TRANSLATORS: Separation Cutter Closed */
+/* TRANSLATORS: Separation cutter closed */
 _("printer-state-reasons.separation-cutter-closed");
-/* TRANSLATORS: Separation Cutter Configuration Change */
+/* TRANSLATORS: Separation cutter changed */
 _("printer-state-reasons.separation-cutter-configuration-change");
-/* TRANSLATORS: Separation Cutter Cover Closed */
+/* TRANSLATORS: Separation cutter cover closed */
 _("printer-state-reasons.separation-cutter-cover-closed");
-/* TRANSLATORS: Separation Cutter Cover Open */
+/* TRANSLATORS: Separation cutter cover open */
 _("printer-state-reasons.separation-cutter-cover-open");
-/* TRANSLATORS: Separation Cutter Empty */
+/* TRANSLATORS: Separation cutter empty */
 _("printer-state-reasons.separation-cutter-empty");
-/* TRANSLATORS: Separation Cutter Full */
+/* TRANSLATORS: Separation cutter full */
 _("printer-state-reasons.separation-cutter-full");
-/* TRANSLATORS: Separation Cutter Interlock Closed */
+/* TRANSLATORS: Separation cutter interlock closed */
 _("printer-state-reasons.separation-cutter-interlock-closed");
-/* TRANSLATORS: Separation Cutter Interlock Open */
+/* TRANSLATORS: Separation cutter interlock open */
 _("printer-state-reasons.separation-cutter-interlock-open");
-/* TRANSLATORS: Separation Cutter Jam */
+/* TRANSLATORS: Separation cutter jammed */
 _("printer-state-reasons.separation-cutter-jam");
-/* TRANSLATORS: Separation Cutter Life Almost Over */
+/* TRANSLATORS: Replace separation cutter soon */
 _("printer-state-reasons.separation-cutter-life-almost-over");
-/* TRANSLATORS: Separation Cutter Life Over */
+/* TRANSLATORS: Replace separation cutter */
 _("printer-state-reasons.separation-cutter-life-over");
-/* TRANSLATORS: Separation Cutter Memory Exhausted */
+/* TRANSLATORS: Separation cutter memory exhausted */
 _("printer-state-reasons.separation-cutter-memory-exhausted");
-/* TRANSLATORS: Separation Cutter Missing */
+/* TRANSLATORS: Install separation cutter */
 _("printer-state-reasons.separation-cutter-missing");
-/* TRANSLATORS: Separation Cutter Motor Failure */
+/* TRANSLATORS: Separation cutter motor failed */
 _("printer-state-reasons.separation-cutter-motor-failure");
-/* TRANSLATORS: Separation Cutter Near Limit */
+/* TRANSLATORS: Separation cutter near limit */
 _("printer-state-reasons.separation-cutter-near-limit");
-/* TRANSLATORS: Separation Cutter Offline */
+/* TRANSLATORS: Separation cutter offline */
 _("printer-state-reasons.separation-cutter-offline");
-/* TRANSLATORS: Separation Cutter Opened */
+/* TRANSLATORS: Separation cutter opened */
 _("printer-state-reasons.separation-cutter-opened");
-/* TRANSLATORS: Separation Cutter Over Temperature */
+/* TRANSLATORS: Separation cutter temperature high */
 _("printer-state-reasons.separation-cutter-over-temperature");
-/* TRANSLATORS: Separation Cutter Power Saver */
+/* TRANSLATORS: Separation cutter in power save mode */
 _("printer-state-reasons.separation-cutter-power-saver");
-/* TRANSLATORS: Separation Cutter Recoverable Failure */
+/* TRANSLATORS: Separation cutter recoverable failure */
 _("printer-state-reasons.separation-cutter-recoverable-failure");
-/* TRANSLATORS: Separation Cutter Recoverable Storage */
+/* TRANSLATORS: Separation cutter recoverable storage */
 _("printer-state-reasons.separation-cutter-recoverable-storage");
-/* TRANSLATORS: Separation Cutter Removed */
+/* TRANSLATORS: Separation cutter removed */
 _("printer-state-reasons.separation-cutter-removed");
-/* TRANSLATORS: Separation Cutter Resource Added */
+/* TRANSLATORS: Separation cutter resource added */
 _("printer-state-reasons.separation-cutter-resource-added");
-/* TRANSLATORS: Separation Cutter Resource Removed */
+/* TRANSLATORS: Separation cutter resource removed */
 _("printer-state-reasons.separation-cutter-resource-removed");
-/* TRANSLATORS: Separation Cutter Thermistor Failure */
+/* TRANSLATORS: Separation cutter temperature sensor failed */
 _("printer-state-reasons.separation-cutter-thermistor-failure");
-/* TRANSLATORS: Separation Cutter Timing Failure */
+/* TRANSLATORS: Separation cutter failed */
 _("printer-state-reasons.separation-cutter-timing-failure");
-/* TRANSLATORS: Separation Cutter Turned Off */
+/* TRANSLATORS: Separation cutter turned off */
 _("printer-state-reasons.separation-cutter-turned-off");
-/* TRANSLATORS: Separation Cutter Turned On */
+/* TRANSLATORS: Separation cutter turned on */
 _("printer-state-reasons.separation-cutter-turned-on");
-/* TRANSLATORS: Separation Cutter Under Temperature */
+/* TRANSLATORS: Separation cutter temperature low */
 _("printer-state-reasons.separation-cutter-under-temperature");
-/* TRANSLATORS: Separation Cutter Unrecoverable Failure */
+/* TRANSLATORS: Separation cutter unrecoverable failure */
 _("printer-state-reasons.separation-cutter-unrecoverable-failure");
-/* TRANSLATORS: Separation Cutter Unrecoverable Storage Error */
+/* TRANSLATORS: Separation cutter unrecoverable storage error */
 _("printer-state-reasons.separation-cutter-unrecoverable-storage-error");
-/* TRANSLATORS: Separation Cutter Warming Up */
+/* TRANSLATORS: Separation cutter warming up */
 _("printer-state-reasons.separation-cutter-warming-up");
-/* TRANSLATORS: Sheet Rotator Added */
+/* TRANSLATORS: Sheet rotator added */
 _("printer-state-reasons.sheet-rotator-added");
-/* TRANSLATORS: Sheet Rotator Almost Empty */
+/* TRANSLATORS: Sheet rotator almost empty */
 _("printer-state-reasons.sheet-rotator-almost-empty");
-/* TRANSLATORS: Sheet Rotator Almost Full */
+/* TRANSLATORS: Sheet rotator almost full */
 _("printer-state-reasons.sheet-rotator-almost-full");
-/* TRANSLATORS: Sheet Rotator At Limit */
+/* TRANSLATORS: Sheet rotator at limit */
 _("printer-state-reasons.sheet-rotator-at-limit");
-/* TRANSLATORS: Sheet Rotator Closed */
+/* TRANSLATORS: Sheet rotator closed */
 _("printer-state-reasons.sheet-rotator-closed");
-/* TRANSLATORS: Sheet Rotator Configuration Change */
+/* TRANSLATORS: Sheet rotator changed */
 _("printer-state-reasons.sheet-rotator-configuration-change");
-/* TRANSLATORS: Sheet Rotator Cover Closed */
+/* TRANSLATORS: Sheet rotator cover closed */
 _("printer-state-reasons.sheet-rotator-cover-closed");
-/* TRANSLATORS: Sheet Rotator Cover Open */
+/* TRANSLATORS: Sheet rotator cover open */
 _("printer-state-reasons.sheet-rotator-cover-open");
-/* TRANSLATORS: Sheet Rotator Empty */
+/* TRANSLATORS: Sheet rotator empty */
 _("printer-state-reasons.sheet-rotator-empty");
-/* TRANSLATORS: Sheet Rotator Full */
+/* TRANSLATORS: Sheet rotator full */
 _("printer-state-reasons.sheet-rotator-full");
-/* TRANSLATORS: Sheet Rotator Interlock Closed */
+/* TRANSLATORS: Sheet rotator interlock closed */
 _("printer-state-reasons.sheet-rotator-interlock-closed");
-/* TRANSLATORS: Sheet Rotator Interlock Open */
+/* TRANSLATORS: Sheet rotator interlock open */
 _("printer-state-reasons.sheet-rotator-interlock-open");
-/* TRANSLATORS: Sheet Rotator Jam */
+/* TRANSLATORS: Sheet rotator jammed */
 _("printer-state-reasons.sheet-rotator-jam");
-/* TRANSLATORS: Sheet Rotator Life Almost Over */
+/* TRANSLATORS: Replace sheet rotator soon */
 _("printer-state-reasons.sheet-rotator-life-almost-over");
-/* TRANSLATORS: Sheet Rotator Life Over */
+/* TRANSLATORS: Replace sheet rotator */
 _("printer-state-reasons.sheet-rotator-life-over");
-/* TRANSLATORS: Sheet Rotator Memory Exhausted */
+/* TRANSLATORS: Sheet rotator memory exhausted */
 _("printer-state-reasons.sheet-rotator-memory-exhausted");
-/* TRANSLATORS: Sheet Rotator Missing */
+/* TRANSLATORS: Install sheet rotator */
 _("printer-state-reasons.sheet-rotator-missing");
-/* TRANSLATORS: Sheet Rotator Motor Failure */
+/* TRANSLATORS: Sheet rotator motor failed */
 _("printer-state-reasons.sheet-rotator-motor-failure");
-/* TRANSLATORS: Sheet Rotator Near Limit */
+/* TRANSLATORS: Sheet rotator near limit */
 _("printer-state-reasons.sheet-rotator-near-limit");
-/* TRANSLATORS: Sheet Rotator Offline */
+/* TRANSLATORS: Sheet rotator offline */
 _("printer-state-reasons.sheet-rotator-offline");
-/* TRANSLATORS: Sheet Rotator Opened */
+/* TRANSLATORS: Sheet rotator opened */
 _("printer-state-reasons.sheet-rotator-opened");
-/* TRANSLATORS: Sheet Rotator Over Temperature */
+/* TRANSLATORS: Sheet rotator temperature high */
 _("printer-state-reasons.sheet-rotator-over-temperature");
-/* TRANSLATORS: Sheet Rotator Power Saver */
+/* TRANSLATORS: Sheet rotator in power save mode */
 _("printer-state-reasons.sheet-rotator-power-saver");
-/* TRANSLATORS: Sheet Rotator Recoverable Failure */
+/* TRANSLATORS: Sheet rotator recoverable failure */
 _("printer-state-reasons.sheet-rotator-recoverable-failure");
-/* TRANSLATORS: Sheet Rotator Recoverable Storage */
+/* TRANSLATORS: Sheet rotator recoverable storage */
 _("printer-state-reasons.sheet-rotator-recoverable-storage");
-/* TRANSLATORS: Sheet Rotator Removed */
+/* TRANSLATORS: Sheet rotator removed */
 _("printer-state-reasons.sheet-rotator-removed");
-/* TRANSLATORS: Sheet Rotator Resource Added */
+/* TRANSLATORS: Sheet rotator resource added */
 _("printer-state-reasons.sheet-rotator-resource-added");
-/* TRANSLATORS: Sheet Rotator Resource Removed */
+/* TRANSLATORS: Sheet rotator resource removed */
 _("printer-state-reasons.sheet-rotator-resource-removed");
-/* TRANSLATORS: Sheet Rotator Thermistor Failure */
+/* TRANSLATORS: Sheet rotator temperature sensor failed */
 _("printer-state-reasons.sheet-rotator-thermistor-failure");
-/* TRANSLATORS: Sheet Rotator Timing Failure */
+/* TRANSLATORS: Sheet rotator failed */
 _("printer-state-reasons.sheet-rotator-timing-failure");
-/* TRANSLATORS: Sheet Rotator Turned Off */
+/* TRANSLATORS: Sheet rotator turned off */
 _("printer-state-reasons.sheet-rotator-turned-off");
-/* TRANSLATORS: Sheet Rotator Turned On */
+/* TRANSLATORS: Sheet rotator turned on */
 _("printer-state-reasons.sheet-rotator-turned-on");
-/* TRANSLATORS: Sheet Rotator Under Temperature */
+/* TRANSLATORS: Sheet rotator temperature low */
 _("printer-state-reasons.sheet-rotator-under-temperature");
-/* TRANSLATORS: Sheet Rotator Unrecoverable Failure */
+/* TRANSLATORS: Sheet rotator unrecoverable failure */
 _("printer-state-reasons.sheet-rotator-unrecoverable-failure");
-/* TRANSLATORS: Sheet Rotator Unrecoverable Storage Error */
+/* TRANSLATORS: Sheet rotator unrecoverable storage error */
 _("printer-state-reasons.sheet-rotator-unrecoverable-storage-error");
-/* TRANSLATORS: Sheet Rotator Warming Up */
+/* TRANSLATORS: Sheet rotator warming up */
 _("printer-state-reasons.sheet-rotator-warming-up");
 /* TRANSLATORS: Printer offline */
 _("printer-state-reasons.shutdown");
-/* TRANSLATORS: Slitter Added */
+/* TRANSLATORS: Slitter added */
 _("printer-state-reasons.slitter-added");
-/* TRANSLATORS: Slitter Almost Empty */
+/* TRANSLATORS: Slitter almost empty */
 _("printer-state-reasons.slitter-almost-empty");
-/* TRANSLATORS: Slitter Almost Full */
+/* TRANSLATORS: Slitter almost full */
 _("printer-state-reasons.slitter-almost-full");
-/* TRANSLATORS: Slitter At Limit */
+/* TRANSLATORS: Slitter at limit */
 _("printer-state-reasons.slitter-at-limit");
-/* TRANSLATORS: Slitter Closed */
+/* TRANSLATORS: Slitter closed */
 _("printer-state-reasons.slitter-closed");
-/* TRANSLATORS: Slitter Configuration Change */
+/* TRANSLATORS: Slitter changed */
 _("printer-state-reasons.slitter-configuration-change");
-/* TRANSLATORS: Slitter Cover Closed */
+/* TRANSLATORS: Slitter cover closed */
 _("printer-state-reasons.slitter-cover-closed");
-/* TRANSLATORS: Slitter Cover Open */
+/* TRANSLATORS: Slitter cover open */
 _("printer-state-reasons.slitter-cover-open");
-/* TRANSLATORS: Slitter Empty */
+/* TRANSLATORS: Slitter empty */
 _("printer-state-reasons.slitter-empty");
-/* TRANSLATORS: Slitter Full */
+/* TRANSLATORS: Slitter full */
 _("printer-state-reasons.slitter-full");
-/* TRANSLATORS: Slitter Interlock Closed */
+/* TRANSLATORS: Slitter interlock closed */
 _("printer-state-reasons.slitter-interlock-closed");
-/* TRANSLATORS: Slitter Interlock Open */
+/* TRANSLATORS: Slitter interlock open */
 _("printer-state-reasons.slitter-interlock-open");
-/* TRANSLATORS: Slitter Jam */
+/* TRANSLATORS: Slitter jammed */
 _("printer-state-reasons.slitter-jam");
-/* TRANSLATORS: Slitter Life Almost Over */
+/* TRANSLATORS: Replace slitter soon */
 _("printer-state-reasons.slitter-life-almost-over");
-/* TRANSLATORS: Slitter Life Over */
+/* TRANSLATORS: Replace slitter */
 _("printer-state-reasons.slitter-life-over");
-/* TRANSLATORS: Slitter Memory Exhausted */
+/* TRANSLATORS: Slitter memory exhausted */
 _("printer-state-reasons.slitter-memory-exhausted");
-/* TRANSLATORS: Slitter Missing */
+/* TRANSLATORS: Install slitter */
 _("printer-state-reasons.slitter-missing");
-/* TRANSLATORS: Slitter Motor Failure */
+/* TRANSLATORS: Slitter motor failed */
 _("printer-state-reasons.slitter-motor-failure");
-/* TRANSLATORS: Slitter Near Limit */
+/* TRANSLATORS: Slitter near limit */
 _("printer-state-reasons.slitter-near-limit");
-/* TRANSLATORS: Slitter Offline */
+/* TRANSLATORS: Slitter offline */
 _("printer-state-reasons.slitter-offline");
-/* TRANSLATORS: Slitter Opened */
+/* TRANSLATORS: Slitter opened */
 _("printer-state-reasons.slitter-opened");
-/* TRANSLATORS: Slitter Over Temperature */
+/* TRANSLATORS: Slitter temperature high */
 _("printer-state-reasons.slitter-over-temperature");
-/* TRANSLATORS: Slitter Power Saver */
+/* TRANSLATORS: Slitter in power save mode */
 _("printer-state-reasons.slitter-power-saver");
-/* TRANSLATORS: Slitter Recoverable Failure */
+/* TRANSLATORS: Slitter recoverable failure */
 _("printer-state-reasons.slitter-recoverable-failure");
-/* TRANSLATORS: Slitter Recoverable Storage */
+/* TRANSLATORS: Slitter recoverable storage */
 _("printer-state-reasons.slitter-recoverable-storage");
-/* TRANSLATORS: Slitter Removed */
+/* TRANSLATORS: Slitter removed */
 _("printer-state-reasons.slitter-removed");
-/* TRANSLATORS: Slitter Resource Added */
+/* TRANSLATORS: Slitter resource added */
 _("printer-state-reasons.slitter-resource-added");
-/* TRANSLATORS: Slitter Resource Removed */
+/* TRANSLATORS: Slitter resource removed */
 _("printer-state-reasons.slitter-resource-removed");
-/* TRANSLATORS: Slitter Thermistor Failure */
+/* TRANSLATORS: Slitter temperature sensor failed */
 _("printer-state-reasons.slitter-thermistor-failure");
-/* TRANSLATORS: Slitter Timing Failure */
+/* TRANSLATORS: Slitter failed */
 _("printer-state-reasons.slitter-timing-failure");
-/* TRANSLATORS: Slitter Turned Off */
+/* TRANSLATORS: Slitter turned off */
 _("printer-state-reasons.slitter-turned-off");
-/* TRANSLATORS: Slitter Turned On */
+/* TRANSLATORS: Slitter turned on */
 _("printer-state-reasons.slitter-turned-on");
-/* TRANSLATORS: Slitter Under Temperature */
+/* TRANSLATORS: Slitter temperature low */
 _("printer-state-reasons.slitter-under-temperature");
-/* TRANSLATORS: Slitter Unrecoverable Failure */
+/* TRANSLATORS: Slitter unrecoverable failure */
 _("printer-state-reasons.slitter-unrecoverable-failure");
-/* TRANSLATORS: Slitter Unrecoverable Storage Error */
+/* TRANSLATORS: Slitter unrecoverable storage error */
 _("printer-state-reasons.slitter-unrecoverable-storage-error");
-/* TRANSLATORS: Slitter Warming Up */
+/* TRANSLATORS: Slitter warming up */
 _("printer-state-reasons.slitter-warming-up");
-/* TRANSLATORS: Spool Area Full */
+/* TRANSLATORS: Printer busy */
 _("printer-state-reasons.spool-area-full");
-/* TRANSLATORS: Stacker Added */
+/* TRANSLATORS: Stacker added */
 _("printer-state-reasons.stacker-added");
-/* TRANSLATORS: Stacker Almost Empty */
+/* TRANSLATORS: Stacker almost empty */
 _("printer-state-reasons.stacker-almost-empty");
-/* TRANSLATORS: Stacker Almost Full */
+/* TRANSLATORS: Stacker almost full */
 _("printer-state-reasons.stacker-almost-full");
-/* TRANSLATORS: Stacker At Limit */
+/* TRANSLATORS: Stacker at limit */
 _("printer-state-reasons.stacker-at-limit");
-/* TRANSLATORS: Stacker Closed */
+/* TRANSLATORS: Stacker closed */
 _("printer-state-reasons.stacker-closed");
-/* TRANSLATORS: Stacker Configuration Change */
+/* TRANSLATORS: Stacker changed */
 _("printer-state-reasons.stacker-configuration-change");
-/* TRANSLATORS: Stacker Cover Closed */
+/* TRANSLATORS: Stacker cover closed */
 _("printer-state-reasons.stacker-cover-closed");
-/* TRANSLATORS: Stacker Cover Open */
+/* TRANSLATORS: Stacker cover open */
 _("printer-state-reasons.stacker-cover-open");
-/* TRANSLATORS: Stacker Empty */
+/* TRANSLATORS: Stacker empty */
 _("printer-state-reasons.stacker-empty");
-/* TRANSLATORS: Stacker Full */
+/* TRANSLATORS: Stacker full */
 _("printer-state-reasons.stacker-full");
-/* TRANSLATORS: Stacker Interlock Closed */
+/* TRANSLATORS: Stacker interlock closed */
 _("printer-state-reasons.stacker-interlock-closed");
-/* TRANSLATORS: Stacker Interlock Open */
+/* TRANSLATORS: Stacker interlock open */
 _("printer-state-reasons.stacker-interlock-open");
-/* TRANSLATORS: Stacker Jam */
+/* TRANSLATORS: Stacker jammed */
 _("printer-state-reasons.stacker-jam");
-/* TRANSLATORS: Stacker Life Almost Over */
+/* TRANSLATORS: Replace stacker soon */
 _("printer-state-reasons.stacker-life-almost-over");
-/* TRANSLATORS: Stacker Life Over */
+/* TRANSLATORS: Replace stacker */
 _("printer-state-reasons.stacker-life-over");
-/* TRANSLATORS: Stacker Memory Exhausted */
+/* TRANSLATORS: Stacker memory exhausted */
 _("printer-state-reasons.stacker-memory-exhausted");
-/* TRANSLATORS: Stacker Missing */
+/* TRANSLATORS: Install stacker */
 _("printer-state-reasons.stacker-missing");
-/* TRANSLATORS: Stacker Motor Failure */
+/* TRANSLATORS: Stacker motor failed */
 _("printer-state-reasons.stacker-motor-failure");
-/* TRANSLATORS: Stacker Near Limit */
+/* TRANSLATORS: Stacker near limit */
 _("printer-state-reasons.stacker-near-limit");
-/* TRANSLATORS: Stacker Offline */
+/* TRANSLATORS: Stacker offline */
 _("printer-state-reasons.stacker-offline");
-/* TRANSLATORS: Stacker Opened */
+/* TRANSLATORS: Stacker opened */
 _("printer-state-reasons.stacker-opened");
-/* TRANSLATORS: Stacker Over Temperature */
+/* TRANSLATORS: Stacker temperature high */
 _("printer-state-reasons.stacker-over-temperature");
-/* TRANSLATORS: Stacker Power Saver */
+/* TRANSLATORS: Stacker in power save mode */
 _("printer-state-reasons.stacker-power-saver");
-/* TRANSLATORS: Stacker Recoverable Failure */
+/* TRANSLATORS: Stacker recoverable failure */
 _("printer-state-reasons.stacker-recoverable-failure");
-/* TRANSLATORS: Stacker Recoverable Storage */
+/* TRANSLATORS: Stacker recoverable storage */
 _("printer-state-reasons.stacker-recoverable-storage");
-/* TRANSLATORS: Stacker Removed */
+/* TRANSLATORS: Stacker removed */
 _("printer-state-reasons.stacker-removed");
-/* TRANSLATORS: Stacker Resource Added */
+/* TRANSLATORS: Stacker resource added */
 _("printer-state-reasons.stacker-resource-added");
-/* TRANSLATORS: Stacker Resource Removed */
+/* TRANSLATORS: Stacker resource removed */
 _("printer-state-reasons.stacker-resource-removed");
-/* TRANSLATORS: Stacker Thermistor Failure */
+/* TRANSLATORS: Stacker temperature sensor failed */
 _("printer-state-reasons.stacker-thermistor-failure");
-/* TRANSLATORS: Stacker Timing Failure */
+/* TRANSLATORS: Stacker failed */
 _("printer-state-reasons.stacker-timing-failure");
-/* TRANSLATORS: Stacker Turned Off */
+/* TRANSLATORS: Stacker turned off */
 _("printer-state-reasons.stacker-turned-off");
-/* TRANSLATORS: Stacker Turned On */
+/* TRANSLATORS: Stacker turned on */
 _("printer-state-reasons.stacker-turned-on");
-/* TRANSLATORS: Stacker Under Temperature */
+/* TRANSLATORS: Stacker temperature low */
 _("printer-state-reasons.stacker-under-temperature");
-/* TRANSLATORS: Stacker Unrecoverable Failure */
+/* TRANSLATORS: Stacker unrecoverable failure */
 _("printer-state-reasons.stacker-unrecoverable-failure");
-/* TRANSLATORS: Stacker Unrecoverable Storage Error */
+/* TRANSLATORS: Stacker unrecoverable storage error */
 _("printer-state-reasons.stacker-unrecoverable-storage-error");
-/* TRANSLATORS: Stacker Warming Up */
+/* TRANSLATORS: Stacker warming up */
 _("printer-state-reasons.stacker-warming-up");
-/* TRANSLATORS: Stapler Added */
+/* TRANSLATORS: Stapler added */
 _("printer-state-reasons.stapler-added");
-/* TRANSLATORS: Stapler Almost Empty */
+/* TRANSLATORS: Stapler almost empty */
 _("printer-state-reasons.stapler-almost-empty");
-/* TRANSLATORS: Stapler Almost Full */
+/* TRANSLATORS: Stapler almost full */
 _("printer-state-reasons.stapler-almost-full");
-/* TRANSLATORS: Stapler At Limit */
+/* TRANSLATORS: Stapler at limit */
 _("printer-state-reasons.stapler-at-limit");
-/* TRANSLATORS: Stapler Closed */
+/* TRANSLATORS: Stapler closed */
 _("printer-state-reasons.stapler-closed");
-/* TRANSLATORS: Stapler Configuration Change */
+/* TRANSLATORS: Stapler changed */
 _("printer-state-reasons.stapler-configuration-change");
-/* TRANSLATORS: Stapler Cover Closed */
+/* TRANSLATORS: Stapler cover closed */
 _("printer-state-reasons.stapler-cover-closed");
-/* TRANSLATORS: Stapler Cover Open */
+/* TRANSLATORS: Stapler cover open */
 _("printer-state-reasons.stapler-cover-open");
-/* TRANSLATORS: Stapler Empty */
+/* TRANSLATORS: Stapler empty */
 _("printer-state-reasons.stapler-empty");
-/* TRANSLATORS: Stapler Full */
+/* TRANSLATORS: Stapler full */
 _("printer-state-reasons.stapler-full");
-/* TRANSLATORS: Stapler Interlock Closed */
+/* TRANSLATORS: Stapler interlock closed */
 _("printer-state-reasons.stapler-interlock-closed");
-/* TRANSLATORS: Stapler Interlock Open */
+/* TRANSLATORS: Stapler interlock open */
 _("printer-state-reasons.stapler-interlock-open");
-/* TRANSLATORS: Stapler Jam */
+/* TRANSLATORS: Stapler jammed */
 _("printer-state-reasons.stapler-jam");
-/* TRANSLATORS: Stapler Life Almost Over */
+/* TRANSLATORS: Replace stapler soon */
 _("printer-state-reasons.stapler-life-almost-over");
-/* TRANSLATORS: Stapler Life Over */
+/* TRANSLATORS: Replace stapler */
 _("printer-state-reasons.stapler-life-over");
-/* TRANSLATORS: Stapler Memory Exhausted */
+/* TRANSLATORS: Stapler memory exhausted */
 _("printer-state-reasons.stapler-memory-exhausted");
-/* TRANSLATORS: Stapler Missing */
+/* TRANSLATORS: Install stapler */
 _("printer-state-reasons.stapler-missing");
-/* TRANSLATORS: Stapler Motor Failure */
+/* TRANSLATORS: Stapler motor failed */
 _("printer-state-reasons.stapler-motor-failure");
-/* TRANSLATORS: Stapler Near Limit */
+/* TRANSLATORS: Stapler near limit */
 _("printer-state-reasons.stapler-near-limit");
-/* TRANSLATORS: Stapler Offline */
+/* TRANSLATORS: Stapler offline */
 _("printer-state-reasons.stapler-offline");
-/* TRANSLATORS: Stapler Opened */
+/* TRANSLATORS: Stapler opened */
 _("printer-state-reasons.stapler-opened");
-/* TRANSLATORS: Stapler Over Temperature */
+/* TRANSLATORS: Stapler temperature high */
 _("printer-state-reasons.stapler-over-temperature");
-/* TRANSLATORS: Stapler Power Saver */
+/* TRANSLATORS: Stapler in power save mode */
 _("printer-state-reasons.stapler-power-saver");
-/* TRANSLATORS: Stapler Recoverable Failure */
+/* TRANSLATORS: Stapler recoverable failure */
 _("printer-state-reasons.stapler-recoverable-failure");
-/* TRANSLATORS: Stapler Recoverable Storage */
+/* TRANSLATORS: Stapler recoverable storage */
 _("printer-state-reasons.stapler-recoverable-storage");
-/* TRANSLATORS: Stapler Removed */
+/* TRANSLATORS: Stapler removed */
 _("printer-state-reasons.stapler-removed");
-/* TRANSLATORS: Stapler Resource Added */
+/* TRANSLATORS: Stapler resource added */
 _("printer-state-reasons.stapler-resource-added");
-/* TRANSLATORS: Stapler Resource Removed */
+/* TRANSLATORS: Stapler resource removed */
 _("printer-state-reasons.stapler-resource-removed");
-/* TRANSLATORS: Stapler Thermistor Failure */
+/* TRANSLATORS: Stapler temperature sensor failed */
 _("printer-state-reasons.stapler-thermistor-failure");
-/* TRANSLATORS: Stapler Timing Failure */
+/* TRANSLATORS: Stapler failed */
 _("printer-state-reasons.stapler-timing-failure");
-/* TRANSLATORS: Stapler Turned Off */
+/* TRANSLATORS: Stapler turned off */
 _("printer-state-reasons.stapler-turned-off");
-/* TRANSLATORS: Stapler Turned On */
+/* TRANSLATORS: Stapler turned on */
 _("printer-state-reasons.stapler-turned-on");
-/* TRANSLATORS: Stapler Under Temperature */
+/* TRANSLATORS: Stapler temperature low */
 _("printer-state-reasons.stapler-under-temperature");
-/* TRANSLATORS: Stapler Unrecoverable Failure */
+/* TRANSLATORS: Stapler unrecoverable failure */
 _("printer-state-reasons.stapler-unrecoverable-failure");
-/* TRANSLATORS: Stapler Unrecoverable Storage Error */
+/* TRANSLATORS: Stapler unrecoverable storage error */
 _("printer-state-reasons.stapler-unrecoverable-storage-error");
-/* TRANSLATORS: Stapler Warming Up */
+/* TRANSLATORS: Stapler warming up */
 _("printer-state-reasons.stapler-warming-up");
-/* TRANSLATORS: Stitcher Added */
+/* TRANSLATORS: Stitcher added */
 _("printer-state-reasons.stitcher-added");
-/* TRANSLATORS: Stitcher Almost Empty */
+/* TRANSLATORS: Stitcher almost empty */
 _("printer-state-reasons.stitcher-almost-empty");
-/* TRANSLATORS: Stitcher Almost Full */
+/* TRANSLATORS: Stitcher almost full */
 _("printer-state-reasons.stitcher-almost-full");
-/* TRANSLATORS: Stitcher At Limit */
+/* TRANSLATORS: Stitcher at limit */
 _("printer-state-reasons.stitcher-at-limit");
-/* TRANSLATORS: Stitcher Closed */
+/* TRANSLATORS: Stitcher closed */
 _("printer-state-reasons.stitcher-closed");
-/* TRANSLATORS: Stitcher Configuration Change */
+/* TRANSLATORS: Stitcher changed */
 _("printer-state-reasons.stitcher-configuration-change");
-/* TRANSLATORS: Stitcher Cover Closed */
+/* TRANSLATORS: Stitcher cover closed */
 _("printer-state-reasons.stitcher-cover-closed");
-/* TRANSLATORS: Stitcher Cover Open */
+/* TRANSLATORS: Stitcher cover open */
 _("printer-state-reasons.stitcher-cover-open");
-/* TRANSLATORS: Stitcher Empty */
+/* TRANSLATORS: Stitcher empty */
 _("printer-state-reasons.stitcher-empty");
-/* TRANSLATORS: Stitcher Full */
+/* TRANSLATORS: Stitcher full */
 _("printer-state-reasons.stitcher-full");
-/* TRANSLATORS: Stitcher Interlock Closed */
+/* TRANSLATORS: Stitcher interlock closed */
 _("printer-state-reasons.stitcher-interlock-closed");
-/* TRANSLATORS: Stitcher Interlock Open */
+/* TRANSLATORS: Stitcher interlock open */
 _("printer-state-reasons.stitcher-interlock-open");
-/* TRANSLATORS: Stitcher Jam */
+/* TRANSLATORS: Stitcher jammed */
 _("printer-state-reasons.stitcher-jam");
-/* TRANSLATORS: Stitcher Life Almost Over */
+/* TRANSLATORS: Replace stitcher soon */
 _("printer-state-reasons.stitcher-life-almost-over");
-/* TRANSLATORS: Stitcher Life Over */
+/* TRANSLATORS: Replace stitcher */
 _("printer-state-reasons.stitcher-life-over");
-/* TRANSLATORS: Stitcher Memory Exhausted */
+/* TRANSLATORS: Stitcher memory exhausted */
 _("printer-state-reasons.stitcher-memory-exhausted");
-/* TRANSLATORS: Stitcher Missing */
+/* TRANSLATORS: Install stitcher */
 _("printer-state-reasons.stitcher-missing");
-/* TRANSLATORS: Stitcher Motor Failure */
+/* TRANSLATORS: Stitcher motor failed */
 _("printer-state-reasons.stitcher-motor-failure");
-/* TRANSLATORS: Stitcher Near Limit */
+/* TRANSLATORS: Stitcher near limit */
 _("printer-state-reasons.stitcher-near-limit");
-/* TRANSLATORS: Stitcher Offline */
+/* TRANSLATORS: Stitcher offline */
 _("printer-state-reasons.stitcher-offline");
-/* TRANSLATORS: Stitcher Opened */
+/* TRANSLATORS: Stitcher opened */
 _("printer-state-reasons.stitcher-opened");
-/* TRANSLATORS: Stitcher Over Temperature */
+/* TRANSLATORS: Stitcher temperature high */
 _("printer-state-reasons.stitcher-over-temperature");
-/* TRANSLATORS: Stitcher Power Saver */
+/* TRANSLATORS: Stitcher in power save mode */
 _("printer-state-reasons.stitcher-power-saver");
-/* TRANSLATORS: Stitcher Recoverable Failure */
+/* TRANSLATORS: Stitcher recoverable failure */
 _("printer-state-reasons.stitcher-recoverable-failure");
-/* TRANSLATORS: Stitcher Recoverable Storage */
+/* TRANSLATORS: Stitcher recoverable storage */
 _("printer-state-reasons.stitcher-recoverable-storage");
-/* TRANSLATORS: Stitcher Removed */
+/* TRANSLATORS: Stitcher removed */
 _("printer-state-reasons.stitcher-removed");
-/* TRANSLATORS: Stitcher Resource Added */
+/* TRANSLATORS: Stitcher resource added */
 _("printer-state-reasons.stitcher-resource-added");
-/* TRANSLATORS: Stitcher Resource Removed */
+/* TRANSLATORS: Stitcher resource removed */
 _("printer-state-reasons.stitcher-resource-removed");
-/* TRANSLATORS: Stitcher Thermistor Failure */
+/* TRANSLATORS: Stitcher temperature sensor failed */
 _("printer-state-reasons.stitcher-thermistor-failure");
-/* TRANSLATORS: Stitcher Timing Failure */
+/* TRANSLATORS: Stitcher failed */
 _("printer-state-reasons.stitcher-timing-failure");
-/* TRANSLATORS: Stitcher Turned Off */
+/* TRANSLATORS: Stitcher turned off */
 _("printer-state-reasons.stitcher-turned-off");
-/* TRANSLATORS: Stitcher Turned On */
+/* TRANSLATORS: Stitcher turned on */
 _("printer-state-reasons.stitcher-turned-on");
-/* TRANSLATORS: Stitcher Under Temperature */
+/* TRANSLATORS: Stitcher temperature low */
 _("printer-state-reasons.stitcher-under-temperature");
-/* TRANSLATORS: Stitcher Unrecoverable Failure */
+/* TRANSLATORS: Stitcher unrecoverable failure */
 _("printer-state-reasons.stitcher-unrecoverable-failure");
-/* TRANSLATORS: Stitcher Unrecoverable Storage Error */
+/* TRANSLATORS: Stitcher unrecoverable storage error */
 _("printer-state-reasons.stitcher-unrecoverable-storage-error");
-/* TRANSLATORS: Stitcher Warming Up */
+/* TRANSLATORS: Stitcher warming up */
 _("printer-state-reasons.stitcher-warming-up");
 /* TRANSLATORS: Partially stopped */
 _("printer-state-reasons.stopped-partly");
 /* TRANSLATORS: Stopping */
 _("printer-state-reasons.stopping");
-/* TRANSLATORS: Subunit Added */
+/* TRANSLATORS: Subunit added */
 _("printer-state-reasons.subunit-added");
-/* TRANSLATORS: Subunit Almost Empty */
+/* TRANSLATORS: Subunit almost empty */
 _("printer-state-reasons.subunit-almost-empty");
-/* TRANSLATORS: Subunit Almost Full */
+/* TRANSLATORS: Subunit almost full */
 _("printer-state-reasons.subunit-almost-full");
-/* TRANSLATORS: Subunit At Limit */
+/* TRANSLATORS: Subunit at limit */
 _("printer-state-reasons.subunit-at-limit");
-/* TRANSLATORS: Subunit Closed */
+/* TRANSLATORS: Subunit closed */
 _("printer-state-reasons.subunit-closed");
-/* TRANSLATORS: Subunit Cooling Down */
+/* TRANSLATORS: Subunit cooling down */
 _("printer-state-reasons.subunit-cooling-down");
-/* TRANSLATORS: Subunit Empty */
+/* TRANSLATORS: Subunit empty */
 _("printer-state-reasons.subunit-empty");
-/* TRANSLATORS: Subunit Full */
+/* TRANSLATORS: Subunit full */
 _("printer-state-reasons.subunit-full");
-/* TRANSLATORS: Subunit Life Almost Over */
+/* TRANSLATORS: Replace subunit soon */
 _("printer-state-reasons.subunit-life-almost-over");
-/* TRANSLATORS: Subunit Life Over */
+/* TRANSLATORS: Replace subunit */
 _("printer-state-reasons.subunit-life-over");
-/* TRANSLATORS: Subunit Memory Exhausted */
+/* TRANSLATORS: Subunit memory exhausted */
 _("printer-state-reasons.subunit-memory-exhausted");
-/* TRANSLATORS: Subunit Missing */
+/* TRANSLATORS: Install subunit */
 _("printer-state-reasons.subunit-missing");
-/* TRANSLATORS: Subunit Motor Failure */
+/* TRANSLATORS: Subunit motor failed */
 _("printer-state-reasons.subunit-motor-failure");
-/* TRANSLATORS: Subunit Near Limit */
+/* TRANSLATORS: Subunit near limit */
 _("printer-state-reasons.subunit-near-limit");
-/* TRANSLATORS: Subunit Offline */
+/* TRANSLATORS: Subunit offline */
 _("printer-state-reasons.subunit-offline");
-/* TRANSLATORS: Subunit Opened */
+/* TRANSLATORS: Subunit opened */
 _("printer-state-reasons.subunit-opened");
-/* TRANSLATORS: Subunit Over Temperature */
+/* TRANSLATORS: Subunit temperature high */
 _("printer-state-reasons.subunit-over-temperature");
-/* TRANSLATORS: Subunit Power Saver */
+/* TRANSLATORS: Subunit in power save mode */
 _("printer-state-reasons.subunit-power-saver");
-/* TRANSLATORS: Subunit Recoverable Failure */
+/* TRANSLATORS: Subunit recoverable failure */
 _("printer-state-reasons.subunit-recoverable-failure");
-/* TRANSLATORS: Subunit Recoverable Storage */
+/* TRANSLATORS: Subunit recoverable storage */
 _("printer-state-reasons.subunit-recoverable-storage");
-/* TRANSLATORS: Subunit Removed */
+/* TRANSLATORS: Subunit removed */
 _("printer-state-reasons.subunit-removed");
-/* TRANSLATORS: Subunit Resource Added */
+/* TRANSLATORS: Subunit resource added */
 _("printer-state-reasons.subunit-resource-added");
-/* TRANSLATORS: Subunit Resource Removed */
+/* TRANSLATORS: Subunit resource removed */
 _("printer-state-reasons.subunit-resource-removed");
-/* TRANSLATORS: Subunit Thermistor Failure */
+/* TRANSLATORS: Subunit temperature sensor failed */
 _("printer-state-reasons.subunit-thermistor-failure");
-/* TRANSLATORS: Subunit Timing Failure */
+/* TRANSLATORS: Subunit timing Failure */
 _("printer-state-reasons.subunit-timing-Failure");
-/* TRANSLATORS: Subunit Turned Off */
+/* TRANSLATORS: Subunit turned off */
 _("printer-state-reasons.subunit-turned-off");
-/* TRANSLATORS: Subunit Turned On */
+/* TRANSLATORS: Subunit turned on */
 _("printer-state-reasons.subunit-turned-on");
-/* TRANSLATORS: Subunit Under Temperature */
+/* TRANSLATORS: Subunit temperature low */
 _("printer-state-reasons.subunit-under-temperature");
-/* TRANSLATORS: Subunit Unrecoverable Failure */
+/* TRANSLATORS: Subunit unrecoverable failure */
 _("printer-state-reasons.subunit-unrecoverable-failure");
-/* TRANSLATORS: Subunit Unrecoverable Storage */
+/* TRANSLATORS: Subunit unrecoverable storage */
 _("printer-state-reasons.subunit-unrecoverable-storage");
-/* TRANSLATORS: Subunit Warming Up */
+/* TRANSLATORS: Subunit warming up */
 _("printer-state-reasons.subunit-warming-up");
 /* TRANSLATORS: Printer stopped responding */
 _("printer-state-reasons.timed-out");
@@ -4208,151 +3738,151 @@ _("printer-state-reasons.timed-out");
 _("printer-state-reasons.toner-empty");
 /* TRANSLATORS: Toner low */
 _("printer-state-reasons.toner-low");
-/* TRANSLATORS: Trimmer Added */
+/* TRANSLATORS: Trimmer added */
 _("printer-state-reasons.trimmer-added");
-/* TRANSLATORS: Trimmer Almost Empty */
+/* TRANSLATORS: Trimmer almost empty */
 _("printer-state-reasons.trimmer-almost-empty");
-/* TRANSLATORS: Trimmer Almost Full */
+/* TRANSLATORS: Trimmer almost full */
 _("printer-state-reasons.trimmer-almost-full");
-/* TRANSLATORS: Trimmer At Limit */
+/* TRANSLATORS: Trimmer at limit */
 _("printer-state-reasons.trimmer-at-limit");
-/* TRANSLATORS: Trimmer Closed */
+/* TRANSLATORS: Trimmer closed */
 _("printer-state-reasons.trimmer-closed");
-/* TRANSLATORS: Trimmer Configuration Change */
+/* TRANSLATORS: Trimmer changed */
 _("printer-state-reasons.trimmer-configuration-change");
-/* TRANSLATORS: Trimmer Cover Closed */
+/* TRANSLATORS: Trimmer cover closed */
 _("printer-state-reasons.trimmer-cover-closed");
-/* TRANSLATORS: Trimmer Cover Open */
+/* TRANSLATORS: Trimmer cover open */
 _("printer-state-reasons.trimmer-cover-open");
-/* TRANSLATORS: Trimmer Empty */
+/* TRANSLATORS: Trimmer empty */
 _("printer-state-reasons.trimmer-empty");
-/* TRANSLATORS: Trimmer Full */
+/* TRANSLATORS: Trimmer full */
 _("printer-state-reasons.trimmer-full");
-/* TRANSLATORS: Trimmer Interlock Closed */
+/* TRANSLATORS: Trimmer interlock closed */
 _("printer-state-reasons.trimmer-interlock-closed");
-/* TRANSLATORS: Trimmer Interlock Open */
+/* TRANSLATORS: Trimmer interlock open */
 _("printer-state-reasons.trimmer-interlock-open");
-/* TRANSLATORS: Trimmer Jam */
+/* TRANSLATORS: Trimmer jammed */
 _("printer-state-reasons.trimmer-jam");
-/* TRANSLATORS: Trimmer Life Almost Over */
+/* TRANSLATORS: Replace trimmer soon */
 _("printer-state-reasons.trimmer-life-almost-over");
-/* TRANSLATORS: Trimmer Life Over */
+/* TRANSLATORS: Replace trimmer */
 _("printer-state-reasons.trimmer-life-over");
-/* TRANSLATORS: Trimmer Memory Exhausted */
+/* TRANSLATORS: Trimmer memory exhausted */
 _("printer-state-reasons.trimmer-memory-exhausted");
-/* TRANSLATORS: Trimmer Missing */
+/* TRANSLATORS: Install trimmer */
 _("printer-state-reasons.trimmer-missing");
-/* TRANSLATORS: Trimmer Motor Failure */
+/* TRANSLATORS: Trimmer motor failed */
 _("printer-state-reasons.trimmer-motor-failure");
-/* TRANSLATORS: Trimmer Near Limit */
+/* TRANSLATORS: Trimmer near limit */
 _("printer-state-reasons.trimmer-near-limit");
-/* TRANSLATORS: Trimmer Offline */
+/* TRANSLATORS: Trimmer offline */
 _("printer-state-reasons.trimmer-offline");
-/* TRANSLATORS: Trimmer Opened */
+/* TRANSLATORS: Trimmer opened */
 _("printer-state-reasons.trimmer-opened");
-/* TRANSLATORS: Trimmer Over Temperature */
+/* TRANSLATORS: Trimmer temperature high */
 _("printer-state-reasons.trimmer-over-temperature");
-/* TRANSLATORS: Trimmer Power Saver */
+/* TRANSLATORS: Trimmer in power save mode */
 _("printer-state-reasons.trimmer-power-saver");
-/* TRANSLATORS: Trimmer Recoverable Failure */
+/* TRANSLATORS: Trimmer recoverable failure */
 _("printer-state-reasons.trimmer-recoverable-failure");
-/* TRANSLATORS: Trimmer Recoverable Storage */
+/* TRANSLATORS: Trimmer recoverable storage */
 _("printer-state-reasons.trimmer-recoverable-storage");
-/* TRANSLATORS: Trimmer Removed */
+/* TRANSLATORS: Trimmer removed */
 _("printer-state-reasons.trimmer-removed");
-/* TRANSLATORS: Trimmer Resource Added */
+/* TRANSLATORS: Trimmer resource added */
 _("printer-state-reasons.trimmer-resource-added");
-/* TRANSLATORS: Trimmer Resource Removed */
+/* TRANSLATORS: Trimmer resource removed */
 _("printer-state-reasons.trimmer-resource-removed");
-/* TRANSLATORS: Trimmer Thermistor Failure */
+/* TRANSLATORS: Trimmer temperature sensor failed */
 _("printer-state-reasons.trimmer-thermistor-failure");
-/* TRANSLATORS: Trimmer Timing Failure */
+/* TRANSLATORS: Trimmer failed */
 _("printer-state-reasons.trimmer-timing-failure");
-/* TRANSLATORS: Trimmer Turned Off */
+/* TRANSLATORS: Trimmer turned off */
 _("printer-state-reasons.trimmer-turned-off");
-/* TRANSLATORS: Trimmer Turned On */
+/* TRANSLATORS: Trimmer turned on */
 _("printer-state-reasons.trimmer-turned-on");
-/* TRANSLATORS: Trimmer Under Temperature */
+/* TRANSLATORS: Trimmer temperature low */
 _("printer-state-reasons.trimmer-under-temperature");
-/* TRANSLATORS: Trimmer Unrecoverable Failure */
+/* TRANSLATORS: Trimmer unrecoverable failure */
 _("printer-state-reasons.trimmer-unrecoverable-failure");
-/* TRANSLATORS: Trimmer Unrecoverable Storage Error */
+/* TRANSLATORS: Trimmer unrecoverable storage error */
 _("printer-state-reasons.trimmer-unrecoverable-storage-error");
-/* TRANSLATORS: Trimmer Warming Up */
+/* TRANSLATORS: Trimmer warming up */
 _("printer-state-reasons.trimmer-warming-up");
 /* TRANSLATORS: Unknown */
 _("printer-state-reasons.unknown");
-/* TRANSLATORS: Wrapper Added */
+/* TRANSLATORS: Wrapper added */
 _("printer-state-reasons.wrapper-added");
-/* TRANSLATORS: Wrapper Almost Empty */
+/* TRANSLATORS: Wrapper almost empty */
 _("printer-state-reasons.wrapper-almost-empty");
-/* TRANSLATORS: Wrapper Almost Full */
+/* TRANSLATORS: Wrapper almost full */
 _("printer-state-reasons.wrapper-almost-full");
-/* TRANSLATORS: Wrapper At Limit */
+/* TRANSLATORS: Wrapper at limit */
 _("printer-state-reasons.wrapper-at-limit");
-/* TRANSLATORS: Wrapper Closed */
+/* TRANSLATORS: Wrapper closed */
 _("printer-state-reasons.wrapper-closed");
-/* TRANSLATORS: Wrapper Configuration Change */
+/* TRANSLATORS: Wrapper changed */
 _("printer-state-reasons.wrapper-configuration-change");
-/* TRANSLATORS: Wrapper Cover Closed */
+/* TRANSLATORS: Wrapper cover closed */
 _("printer-state-reasons.wrapper-cover-closed");
-/* TRANSLATORS: Wrapper Cover Open */
+/* TRANSLATORS: Wrapper cover open */
 _("printer-state-reasons.wrapper-cover-open");
-/* TRANSLATORS: Wrapper Empty */
+/* TRANSLATORS: Wrapper empty */
 _("printer-state-reasons.wrapper-empty");
-/* TRANSLATORS: Wrapper Full */
+/* TRANSLATORS: Wrapper full */
 _("printer-state-reasons.wrapper-full");
-/* TRANSLATORS: Wrapper Interlock Closed */
+/* TRANSLATORS: Wrapper interlock closed */
 _("printer-state-reasons.wrapper-interlock-closed");
-/* TRANSLATORS: Wrapper Interlock Open */
+/* TRANSLATORS: Wrapper interlock open */
 _("printer-state-reasons.wrapper-interlock-open");
-/* TRANSLATORS: Wrapper Jam */
+/* TRANSLATORS: Wrapper jammed */
 _("printer-state-reasons.wrapper-jam");
-/* TRANSLATORS: Wrapper Life Almost Over */
+/* TRANSLATORS: Replace wrapper soon */
 _("printer-state-reasons.wrapper-life-almost-over");
-/* TRANSLATORS: Wrapper Life Over */
+/* TRANSLATORS: Replace wrapper */
 _("printer-state-reasons.wrapper-life-over");
-/* TRANSLATORS: Wrapper Memory Exhausted */
+/* TRANSLATORS: Wrapper memory exhausted */
 _("printer-state-reasons.wrapper-memory-exhausted");
-/* TRANSLATORS: Wrapper Missing */
+/* TRANSLATORS: Install wrapper */
 _("printer-state-reasons.wrapper-missing");
-/* TRANSLATORS: Wrapper Motor Failure */
+/* TRANSLATORS: Wrapper motor failed */
 _("printer-state-reasons.wrapper-motor-failure");
-/* TRANSLATORS: Wrapper Near Limit */
+/* TRANSLATORS: Wrapper near limit */
 _("printer-state-reasons.wrapper-near-limit");
-/* TRANSLATORS: Wrapper Offline */
+/* TRANSLATORS: Wrapper offline */
 _("printer-state-reasons.wrapper-offline");
-/* TRANSLATORS: Wrapper Opened */
+/* TRANSLATORS: Wrapper opened */
 _("printer-state-reasons.wrapper-opened");
-/* TRANSLATORS: Wrapper Over Temperature */
+/* TRANSLATORS: Wrapper temperature high */
 _("printer-state-reasons.wrapper-over-temperature");
-/* TRANSLATORS: Wrapper Power Saver */
+/* TRANSLATORS: Wrapper in power save mode */
 _("printer-state-reasons.wrapper-power-saver");
-/* TRANSLATORS: Wrapper Recoverable Failure */
+/* TRANSLATORS: Wrapper recoverable failure */
 _("printer-state-reasons.wrapper-recoverable-failure");
-/* TRANSLATORS: Wrapper Recoverable Storage */
+/* TRANSLATORS: Wrapper recoverable storage */
 _("printer-state-reasons.wrapper-recoverable-storage");
-/* TRANSLATORS: Wrapper Removed */
+/* TRANSLATORS: Wrapper removed */
 _("printer-state-reasons.wrapper-removed");
-/* TRANSLATORS: Wrapper Resource Added */
+/* TRANSLATORS: Wrapper resource added */
 _("printer-state-reasons.wrapper-resource-added");
-/* TRANSLATORS: Wrapper Resource Removed */
+/* TRANSLATORS: Wrapper resource removed */
 _("printer-state-reasons.wrapper-resource-removed");
-/* TRANSLATORS: Wrapper Thermistor Failure */
+/* TRANSLATORS: Wrapper temperature sensor failed */
 _("printer-state-reasons.wrapper-thermistor-failure");
-/* TRANSLATORS: Wrapper Timing Failure */
+/* TRANSLATORS: Wrapper failed */
 _("printer-state-reasons.wrapper-timing-failure");
-/* TRANSLATORS: Wrapper Turned Off */
+/* TRANSLATORS: Wrapper turned off */
 _("printer-state-reasons.wrapper-turned-off");
-/* TRANSLATORS: Wrapper Turned On */
+/* TRANSLATORS: Wrapper turned on */
 _("printer-state-reasons.wrapper-turned-on");
-/* TRANSLATORS: Wrapper Under Temperature */
+/* TRANSLATORS: Wrapper temperature low */
 _("printer-state-reasons.wrapper-under-temperature");
-/* TRANSLATORS: Wrapper Unrecoverable Failure */
+/* TRANSLATORS: Wrapper unrecoverable failure */
 _("printer-state-reasons.wrapper-unrecoverable-failure");
-/* TRANSLATORS: Wrapper Unrecoverable Storage Error */
+/* TRANSLATORS: Wrapper unrecoverable storage error */
 _("printer-state-reasons.wrapper-unrecoverable-storage-error");
-/* TRANSLATORS: Wrapper Warming Up */
+/* TRANSLATORS: Wrapper warming up */
 _("printer-state-reasons.wrapper-warming-up");
 /* TRANSLATORS: Idle */
 _("printer-state.3");
@@ -4360,18 +3890,6 @@ _("printer-state.3");
 _("printer-state.4");
 /* TRANSLATORS: Stopped */
 _("printer-state.5");
-/* TRANSLATORS: Printer Uptime */
-_("printer-up-time");
-/* TRANSLATORS: Proof Print */
-_("proof-print");
-/* TRANSLATORS: Proof Print Copies */
-_("proof-print-copies");
-/* TRANSLATORS: Punching */
-_("punching");
-/* TRANSLATORS: Punching Locations */
-_("punching-locations");
-/* TRANSLATORS: Punching Offset */
-_("punching-offset");
 /* TRANSLATORS: Punch Edge */
 _("punching-reference-edge");
 /* TRANSLATORS: Bottom */
@@ -4382,58 +3900,30 @@ _("punching-reference-edge.left");
 _("punching-reference-edge.right");
 /* TRANSLATORS: Top */
 _("punching-reference-edge.top");
-/* TRANSLATORS: Requested Attributes */
-_("requested-attributes");
-/* TRANSLATORS: Retry Interval */
-_("retry-interval");
 /* TRANSLATORS: Retry Timeout */
 _("retry-time-out");
-/* TRANSLATORS: Save Disposition */
-_("save-disposition");
-/* TRANSLATORS: None */
-_("save-disposition.none");
-/* TRANSLATORS: Print and Save */
-_("save-disposition.print-save");
-/* TRANSLATORS: Save Only */
-_("save-disposition.save-only");
-/* TRANSLATORS: Save Document Format */
-_("save-document-format");
-/* TRANSLATORS: Save Info */
-_("save-info");
-/* TRANSLATORS: Save Location */
-_("save-location");
-/* TRANSLATORS: Save Name */
-_("save-name");
-/* TRANSLATORS: Separator Sheets */
-_("separator-sheets");
 /* TRANSLATORS: Type of Separator Sheets */
 _("separator-sheets-type");
-/* TRANSLATORS: Start and End Sheets */
+/* TRANSLATORS: Start and end sheets */
 _("separator-sheets-type.both-sheets");
-/* TRANSLATORS: End Sheet */
+/* TRANSLATORS: End sheet */
 _("separator-sheets-type.end-sheet");
 /* TRANSLATORS: None */
 _("separator-sheets-type.none");
-/* TRANSLATORS: Slip Sheets */
+/* TRANSLATORS: Slip sheets */
 _("separator-sheets-type.slip-sheets");
-/* TRANSLATORS: Start Sheet */
+/* TRANSLATORS: Start sheet */
 _("separator-sheets-type.start-sheet");
 /* TRANSLATORS: 2-Sided Printing */
 _("sides");
 /* TRANSLATORS: Off */
 _("sides.one-sided");
-/* TRANSLATORS: On (Portrait) */
+/* TRANSLATORS: On (portrait) */
 _("sides.two-sided-long-edge");
-/* TRANSLATORS: On (Landscape) */
+/* TRANSLATORS: On (landscape) */
 _("sides.two-sided-short-edge");
-/* TRANSLATORS: Status Message */
-_("status-message");
 /* TRANSLATORS: Staple */
 _("stitching");
-/* TRANSLATORS: Stitching Angle */
-_("stitching-angle");
-/* TRANSLATORS: Stitching Locations */
-_("stitching-locations");
 /* TRANSLATORS: Staple Method */
 _("stitching-method");
 /* TRANSLATORS: Automatic */
@@ -4442,8 +3932,6 @@ _("stitching-method.auto");
 _("stitching-method.crimp");
 /* TRANSLATORS: Wire */
 _("stitching-method.wire");
-/* TRANSLATORS: Stitching Offset */
-_("stitching-offset");
 /* TRANSLATORS: Staple Edge */
 _("stitching-reference-edge");
 /* TRANSLATORS: Bottom */
@@ -4454,39 +3942,9 @@ _("stitching-reference-edge.left");
 _("stitching-reference-edge.right");
 /* TRANSLATORS: Top */
 _("stitching-reference-edge.top");
-/* TRANSLATORS: Subject */
-_("subject");
-/* TRANSLATORS: Subscription Privacy Attributes */
-_("subscription-privacy-attributes");
-/* TRANSLATORS: All */
-_("subscription-privacy-attributes.all");
-/* TRANSLATORS: Default */
-_("subscription-privacy-attributes.default");
-/* TRANSLATORS: None */
-_("subscription-privacy-attributes.none");
-/* TRANSLATORS: Subscription Description */
-_("subscription-privacy-attributes.subscription-description");
-/* TRANSLATORS: Subscription Template */
-_("subscription-privacy-attributes.subscription-template");
-/* TRANSLATORS: Subscription Privacy Scope */
-_("subscription-privacy-scope");
-/* TRANSLATORS: All */
-_("subscription-privacy-scope.all");
-/* TRANSLATORS: Default */
-_("subscription-privacy-scope.default");
-/* TRANSLATORS: None */
-_("subscription-privacy-scope.none");
-/* TRANSLATORS: Owner */
-_("subscription-privacy-scope.owner");
-/* TRANSLATORS: T33 Subaddress */
-_("t33-subaddress");
-/* TRANSLATORS: To Name */
-_("to-name");
-/* TRANSLATORS: Transmission Status */
-_("transmission-status");
 /* TRANSLATORS: Pending */
 _("transmission-status.3");
-/* TRANSLATORS: Pending Retry */
+/* TRANSLATORS: Pending retry */
 _("transmission-status.4");
 /* TRANSLATORS: Processing */
 _("transmission-status.5");
@@ -4512,7 +3970,7 @@ _("trimming-reference-edge.right");
 _("trimming-reference-edge.top");
 /* TRANSLATORS: Type of Cut */
 _("trimming-type");
-/* TRANSLATORS: Draw Line */
+/* TRANSLATORS: Draw line */
 _("trimming-type.draw-line");
 /* TRANSLATORS: Full */
 _("trimming-type.full");
@@ -4526,33 +3984,11 @@ _("trimming-type.score");
 _("trimming-type.tab");
 /* TRANSLATORS: Cut After */
 _("trimming-when");
-/* TRANSLATORS: Every Document */
+/* TRANSLATORS: Every document */
 _("trimming-when.after-documents");
 /* TRANSLATORS: Job */
 _("trimming-when.after-job");
-/* TRANSLATORS: Every Set */
+/* TRANSLATORS: Every set */
 _("trimming-when.after-sets");
-/* TRANSLATORS: Every Page */
+/* TRANSLATORS: Every page */
 _("trimming-when.after-sheets");
-/* TRANSLATORS: X Accuracy */
-_("x-accuracy");
-/* TRANSLATORS: X Dimension */
-_("x-dimension");
-/* TRANSLATORS: X Offset */
-_("x-offset");
-/* TRANSLATORS: X Origin */
-_("x-origin");
-/* TRANSLATORS: Y Accuracy */
-_("y-accuracy");
-/* TRANSLATORS: Y Dimension */
-_("y-dimension");
-/* TRANSLATORS: Y Offset */
-_("y-offset");
-/* TRANSLATORS: Y Origin */
-_("y-origin");
-/* TRANSLATORS: Z Accuracy */
-_("z-accuracy");
-/* TRANSLATORS: Z Dimension */
-_("z-dimension");
-/* TRANSLATORS: Z Offset */
-_("z-offset");

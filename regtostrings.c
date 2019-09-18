@@ -149,6 +149,9 @@ add_string(const char *locid,           /* I - Localization ID */
   ipp_loc_t     *temp;                  /* Temporary pointer */
 
 
+  if (!str)
+    return (1);
+
   if (num_strings > 0 && check_string(locid))
     return (1);
 
@@ -167,7 +170,7 @@ add_string(const char *locid,           /* I - Localization ID */
   temp = strings + num_strings;
   num_strings ++;
 
-  temp->id = strdup(locid);
+  temp->id  = strdup(locid);
   temp->str = strdup(str);
 
   if (temp->id == NULL || temp->str == NULL)
@@ -233,7 +236,8 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
       			*name = mxmlGetOpaque(submember_node ? submember_node : member_node ? member_node : name_node),
 			*syntax = mxmlGetOpaque(syntax_node);
 
-      if (collection && name && syntax &&
+      if (collection && !strcmp(collection, "Job Template") &&
+          name && syntax &&
           !strstr(name, "-default") &&
           !strstr(name, "-ready") &&
           !strstr(name, "-supported") &&
@@ -294,16 +298,15 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
           !strstr(name, "(deprecated)") &&
           !strstr(name, "(extension)") &&
           !strstr(name, "(obsolete)") &&
-          name[0] != '<' &&
-	  (!strcmp(collection, "Job Template") ||
-           !strcmp(collection, "Operation") ||
-           !strcmp(collection, "Subscription Template")))
+          name[0] != '<')
       {
        /*
         * Job template or operation attribute that isn't otherwise localized.
         */
 
-        if (!add_string(name, ipp_get_localized("", name, name, localized, sizeof(localized))))
+        const char *s = ipp_get_localized("", name, name, localized, sizeof(localized));
+
+        if (s && !add_string(name, s))
           return (0);
       }
 
@@ -322,17 +325,23 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
       if (!strncmp(attribute, "compression", 11) ||
           !strcmp(attribute, "cover-back-supported") ||
           !strcmp(attribute, "cover-front-supported") ||
+          !strcmp(attribute, "cover-sheet-info-supported") ||
           !strcmp(attribute, "current-page-order") ||
           !strcmp(attribute, "document-digital-signature") ||
           !strcmp(attribute, "document-format-details-supported") ||
           !strcmp(attribute, "document-format-varying-attributes") ||
+          !strncmp(attribute, "document-privacy-", 17) ||
+          !strcmp(attribute, "feed-orientation") ||
           !strcmp(attribute, "finishings-col-supported") ||
           !strcmp(attribute, "identify-actions") ||
           !strcmp(attribute, "ipp-features-supported") ||
           !strcmp(attribute, "ipp-versions-supported") ||
+          !strcmp(attribute, "job-account-type") ||
+          !strcmp(attribute, "job-accounting-sheets-type") ||
           !strcmp(attribute, "job-destination-spooling-supported") ||
           !strcmp(attribute, "job-mandatory-attributes") ||
           !strncmp(attribute, "job-password", 12) ||
+          !strncmp(attribute, "job-privacy-", 12) ||
           !strcmp(attribute, "job-save-disposition-supported") ||
           !strcmp(attribute, "job-spooling-supported") ||
           !strcmp(attribute, "jpeg-features-supported") ||
@@ -340,18 +349,30 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
           !strcmp(attribute, "media-key") ||
           !strcmp(attribute, "media-source-feed-direction") ||
           !strcmp(attribute, "media-source-feed-orientation") ||
+          !strcmp(attribute, "multiple-document-handling") ||
+          !strcmp(attribute, "multiple-object-handling") ||
+          !strcmp(attribute, "multiple-operation-time-out-action") ||
+          !strncmp(attribute, "notify-", 7) ||
           !strncmp(attribute, "output-device", 13) ||
+          !strcmp(attribute, "page-delivery") ||
+          !strcmp(attribute, "page-order-received") ||
+          !strcmp(attribute, "pclm-raster-back-side") ||
           !strcmp(attribute, "pdf-features-supported") ||
           !strcmp(attribute, "pdf-versions-supported") ||
           !strncmp(attribute, "pdl-init", 8) ||
           !strcmp(attribute, "pdl-override-supported") ||
-          !strcmp(attribute, "printer-settable-attributes-supported") ||
+          !strcmp(attribute, "platform-shape") ||
+          !strcmp(attribute, "presentation-direction-number-up") ||
+          !strcmp(attribute, "printer-kind") ||
+          !strncmp(attribute, "printer-privacy-", 16) ||
           !strcmp(attribute, "proof-print-supported") ||
           !strcmp(attribute, "pwg-raster-document-sheet-back") ||
           !strcmp(attribute, "pwg-raster-document-type-supported") ||
           !strcmp(attribute, "requested-attributes") ||
+          !strcmp(attribute, "save-disposition") ||
           !strcmp(attribute, "save-info-supported") ||
           !strcmp(attribute, "stitching-supported") ||
+          !strncmp(attribute, "subscription-privacy-", 21) ||
           !strcmp(attribute, "uri-authentication-supported") ||
           !strcmp(attribute, "uri-security-supported") ||
           !strcmp(attribute, "which-jobs") ||
@@ -364,9 +385,6 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
           strstr(attribute, "(deprecated)") ||
           strstr(attribute, "(extension)") ||
           strstr(attribute, "(obsolete)"))
-        continue;
-
-      if (!strncmp(attribute, "notify-", 7) && strcmp(attribute, "notify-events"))
         continue;
 
       if ((!last_attribute || strcmp(attribute, last_attribute)) &&
