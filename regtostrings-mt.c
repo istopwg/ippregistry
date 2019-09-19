@@ -82,17 +82,32 @@ main(int  argc,				/* I - Number of command-line args */
   */
 
   for (i = 1; i < argc; i ++)
+  {
     if (!strcmp(argv[i], "--code"))
+    {
       format = FORMAT_CODE;
+    }
+    else if (!strcmp(argv[i], "--language"))
+    {
+      i ++;
+
+      if (i < argc)
+        language = argv[i];
+    }
     else if (!strcmp(argv[i], "--po"))
+    {
       format = FORMAT_PO;
+    }
     else if (argv[i][0] == '-')
     {
       printf("Unknown option \'%s\'.\n", argv[i]);
       return (usage());
     }
     else
+    {
       xmlin = argv[i];
+    }
+  }
 
   if (!xmlin)
     return (usage());
@@ -932,11 +947,16 @@ translate_string(const char *s,		/* I - String to translate */
                  char       *buffer,	/* I - Buffer */
                  size_t     bufsize)	/* I - Size of buffer */
 {
-  int		count;			/* */
   int		num_json = 0;		/* Number of variables */
   cups_option_t	*json = NULL;		/* Variables */
-  char		*data;			/* Request/response data */
+  char		*data = NULL,		/* Request/response data */
+		*dataptr,		/* Pointer into data buffer */
+		*dataend;		/* End of data buffer */
   size_t	content_length;		/* Content-Length */
+  http_status_t	status;			/* Response status */
+  http_state_t	initial_state;		/* Initial HTTP state */
+  ssize_t	bytes;			/* Bytes read */
+  const char	*value;			/* Value from response */
 
 
   strncpy(buffer, s, bufsize - 1);
@@ -947,15 +967,12 @@ translate_string(const char *s,		/* I - String to translate */
 
   if (!translation_service)
   {
-    translation_service = httpConnect2("translation.googleapis.com", 443, NULL, 30000, NULL);
+    translation_service = httpConnect2("translation.googleapis.com", 443, NULL, AF_UNSPEC, HTTP_ENCRYPTION_ALWAYS, 1, 30000, NULL);
 
     if (!translation_service)
     {
       fprintf(stderr, "Unable to connect to Google translation service: %s\n", cupsLastErrorString());
-
-      language = NULL;
-
-      return (buffer);
+      goto translate_error;
     }
   }
 
@@ -973,29 +990,86 @@ translate_string(const char *s,		/* I - String to translate */
 
     httpClearFields(translation_service);
     httpSetField(translation_service, HTTP_FIELD_CONTENT_TYPE, "application/json");
-    httpSetLength2(translation_service, content_length = strlen(data));
+    httpSetLength(translation_service, content_length = strlen(data));
 
     if (httpPost(translation_service, "/language/translate/v2"))
     {
       if (httpReconnect2(translation_service, 30000, NULL))
       {
-        free(data);
-        return (buffer);
+        fprintf(stderr, "Unable to reconnect to Google translation service: %s\n", cupsLastErrorString());
+        goto translate_error;
       }
 
       if (httpPost(translation_service, "/language/translate/v2"))
       {
         fprintf(stderr, "Unable to POST to Google translation service: %s\n", cupsLastErrorString());
-
-        free(data);
-        return (buffer);
+        goto translate_error;
       }
     }
 
     if (httpWrite2(translation_service, data, content_length) < (ssize_t)content_length)
     {
-      
+      fprintf(stderr, "Unable to POST to Google translation service: %s\n", cupsLastErrorString());
+      goto translate_error;
+    }
+
+    free(data);
+    data = NULL;
+
+    while ((status = httpUpdate(translation_service)) == HTTP_STATUS_CONTINUE);
+
+    if (status != HTTP_STATUS_OK)
+    {
+      fprintf(stderr, "POST to Google translation service failed with status %d (%s)\n", status, httpStatus(status));
+      goto translate_error;
+    }
+
+    initial_state = httpGetState(translation_service);
+
+    if ((content_length = httpGetLength2(translation_service)) == 0 || content_length > 65536)
+      content_length = 65536;			/* Accept up to 64k for POSTs */
+
+    if ((data = calloc(1, content_length + 1)) != NULL)
+    {
+      for (dataptr = data, dataend = data + content_length; dataptr < dataend; dataptr += bytes)
+	if ((bytes = httpRead2(translation_service, dataptr, dataend - dataptr)) <= 0)
+	  break;
+    }
+
+    if (httpGetState(translation_service) == initial_state)
+      httpFlush(translation_service);
+
+    num_json = json_decode(data, &json);
+
+    fprintf(stderr, "Response for \"%s\":\n", s);
+    int i;
+    for (i = 0; i < num_json; i ++)
+      fprintf(stderr, "    %s=\"%s\"\n", json[i].name, json[i].value);
+
+    if ((value = cupsGetOption("translatedText", num_json, json)) != NULL)
+    {
+      strncpy(buffer, value, bufsize - 1);
+      buffer[bufsize - 1] = '\0';
+    }
+
+    cupsFreeOptions(num_json, json);
   }
+
+  free(data);
+
+  return (buffer);
+
+ /*
+  * If it gets here then something bad happened...
+  */
+
+  translate_error:
+
+  httpClose(translation_service);
+  translation_service = NULL;
+  language          = NULL;
+
+  free(data);
 
   return (buffer);
 }
@@ -1052,7 +1126,13 @@ write_strings(int format)               /* I - Output format - strings or PO */
     default :
     case FORMAT_STRINGS :
 	for (loc = strings, count = num_strings; count > 0; loc ++, count --)
-	  printf("\"%s\" = \"%s\";\n", loc->id, loc->str);
+	{
+	  printf("/* TRANSLATORS: %s */\n", loc->str);
+	  if (language)
+	    printf("\"%s\" = \"%s\";\n", loc->id, translate_string(loc->str, buffer, sizeof(buffer)));
+	  else
+	    printf("\"%s\" = \"%s\";\n", loc->id, loc->str);
+	}
 	break;
   }
 }

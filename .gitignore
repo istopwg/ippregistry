@@ -1,7 +1,4 @@
 iana-ipp-registrations.xml*
-ipp.h
-ipp.po
-ipp.strings
 ipp-registrations.xml*
 pending/*.log
 preview/ipp-registrations.xhtml
@@ -14,4 +11,6 @@ regtosm
 regtosm.dSYM
 regtostrings
 regtostrings.dSYM
+regtostrings-mt
+regtostrings-mt.dSYM
 smpjt3d*

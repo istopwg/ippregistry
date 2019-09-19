@@ -1,7 +1,7 @@
 #
 # Makefile for IANA IPP registry tools. Depends on Mini-XML, available at:
 #
-#   http://www.msweet.org/projects.php/mini-xml
+#   https://www.msweet.org/mxml
 #
 # Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
 # Copyright © 2008-2018 by Michael R Sweet
@@ -33,8 +33,8 @@ regtosm:	regtosm.c ipp-registry.h
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
 
-regtostrings-google:	regtostrings-google.c ipp-registry.h ipp-strings.h
-	cc $(CFLAGS) -o regtostrings-google regtostrings-google.c -lmxml -lcups
+regtostrings-mt:	regtostrings-mt.c ipp-registry.h ipp-strings.h
+	cc $(CFLAGS) -o regtostrings-mt regtostrings-mt.c -lmxml -lcups
 
 strings:	localizations/ipp.c localizations/ipp.pot localizations/ipp.strings
 
@@ -56,3 +56,9 @@ localizations/ipp.pot:	regtostrings iana-ipp-registrations.xml
 
 localizations/ipp.strings:	regtostrings iana-ipp-registrations.xml
 	./regtostrings iana-ipp-registrations.xml >localizations/ipp.strings
+
+mtstrings:	regtostrings-mt iana-ipp-registrations.xml
+	for lang in de es fr it; do \
+		echo Generating $$lang strings...; \
+		./regtostrings-mt --language $$lang iana-ipp-registrations.xml >localizations/ipp-$$lang.strings; \
+	done
