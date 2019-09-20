@@ -1006,7 +1006,7 @@ translate_string(const char *s,		/* I - String to translate */
   if (translation_service)
   {
     num_json = cupsAddOption("format", "text", num_json, &json);
-//    num_json = cupsAddOption("key", "????", num_json, &json);
+    num_json = cupsAddOption("key", getenv("GOOGLE_API_KEY"), num_json, &json);
     num_json = cupsAddOption("q", s, num_json, &json);
     num_json = cupsAddOption("source", "en", num_json, &json);
     num_json = cupsAddOption("target", language, num_json, &json);
