@@ -40,6 +40,7 @@
 
 static const char	*language = NULL;
 static http_t		*translation_service = NULL;
+static char		*translation_token = NULL;
 static size_t           alloc_strings = 0,
                         num_strings = 0;
 static ipp_loc_t        *strings = NULL;
@@ -967,6 +968,32 @@ translate_string(const char *s,		/* I - String to translate */
 
   if (!translation_service)
   {
+    FILE	*authfp = popen("gcloud auth application-default print-access-token", "r");
+    char	authline[1024],
+		*authptr;
+
+    if (!authfp)
+    {
+      fputs("Unable to get Google translation service credentials.\n", stderr);
+      goto translate_error;
+    }
+
+    if (!fgets(authline, sizeof(authline), authfp))
+    {
+      pclose(authfp);
+
+      fputs("Unable to get Google translation service credentials.\n", stderr);
+      goto translate_error;
+    }
+
+    pclose(authfp);
+
+    authptr = authline + strlen(authline) - 1;
+    if (authptr >= authline && *authptr == '\n')
+      *authptr = '\0';
+
+    translation_token = strdup(authline);
+
     translation_service = httpConnect2("translation.googleapis.com", 443, NULL, AF_UNSPEC, HTTP_ENCRYPTION_ALWAYS, 1, 30000, NULL);
 
     if (!translation_service)
@@ -991,6 +1018,7 @@ translate_string(const char *s,		/* I - String to translate */
     httpClearFields(translation_service);
     httpSetField(translation_service, HTTP_FIELD_CONTENT_TYPE, "application/json");
     httpSetLength(translation_service, content_length = strlen(data));
+    httpSetAuthString(translation_service, "Bearer", translation_token);
 
     if (httpPost(translation_service, "/language/translate/v2"))
     {
@@ -1020,7 +1048,15 @@ translate_string(const char *s,		/* I - String to translate */
 
     if (status != HTTP_STATUS_OK)
     {
+      char	buffer[8192];
+      ssize_t	bytes;
+
       fprintf(stderr, "POST to Google translation service failed with status %d (%s)\n", status, httpStatus(status));
+
+      while ((bytes = httpRead2(translation_service, buffer, sizeof(buffer))) > 0)
+        fwrite(buffer, 1, bytes, stderr);
+      putc('\n', stderr);
+
       goto translate_error;
     }
 
