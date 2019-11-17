@@ -672,6 +672,16 @@ static ipp_loc_t	ipp_strings[] =
   { "trimming-when.after-sheets", "Every page" }
 };
 
+#ifdef __APPLE__
+#  define ipp_strlcpy strlcpy
+#else
+static inline ipp_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+  strncpy(dst, src, dstsize - 1);
+  dst[dstsize - 1] = '\0';
+}
+#endif /* __APPLE__ */
+
 
 /*
  * 'ipp_compare_loc()' - Compare two localizations.
@@ -725,7 +735,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
   if (*attribute)
     snprintf(id, sizeof(id), "%s.%s", attribute, value);
   else
-    strlcpy(id, value, sizeof(id));
+    ipp_strlcpy(id, value, sizeof(id));
 
   key.id = id;
   if ((match = (ipp_loc_t *)bsearch(&key, ipp_strings, sizeof(ipp_strings) / sizeof(ipp_strings[0]), sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc)) != NULL)

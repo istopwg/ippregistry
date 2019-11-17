@@ -814,7 +814,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
       return (1);
     }
     else
-      return (0);
+      return (changed);
   }
 
  /*
@@ -968,7 +968,7 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
       return (1);
     }
     else
-      return (0);
+      return (changed);
   }
 
  /*
@@ -1280,7 +1280,7 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
       return (1);
     }
     else
-      return (0);
+      return (changed);
   }
 
  /*
@@ -1415,7 +1415,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
       return (1);
     }
     else
-      return (0);
+      return (changed);
   }
 
  /*

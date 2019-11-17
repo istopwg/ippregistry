@@ -10,7 +10,7 @@
 # information.
 #
 
-CFLAGS	=	-g -Wall -I$(HOME)/oss/include -I/usr/local/include -L$(HOME)/oss/lib -L/usr/local/lib
+CFLAGS	=	-g -Wall -I/usr/local/include -L/usr/local/lib
 TARGETS	=	register regtoc regtosm regtostrings
 
 all:	$(TARGETS)
