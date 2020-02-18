@@ -1,5 +1,11 @@
 https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf
 
+Operation attributes:	Reference
+--------------------	---------
+encrypted-job-request-format (mimeMediaType)	[TRUSTNOONE]
+encrypted-job-request-id (integer(1:MAX))	[TRUSTNOONE]
+requesting-user-pgp-public-key (1setOf text(MAX))	[TRUSTNOONE]
+
 Printer Description attributes:	Reference
 ------------------------------	---------
 pgp-document-format-supported (1setOf mimeMediaType)	[TRUSTNOONE]
