@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20190626.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20200130.pdf
 
 Job Status attributes:	Reference
 ------------------------	---------
@@ -56,6 +56,8 @@ cover-front-default (collection | no-value)	[PWG5100.3]
 cover-front-supported (1setOf keyword)	[PWG5100.3]
 cover-type-supported (1setOf type2 keyword)	[PWG5100.3]
 force-front-side-supported (rangeOfInteger(1:MAX))	[PWG5100.3]
+imposition-template-default (type2 keyword | name(MAX))	[PWG5100.3]
+imposition-template-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
 insert-after-page-number-supported(obsolete) (rangeOfInteger(0:MAX))	[PWG5100.3]
 insert-count-supported (rangeOfInteger(0:MAX))	[PWG5100.3]
 insert-sheet-default (1setOf collection)	[PWG5100.3]
@@ -63,7 +65,7 @@ insert-sheet-supported (1setOf keyword)	[PWG5100.3]
 job-account-id-default (name(MAX) | no-value)	[PWG5100.3]
 job-account-id-supported (boolean)	[PWG5100.3]
 job-accounting-output-bin-default(obsolete) (type2 keyword | name(MAX))	[PWG5100.3]
-job-accounting-output-bin-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
+job-accounting-output-bin-supported(deprecated) (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
 job-accounting-sheets-default (collection)	[PWG5100.3]
 job-accounting-sheets-supported (1setOf keyword)	[PWG5100.3]
 job-accounting-sheets-type-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
@@ -115,8 +117,13 @@ cover-type (type2 keyword)	[PWG5100.3]
   print-none	[PWG5100.3]
 
 imposition-template (type2 keyword | name(MAX))	[PWG5100.3]
+  booklet	[PWG5100.3]
   none	[PWG5100.3]
-  signature	[PWG5100.3]
+  same-up_2_2_3.5x5in	[PWG5100.3]
+  same-up_2_2_104x148mm	[PWG5100.3]
+  same-up_4_3_2x3.5in	[PWG5100.3]
+  signature(deprecated)	[PWG5100.3]
+  tile	[PWG5100.3]
 
 job-accounting-output-bin (type2 keyword | name(MAX))	[PWG5100.3]
   < any "output-bin" value >	[PWG5100.3]

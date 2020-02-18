@@ -1,0 +1,37 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf
+
+Printer Description attributes:	Reference
+------------------------------	---------
+pgp-document-format-supported (1setOf mimeMediaType)	[TRUSTNOONE]
+printer-pgp-public-key (1setOf text(MAX))		[TRUSTNOONE]
+printer-pgp-repertoire-configured (type2 keyword)		[TRUSTNOONE]
+printer-pgp-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+printer-pgp-repertoire-configured (type2 keyword)		[TRUSTNOONE]
+  < all printer-pgp-repertoire-supported values >	[TRUSTNOONE]
+printer-pgp-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
+  < all job-password-repertoire-supported values >	[TRUSTNOONE]
+printer-state-reasons (1setOf type2 keyword)	[RFC8011]
+  encrypted-job-attributes-requested	[TRUSTNOONE]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	---------
+operations-supported (1setOf type2 enum)	[RFC8011]
+  0x0068	Acknowledge-Encrypted-Job-Attributes	[TRUSTNOONE]
+  0x0069	Fetch-Encrypted-Job-Attributes	[TRUSTNOONE]
+  0x006A	Get-Encrypted-Job-Attributes	[TRUSTNOONE]
+
+
+Operation Name	Reference
+--------------	---------
+Acknowledge-Encrypted-Job-Attributes	[TRUSTNOONE]
+Fetch-Encrypted-Job-Attributes	[TRUSTNOONE]
+Get-Encrypted-Job-Attributes	[TRUSTNOONE]
+Print-Job(extension)	[TRUSTNOONE]
+Send-Document(extension)	[TRUSTNOONE]

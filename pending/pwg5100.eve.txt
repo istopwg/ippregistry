@@ -1,0 +1,8 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeve11-20200211.pdf
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+ipp-features-supported (1setOf type2 keyword)	[PWG5100.13]
+  ipp-everywhere	[PWG5100.14]
+  ipp-everywhere-server	[PWG5100.14]
