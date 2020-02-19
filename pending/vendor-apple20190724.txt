@@ -1,0 +1,8 @@
+https://www.pwg.org/archives/ipp/2019/020184.html
+
+Printer Status attributes:                            Reference
+------------------------------                        ---------
+printer-firmware-name (1setOf name(MAX))              [APPLE20190724]
+printer-firmware-patches (1setOf text(MAX))           [APPLE20190724]
+printer-firmware-string-version (1setOf text(MAX))    [APPLE20190724]
+printer-firmware-version (1setOf octetString(MAX))    [APPLE20190724]
