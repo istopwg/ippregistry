@@ -10,7 +10,7 @@ This repository contains the tools used by the PWG IPP workgroup to maintain the
 
 ## Prerequisites
 
-The tools use the [Mini-XML](http://www.msweet.org/projects.php/mini-xml) library to access the XML registry file. Otherwise you'll need a C compiler and a "make" program.
+The tools use the [Mini-XML](http://www.msweet.org/mxml) library to access the XML registry file. Otherwise you'll need a C compiler and a "make" program.
 
 The "apply-pending.sh" script uses the curl program to download the current IANA IPP registry file.
 
