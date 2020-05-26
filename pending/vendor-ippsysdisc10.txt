@@ -1,0 +1,5 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsysdisc10-20200427.pdf
+
+System Description attributes:	Reference
+--------------------------	---------
+system-dns-sd-name(name(63))	[IPPSYSDISC10]
