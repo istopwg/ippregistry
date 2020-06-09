@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeve11-20200417.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference

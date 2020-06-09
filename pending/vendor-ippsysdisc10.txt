@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsysdisc10-20200427.pdf
+https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippsysdisc10-20200604.pdf
 
 System Description attributes:	Reference
 --------------------------	---------
