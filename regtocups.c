@@ -1,17 +1,25 @@
 /*
- * Program to convert keyword and enum registrations to C strings.
+ * Program to convert registrations to CUPS code.
  *
- * Usage:
- *
- *    ./regtoc filename.xml >filename.h
- *
- * Copyright © 2018 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2018-2020 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2018 by Michael R Sweet
  *
  * Licensed under Apache License v2.0.  See the file "LICENSE" for more
  * information.
+ *
+ * Usage:
+ *
+ *    ./regtocups --encode [OPTIONS] SOURCE.xml >DESTINATION.c
+ *    ./regtocups --validate [OPTIONS] SOURCE.xml >DESTINATION.c
+ *
+ * Options:
+ *
+ *   -f FUNCTION-NAME     Specify the function name.
+ *   -g "GROUP-NAME"      Specify the attribute group name.
+ *   -n "ATTRIBUTE-NAME"  Specify one or more attributes.
  */
 
+#include <cups/cups.h>
 #include <mxml.h>
 #include <limits.h>
 #include <ctype.h>
@@ -29,7 +37,7 @@
  */
 
 static int		usage(void);
-static void		write_strings(mxml_node_t *registry_node, const char *attrname);
+static void		write_strings(mxml_node_t *registry_node, const char *group_name, cups_array_t *attrnames);
 
 
 /*

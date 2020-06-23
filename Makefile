@@ -3,7 +3,7 @@
 #
 #   https://www.msweet.org/mxml
 #
-# Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
+# Copyright © 2018-2020 by The IEEE-ISTO Printer Working Group.
 # Copyright © 2008-2018 by Michael R Sweet
 #
 # Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -11,7 +11,7 @@
 #
 
 CFLAGS	=	-g -Wall -I/usr/local/include -L/usr/local/lib
-TARGETS	=	register regtoc regtosm regtostrings
+TARGETS	=	register regtocups regtosm regtostrings
 
 all:	$(TARGETS)
 
@@ -22,19 +22,19 @@ clean:
 	done
 
 register:	register.c ipp-registry.h
-	cc $(CFLAGS) -o register register.c -lmxml
+	$(CC) $(CFLAGS) -o register register.c -lmxml
 
-regtoc:	regtoc.c ipp-registry.h ipp-strings.h
-	cc $(CFLAGS) -o regtoc regtoc.c -lmxml
+regtocups:	regtocups.c ipp-registry.h
+	$(CC) $(CFLAGS) -o regtocups regtocups.c -lmxml
 
 regtosm:	regtosm.c ipp-registry.h
-	cc $(CFLAGS) -o regtosm regtosm.c -lmxml
+	$(CC) $(CFLAGS) -o regtosm regtosm.c -lmxml
 
 regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
-	cc $(CFLAGS) -o regtostrings regtostrings.c -lmxml
+	$(CC) $(CFLAGS) -o regtostrings regtostrings.c -lmxml
 
 regtostrings-mt:	regtostrings-mt.c ipp-registry.h ipp-strings.h
-	cc $(CFLAGS) -o regtostrings-mt regtostrings-mt.c -lmxml -lcups
+	$(CC) $(CFLAGS) -o regtostrings-mt regtostrings-mt.c -lmxml -lcups
 
 strings:	localizations/ipp.c localizations/ipp.pot localizations/ipp.strings
 
