@@ -61,7 +61,9 @@ The source XML file should be the current IANA IPP registration file at: (http:/
 
 # Using the "regtosm" Tool
 
-" Note: The "regtosm" tool is under active development and should not be used as a replacement for the currently approved and published PWG Semantic Model schema.
+> Note: The "regtosm" tool is under active development and should not be used
+> as a replacement for the currently approved and published PWG Semantic Model
+> schema.
 
 The "regtosm" tool reads the source XML registry file and writes a PWG Semantic Model XML schema to the specified directory. The following command will write the current registry to a directory called "test-schema":
 
