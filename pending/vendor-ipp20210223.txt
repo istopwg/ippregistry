@@ -1,0 +1,64 @@
+https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt
+
+[IPP] RFC: "printer-cover (1setOf octetString(MAX))" and "printer-cover-description (1setOf text(MAX))"
+Michael Sweet msweet at msweet.org 
+Tue Feb 23 16:27:43 UTC 2021
+
+All,
+
+As part of our discussions during the last F2F, we determined that IPP should expose the Printer MIB's prtCover element. The following proposal follows what we've done for other Printer MIB elements...
+
+"printer-cover (1setOf octetString(MAX))"
+
+This Printer Description attribute lists the cover sub-units associated with the Printer. Each value consists of a series of unordered key/value pairs that are structured according to the ABNF [STD68] [COVER-ABNF] defined in Figure N. The keywords are shown in Table N.
+
+A Printer MUST encode the values of "printer-cover" using printable characters from the Net-ASCII subset of the US-ASCII character set [RFC5198].
+
+This attribute MUST have the same cardinality (supply the same number of values) as the "printer-cover-description" (section ?.?.?) attribute. The ith value in the "printer-cover" attribute corresponds to the ith value in the "printer-cover-description" attribute.
+
+
+Table N - Keywords for "printer-cover"
+
+Printer MIB Element  IPP Data Type  IPP Keyword  Conformance
+-------------------  -------------  -----------  -----------
+prtCoverTable
+prtCoverStatus       Integer        status       REQUIRED
+prtCoverIndex        Integer        index        RECOMMENDED
+
+
+Figure N - ABNF for "printer-cover" Values
+
+printer-cover = 1*cover-required *cover-optional *cover-ext
+cover-required = cover-status
+cover-optional = cover-index
+cover-ext      = cover-extname "=" cover-extvalue ";"
+cover-extname  = 1*[ALPHA / DIGIT / "-"]
+cover-extvalue = 1*[ALPHA / DIGIT / "-" / "." / ","]
+cover-index    = "index=" 1*DIGIT ";"
+cover-status   = "status=" 1*DIGIT ";"
+
+
+"printer-cover-description (1setOf text(MAX))"
+
+This Printer Description attribute provides a description of each cover sub-unit associated with the Printer.
+
+When the descriptions are mapped from the prtCoverDescription element [RFC2790], they MUST be mapped using the following process:
+
+1. The value of prtCoverDescription is converted from the character set specified by prtGeneralCurrentLocalization and prtLocalizationCharacterSet [RFC3805] to the character set specified by the "charset-configured" Printer Description attribute [STD92]; and
+
+2. The new "printer-cover-description" value is tagged with the natural language specified by prtGeneralCurrentLocalization, prtLocalizationLanguage, and prtLocalizationCountry [RFC3805] unless the natural language matches the language to be used in the response as indicated by the "attributes-natural-language" operation attribute [STD92].
+
+This attribute MUST have the same cardinality (supply the same number of values) as the "printer-cover" (section ?.?.?) attribute. The ith value in the "printer-cover-description" attribute corresponds to the ith value in the "printer-cover" attribute.
+
+Thoughts?
+
+
+Printer Description attributes:	               Reference
+------------------------------	               ---------
+printer-cover (1setOf octetString(MAX))	       [IPP20210223]
+printer-cover-description (1setOf text(MAX))   [IPP20210223]
+
+
+________________________
+Michael Sweet
+
