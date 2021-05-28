@@ -1,25 +1,25 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf
 
 Operation attributes:	Reference
 --------------------	---------
 encrypted-job-request-format (mimeMediaType)	[TRUSTNOONE]
 encrypted-job-request-id (integer(1:MAX))	[TRUSTNOONE]
-requesting-user-pgp-public-key (1setOf text(MAX))	[TRUSTNOONE]
+requesting-user-pkcs7-public-key (1setOf text(MAX))	[TRUSTNOONE]
 
 Printer Description attributes:	Reference
 ------------------------------	---------
-pgp-document-format-supported (1setOf mimeMediaType)	[TRUSTNOONE]
-printer-pgp-public-key (1setOf text(MAX))		[TRUSTNOONE]
-printer-pgp-repertoire-configured (type2 keyword)		[TRUSTNOONE]
-printer-pgp-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
+pkcs7-document-format-supported (1setOf mimeMediaType)	[TRUSTNOONE]
+printer-pkcs7-public-key (1setOf text(MAX))		[TRUSTNOONE]
+printer-pkcs7-repertoire-configured (type2 keyword)	[TRUSTNOONE]
+printer-pkcs7-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
 
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
   -----------------------	---------
-printer-pgp-repertoire-configured (type2 keyword)		[TRUSTNOONE]
-  < all printer-pgp-repertoire-supported values >	[TRUSTNOONE]
-printer-pgp-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
+printer-pkcs7-repertoire-configured (type2 keyword)	[TRUSTNOONE]
+  < all printer-pkcs7-repertoire-supported values >	[TRUSTNOONE]
+printer-pkcs7-repertoire-supported (1setOf type2 keyword)	[TRUSTNOONE]
   < all job-password-repertoire-supported values >	[TRUSTNOONE]
 printer-state-reasons (1setOf type2 keyword)	[RFC8011]
   encrypted-job-attributes-requested	[TRUSTNOONE]

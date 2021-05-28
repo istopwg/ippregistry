@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20201029.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20210424.pdf
 
 Job Status attributes:	Reference
 ------------------------	---------
@@ -30,6 +30,8 @@ job-error-sheet (collection)	[PWG5100.3]
   media (type2 keyword | name(MAX))	[PWG5100.3]
   media-col (collection)	[PWG5100.3]
 job-message-to-operator (text(MAX))	[PWG5100.3]
+job-phone-number (uri)	[PWG5100.3]
+job-recipient-name (name(MAX))	[PWG5100.3]
 job-sheet-message (text(MAX))	[PWG5100.3]
 media-input-tray-check(deprecated) (type2 keyword | name(MAX))	[PWG5100.3]
 page-delivery (type2 keyword)	[PWG5100.3]
@@ -76,6 +78,11 @@ job-error-sheet-supported (1setOf keyword)	[PWG5100.3]
 job-error-sheet-type-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
 job-error-sheet-when-supported (1setOf type2 keyword)	[PWG5100.3]
 job-message-to-operator-supported (boolean)	[PWG5100.3]
+job-phone-number-default (uri | no-value)	[PWG5100.3]
+job-phone-number-scheme-supported (1setOf uriScheme)	[PWG5100.3]
+job-phone-number-supported (boolean)	[PWG5100.3]
+job-recipient-name-default (name(MAX) | no-value)	[PWG5100.3]
+job-recipient-name-supported (boolean)	[PWG5100.3]
 job-sheet-message-supported (boolean)	[PWG5100.3]
 job-sheets-col-default (collection)	[PWG5100.3]
 job-sheets-col-supported (1setOf keyword)	[PWG5100.3]
@@ -104,8 +111,6 @@ y-side1-image-shift-default (integer(MIN:MAX))	[PWG5100.3]
 y-side1-image-shift-supported (rangeOfInteger(MIN:MAX))	[PWG5100.3]
 y-side2-image-shift-default (integer(MIN:MAX))	[PWG5100.3]
 y-side2-image-shift-supported (rangeOfInteger(MIN:MAX))	[PWG5100.3]
-
-
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
