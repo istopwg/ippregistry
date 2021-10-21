@@ -1,0 +1,215 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippepx20-20210922.pdf
+
+Operation attributes:	Reference   
+----------------------------------------	------------
+job-password (octetString(255))	[IPPEPX]
+job-password-encryption (type2 keyword)	[IPPEPX]
+job-release-action (type2 keyword)	[IPPEPX]
+job-storage (collection)	[IPPEPX]
+  job-storage-access (type2 keyword)	[IPPEPX]
+  job-storage-disposition (type2 keyword)	[IPPEPX]
+  job-storage-group (name(MAX)	[IPPEPX]
+
+
+Job Template attributes:	Reference                                                                  ----------------------------------------	------------
+job-cancel-after (integer(1:MAX))	[IPPEPX]
+job-save-disposition (collection) (obsolete)	[IPPEPX]
+  save-disposition  (type3 keyword) (obsolete)	[IPPEPX]
+  save-info  (1setOf collection) (obsolete)	[IPPEPX]
+    save-document-format  (mimeMediaType) (obsolete)	[IPPEPX]
+    save-location  (uri) (obsolete)	[IPPEPX]
+    save-name  (name (MAX)) (obsolete)	[IPPEPX]
+pdl-init-file  (1setOf collection) (obsolete)	[IPPEPX]
+  pdl-init-file-entry  (name(MAX)) (obsolete)	[IPPEPX]
+  pdl-init-file-location  (uri) (obsolete)	[IPPEPX]
+  pdl-init-file-name  (name(MAX)) (obsolete)	[IPPEPX]
+proof-copies (integer(1:MAX))	[IPPEPX]
+proof-print (collection)	[IPPEPX]
+  proof-print-copies (integer (0:MAX))	[IPPEPX]
+  media (type2 keyword | name(MAX))	[IPPEPX]
+  media-col (collection)	[IPPEPX]
+
+
+Job Status attributes:	Reference   
+----------------------------------------	------------
+job-release-action (type2 keyword)	[IPPEPX]
+job-storage (collection)	[IPPEPX]
+  <Any "job-storage" member attribute>	[IPPEPX]
+parent-job-id (integer(1:MAX))	[IPPEPX]
+parent-job-uuid (uri(45))	[IPPEPX]
+
+
+Printer Description attributes:	Reference   
+----------------------------------------	------------
+job-cancel-after-default (integer(1:MAX))	[IPPEPX]
+job-password-encryption-supported (1setOf type2 keyword)	[IPPEPX]
+job-password-length-supported (rangeOfInteger(4:765))	[IPPEPX]
+job-password-repertoire-configured (1setOf (type2 keyword | name(MAX)))	[IPPEPX]
+job-password-repertoire-supported (1setOf (type2 keyword | name(MAX)))	[IPPEPX]
+job-password-supported (integer(0:255))	[IPPEPX]
+job-release-action-default (type2 keyword)	[IPPEPX]
+job-release-action-supported (1setOf type2 keyword)	[IPPEPX]
+job-storage-access-supported (1setOf type2 keyword)	[IPPEPX]
+job-storage-disposition-supported (1setOf type2 keyword)	[IPPEPX]
+job-storage-group-supported (1setOf name(MAX))	[IPPEPX]
+job-storage-supported (1setOf keyword)	[IPPEPX]
+pdl-init-file-default  (1setOf collection) (obsolete)	[IPPEPX]
+pdl-init-file-entry-supported  (1setOf name(MAX)) (obsolete)	[IPPEPX]
+pdl-init-file-location-supported  (1setOf uri) (obsolete)	[IPPEPX]
+pdl-init-file-name-supported  (1setOf name(MAX)) (obsolete)	[IPPEPX]
+pdl-init-file-supported  (1setOf type2 keyword) (obsolete)	[IPPEPX]
+printer-detailed-status-messages (1setOf text(MAX))	[IPPEPX]
+printer-service-contact-col (collection)	[IPPEPX]
+  contact-name (name(MAX))	[IPPEPX]
+  contact-uri (uri)	[IPPEPX]
+  contact-vcard (1setOf text(MAX))	[IPPEPX]
+proof-copies-supported (rangeOfInteger(1:MAX))	[IPPEPX]
+proof-print-copies-supported (rangeOfInteger(0:MAX))	[IPPEPX]
+proof-print-default (collection)	[IPPEPX]
+proof-print-supported (1setOf type2 keyword)	[IPPEPX]
+save-disposition-supported  (1setOf (type3 keyword)) (obsolete)	[IPPEPX]
+save-document-format-default  (mimeMediaType) (obsolete)	[IPPEPX]
+save-document-format-supported  (1setOf mimeMediaType) (obsolete)	[IPPEPX]
+save-location-default  (uri) (obsolete)	[IPPEPX]
+save-location-supported  (1setOf uri) (obsolete)	[IPPEPX]
+save-name-supported  (boolean) (obsolete)	[IPPEPX]
+
+
+Attribute (attribute syntax)
+  Keyword Attribute Value	Reference
+-------------------------------	-------------
+ipp-features-supported (1setOf type2 keyword)	[PWG5100.13]
+  job-release	[IPPEPX]
+  job-storage	[IPPEPX]
+  print-policy	[IPPEPX]
+  proof-and-suspend	[IPPEPX]
+  proof-print	[IPPEPX]
+
+job-release-action (type2 keyword)	[IPPEPX]
+job-release-action-supported (1setOf type2 keyword)	[IPPEPX]
+  none	[IPPEPX]
+  button-press	[IPPEPX]
+  job-password	[IPPEPX]
+  owner-authorized	[IPPEPX]
+
+job-password-encryption (type2 keyword | name(MAX))	[IPPEPX]
+job-password-encryption-supported (1setOf type2 keyword)	[IPPEPX]
+  none	[IPPEPX]
+  md2 (obsolete)	[IPPEPX]
+  md4 (obsolete)	[IPPEPX]
+  md5 (obsolete)	[IPPEPX]
+  sha (obsolete)	[IPPEPX]
+  sha2-224	[IPPEPX]
+  sha2-256	[IPPEPX]
+  sha2-384	[IPPEPX]
+  sha2-512	[IPPEPX]
+  sha2-512_224	[IPPEPX]
+  sha2-512_256	[IPPEPX]
+  sha3-224	[IPPEPX]
+  sha3-256	[IPPEPX]
+  sha3-384	[IPPEPX]
+  sha3-512	[IPPEPX]
+  sha3-512_224	[IPPEPX]
+  sha3-512_256	[IPPEPX]
+  shake-256	[IPPEPX]
+  shake-512	[IPPEPX]
+
+job-save-disposition-supported (1setOf type2 keyword) (obsolete)	[IPPEPX]
+  save-disposition (obsolete)	[IPPEPX]
+  save-info (obsolete)	[IPPEPX]
+
+job-storage-access-supported (1setOf type2 keyword)	[IPPEPX]
+  group	[IPPEPX]
+  owner	[IPPEPX]
+  public	[IPPEPX]
+
+job-storage-disposition-supported (1setOf type2 keyword)	[IPPEPX]
+  none	[IPPEPX]
+  print-and-store	[IPPEPX]
+  store-only	[IPPEPX]
+
+job-storage-supported (1setOf type2 keyword)	[IPPEPX]
+  job-storage-access	[IPPEPX]
+  job-storage-disposition	[IPPEPX]
+  job-storage-group	[IPPEPX]
+
+job-state-reasons (type2 keyword)	[STD92]
+  conflicting-attributes	[IPPEPX]
+  job-canceled-after-timeout	[IPPEPX]
+  job-held-for-authorization	[IPPEPX]
+  job-held-for-button-press	[IPPEPX]
+  job-held-for-release	[IPPEPX]
+  job-password-wait	[IPPEPX]
+  job-printed-successfully	[IPPEPX]
+  job-printed-with-errors	[IPPEPX]
+  job-printed-with-warnings	[IPPEPX]
+  job-resuming	[IPPEPX]
+  job-release-wait	[IPPEPX]
+  job-saved-successfully (obsolete)	[IPPEPX]
+  job-saved-with-errors (obsolete)	[IPPEPX]
+  job-saved-with-warnings (obsolete)	[IPPEPX]
+  job-saving (obsolete)	[IPPEPX]
+  job-stored	[IPPEPX]
+  job-storing	[IPPEPX]
+  job-suspended-by-operator	[IPPEPX]
+  job-suspended-by-system	[IPPEPX]
+  job-suspended-by-user	[IPPEPX]
+  job-suspended-for-approval	[IPPEPX]
+  job-suspending	[IPPEPX]
+  unsupported-attributes-or-values	[IPPEPX]
+
+job-storage-supported (type2 keyword)	[IPPEPX]
+  job-storage-access	[IPPEPX]
+  job-storage-disposition	[IPPEPX]
+  job-storage-group	[IPPEPX]
+
+pdl-init-file-supported  (1setOf type2 keyword) (obsolete)	[IPPEPX]
+  pdl-init-file-entry (obsolete)	[IPPEPX]
+  pdl-init-file-location (obsolete)	[IPPEPX]
+  pdl-init-file-name (obsolete)	[IPPEPX]
+
+proof-print-supported (1setOf type2 keyword)	[IPPEPX]
+  proof-print-copies	[IPPEPX]
+  media	[IPPEPX]
+  media-col	[IPPEPX]
+
+save-disposition (type3 keyword) (obsolete)	[IPPEPX]
+save-disposition-supported (1setOf type3 keyword) (obsolete)	[IPPEPX]
+  none (obsolete)	[IPPEPX]
+  print-save (obsolete)	[IPPEPX]
+  save-only (obsolete)	[IPPEPX]
+
+save-info-supported (1setOf type2 keyword) (obsolete)	[IPPEPX]
+  save-document-format (obsolete)	[IPPEPX]
+  save-location (obsolete)	[IPPEPX]
+  save-name (obsolete)	[IPPEPX]
+
+which-jobs (type2 keyword)	[STD92]
+which-jobs-supported (type2 keyword)	[PWG5100.7]
+  proof-print	[IPPEPX]
+  proof-and-suspend	[IPPEPX]
+  saved (obsolete)	[IPPEPX]
+  stored-group	[IPPEPX]
+  stored-owner	[IPPEPX]
+  stored-public	[IPPEPX]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	---------
+operations-supported (1setOf type2 enum)	[STD92]
+  0x0066	Get-User-Printer-Attributes	[IPPEPX]
+
+
+Operation Name	Reference
+--------------	---------
+Create-Job (Extension)	[IPPEPX]
+Get-Jobs (Extension)	[IPPEPX]
+Get-User-Printer-Attributes	[IPPEPX]
+Print-Job (Extension)	[IPPEPX]
+Print-URI (Extension)	[IPPEPX]
+Reprocess-Job (Extension)	[IPPEPX]
+Resubmit-Job (Extension)	[IPPEPX]
+Validate-Job (Extension)	[IPPEPX]
+
+
