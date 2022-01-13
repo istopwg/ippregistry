@@ -1,6 +1,6 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippepx20-20210922.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippepx20-20211101.pdf
 
-Operation attributes:	Reference   
+Operation attributes:	Reference
 ----------------------------------------	------------
 job-password (octetString(255))	[IPPEPX]
 job-password-encryption (type2 keyword)	[IPPEPX]
@@ -30,7 +30,7 @@ proof-print (collection)	[IPPEPX]
   media-col (collection)	[IPPEPX]
 
 
-Job Status attributes:	Reference   
+Job Status attributes:	Reference
 ----------------------------------------	------------
 job-release-action (type2 keyword)	[IPPEPX]
 job-storage (collection)	[IPPEPX]
@@ -39,7 +39,7 @@ parent-job-id (integer(1:MAX))	[IPPEPX]
 parent-job-uuid (uri(45))	[IPPEPX]
 
 
-Printer Description attributes:	Reference   
+Printer Description attributes:	Reference
 ----------------------------------------	------------
 job-cancel-after-default (integer(1:MAX))	[IPPEPX]
 job-password-encryption-supported (1setOf type2 keyword)	[IPPEPX]

@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings20-20211007.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings20-20211119.pdf
 
 Job Template attributes:	Reference
 --------------------------	------------
@@ -66,7 +66,7 @@ punching-hole-diameter-configured (integer(0:MAX))	[PWG5100.1]
 punching-locations-supported (1setOf (integer(0:MAX) | rangeOfInteger(0:MAX))) 		[PWG5100.1]
 punching-offset-supported (1setOf (integer(0:MAX) | rangeOfInteger(0:MAX)))			[PWG5100.1]
 punching-reference-edge-supported (1setOf type1 keyword)	[PWG5100.1]
-stitching-angle-supported (1setOf (integer(0:359) | rangeOfInteger(0:359)))			[PWG5100.1] 
+stitching-angle-supported (1setOf (integer(0:359) | rangeOfInteger(0:359)))			[PWG5100.1]
 stitching-method-supported (1setOf (type2 keyword))	[PWG5100.1]
 trimming-offset-supported (1setOf (integer(0:MAX) | rangeOfInteger(0:MAX)))			[PWG5100.1]
 trimming-reference-edge-supported (1setOf type1 keyword)	[PWG5100.1]

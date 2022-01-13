@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20210424.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20211020.pdf
 
 Job Status attributes:	Reference
 ------------------------	---------
