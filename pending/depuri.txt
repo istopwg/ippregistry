@@ -3,30 +3,30 @@ https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippdepuri10-20211215.pdf
 Document Status attributes:	Reference
 --------------------------	---------
 document-access-errors (1setOf text(MAX))	[PWG5100.5]
-document-access-errors(deprecated)	[DEPURI]
+document-access-errors(deprecated) (1setOf text(MAX))	[DEPURI]
 document-uri (uri)	[PWG5100.5]
-document-uri(deprecated)	[DEPURI]
+document-uri(deprecated) (uri)	[DEPURI]
 
 Job Status attributes:	Reference
 --------------------------	---------
 job-document-access-errors (1setOf text(MAX))	[STD92]
-job-document-access-errors(deprecated)	[DEPURI]
+job-document-access-errors(deprecated) (1setOf text(MAX))	[DEPURI]
 
 Operation attributes:	Reference
 --------------------	---------
 document-access (collection | no-value)	[PWG5100.18]
-document-access(deprecated)	[DEPURI]
+document-access(deprecated) (collection | no-value)	[DEPURI]
 document-access-error (text(MAX))	[STD92]
-document-access-error(deprecated)	[DEPURI]
+document-access-error(deprecated) (text(MAX))	[DEPURI]
 document-uri (uri)	[STD92]
-document-uri(deprecated)	[DEPURI]
+document-uri(deprecated) (uri)	[DEPURI]
 
 Printer Description attributes:	Reference
 ------------------------------	---------
 document-access-supported (1setOf keyword)	[PWG5100.18]
-document-access-supported(deprecated)	[DEPURI]
+document-access-supported(deprecated) (1setOf keyword)	[DEPURI]
 reference-uri-schemes-supported (1setOf uriScheme)	[STD92]
-reference-uri-schemes-supported(deprecated)	[DEPURI]
+reference-uri-schemes-supported(deprecated) (1setOf uriScheme)	[DEPURI]
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
