@@ -16,7 +16,16 @@ preferred-attributes (collection)	[PWG5100.13]
   <Any Template attribute>	[PWG5100.13]
 requesting-user-uri (uri)	[PWG5100.13]
 
-Job and Document Template attributes:	Reference
+Document Template attributes:	Reference
+---------------------------------------	---------
+media-overprint (collection)	[PWG5100.13]
+  media-overprint-distance (integer(0:MAX))	[PWG5100.13]
+  media-overprint-method (type2 keyword)	[PWG5100.13]
+print-color-mode (type2 keyword)	[PWG5100.13]
+print-rendering-intent (type2 keyword)	[PWG5100.13]
+print-scaling (type2 keyword)	[PWG5100.13]
+
+Job Template attributes:	Reference
 ---------------------------------------	---------
 job-error-action (type2 keyword)	[PWG5100.13]
 media-overprint (collection)	[PWG5100.13]
@@ -102,8 +111,8 @@ printer-config-change-date-time (dateTime | 'unknown')	[PWG5100.13]
 printer-config-change-time (integer(1:MAX))	[PWG5100.13]
 printer-firmware-name (1setOf name(MAX))	[PWG5100.13]
 printer-firmware-patches (1setOf text(MAX))	[PWG5100.13]
-printer-firmware-string-version(1setOf text(MAX))	[PWG5100.13]
-printer-firmware-version(1setOf octetString(MAX))	[PWG5100.13]
+printer-firmware-string-version (1setOf text(MAX))	[PWG5100.13]
+printer-firmware-version (1setOf octetString(MAX))	[PWG5100.13]
 printer-supply (1setOf octetString(MAX)) 	[PWG5100.13]
 printer-supply-description (1setOf text(MAX)) 	[PWG5100.13]
 printer-supply-info-uri (uri) 	[PWG5100.13]
