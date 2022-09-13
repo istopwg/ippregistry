@@ -84,6 +84,8 @@ _("coating-type.semi-gloss");
 _("coating-type.silicone");
 /* TRANSLATORS: Translucent */
 _("coating-type.translucent");
+/* TRANSLATORS: Water resistant */
+_("coating-type.water-resistant");
 /* TRANSLATORS: Print Confirmation Sheet */
 _("confirmation-sheet-print");
 /* TRANSLATORS: Back Cover */
@@ -984,6 +986,24 @@ _("job-state.7");
 _("job-state.8");
 /* TRANSLATORS: Completed */
 _("job-state.9");
+/* TRANSLATORS: Applicator */
+_("label-mode-configured.applicator");
+/* TRANSLATORS: Cutter */
+_("label-mode-configured.cutter");
+/* TRANSLATORS: Cutter delayed */
+_("label-mode-configured.cutter-delayed");
+/* TRANSLATORS: Kiosk */
+_("label-mode-configured.kiosk");
+/* TRANSLATORS: Peel off */
+_("label-mode-configured.peel-off");
+/* TRANSLATORS: Peel off prepeel */
+_("label-mode-configured.peel-off-prepeel");
+/* TRANSLATORS: Rewind */
+_("label-mode-configured.rewind");
+/* TRANSLATORS: Rfid */
+_("label-mode-configured.rfid");
+/* TRANSLATORS: Tear off */
+_("label-mode-configured.tear-off");
 /* TRANSLATORS: Laminate Pages */
 _("laminating");
 /* TRANSLATORS: Laminate */
@@ -998,6 +1018,12 @@ _("laminating-sides.front");
 _("laminating-type");
 /* TRANSLATORS: Archival */
 _("laminating-type.archival");
+/* TRANSLATORS: Archival glossy */
+_("laminating-type.archival-glossy");
+/* TRANSLATORS: Archival matte */
+_("laminating-type.archival-matte");
+/* TRANSLATORS: Archival semi gloss */
+_("laminating-type.archival-semi-gloss");
 /* TRANSLATORS: Glossy */
 _("laminating-type.glossy");
 /* TRANSLATORS: High gloss */
@@ -1008,6 +1034,8 @@ _("laminating-type.matte");
 _("laminating-type.semi-gloss");
 /* TRANSLATORS: Translucent */
 _("laminating-type.translucent");
+/* TRANSLATORS: Water resistant */
+_("laminating-type.water-resistant");
 /* TRANSLATORS: Amount of Material */
 _("material-amount");
 /* TRANSLATORS: Units */
@@ -1412,6 +1440,12 @@ _("media-tooth.stipple");
 _("media-tooth.uncalendared");
 /* TRANSLATORS: Vellum */
 _("media-tooth.vellum");
+/* TRANSLATORS: Continuous */
+_("media-tracking.continuous");
+/* TRANSLATORS: Mark */
+_("media-tracking.mark");
+/* TRANSLATORS: Web */
+_("media-tracking.web");
 /* TRANSLATORS: Aluminum */
 _("media-type.aluminum");
 /* TRANSLATORS: Automatic */
@@ -1422,6 +1456,16 @@ _("media-type.back-print-film");
 _("media-type.cardboard");
 /* TRANSLATORS: Cardstock */
 _("media-type.cardstock");
+/* TRANSLATORS: Cardstock coated */
+_("media-type.cardstock-coated");
+/* TRANSLATORS: Cardstock heavyweight */
+_("media-type.cardstock-heavyweight");
+/* TRANSLATORS: Cardstock heavyweight coated */
+_("media-type.cardstock-heavyweight-coated");
+/* TRANSLATORS: Cardstock lightweight */
+_("media-type.cardstock-lightweight");
+/* TRANSLATORS: Cardstock lightweight coated */
+_("media-type.cardstock-lightweight-coated");
 /* TRANSLATORS: CD */
 _("media-type.cd");
 /* TRANSLATORS: Continuous */
@@ -1524,12 +1568,18 @@ _("media-type.imaging-cylinder");
 _("media-type.labels");
 /* TRANSLATORS: Colored labels */
 _("media-type.labels-colored");
+/* TRANSLATORS: Labels continuous */
+_("media-type.labels-continuous");
 /* TRANSLATORS: Glossy labels */
 _("media-type.labels-glossy");
+/* TRANSLATORS: Labels heavyweight */
+_("media-type.labels-heavyweight");
 /* TRANSLATORS: High gloss labels */
 _("media-type.labels-high-gloss");
 /* TRANSLATORS: Inkjet labels */
 _("media-type.labels-inkjet");
+/* TRANSLATORS: Labels lightweight */
+_("media-type.labels-lightweight");
 /* TRANSLATORS: Matte labels */
 _("media-type.labels-matte");
 /* TRANSLATORS: Permanent labels */
@@ -1626,6 +1676,8 @@ _("media-type.sleeve");
 _("media-type.stationery");
 /* TRANSLATORS: Stationery archival */
 _("media-type.stationery-archival");
+/* TRANSLATORS: Stationery bond */
+_("media-type.stationery-bond");
 /* TRANSLATORS: Coated paper */
 _("media-type.stationery-coated");
 /* TRANSLATORS: Stationery cotton */
@@ -1646,6 +1698,8 @@ _("media-type.stationery-lightweight");
 _("media-type.stationery-preprinted");
 /* TRANSLATORS: Punched paper */
 _("media-type.stationery-prepunched");
+/* TRANSLATORS: Stationery recycled */
+_("media-type.stationery-recycled");
 /* TRANSLATORS: Tab stock */
 _("media-type.tab-stock");
 /* TRANSLATORS: Tractor */
@@ -1988,12 +2042,30 @@ _("media.oe_a2plus_17x24in");
 _("media.oe_business-card_2x3.5in");
 /* TRANSLATORS: 10 x 12″ */
 _("media.oe_photo-10r_10x12in");
+/* TRANSLATORS: 12 x 15″ */
+_("media.oe_photo-12r_12x15in");
+/* TRANSLATORS: 14 x 18″ */
+_("media.oe_photo-14x18_14x18in");
+/* TRANSLATORS: 16 x 20″ */
+_("media.oe_photo-16r_16x20in");
 /* TRANSLATORS: 20 x 24″ */
 _("media.oe_photo-20r_20x24in");
+/* TRANSLATORS: 22 x 29.5″ */
+_("media.oe_photo-22r_22x29.5in");
+/* TRANSLATORS: 22 x 28″ */
+_("media.oe_photo-22x28_22x28in");
+/* TRANSLATORS: 24 x 31.5″ */
+_("media.oe_photo-24r_24x31.5in");
+/* TRANSLATORS: 24 x 30″ */
+_("media.oe_photo-24x30_24x30in");
+/* TRANSLATORS: 30 x 40″ */
+_("media.oe_photo-30r_30x40in");
 /* TRANSLATORS: 3.5 x 5″ */
 _("media.oe_photo-l_3.5x5in");
 /* TRANSLATORS: 10 x 15″ */
 _("media.oe_photo-s10r_10x15in");
+/* TRANSLATORS: 8 x 12″ */
+_("media.oe_photo-s8r_8x12in");
 /* TRANSLATORS: 4 x 4″ */
 _("media.oe_square-photo_4x4in");
 /* TRANSLATORS: 5 x 5″ */
@@ -2028,6 +2100,20 @@ _("media.om_large-photo_200x300");
 _("media.om_medium-photo_130x180mm");
 /* TRANSLATORS: 267 x 389mm */
 _("media.om_pa-kai_267x389mm");
+/* TRANSLATORS: 300 x 400mm */
+_("media.om_photo-30x40_300x400mm");
+/* TRANSLATORS: 300 x 450mm */
+_("media.om_photo-30x45_300x450mm");
+/* TRANSLATORS: 350 x 460mm */
+_("media.om_photo-35x46_350x460mm");
+/* TRANSLATORS: 400 x 600mm */
+_("media.om_photo-40x60_400x600mm");
+/* TRANSLATORS: 500 x 750mm */
+_("media.om_photo-50x75_500x750mm");
+/* TRANSLATORS: 500 x 760mm */
+_("media.om_photo-50x76_500x760mm");
+/* TRANSLATORS: 600 x 900mm */
+_("media.om_photo-60x90_600x900mm");
 /* TRANSLATORS: Envelope Postfix */
 _("media.om_postfix_114x229mm");
 /* TRANSLATORS: 100 x 150mm */
@@ -2166,6 +2252,92 @@ _("output-bin.tray-8");
 _("output-bin.tray-9");
 /* TRANSLATORS: Post-Dial String */
 _("post-dial-string");
+/* TRANSLATORS: Reset mbr */
+_("power-state.100");
+/* TRANSLATORS: Reset nmi */
+_("power-state.110");
+/* TRANSLATORS: Off soft graceful */
+_("power-state.120");
+/* TRANSLATORS: Off hard graceful */
+_("power-state.130");
+/* TRANSLATORS: Reset mbr graceful */
+_("power-state.140");
+/* TRANSLATORS: Reset soft graceful */
+_("power-state.150");
+/* TRANSLATORS: Reset hard graceful */
+_("power-state.160");
+/* TRANSLATORS: Reset init */
+_("power-state.170");
+/* TRANSLATORS: Not applicable */
+_("power-state.180");
+/* TRANSLATORS: No change */
+_("power-state.190");
+/* TRANSLATORS: On */
+_("power-state.20");
+/* TRANSLATORS: On vendor1 */
+_("power-state.21");
+/* TRANSLATORS: On vendor2 */
+_("power-state.22");
+/* TRANSLATORS: On vendor3 */
+_("power-state.23");
+/* TRANSLATORS: On vendor4 */
+_("power-state.24");
+/* TRANSLATORS: On vendor5 */
+_("power-state.25");
+/* TRANSLATORS: Standby */
+_("power-state.30");
+/* TRANSLATORS: Standby vendor1 */
+_("power-state.31");
+/* TRANSLATORS: Standby vendor2 */
+_("power-state.32");
+/* TRANSLATORS: Standby vendor3 */
+_("power-state.33");
+/* TRANSLATORS: Standby vendor4 */
+_("power-state.34");
+/* TRANSLATORS: Standby vendor5 */
+_("power-state.35");
+/* TRANSLATORS: Suspend */
+_("power-state.40");
+/* TRANSLATORS: Suspend vendor1 */
+_("power-state.41");
+/* TRANSLATORS: Suspend vendor2 */
+_("power-state.42");
+/* TRANSLATORS: Suspend vendor3 */
+_("power-state.43");
+/* TRANSLATORS: Suspend vendor4 */
+_("power-state.44");
+/* TRANSLATORS: Suspend vendor5 */
+_("power-state.45");
+/* TRANSLATORS: Reset soft */
+_("power-state.50");
+/* TRANSLATORS: Off hard */
+_("power-state.60");
+/* TRANSLATORS: Hibernate */
+_("power-state.70");
+/* TRANSLATORS: Hibernate vendor1 */
+_("power-state.71");
+/* TRANSLATORS: Hibernate vendor2 */
+_("power-state.72");
+/* TRANSLATORS: Hibernate vendor3 */
+_("power-state.73");
+/* TRANSLATORS: Hibernate vendor4 */
+_("power-state.74");
+/* TRANSLATORS: Hibernate vendor5 */
+_("power-state.75");
+/* TRANSLATORS: Off soft */
+_("power-state.80");
+/* TRANSLATORS: Off soft vendor1 */
+_("power-state.81");
+/* TRANSLATORS: Off soft vendor2 */
+_("power-state.82");
+/* TRANSLATORS: Off soft vendor3 */
+_("power-state.83");
+/* TRANSLATORS: Off soft vendor4 */
+_("power-state.84");
+/* TRANSLATORS: Off soft vendor5 */
+_("power-state.85");
+/* TRANSLATORS: Reset hard */
+_("power-state.90");
 /* TRANSLATORS: Pre-Dial String */
 _("pre-dial-string");
 /* TRANSLATORS: Number-Up Layout */
@@ -2202,16 +2374,12 @@ _("print-content-optimize");
 _("print-content-optimize.auto");
 /* TRANSLATORS: Graphics */
 _("print-content-optimize.graphic");
-/* TRANSLATORS: Graphics */
-_("print-content-optimize.graphics");
 /* TRANSLATORS: Photo */
 _("print-content-optimize.photo");
 /* TRANSLATORS: Text */
 _("print-content-optimize.text");
 /* TRANSLATORS: Text and graphics */
 _("print-content-optimize.text-and-graphic");
-/* TRANSLATORS: Text and graphics */
-_("print-content-optimize.text-and-graphics");
 /* TRANSLATORS: Draft */
 _("print-quality.3");
 /* TRANSLATORS: Normal */
@@ -2248,6 +2416,20 @@ _("print-supports.none");
 _("print-supports.standard");
 /* TRANSLATORS: Print Resolution */
 _("printer-resolution");
+/* TRANSLATORS: Copy */
+_("printer-service-type.copy");
+/* TRANSLATORS: Faxin */
+_("printer-service-type.faxin");
+/* TRANSLATORS: Faxout */
+_("printer-service-type.faxout");
+/* TRANSLATORS: Print */
+_("printer-service-type.print");
+/* TRANSLATORS: Print3d */
+_("printer-service-type.print3d");
+/* TRANSLATORS: Scan */
+_("printer-service-type.scan");
+/* TRANSLATORS: Transform */
+_("printer-service-type.transform");
 /* TRANSLATORS: Old Alerts Have Been Removed */
 _("printer-state-reasons.alert-removal-of-binary-change-entry");
 /* TRANSLATORS: Bander added */
@@ -2418,6 +2600,8 @@ _("printer-state-reasons.connecting-to-device");
 _("printer-state-reasons.cover-open");
 /* TRANSLATORS: Deactivated */
 _("printer-state-reasons.deactivated");
+/* TRANSLATORS: Deleted */
+_("printer-state-reasons.deleted");
 /* TRANSLATORS: Developer empty */
 _("printer-state-reasons.developer-empty");
 /* TRANSLATORS: Developer low */
@@ -2596,6 +2780,8 @@ _("printer-state-reasons.folder-warming-up");
 _("printer-state-reasons.fuser-over-temp");
 /* TRANSLATORS: Fuser temperature low */
 _("printer-state-reasons.fuser-under-temp");
+/* TRANSLATORS: Hibernate */
+_("printer-state-reasons.hibernate");
 /* TRANSLATORS: Hold new jobs */
 _("printer-state-reasons.hold-new-jobs");
 /* TRANSLATORS: Identify printer */
@@ -3184,8 +3370,12 @@ _("printer-state-reasons.puncher-unrecoverable-failure");
 _("printer-state-reasons.puncher-unrecoverable-storage-error");
 /* TRANSLATORS: Puncher warming up */
 _("printer-state-reasons.puncher-warming-up");
+/* TRANSLATORS: Resuming */
+_("printer-state-reasons.resuming");
 /* TRANSLATORS: Scanner ADF failed */
 _("printer-state-reasons.scan-media-path-failure");
+/* TRANSLATORS: Scanner ADF empty */
+_("printer-state-reasons.scan-media-path-input-empty");
 /* TRANSLATORS: Scanner ADF load error  */
 _("printer-state-reasons.scan-media-path-input-feed-error");
 /* TRANSLATORS: Scanner ADF jammed */
@@ -3522,6 +3712,8 @@ _("printer-state-reasons.stacker-unrecoverable-failure");
 _("printer-state-reasons.stacker-unrecoverable-storage-error");
 /* TRANSLATORS: Stacker warming up */
 _("printer-state-reasons.stacker-warming-up");
+/* TRANSLATORS: Standby */
+_("printer-state-reasons.standby");
 /* TRANSLATORS: Stapler added */
 _("printer-state-reasons.stapler-added");
 /* TRANSLATORS: Stapler almost empty */
@@ -3732,6 +3924,10 @@ _("printer-state-reasons.subunit-unrecoverable-failure");
 _("printer-state-reasons.subunit-unrecoverable-storage");
 /* TRANSLATORS: Subunit warming up */
 _("printer-state-reasons.subunit-warming-up");
+/* TRANSLATORS: Suspend */
+_("printer-state-reasons.suspend");
+/* TRANSLATORS: Testing */
+_("printer-state-reasons.testing");
 /* TRANSLATORS: Printer stopped responding */
 _("printer-state-reasons.timed-out");
 /* TRANSLATORS: Out of toner */
@@ -3900,6 +4096,46 @@ _("punching-reference-edge.left");
 _("punching-reference-edge.right");
 /* TRANSLATORS: Top */
 _("punching-reference-edge.top");
+/* TRANSLATORS: Cancel */
+_("resource-state-reasons.cancel-requested");
+/* TRANSLATORS: Install */
+_("resource-state-reasons.install-requested");
+/* TRANSLATORS: Resource incoming */
+_("resource-state-reasons.resource-incoming");
+/* TRANSLATORS: Pending */
+_("resource-state.3");
+/* TRANSLATORS: Available */
+_("resource-state.4");
+/* TRANSLATORS: Installed */
+_("resource-state.5");
+/* TRANSLATORS: Canceled */
+_("resource-state.6");
+/* TRANSLATORS: Aborted */
+_("resource-state.7");
+/* TRANSLATORS: Executable firmware */
+_("resource-type.executable-firmware");
+/* TRANSLATORS: Executable software */
+_("resource-type.executable-software");
+/* TRANSLATORS: Static font */
+_("resource-type.static-font");
+/* TRANSLATORS: Static form */
+_("resource-type.static-form");
+/* TRANSLATORS: Static icc profile */
+_("resource-type.static-icc-profile");
+/* TRANSLATORS: Static image */
+_("resource-type.static-image");
+/* TRANSLATORS: Static logo */
+_("resource-type.static-logo");
+/* TRANSLATORS: Static other */
+_("resource-type.static-other");
+/* TRANSLATORS: Static strings */
+_("resource-type.static-strings");
+/* TRANSLATORS: Template document */
+_("resource-type.template-document");
+/* TRANSLATORS: Template job */
+_("resource-type.template-job");
+/* TRANSLATORS: Template printer */
+_("resource-type.template-printer");
 /* TRANSLATORS: Retry Timeout */
 _("retry-time-out");
 /* TRANSLATORS: Type of Separator Sheets */
@@ -3942,6 +4178,26 @@ _("stitching-reference-edge.left");
 _("stitching-reference-edge.right");
 /* TRANSLATORS: Top */
 _("stitching-reference-edge.top");
+/* TRANSLATORS: Idle */
+_("system-state.3");
+/* TRANSLATORS: Processing */
+_("system-state.4");
+/* TRANSLATORS: Stopped */
+_("system-state.5");
+/* TRANSLATORS: Dhcp */
+_("system-time-source.dhcp");
+/* TRANSLATORS: Ntp */
+_("system-time-source.ntp");
+/* TRANSLATORS: Onboard */
+_("system-time-source.onboard");
+/* TRANSLATORS: Sntp */
+_("system-time-source.sntp");
+/* TRANSLATORS: Activity */
+_("timeout-predicate.activity");
+/* TRANSLATORS: Inactivity */
+_("timeout-predicate.inactivity");
+/* TRANSLATORS: None */
+_("timeout-predicate.none");
 /* TRANSLATORS: Pending */
 _("transmission-status.3");
 /* TRANSLATORS: Pending retry */
@@ -3992,3 +4248,17 @@ _("trimming-when.after-job");
 _("trimming-when.after-sets");
 /* TRANSLATORS: Every page */
 _("trimming-when.after-sheets");
+/* TRANSLATORS: All */
+_("which-printers.all");
+/* TRANSLATORS: Idle */
+_("which-printers.idle");
+/* TRANSLATORS: Not accepting */
+_("which-printers.not-accepting");
+/* TRANSLATORS: Processing */
+_("which-printers.processing");
+/* TRANSLATORS: Shutdown */
+_("which-printers.shutdown");
+/* TRANSLATORS: Stopped */
+_("which-printers.stopped");
+/* TRANSLATORS: Testing */
+_("which-printers.testing");
