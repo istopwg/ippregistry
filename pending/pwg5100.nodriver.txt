@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippnodriver20-20220222.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippnodriver20-20220503.pdf
 
 Operation attributes:	Reference
 ---------------------------------------	---------
@@ -234,22 +234,22 @@ orientation-requested (type2 enum)	[RFC8011]
   7	none	[PWG5100.13]
 
 
-Operation Name	Reference
---------------	---------
-Create-Job (extension)	[PWG5100.13]
-Create-Job-Subscription (extension)	[PWG5100.13]
-Create-Printer-Subscription (extension)	[PWG5100.13]
-Get-Documents (extension)	[PWG5100.13]
-Get-Jobs (extension)	[PWG5100.13]
-Get-Printer-Attributes (extension)	[PWG5100.13]
-Get-Subscriptions (extension)	[PWG5100.13]
-Identify-Printer	[PWG5100.13]
-Print-Job (extension)	[PWG5100.13]
-Print-URI (extension)	[PWG5100.13]
-Send-Document (extension)	[PWG5100.13]
-Send-URI (extension)	[PWG5100.13]
-Validate-Document	[PWG5100.13]
-Validate-Job (extension)	[PWG5100.13]
+	Operation Name	Reference
+	--------------	---------
+	Create-Job (extension)	[PWG5100.13]
+	Create-Job-Subscription (extension)	[PWG5100.13]
+	Create-Printer-Subscription (extension)	[PWG5100.13]
+	Get-Documents (extension)	[PWG5100.13]
+	Get-Jobs (extension)	[PWG5100.13]
+	Get-Printer-Attributes (extension)	[PWG5100.13]
+	Get-Subscriptions (extension)	[PWG5100.13]
+	Identify-Printer	[PWG5100.13]
+	Print-Job (extension)	[PWG5100.13]
+	Print-URI (extension)	[PWG5100.13]
+	Send-Document (extension)	[PWG5100.13]
+	Send-URI (extension)	[PWG5100.13]
+	Validate-Document	[PWG5100.13]
+	Validate-Job (extension)	[PWG5100.13]
 
 
 Value     Status Code Name	Reference
