@@ -1,13 +1,7 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippnodriver20-20220503.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippnodriver20-20221027.pdf
 
 Operation attributes:	Reference
 ---------------------------------------	---------
-client-info (1setOf collection)	[PWG5100.13]
-  client-key (type2 keyword)	[PWG5100.13]
-  client-name (name(MAX))	[PWG5100.13]
-  client-patches (text(MAX) | 'no-value')	[PWG5100.13]
-  client-string-version (text(MAX))	[PWG5100.13]
-  client-version (octetString(64) | 'no-value')	[PWG5100.13]
 document-metadata (1setOf octetString(MAX))	[PWG5100.13]
 document-password (octetString(1023))	[PWG5100.13]
 first-index (integer(1:MAX))	[PWG5100.13]
@@ -39,16 +33,12 @@ Job Status attributes:	Reference
 ---------------------------------------	---------
 document-metadata (1setOf octetString(MAX))	[PWG5100.13]
 job-originating-user-uri (uri)	[PWG5100.13]
-job-pages (integer(0:MAX)	[PWG5100.13]
-job-pages-completed (integer(0:MAX)	[PWG5100.13]
-job-uuid (uri(45))	[PWG5100.13]
+job-uuid (uri)	[PWG5100.13]
 
 Document Status attributes:	Reference
 ---------------------------------------	---------
 document-metadata (1setOf octetString(MAX))	[PWG5100.13]
-document-uuid (uri(45))	[PWG5100.13]
-pages (integer(0:MAX)	[PWG5100.13]
-pages-completed (integer(0:MAX)	[PWG5100.13]
+document-uuid (uri)	[PWG5100.13]
 
 Printer Description attributes:	Reference
 ------------------------------	---------
@@ -69,11 +59,13 @@ jpeg-features-supported (1setOf type2 keyword)	[PWG5100.13]
 jpeg-k-octets-supported (rangeOfInteger(0:MAX))	[PWG5100.13]
 jpeg-x-dimension-supported (rangeOfInteger(0:65535))	[PWG5100.13]
 jpeg-y-dimension-supported (rangeOfInteger(1:65535))	[PWG5100.13]
-media-overprint-distance-supported (1setOf integer(0:MAX))	[PWG5100.13]
+media-overprint-default (collection | 'no-value')	[PWG5100.13]
+media-overprint-distance-supported (rangeOfInteger(0:MAX))	[PWG5100.13]
 media-overprint-method-supported (1setOf type2 keyword)	[PWG5100.13]
+media-overprint-supported (1setOf keyword)	[PWG5100.13]
 multiple-operation-time-out-action (type2 keyword) 	[PWG5100.13]
 pdf-k-octets-supported (rangeOfInteger(0:MAX))	[PWG5100.13]
-pdf-versions-supported (1setOf type2 keyword)
+pdf-versions-supported (1setOf type2 keyword)	[PWG5100.13]
 preferred-attributes-supported (boolean) 	[PWG5100.13]
 print-color-mode-default (type2 keyword)	[PWG5100.13]
 print-color-mode-icc-profiles (1setOf collection)	[PWG5100.13]
@@ -98,6 +90,7 @@ printer-mandatory-job-attributes (1setOf keyword) 	[PWG5100.13]
 printer-organization (1setOf text(MAX)) 	[PWG5100.13]
 printer-organizational-unit (1setOf text(MAX)) 	[PWG5100.13]
 printer-output-tray (1setOf octetString(MAX))	[PWG5100.13]
+printer-requested-client-type (1setOf type2 enum)	[PWG5100.13]
 printer-strings-languages-supported (1setOf naturalLanguage)	[PWG5100.13]
 printer-strings-uri (uri | 'no-value')	[PWG5100.13]
 requesting-user-uri-supported (boolean)	[PWG5100.13]
@@ -106,7 +99,7 @@ requesting-user-uri-schemes-supported (1setOf uriScheme)	[PWG5100.13]
 Printer Status attributes:	Reference
 ------------------------------	---------
 device-service-count (integer(1:MAX))	[PWG5100.13]
-device-uuid (uri(45))	[PWG5100.13]
+device-uuid (uri)	[PWG5100.13]
 printer-config-change-date-time (dateTime | 'unknown')	[PWG5100.13]
 printer-config-change-time (integer(1:MAX))	[PWG5100.13]
 printer-firmware-name (1setOf name(MAX))	[PWG5100.13]
@@ -116,7 +109,7 @@ printer-firmware-version (1setOf octetString(MAX))	[PWG5100.13]
 printer-supply (1setOf octetString(MAX)) 	[PWG5100.13]
 printer-supply-description (1setOf text(MAX)) 	[PWG5100.13]
 printer-supply-info-uri (uri) 	[PWG5100.13]
-printer-uuid (uri(45)) 	[PWG5100.13]
+printer-uuid (uri) 	[PWG5100.13]
 
 Subscription Description attributes:	Reference
 -----------------------------------	---------
@@ -194,9 +187,6 @@ print-color-mode-default (type2 keyword) 	[PWG5100.13]
 print-color-mode-supported (1setOf type2 keyword) 	[PWG5100.13]
   <Any "print-color-mode" keyword value>	[PWG5100.13]
 
-print-content-optimize (type2 keyword)	[PWG5100.7]
-  auto	[PWG5100.13]
-
 print-rendering-intent (type2 keyword) 	[PWG5100.13]
   absolute	[PWG5100.13]
   auto	[PWG5100.13]
@@ -220,12 +210,6 @@ uri-authentication-supported (1setOf type2 keyword)	[RFC8011]
 Attributes (attribute syntax)
   Enum Value	Enum Symbolic Name	Reference
   ----------	------------------	---------
-finishings (1setOf type2 enum)	[RFC8011]
-  60	trim-after-pages	[PWG5100.13]
-  61	trim-after-documents	[PWG5100.13]
-  62	trim-after-copies	[PWG5100.13]
-  63	trim-after-job	[PWG5100.13]
-
 operations-supported (1setOf type2 enum)	[RFC8011]
   0x003C	Identify-Printer	[PWG5100.13]
   0x003D	Validate-Document	[PWG5100.13]
@@ -234,22 +218,22 @@ orientation-requested (type2 enum)	[RFC8011]
   7	none	[PWG5100.13]
 
 
-	Operation Name	Reference
-	--------------	---------
-	Create-Job (extension)	[PWG5100.13]
-	Create-Job-Subscription (extension)	[PWG5100.13]
-	Create-Printer-Subscription (extension)	[PWG5100.13]
-	Get-Documents (extension)	[PWG5100.13]
-	Get-Jobs (extension)	[PWG5100.13]
-	Get-Printer-Attributes (extension)	[PWG5100.13]
-	Get-Subscriptions (extension)	[PWG5100.13]
-	Identify-Printer	[PWG5100.13]
-	Print-Job (extension)	[PWG5100.13]
-	Print-URI (extension)	[PWG5100.13]
-	Send-Document (extension)	[PWG5100.13]
-	Send-URI (extension)	[PWG5100.13]
-	Validate-Document	[PWG5100.13]
-	Validate-Job (extension)	[PWG5100.13]
+Operation Name	Reference
+--------------	---------
+Create-Job (extension)	[PWG5100.13]
+Create-Job-Subscription (extension)	[PWG5100.13]
+Create-Printer-Subscription (extension)	[PWG5100.13]
+Get-Documents (extension)	[PWG5100.13]
+Get-Jobs (extension)	[PWG5100.13]
+Get-Printer-Attributes (extension)	[PWG5100.13]
+Get-Subscriptions (extension)	[PWG5100.13]
+Identify-Printer	[PWG5100.13]
+Print-Job (extension)	[PWG5100.13]
+Print-URI (extension)	[PWG5100.13]
+Send-Document (extension)	[PWG5100.13]
+Send-URI (extension)	[PWG5100.13]
+Validate-Document	[PWG5100.13]
+Validate-Job (extension)	[PWG5100.13]
 
 
 Value     Status Code Name	Reference
