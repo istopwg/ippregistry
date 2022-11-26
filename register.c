@@ -1,7 +1,7 @@
 /*
  * Program to add registration info to the IANA IPP registry.
  *
- * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
+ * Copyright © 2018-2022 by The IEEE-ISTO Printer Working Group.
  * Copyright © 2008-2017 by Michael R Sweet
  *
  * Licensed under Apache License v2.0.	See the file "LICENSE" for more
@@ -349,6 +349,8 @@ main(int  argc,				/* I - Number of command-line args */
       fprintf(stderr, "Unable to create '%s': %s\n", logname, strerror(errno));
       logfile = stdout;
     }
+
+    setbuf(logfile, NULL);
   }
   else
   {
@@ -469,7 +471,8 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   const char	*last_collection = NULL,/* Last collection */
 		*last_name = NULL,	/* Last attribute name */
 		*last_member = NULL,	/* Last member attribute */
-		*last_submember = NULL; /* Last sub-member attribute */
+		*last_submember = NULL, /* Last sub-member attribute */
+		*xref_type = NULL;	/* <xref> type value */
   char		extname[256];		/* attribute-name(extension) */
 
 
@@ -491,8 +494,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
        record_node = mxmlFindElement(record_node, registry_node, "record",
 				     NULL, NULL, MXML_NO_DESCEND))
   {
-    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL,
-				      MXML_DESCEND_FIRST);
+    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
     if (!collection_node || !mxmlGetOpaque(collection_node))
     {
       fputs("Attribute record missing <collection> in XML file.\n", stderr);
@@ -500,6 +502,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
+    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
     if (last_collection)
     {
       if (compare_strings(last_collection, mxmlGetOpaque(collection_node)))
@@ -515,8 +518,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     if (compare_strings(last_collection, collection))
       continue;
 
-    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL,
-				MXML_DESCEND_FIRST);
+    name_node = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
     if (!name_node)
     {
       name_node = mxmlFindElement(record_node, record_node, "attribute", NULL,
@@ -637,8 +639,44 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
+    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
+    if (!xref_node)
     {
+      fputs("Attribute record missing <xref> in XML file.\n", stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
+    }
+    xref_type = mxmlElementGetAttr(xref_node, "type");
+
+    if (!xref_type || strcmp(xref_type, "rfc"))
+    {
+      // Replace definition...
+      fprintf(logfile, "Updating reference for %s.\n", submembername ? submembername : membername ? membername : attrname);
+
+      mxmlSetOpaque(syntax_node, syntax);
+
+      mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
+      mxmlElementSetAttr(xref_node, "data", xref);
+      if (xrefname)
+      {
+        // Set/add name
+        if (mxmlGetFirstChild(xref_node))
+          mxmlSetOpaque(xref_node, xrefname);
+        else
+          mxmlNewOpaque(xref_node, xrefname);
+      }
+      else if (mxmlGetFirstChild(xref_node))
+      {
+        // Clear name...
+        mxmlDelete(mxmlGetFirstChild(xref_node));
+      }
+
+      Attributes.updated ++;
+      return (1);
+    }
+    else if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
+    {
+      // Extend definition...
       fprintf(logfile, "Extending syntax for %s to '%s'.\n", submembername ? submembername : membername ? membername : attrname, syntax);
 
       if (submembername)
@@ -660,7 +698,11 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
       Attributes.updated ++;
     }
     else
+    {
+      // No change to base IETF definition...
+      fprintf(logfile, "Ignoring definition of %s.\n", submembername ? submembername : membername ? membername : attrname);
       return (changed);
+    }
   }
 
  /*
@@ -871,7 +913,8 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 		*attr_node,		/* <attribute> */
 		*syntax_node,		/* <syntax> */
 		*xref_node;		/* <xref> */
-  const char	*last_attr = NULL;	/* Last attribute name */
+  const char	*last_attr = NULL,	/* Last attribute name */
+		*xref_type = NULL;	/* <xref> type */
 
 
  /*
@@ -956,6 +999,15 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
+    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
+    if (!xref_node)
+    {
+      fputs("Attribute record missing <xref> in XML file.\n", stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
+    }
+    xref_type = mxmlElementGetAttr(xref_node, "type");
+
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
       if (compare_enums)
@@ -965,6 +1017,26 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 
       fprintf(logfile, "Changing syntax for '%s' to '%s'.\n", attrname, syntax);
       mxmlSetOpaque(syntax_node, syntax);
+
+      if (!xref_type || strcmp(xref_type, "rfc"))
+      {
+        mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
+        mxmlElementSetAttr(xref_node, "data", xref);
+	if (xrefname)
+	{
+	  // Set/add name
+	  if (mxmlGetFirstChild(xref_node))
+	    mxmlSetOpaque(xref_node, xrefname);
+	  else
+	    mxmlNewOpaque(xref_node, xrefname);
+	}
+	else if (mxmlGetFirstChild(xref_node))
+	{
+	  // Clear name...
+	  mxmlDelete(mxmlGetFirstChild(xref_node));
+	}
+      }
+
       return (1);
     }
     else
@@ -1336,6 +1408,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
 		*value_node,		/* <value> */
 		*xref_node;		/* <xref> */
   char		*nodeval;		/* Pointer into node value */
+  const char	*xref_type;		/* <xref> type value */
 
 
  /*
@@ -1400,22 +1473,48 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
-    if (!mxmlGetOpaque(name_node))
+    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
+    if (!xref_node)
     {
-      StatusCodes.updated ++;
-      fprintf(logfile, "Updating record for status code '%s'.\n", value);
-      mxmlNewOpaque(name_node, name);
-      return (1);
+      fputs("Status code record missing <xref> in XML file.\n", stderr);
+      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
+      exit(1);
     }
-    else if (compare_strings(name, mxmlGetOpaque(name_node)))
+    xref_type = mxmlElementGetAttr(xref_node, "type");
+
+    if (!mxmlGetOpaque(name_node) || compare_strings(name, mxmlGetOpaque(name_node)) || (!xref_type || strcmp(xref_type, "rfc")))
     {
       StatusCodes.updated ++;
       fprintf(logfile, "Updating record for status code '%s'.\n", value);
-      mxmlSetOpaque(name_node, name);
+
+      if (!mxmlGetOpaque(name_node))
+        mxmlNewOpaque(name_node, name);
+      else
+        mxmlSetOpaque(name_node, name);
+
+      mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
+      mxmlElementSetAttr(xref_node, "data", xref);
+      if (xrefname)
+      {
+        // Set/add name
+        if (mxmlGetFirstChild(xref_node))
+          mxmlSetOpaque(xref_node, xrefname);
+        else
+          mxmlNewOpaque(xref_node, xrefname);
+      }
+      else if (mxmlGetFirstChild(xref_node))
+      {
+        // Clear name...
+        mxmlDelete(mxmlGetFirstChild(xref_node));
+      }
+
       return (1);
     }
     else
+    {
+      fprintf(logfile, "Ignoring record for status code '%s'.\n", value);
       return (changed);
+    }
   }
 
  /*
@@ -1542,7 +1641,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 	continue;
       else if (result < 0)
 	break;
-      else if (result == 0 && strstr(keyword, "(deprecated)") != NULL)
+      else if (result == 0 && keyword && strstr(keyword, "(deprecated)") != NULL)
       {
 	record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND);
 	break;
