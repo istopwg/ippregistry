@@ -120,6 +120,7 @@ static int		compare_record(reg_record_t *a, reg_record_t *b);
 static int		compare_strings(const char *s, const char *t);
 static int		read_text(mxml_node_t *xml, FILE *textfile, FILE *logfile, const char *title, const char *xref);
 static const char	*save_cb(mxml_node_t *node, int column);
+static int		update_xref(mxml_node_t *record, const char *xref, const char *xrefname);
 static int		usage(const char *opt);
 static int		validate_registry(mxml_node_t *xml, const char *registry, const char *regname, int num_keys, const char * const *keys);
 static const char	*xref_name(const char *xref, const char *title);
@@ -466,13 +467,11 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 		*name_node,		/* <name> */
 		*membername_node,	/* <member_attribute> */
 		*submembername_node,	/* <sub-member_attribute> */
-		*syntax_node,		/* <syntax> */
-		*xref_node;		/* <xref> */
+		*syntax_node;		/* <syntax> */
   const char	*last_collection = NULL,/* Last collection */
 		*last_name = NULL,	/* Last attribute name */
 		*last_member = NULL,	/* Last member attribute */
-		*last_submember = NULL, /* Last sub-member attribute */
-		*xref_type = NULL;	/* <xref> type value */
+		*last_submember = NULL; /* Last sub-member attribute */
   char		extname[256];		/* attribute-name(extension) */
 
 
@@ -639,42 +638,10 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
-    if (!xref_node)
-    {
-      fputs("Attribute record missing <xref> in XML file.\n", stderr);
-      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
-      exit(1);
-    }
-    xref_type = mxmlElementGetAttr(xref_node, "type");
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
 
-    if (!xref_type || strcmp(xref_type, "rfc"))
-    {
-      // Replace definition...
-      fprintf(logfile, "Updating reference for %s.\n", submembername ? submembername : membername ? membername : attrname);
-
-      mxmlSetOpaque(syntax_node, syntax);
-
-      mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
-      mxmlElementSetAttr(xref_node, "data", xref);
-      if (xrefname)
-      {
-        // Set/add name
-        if (mxmlGetFirstChild(xref_node))
-          mxmlSetOpaque(xref_node, xrefname);
-        else
-          mxmlNewOpaque(xref_node, xrefname);
-      }
-      else if (mxmlGetFirstChild(xref_node))
-      {
-        // Clear name...
-        mxmlDelete(mxmlGetFirstChild(xref_node));
-      }
-
-      Attributes.updated ++;
-      return (1);
-    }
-    else if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
+    if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
       // Extend definition...
       fprintf(logfile, "Extending syntax for %s to '%s'.\n", submembername ? submembername : membername ? membername : attrname, syntax);
@@ -740,15 +707,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
   Attributes.added ++;
 
@@ -776,8 +735,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
 		*name_node,		/* <name> */
-		*value_node,		/* <value> */
-		*xref_node;		/* <xref> */
+		*value_node;		/* <value> */
   char		*nodeval;		/* Pointer into node value */
 
 
@@ -843,6 +801,9 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
+
     if (!mxmlGetOpaque(name_node))
     {
       fprintf(logfile, "Updating record for attribute group '%s'.\n", value);
@@ -874,15 +835,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
 	  node);
@@ -911,10 +864,8 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
 		*attr_node,		/* <attribute> */
-		*syntax_node,		/* <syntax> */
-		*xref_node;		/* <xref> */
-  const char	*last_attr = NULL,	/* Last attribute name */
-		*xref_type = NULL;	/* <xref> type */
+		*syntax_node;		/* <syntax> */
+  const char	*last_attr = NULL;	/* Last attribute name */
 
 
  /*
@@ -999,14 +950,8 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
-    if (!xref_node)
-    {
-      fputs("Attribute record missing <xref> in XML file.\n", stderr);
-      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
-      exit(1);
-    }
-    xref_type = mxmlElementGetAttr(xref_node, "type");
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
@@ -1017,25 +962,6 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
 
       fprintf(logfile, "Changing syntax for '%s' to '%s'.\n", attrname, syntax);
       mxmlSetOpaque(syntax_node, syntax);
-
-      if (!xref_type || strcmp(xref_type, "rfc"))
-      {
-        mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
-        mxmlElementSetAttr(xref_node, "data", xref);
-	if (xrefname)
-	{
-	  // Set/add name
-	  if (mxmlGetFirstChild(xref_node))
-	    mxmlSetOpaque(xref_node, xrefname);
-	  else
-	    mxmlNewOpaque(xref_node, xrefname);
-	}
-	else if (mxmlGetFirstChild(xref_node))
-	{
-	  // Clear name...
-	  mxmlDelete(mxmlGetFirstChild(xref_node));
-	}
-      }
 
       return (1);
     }
@@ -1067,18 +993,9 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-	  node);
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -1099,8 +1016,7 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
   mxml_node_t	*node,			/* New <registry> node */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
-		*name_node,		/* <name> */
-		*xref_node;		/* <xref> */
+		*name_node;		/* <name> */
 
 
  /*
@@ -1132,7 +1048,7 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
     if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
     {
       fprintf(logfile, "Duplicate object '%s'.\n", name);
-      return (0);
+      return (update_xref(record_node, xref, xrefname));
     }
     else if (result < 0)
       break;
@@ -1150,18 +1066,9 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
-	  record_node, node);
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -1182,8 +1089,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   mxml_node_t	*node,			/* New <registry> node */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
-		*name_node,		/* <name> */
-		*xref_node;		/* <xref> */
+		*name_node;		/* <name> */
 
 
  /*
@@ -1218,7 +1124,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
     {
       Operations.ignored ++;
       fprintf(logfile, "Duplicate operation '%s'.\n", name);
-      return (0);
+      return (update_xref(record_node, xref, xrefname));
     }
     else if (result < 0)
       break;
@@ -1237,18 +1143,9 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER,
-	  record_node, node);
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -1272,8 +1169,7 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
 		*name_node,		/* <name> */
-		*value_node,		/* <value> */
-		*xref_node;		/* <xref> */
+		*value_node;		/* <value> */
   char		*nodeval;		/* Pointer into node value */
 
 
@@ -1339,6 +1235,9 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
+
     if (!mxmlGetOpaque(name_node))
     {
       fprintf(logfile, "Updating record for out-of-band value %s.\n", value);
@@ -1370,18 +1269,9 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-	  node);
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -1405,10 +1295,8 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
 		*registry_node,		/* <registry> */
 		*record_node,		/* <record> */
 		*name_node,		/* <name> */
-		*value_node,		/* <value> */
-		*xref_node;		/* <xref> */
+		*value_node;		/* <value> */
   char		*nodeval;		/* Pointer into node value */
-  const char	*xref_type;		/* <xref> type value */
 
 
  /*
@@ -1473,16 +1361,10 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
-    xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST);
-    if (!xref_node)
-    {
-      fputs("Status code record missing <xref> in XML file.\n", stderr);
-      mxmlSaveFile(record_node, stderr, MXML_NO_CALLBACK);
-      exit(1);
-    }
-    xref_type = mxmlElementGetAttr(xref_node, "type");
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
 
-    if (!mxmlGetOpaque(name_node) || compare_strings(name, mxmlGetOpaque(name_node)) || (!xref_type || strcmp(xref_type, "rfc")))
+    if (!mxmlGetOpaque(name_node) || compare_strings(name, mxmlGetOpaque(name_node)))
     {
       StatusCodes.updated ++;
       fprintf(logfile, "Updating record for status code '%s'.\n", value);
@@ -1491,22 +1373,6 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
         mxmlNewOpaque(name_node, name);
       else
         mxmlSetOpaque(name_node, name);
-
-      mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
-      mxmlElementSetAttr(xref_node, "data", xref);
-      if (xrefname)
-      {
-        // Set/add name
-        if (mxmlGetFirstChild(xref_node))
-          mxmlSetOpaque(xref_node, xrefname);
-        else
-          mxmlNewOpaque(xref_node, xrefname);
-      }
-      else if (mxmlGetFirstChild(xref_node))
-      {
-        // Clear name...
-        mxmlDelete(mxmlGetFirstChild(xref_node));
-      }
 
       return (1);
     }
@@ -1534,18 +1400,9 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
-  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
-	  node);
+  mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
   return (1);
 }
@@ -1575,8 +1432,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 		*attr_node,		/* <attribute> */
 		*syntax_node,		/* <syntax> */
 		*name_node,		/* <name> */
-		*value_node,		/* <value> */
-		*xref_node;		/* <xref> */
+		*value_node;		/* <value> */
 
 
  /*
@@ -1660,6 +1516,9 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 				MXML_DESCEND_FIRST);
     name      = mxmlGetOpaque(name_node);
 
+    if (update_xref(record_node, xref, xrefname))
+      changed = 1;
+
     if (enumval)
     {
      /*
@@ -1741,15 +1600,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  xref_node = mxmlNewElement(node, "xref");
-  mxmlElementSetAttr(xref_node, "data", xref);
-  if (xrefname)
-  {
-    mxmlElementSetAttr(xref_node, "type", "uri");
-    mxmlNewOpaque(xref_node, xrefname);
-  }
-  else
-    mxmlElementSetAttr(xref_node, "type", "rfc");
+  update_xref(node, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
 	  node);
@@ -2278,7 +2129,7 @@ read_text(mxml_node_t *xml,		/* I - XML registration document */
 	    first = ptr;
 	    while (*ptr && !isspace(*ptr & 255))
 	      ptr ++;
-	    if (!strncmp(ptr, " (extension)", 12))
+	    if (!strncmp(ptr, "(extension)", 12))
 	      ptr += 12;
 	    *ptr = '\0';
 
@@ -2456,6 +2307,53 @@ save_cb(mxml_node_t *node,		/* I - Current node */
     return (spaces);
   else
     return (spaces + 40 - level);
+}
+
+
+//
+// 'update_xref()' - Add or update the xref for a node.
+//
+
+static int				// O - `1` if something changed, `0` is nothing changed
+update_xref(mxml_node_t *record_node,	// I - XML record
+            const char  *xref,		// I - <xref> link
+            const char  *xrefname)	// I - <xref> name
+{
+  int		changed = 0;		// Did something change?
+  mxml_node_t	*xref_node;		// <xref> node
+  const char	*xref_type;		// <xref> type
+
+
+  // Create the <xref> node as needed...
+  if ((xref_node = mxmlFindElement(record_node, record_node, "xref", NULL, NULL, MXML_DESCEND_FIRST)) == NULL)
+    xref_node = mxmlNewElement(record_node, "xref");
+
+  xref_type = mxmlElementGetAttr(xref_node, "type");
+
+  if (!xref_type || strcmp(xref_type, "rfc"))
+  {
+    // Replace reference...
+    changed = 1;
+
+    mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
+    mxmlElementSetAttr(xref_node, "data", xref);
+
+    if (xrefname)
+    {
+      // Set/add name
+      if (mxmlGetFirstChild(xref_node))
+        mxmlSetOpaque(xref_node, xrefname);
+      else
+	mxmlNewOpaque(xref_node, xrefname);
+    }
+    else if (mxmlGetFirstChild(xref_node))
+    {
+      // Clear name...
+      mxmlDelete(mxmlGetFirstChild(xref_node));
+    }
+  }
+
+  return (changed);
 }
 
 

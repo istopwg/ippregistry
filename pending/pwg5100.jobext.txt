@@ -446,15 +446,15 @@ Operation Name	Reference
 Cancel-Jobs	[PWG5100.7]
 Cancel-My-Jobs	[PWG5100.7]
 Close-Job	[PWG5100.7]
-Create-Job(Extension)	[PWG5100.7]
-Hold-Job(Extension)	[PWG5100.7]
-Print-Job(Extension)	[PWG5100.7]
-Print-URI(Extension)	[PWG5100.7]
+Create-Job(extension)	[PWG5100.7]
+Hold-Job(extension)	[PWG5100.7]
+Print-Job(extension)	[PWG5100.7]
+Print-URI(extension)	[PWG5100.7]
 Resubmit-Job	[PWG5100.7]
-Send-Document(Extension)	[PWG5100.7]
-Send-URI(Extension)	[PWG5100.7]
-Set-Job-Attributes(Extension)	[PWG5100.7]
-Validate-Job(Extension)	[PWG5100.7]
+Send-Document(extension)	[PWG5100.7]
+Send-URI(extension)	[PWG5100.7]
+Set-Job-Attributes(extension)	[PWG5100.7]
+Validate-Job(extension)	[PWG5100.7]
 
 
 Value    Status Code Name	Reference
