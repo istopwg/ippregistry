@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext21-20221124.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext21-20221212.pdf
 
 Document Description attributes:	Reference
 --------------------------------	---------
@@ -228,7 +228,7 @@ media-color-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.7]
 media-front-coating-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.7]
 media-grain-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.7]
 media-hole-count-supported (1setOf rangeOfInteger(0:MAX))	[PWG5100.7]
-media-key-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.7]
+media-key-supported (1setOf (keyword | name(MAX)))	[PWG5100.7]
 media-info-supported(obsolete) (boolean)	[PWG5100.7]
 media-left-margin-supported (1setOf integer(0:MAX))	[PWG5100.7]
 media-order-count-supported (1setOf rangeOfInteger(1:MAX))	[PWG5100.7]
@@ -446,15 +446,15 @@ Operation Name	Reference
 Cancel-Jobs	[PWG5100.7]
 Cancel-My-Jobs	[PWG5100.7]
 Close-Job	[PWG5100.7]
-Create-Job(extension)	[PWG5100.7]
-Hold-Job(extension)	[PWG5100.7]
-Print-Job(extension)	[PWG5100.7]
-Print-URI(extension)	[PWG5100.7]
+Create-Job(Extension)	[PWG5100.7]
+Hold-Job(Extension)	[PWG5100.7]
+Print-Job(Extension)	[PWG5100.7]
+Print-URI(Extension)	[PWG5100.7]
 Resubmit-Job	[PWG5100.7]
-Send-Document(extension)	[PWG5100.7]
-Send-URI(extension)	[PWG5100.7]
-Set-Job-Attributes(extension)	[PWG5100.7]
-Validate-Job(extension)	[PWG5100.7]
+Send-Document(Extension)	[PWG5100.7]
+Send-URI(Extension)	[PWG5100.7]
+Set-Job-Attributes(Extension)	[PWG5100.7]
+Validate-Job(Extension)	[PWG5100.7]
 
 
 Value    Status Code Name	Reference
