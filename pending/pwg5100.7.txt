@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext21-20221212.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext21-20230210-5100.7.pdf
 
 Document Description attributes:	Reference
 --------------------------------	---------
