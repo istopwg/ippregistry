@@ -118,9 +118,10 @@ static int		add_valattr(mxml_node_t *xml, FILE *logfile, const char *registry, c
 static int		add_value(mxml_node_t *xml, FILE *logfile, const char *enumval, const char *keyword, const char *attrname, const char *syntax, const char *xref, const char *xrefname);
 static int		compare_record(reg_record_t *a, reg_record_t *b);
 static int		compare_strings(const char *s, const char *t);
+static const char	*node_name(mxml_node_t *node);
 static int		read_text(mxml_node_t *xml, FILE *textfile, FILE *logfile, const char *title, const char *xref);
 static const char	*save_cb(mxml_node_t *node, int column);
-static int		update_xref(mxml_node_t *record, const char *xref, const char *xrefname);
+static int		update_xref(mxml_node_t *record, FILE *logfile, const char *xref, const char *xrefname);
 static int		usage(const char *opt);
 static int		validate_registry(mxml_node_t *xml, const char *registry, const char *regname, int num_keys, const char * const *keys);
 static const char	*xref_name(const char *xref, const char *title);
@@ -638,7 +639,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
@@ -707,7 +708,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   Attributes.added ++;
 
@@ -801,7 +802,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (!mxmlGetOpaque(name_node))
@@ -835,7 +836,7 @@ add_attr_group(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
 	  node);
@@ -950,7 +951,7 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
       exit(1);
     }
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
@@ -993,7 +994,7 @@ add_valattr(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
@@ -1048,7 +1049,7 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
     if ((result = compare_strings(name, mxmlGetOpaque(name_node))) == 0)
     {
       fprintf(logfile, "Duplicate object '%s'.\n", name);
-      return (update_xref(record_node, xref, xrefname));
+      return (update_xref(record_node, logfile, xref, xrefname));
     }
     else if (result < 0)
       break;
@@ -1066,7 +1067,7 @@ add_object(mxml_node_t *xml,		/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
@@ -1124,7 +1125,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
     {
       Operations.ignored ++;
       fprintf(logfile, "Duplicate operation '%s'.\n", name);
-      return (update_xref(record_node, xref, xrefname));
+      return (update_xref(record_node, logfile, xref, xrefname));
     }
     else if (result < 0)
       break;
@@ -1143,7 +1144,7 @@ add_operation(mxml_node_t *xml,		/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
@@ -1235,7 +1236,7 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (!mxmlGetOpaque(name_node))
@@ -1269,7 +1270,7 @@ add_out_of_band(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
@@ -1361,7 +1362,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
       name_node = mxmlNewElement(record_node, "name");
     }
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (!mxmlGetOpaque(name_node) || compare_strings(name, mxmlGetOpaque(name_node)))
@@ -1400,7 +1401,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
   name_node = mxmlNewElement(node, "name");
   mxmlNewOpaque(name_node, name);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node, node);
 
@@ -1516,7 +1517,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
 				MXML_DESCEND_FIRST);
     name      = mxmlGetOpaque(name_node);
 
-    if (update_xref(record_node, xref, xrefname))
+    if (update_xref(record_node, logfile, xref, xrefname))
       changed = 1;
 
     if (enumval)
@@ -1600,7 +1601,7 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
   syntax_node = mxmlNewElement(node, "syntax");
   mxmlNewOpaque(syntax_node, syntax);
 
-  update_xref(node, xref, xrefname);
+  update_xref(node, logfile, xref, xrefname);
 
   mxmlAdd(registry_node, record_node ? MXML_ADD_BEFORE : MXML_ADD_AFTER, record_node,
 	  node);
@@ -1691,6 +1692,24 @@ compare_strings(const char *s,		/* I - First string */
     return (-1);
   else
     return (0);
+}
+
+
+//
+// 'node_name()' - Return the name associated with a registration node.
+//
+
+static const char *			// O - Node name
+node_name(mxml_node_t *node)		// I - Node
+{
+  mxml_node_t	*name_node;		// Name node, if any
+  const char	*name;			// Name string, if any
+
+
+  name_node = mxmlFindElement(node, node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+  name      = mxmlGetOpaque(name_node);
+
+  return (name ? name : "unknown");
 }
 
 
@@ -2316,6 +2335,7 @@ save_cb(mxml_node_t *node,		/* I - Current node */
 
 static int				// O - `1` if something changed, `0` is nothing changed
 update_xref(mxml_node_t *record_node,	// I - XML record
+            FILE        *logfile,	// I - Log file
             const char  *xref,		// I - <xref> link
             const char  *xrefname)	// I - <xref> name
 {
@@ -2334,6 +2354,8 @@ update_xref(mxml_node_t *record_node,	// I - XML record
   {
     // Replace reference...
     changed = 1;
+
+    fprintf(logfile, "Updating reference for %s.\n", node_name(record_node));
 
     mxmlElementSetAttr(xref_node, "type", xrefname ? "uri" : "rfc");
     mxmlElementSetAttr(xref_node, "data", xref);
