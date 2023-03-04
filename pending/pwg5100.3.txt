@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20220708.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippppx20-20230131-5100.3.pdf
 
 Job Status attributes:	Reference
 ------------------------	---------
@@ -127,11 +127,11 @@ Attributes (attribute syntax)
   Enum Value  Enum Symbolic Name	Reference
   ----------  ------------------	---------
 image-orientation (type2 enum)	[PWG5100.3]
-  < any "orientation-requested" value >	[PWG5100.3]
+  <Any "orientation-requested" value>	[PWG5100.3]
 image-orientation-default (type2 enum)	[PWG5100.3]
-  < any "orientation-requested" value >	[PWG5100.3]
+  <Any "orientation-requested" value>	[PWG5100.3]
 image-orientation-supported (1setOf type2 enum)	[PWG5100.3]
-  < any "orientation-requested" value >	[PWG5100.3]
+  <Any "orientation-requested" value>	[PWG5100.3]
 
 
 Attributes (attribute syntax)
@@ -165,7 +165,7 @@ imposition-template (type2 keyword | name(MAX))	[PWG5100.3]
   tile	[PWG5100.3]
 
 job-accounting-output-bin(deprecated) (type2 keyword | name(MAX))	[PWG5100.3]
-  < any "output-bin" value >	[PWG5100.3]
+  <Any "output-bin" value>	[PWG5100.3]
 
 job-accounting-sheets-type(deprecated) (type2 keyword | name(MAX))	[PWG5100.3]
   none	[PWG5100.3]
@@ -180,7 +180,7 @@ job-complete-before (type2 keyword | name(MAX))	[PWG5100.3]
   third-shift	[PWG5100.3]
   weekend	[PWG5100.3]
 job-complete-before-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.3]
-  < any "job-complete-before" value >	[PWG5100.3]
+  <Any "job-complete-before" value>	[PWG5100.3]
 
 job-error-sheet-type (type2 keyword | name(MAX))	[PWG5100.3]
   none	[PWG5100.3]
