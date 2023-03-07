@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippnodriver20-20230116.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf
 
 Operation attributes:	Reference
 ---------------------------------------	---------
