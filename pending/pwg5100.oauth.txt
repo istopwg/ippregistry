@@ -1,0 +1,19 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20230814.pdf
+
+Printer Description attributes:	Reference
+------------------------------	---------
+oauth-authorization-scope (1setOf name(MAX) | no-value)	[PWG5100.OAUTH]
+oauth-authorization-server-uri (uri | no-value)	[PWG5100.OAUTH]
+
+System Description attributes:	Reference
+------------------------------	---------
+oauth-authorization-scope (1setOf name(MAX) | no-value)	[PWG5100.OAUTH]
+oauth-authorization-server-uri (uri | no-value)	[PWG5100.OAUTH]
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+uri-authentication-supported (1setOf type2 keyword)	[STD92]
+  oauth	[PWG5100.OAUTH]
+xri-authentication-supported (1setOf type2 keyword)	[RFC3380]
+  oauth	[PWG5100.OAUTH]
