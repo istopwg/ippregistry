@@ -1844,6 +1844,7 @@ load_attributes(const char *filename)	// I - File to load
       {
         fputs("regtosm: Unable to allocate memory for attribute list.\n", stderr);
         fclose(fp);
+        free(name);
         return (1);
       }
 

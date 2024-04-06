@@ -509,12 +509,10 @@ add_attr(mxml_node_t *xml,		// I - XML registry
     last_member = mxmlGetOpaque(membername_node);
     if (membername && !last_member)
     {
-      result = -1;
       continue;
     }
     else if (last_member && !membername)
     {
-      result = 1;
       break;
     }
     else if (membername)
@@ -539,12 +537,10 @@ add_attr(mxml_node_t *xml,		// I - XML registry
     last_submember = mxmlGetOpaque(submembername_node);
     if (submembername && !last_submember)
     {
-      result = -1;
       continue;
     }
     else if (last_submember && !submembername)
     {
-      result = 1;
       break;
     }
     else if (submembername)
@@ -704,7 +700,6 @@ add_attr_group(mxml_node_t *xml,	// I - XML registry
 
       snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
       mxmlSetOpaque(value_node, newvalue);
-      changed = true;
       break;
     }
 
@@ -1072,7 +1067,6 @@ add_out_of_band(mxml_node_t *xml,	// I - XML registry
 
       snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
       mxmlSetOpaque(value_node, newvalue);
-      changed = true;
       break;
     }
 
@@ -1177,7 +1171,6 @@ add_status_code(mxml_node_t *xml,	// I - XML registry
 
       snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
       mxmlSetOpaque(value_node, newvalue);
-      changed = true;
       break;
     }
 
