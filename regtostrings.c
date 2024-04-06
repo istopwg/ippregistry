@@ -1,132 +1,113 @@
-/*
- * Program to convert keyword and enum registrations to strings.
- *
- * Usage:
- *
- *    ./regtostrings [--code] [--po] filename.xml >filename.ext
- *
- * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
- * Copyright © 2008-2019 by Michael R Sweet
- *
- * Licensed under Apache License v2.0.  See the file "LICENSE" for more
- * information.
- */
+//
+// Program to convert keyword and enum registrations to strings.
+//
+// Usage:
+//
+//    ./regtostrings [--code] [--po] filename.xml >filename.ext
+//
+// Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2008-2019 by Michael R Sweet
+//
+// Licensed under Apache License v2.0.  See the file "LICENSE" for more
+// information.
+//
 
-#include <mxml.h>
-#include <limits.h>
-#include <ctype.h>
-
-
-/* Common IPP registry stuff */
 #include "ipp-registry.h"
-
-/* "Canned" localizations */
 #include "ipp-strings.h"
 
 
-/*
- * Output formats...
- */
+//
+// Output formats...
+//
 
 #define FORMAT_STRINGS	0
 #define FORMAT_PO	1
 #define FORMAT_CODE	2
 
 
-/*
- * Local globals...
- */
+//
+// Local globals...
+//
 
 static size_t           alloc_strings = 0,
                         num_strings = 0;
 static ipp_loc_t        *strings = NULL;
 
 
-/*
- * Local functions...
- */
+//
+// Local functions...
+//
 
-static int	add_string(const char *locid, const char *str);
-static int	add_strings(mxml_node_t *registry_node);
-static int	check_string(const char *locid);
+static bool	add_string(const char *locid, const char *str);
+static bool	add_strings(mxml_node_t *registry_node);
+static bool	check_string(const char *locid);
 static int	usage(void);
 static void	write_strings(int format);
 
 
-/*
- * 'main()' - Write a strings file for all keywords and enums in the registry.
- */
+//
+// 'main()' - Write a strings file for all keywords and enums in the registry.
+//
 
-int					/* O - Exit status */
-main(int  argc,				/* I - Number of command-line args */
-     char *argv[])			/* I - Command-line arguments */
+int					// O - Exit status
+main(int  argc,				// I - Number of command-line args
+     char *argv[])			// I - Command-line arguments
 {
-  int           i;                      /* Looping var */
-  const char	*xmlin = NULL;		/* XML registration input file */
-  mxml_node_t	*xml,			/* XML registration file top node */
-		*registry_node;		/* Current registry node */
-  FILE		*xmlfile;		/* XML registration file pointer */
-  int           format = FORMAT_STRINGS;/* Output format */
+  int           i;                      // Looping var
+  const char	*xmlin = NULL;		// XML registration input file
+  mxml_options_t *xmloptions;		// XML load options
+  mxml_node_t	*xml,			// XML registration file top node
+		*registry_node;		// Current registry node
+  int           format = FORMAT_STRINGS;// Output format
 
 
- /*
-  * Parse command-line...
-  */
-
+  // Parse command-line...
   for (i = 1; i < argc; i ++)
+  {
     if (!strcmp(argv[i], "--code"))
-      format = FORMAT_CODE;
-    else if (!strcmp(argv[i], "--po"))
-      format = FORMAT_PO;
-    else if (argv[i][0] == '-')
     {
-      printf("Unknown option \'%s\'.\n", argv[i]);
+      format = FORMAT_CODE;
+    }
+    else if (!strcmp(argv[i], "--po"))
+    {
+      format = FORMAT_PO;
+    }
+    else if (argv[i][0] == '-' || xmlin)
+    {
+      fprintf(stderr, "regtostrings: Unknown option \'%s\'.\n", argv[i]);
       return (usage());
     }
     else
+    {
       xmlin = argv[i];
+    }
+  }
 
   if (!xmlin)
     return (usage());
 
- /*
-  * Load the XML registration file...
-  */
+  // Load the XML registration file...
+  xmloptions = mxmlOptionsNew();
+  mxmlOptionsSetErrorCallback(xmloptions, (mxml_error_cb_t)ipp_error_cb, (void *)"register");
+  mxmlOptionsSetTypeCallback(xmloptions, ipp_type_cb, /*cbdata*/NULL);
 
-  mxmlSetWrapMargin(INT_MAX);
-
-  if ((xmlfile = fopen(xmlin, "rb")) == NULL)
-  {
-    perror(xmlin);
+  if ((xml = mxmlLoadFilename(/*top*/NULL, xmloptions, xmlin)) == NULL)
     return (1);
-  }
 
-  xml = mxmlLoadFile(NULL, xmlfile, ipp_load_cb);
-  fclose(xmlfile);
-
-  if (!xml)
-  {
-    fputs("Bad XML registration file.\n", stderr);
-    return (1);
-  }
-
- /*
-  * Output keyword and enum strings...
-  */
-
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND)) != NULL)
+  // Output keyword and enum strings...
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ATTRIBUTES, MXML_DESCEND_ALL)) != NULL)
   {
     if (!add_strings(registry_node))
       return (1);
   }
 
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ENUMS, MXML_DESCEND)) != NULL)
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_ENUMS, MXML_DESCEND_ALL)) != NULL)
   {
     if (!add_strings(registry_node))
       return (1);
   }
 
-  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_KEYWORDS, MXML_DESCEND)) != NULL)
+  if ((registry_node = mxmlFindElement(xml, xml, "registry", "id", IPP_REGISTRY_KEYWORDS, MXML_DESCEND_ALL)) != NULL)
   {
     if (!add_strings(registry_node))
       return (1);
@@ -138,22 +119,22 @@ main(int  argc,				/* I - Number of command-line args */
 }
 
 
-/*
- * 'add_string()' - Add a single localization string.
- */
+//
+// 'add_string()' - Add a single localization string.
+//
 
-static int                              /* O - 1 on success, 0 on failure */
-add_string(const char *locid,           /* I - Localization ID */
-           const char *str)             /* I - Localized string */
+static bool				// O - `true` on success, `false` on failure
+add_string(const char *locid,           // I - Localization ID
+           const char *str)             // I - Localized string
 {
-  ipp_loc_t     *temp;                  /* Temporary pointer */
+  ipp_loc_t     *temp;                  // Temporary pointer
 
 
   if (!str)
-    return (1);
+    return (true);
 
   if (num_strings > 0 && check_string(locid))
-    return (1);
+    return (true);
 
   if (num_strings >= alloc_strings)
   {
@@ -161,7 +142,7 @@ add_string(const char *locid,           /* I - Localization ID */
     if ((temp = realloc(strings, alloc_strings * sizeof(ipp_loc_t))) == NULL)
     {
       perror("Unable to allocate memory for strings");
-      return (0);
+      return (false);
     }
 
     strings = temp;
@@ -174,70 +155,53 @@ add_string(const char *locid,           /* I - Localization ID */
   temp->str = strdup(str);
 
   if (temp->id == NULL || temp->str == NULL)
-    return (0);
+    return (false);
 
   if (num_strings > 1)
     qsort(strings, num_strings, sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc);
 
-  return (1);
+  return (true);
 }
 
 
-/*
- * 'add_strings()' - Add all strings for the given registry.
- */
+//
+// 'add_strings()' - Add all strings for the given registry.
+//
 
-static int                              /* O - 1 on success, 0 on failure */
-add_strings(mxml_node_t *registry_node) /* I - Registry */
+static bool				// O - `true` on success, `false` on failure
+add_strings(mxml_node_t *registry_node)	// I - Registry
 {
-  mxml_node_t	*record_node,		/* Current record node */
-		*attribute_node,	/* Attribute for localization */
-		*collection_node,	/* Collection (for attributes) */
-		*member_node,		/* Member attribute node (for attributes */
-		*submember_node,	/* Sub-member attribute node (for attributes */
-		*name_node,		/* Keyword string to be localized */
-		*syntax_node,		/* Syntax string (for attributes) */
-		*value_node;		/* Value for localization */
-  char		locid[256],             /* Localization ID string */
-                localized[1024];	/* Localized string */
-  const char	*last_attribute = NULL;	/* Last attribute written */
+  mxml_node_t	*record_node,		// Current record node
+		*attribute_node,	// Attribute for localization
+		*collection_node,	// Collection (for attributes)
+		*member_node,		// Member attribute node (for attributes
+		*submember_node,	// Sub-member attribute node (for attributes
+		*name_node,		// Keyword string to be localized
+		*syntax_node,		// Syntax string (for attributes)
+		*value_node;		// Value for localization
+  char		locid[256],             // Localization ID string
+                localized[1024];	// Localized string
+  const char	*last_attribute = NULL;	// Last attribute written
 
 
-  for (record_node = mxmlFindElement(registry_node, registry_node, "record",
-                                     NULL, NULL, MXML_DESCEND_FIRST);
-       record_node;
-       record_node = mxmlFindElement(record_node, registry_node, "record", NULL,
-                                     NULL, MXML_NO_DESCEND))
+  for (record_node = mxmlFindElement(registry_node, registry_node, "record", NULL, NULL, MXML_DESCEND_FIRST); record_node; record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_DESCEND_NONE))
   {
-    attribute_node  = mxmlFindElement(record_node, record_node, "attribute",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    collection_node = mxmlFindElement(record_node, record_node, "collection",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    member_node     = mxmlFindElement(record_node, record_node,
-                                      "member_attribute", NULL, NULL,
-                                      MXML_DESCEND_FIRST);
-    submember_node  = mxmlFindElement(record_node, record_node,
-                                      "sub-member_attribute", NULL, NULL,
-                                      MXML_DESCEND_FIRST);
-    name_node       = mxmlFindElement(record_node, record_node, "name",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    syntax_node     = mxmlFindElement(record_node, record_node, "syntax",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
-    value_node      = mxmlFindElement(record_node, record_node, "value",
-                                      NULL, NULL, MXML_DESCEND_FIRST);
+    attribute_node  = mxmlFindElement(record_node, record_node, "attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    collection_node = mxmlFindElement(record_node, record_node, "collection", NULL, NULL, MXML_DESCEND_FIRST);
+    member_node     = mxmlFindElement(record_node, record_node, "member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    submember_node  = mxmlFindElement(record_node, record_node, "sub-member_attribute", NULL, NULL, MXML_DESCEND_FIRST);
+    name_node       = mxmlFindElement(record_node, record_node, "name", NULL, NULL, MXML_DESCEND_FIRST);
+    syntax_node     = mxmlFindElement(record_node, record_node, "syntax", NULL, NULL, MXML_DESCEND_FIRST);
+    value_node      = mxmlFindElement(record_node, record_node, "value", NULL, NULL, MXML_DESCEND_FIRST);
 
     if (collection_node && name_node && syntax_node)
     {
-     /*
-      * See if this is an attribute we want to localize...
-      */
-
-      const char *collection = mxmlGetOpaque(collection_node),
+      // See if this is an attribute we want to localize...
+      const char	*collection = mxmlGetOpaque(collection_node),
       			*name = mxmlGetOpaque(submember_node ? submember_node : member_node ? member_node : name_node),
 			*syntax = mxmlGetOpaque(syntax_node);
 
-      if (collection && !strcmp(collection, "Job Template") &&
-          name && syntax &&
+      if (collection && !strcmp(collection, "Job Template") && name && syntax &&
           !strstr(name, "-default") &&
           !strstr(name, "-ready") &&
           !strstr(name, "-supported") &&
@@ -300,14 +264,11 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
           !strstr(name, "(obsolete)") &&
           name[0] != '<')
       {
-       /*
-        * Job template or operation attribute that isn't otherwise localized.
-        */
-
+        // Job template or operation attribute that isn't otherwise localized.
         const char *s = ipp_get_localized("", name, name, localized, sizeof(localized));
 
         if (s && !add_string(name, s))
-          return (0);
+          return (false);
       }
 
       continue;
@@ -318,7 +279,7 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
 
     if (attribute_node && name_node && value_node)
     {
-      const char *attribute = mxmlGetOpaque(attribute_node),
+      const char	*attribute = mxmlGetOpaque(attribute_node),
       			*name = mxmlGetOpaque(name_node),
 			*value = mxmlGetOpaque(value_node);
 
@@ -392,7 +353,7 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
           !strstr(attribute, "-ready"))
       {
         if (!add_string(attribute, ipp_get_localized("", attribute, attribute, localized, sizeof(localized))))
-          return (0);
+          return (false);
 
         last_attribute = attribute;
       }
@@ -407,31 +368,31 @@ add_strings(mxml_node_t *registry_node) /* I - Registry */
         if (check_string(locid))
         {
           fprintf(stderr, "ERROR: Redefined \"%s\".\n", locid);
-          return (0);
+          return (false);
         }
 
         if (!add_string(locid, ipp_get_localized(attribute, name, value, localized, sizeof(localized))))
-          return (0);
+          return (false);
       }
     }
   }
 
-  return (1);
+  return (true);
 }
 
 
-/*
- * 'check_string()' - Check for an existing string...
- */
+//
+// 'check_string()' - Check for an existing string...
+//
 
-static int                              /* O - 1 if present, 0 if not */
-check_string(const char *locid)         /* I - String */
+static bool				// O - `true` if present, `false` if not
+check_string(const char *locid)		// I - String
 {
-  ipp_loc_t     key;                    /* Search key */
+  ipp_loc_t     key;                    // Search key
 
 
   if (num_strings == 0)
-    return (0);
+    return (false);
 
   key.id = locid;
 
@@ -439,11 +400,11 @@ check_string(const char *locid)         /* I - String */
 }
 
 
-/*
- * 'usage()' - Show program usage.
- */
+//
+// 'usage()' - Show program usage.
+//
 
-static int				/* O - Exit status */
+static int				// O - Exit status
 usage(void)
 {
   puts("\nUsage: ./regtostrings [--code] [--po] filename.xml >filename.{c,po,strings}\n");
@@ -451,25 +412,26 @@ usage(void)
 }
 
 
-/*
- * 'write_strings()' - Write strings for registered enums and keywords.
- */
+//
+// 'write_strings()' - Write strings for registered enums and keywords.
+//
 
 static void
-write_strings(int format)               /* I - Output format - strings or PO */
+write_strings(int format)               // I - Output format - strings or PO
 {
-  size_t        count;                  /* Number of records left */
-  ipp_loc_t     *loc;                   /* Current localization record */
+  size_t        count;                  // Number of records left
+  ipp_loc_t     *loc;                   // Current localization record
 
 
-  qsort(strings, num_strings, sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc);
+  if (num_strings > 0)
+    qsort(strings, num_strings, sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc);
 
   switch (format)
   {
     case FORMAT_CODE :
 	for (loc = strings, count = num_strings; count > 0; loc ++, count --)
 	{
-	  printf("/* TRANSLATORS: %s */\n", loc->str);
+	  printf("// TRANSLATORS: %s\n", loc->str);
 	  printf("_(\"%s\");\n", loc->id);
 	}
 	break;

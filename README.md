@@ -129,3 +129,12 @@ The `--po` option tells `regtostrings` to generate a GNU gettext `.po` file:
 
 The source XML file should be the current IANA IPP registration file at
 <http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml>.
+
+
+Legal Stuff
+-----------
+
+ippregistry is Copyright © 2018-2024 by the IEEE-ISTO Printer Working Group.
+
+This software is licensed under the Apache License Version 2.0.  See the files
+"LICENSE" and "NOTICE" for more information.

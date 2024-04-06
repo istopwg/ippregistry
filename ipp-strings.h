@@ -1,28 +1,28 @@
-/*
- * Standard localizations of IPP keywords and enums.
- *
- * Copyright © 2018-2019 by The IEEE-ISTO Printer Working Group.
- * Copyright © 2008-2017 by Michael R Sweet
- *
- * Licensed under Apache License v2.0.  See the file "LICENSE" for more
- * information.
- */
+//
+// Standard localizations of IPP keywords and enums.
+//
+// Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2008-2017 by Michael R Sweet
+//
+// Licensed under Apache License v2.0.  See the file "LICENSE" for more
+// information.
+//
 
-#ifndef __IPP_STRINGS_H__
-#  define __IPP_STRINGS_H__
+#ifndef IPP_STRINGS_H
+#  define IPP_STRINGS_H
 
 
-/*
- * "Canned" localizations for media sizes and types...
- */
+//
+// "Canned" localizations for media sizes and types...
+//
 
 typedef struct
 {
-  const char	*id,			/* Keyword.value */
-		*str;			/* Localized string */
+  const char	*id,			// Keyword.value
+		*str;			// Localized string
 } ipp_loc_t;
 
-static int		ipp_strings_sorted = 0;
+static bool		ipp_strings_sorted = false;
 static ipp_loc_t	ipp_strings[] =
 {
   { "accuracy-units", "Units" },
@@ -672,70 +672,54 @@ static ipp_loc_t	ipp_strings[] =
   { "trimming-when.after-sheets", "Every page" }
 };
 
-#ifdef __APPLE__
-#  define ipp_strlcpy strlcpy
-#else
-static inline ipp_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-  strncpy(dst, src, dstsize - 1);
-  dst[dstsize - 1] = '\0';
-}
-#endif /* __APPLE__ */
 
+//
+// 'ipp_compare_loc()' - Compare two localizations.
+//
 
-/*
- * 'ipp_compare_loc()' - Compare two localizations.
- */
-
-static int				/* O - Result of comparison */
-ipp_compare_loc(ipp_loc_t *a,		/* I - First localization */
-                ipp_loc_t *b)		/* I - Second localization */
+static int				// O - Result of comparison
+ipp_compare_loc(ipp_loc_t *a,		// I - First localization
+                ipp_loc_t *b)		// I - Second localization
 {
   return (strcmp(a->id, b->id));
 }
 
 
-/*
- * 'ipp_get_localized()' - Get the localized string for a value.
- *
- * Converts keywords of the form "some-name" to "Some Name".
- */
+//
+// 'ipp_get_localized()' - Get the localized string for a value.
+//
+// Converts keywords of the form "some-name" to "Some Name".
+//
 
-static const char *			/* O - Localized string */
-ipp_get_localized(const char *attribute,/* I - Attribute */
-		  const char *name,	/* I - Name string */
-		  const char *value,	/* I - Value */
-		  char       *buffer,	/* I - Buffer */
-		  size_t     bufsize)	/* I - Size of buffer */
+static const char *			// O - Localized string
+ipp_get_localized(const char *attribute,// I - Attribute
+		  const char *name,	// I - Name string
+		  const char *value,	// I - Value
+		  char       *buffer,	// I - Buffer
+		  size_t     bufsize)	// I - Size of buffer
 {
-  char		*bufptr,		/* Pointer into buffer */
-		*bufend,		/* End of buffer */
-		id[256];		/* Localization identifier */
-  const char    *suffix = NULL;         /* Suffix to add */
-  ipp_loc_t	key,			/* Search key */
-		*match;			/* Matching localization */
-  const char	*size;			/* Size string */
+  char		*bufptr,		// Pointer into buffer
+		*bufend,		// End of buffer
+		id[256];		// Localization identifier
+  const char    *suffix = NULL;         // Suffix to add
+  ipp_loc_t	key,			// Search key
+		*match;			// Matching localization
+  const char	*size;			// Size string
 
 
- /*
-  * Sort the strings array the first time...
-  */
-
+  // Sort the strings array the first time...
   if (!ipp_strings_sorted)
   {
-    ipp_strings_sorted = 1;
+    ipp_strings_sorted = true;
 
     qsort(ipp_strings, sizeof(ipp_strings) / sizeof(ipp_strings[0]), sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc);
   }
 
- /*
-  * See if we have a canned localization...
-  */
-
+  // See if we have a canned localization...
   if (*attribute)
     snprintf(id, sizeof(id), "%s.%s", attribute, value);
   else
-    ipp_strlcpy(id, value, sizeof(id));
+    ipp_copy_string(id, value, sizeof(id));
 
   key.id = id;
   if ((match = (ipp_loc_t *)bsearch(&key, ipp_strings, sizeof(ipp_strings) / sizeof(ipp_strings[0]), sizeof(ipp_loc_t), (int (*)(const void *, const void *))ipp_compare_loc)) != NULL)
@@ -743,33 +727,23 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
   else if (!*attribute)
     return (NULL);
 
- /*
-  * Not a canned localization, is this a media size name?
-  */
-
+  // Not a canned localization, is this a media size name?
   bufptr = buffer;
   bufend = buffer + bufsize - 1;
 
   if (!strcmp(attribute, "media") && (size = strrchr(value, '_')) != NULL)
   {
-   /*
-    * Yes, use the ISO/US name or the size from the end of the self-describing
-    * name...
-    */
-
+    // Yes, use the ISO/US name or the size from the end of the self-describing name...
     if (!strncmp(value, "iso_", 4))
     {
-     /*
-      * Use ISO name...
-      */
-
+      // Use ISO name...
       value += 4;
 
       *bufptr++ = toupper(*value++);
 
       if (buffer[0] == 'C')
       {
-        strlcpy(bufptr, "Envelope ", bufend - bufptr + 1);
+        ipp_copy_string(bufptr, "Envelope ", bufend - bufptr + 1);
         bufptr += strlen(bufptr);
       }
 
@@ -778,13 +752,13 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
         if (!strncmp(value, "-extra", 6))
         {
           value += 6;
-          strlcpy(bufptr, " (extra)", bufend - bufptr + 1);
+          ipp_copy_string(bufptr, " (extra)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else if (!strncmp(value, "-tab", 4))
         {
           value += 4;
-          strlcpy(bufptr, " (tab)", bufend - bufptr + 1);
+          ipp_copy_string(bufptr, " (tab)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else
@@ -795,24 +769,21 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     }
     else
     {
-     /*
-      * Use dimensional name...
-      */
-
+      // Use dimensional name...
       size ++;
       while (*size && bufptr < bufend)
       {
         if (*size == 'x')
         {
           size ++;
-          strlcpy(bufptr, " x ", bufend - bufptr + 1);
+          ipp_copy_string(bufptr, " x ", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else if (!strcmp(size, "in"))
         {
           size += 2;
 
-          /* Unicode double prime character */
+          // Unicode double prime character
           *bufptr++ = (char)0xE2;
           *bufptr++ = (char)0x80;
           *bufptr++ = (char)0xB3;
@@ -827,10 +798,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     return (buffer);
   }
 
- /*
-  * Common words?
-  */
-
+  // Common words?
   if (!strcmp(name, "auto"))
     return ("Automatic");
   else if (!strcmp(name, "semi-gloss"))
@@ -850,10 +818,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
   else if (!strcmp(name, "icc"))
     return ("ICC Profiles");
 
- /*
-  * Nope, make one from the keyword/name...
-  */
-
+  // Nope, make one from the keyword/name...
   bufptr = buffer;
   bufend = buffer + bufsize - 1;
 
@@ -870,7 +835,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     else if (!strncmp(name, "input-", 6) && strcmp(attribute, "printer-state-reasons"))
     {
       name += 6;
-      strlcpy(bufptr, "Scan ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "Scan ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -879,7 +844,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     else if (!strncmp(name, "jdf-", 4))
     {
       name += 4;
-      strlcpy(bufptr, "JDF ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "JDF ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       while (*name && bufptr < bufend)
@@ -900,7 +865,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 14;
 
-      strlcpy(bufptr, "Envelope maker ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "Envelope maker ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -910,7 +875,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 11;
 
-      strlcpy(bufptr, "2-hole punch ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "2-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -920,7 +885,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 13;
 
-      strlcpy(bufptr, "3-hole punch ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "3-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -930,7 +895,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 11;
 
-      strlcpy(bufptr, "4-hole punch ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "4-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -940,7 +905,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 15;
 
-      strlcpy(bufptr, "Multi-hole punch ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "Multi-hole punch ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -950,7 +915,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 12;
 
-      strlcpy(bufptr, "2 staples on ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "2 staples on ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -960,7 +925,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     {
       name += 14;
 
-      strlcpy(bufptr, "3 staples on ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "3 staples on ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -968,12 +933,12 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     }
     else if (!strncmp(name, "reference-edge", 14))
     {
-      name += 10; /* Drop "reference-" */
+      name += 10;			// Drop "reference-"
     }
     else if (!strncmp(name, "rgb_", 4))
     {
       name += 4;
-      strlcpy(bufptr, "RGB ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "RGB ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -982,7 +947,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     else if (!strncmp(name, "rgba_", 5))
     {
       name += 5;
-      strlcpy(bufptr, "RGBA ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "RGBA ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -991,7 +956,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
     else if (!strncmp(name, "cmyk_", 5))
     {
       name += 5;
-      strlcpy(bufptr, "CMYK ", bufend - bufptr + 1);
+      ipp_copy_string(bufptr, "CMYK ", bufend - bufptr + 1);
       bufptr += strlen(bufptr);
 
       if (!*name)
@@ -1013,21 +978,21 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
       else if (!strcmp(name, "-face-down"))
       {
 	name += 10;
-	strlcpy(bufptr, " Face-down", bufend - bufptr + 1);
+	ipp_copy_string(bufptr, " Face-down", bufend - bufptr + 1);
 	bufptr += strlen(bufptr);
 	break;
       }
       else if (!strcmp(name, "-face-up"))
       {
 	name += 8;
-	strlcpy(bufptr, " Face-up", bufend - bufptr + 1);
+	ipp_copy_string(bufptr, " Face-up", bufend - bufptr + 1);
 	bufptr += strlen(bufptr);
 	break;
       }
       else if (!strcmp(name, "-id"))
       {
 	name += 3;
-	strlcpy(bufptr, " ID", bufend - bufptr + 1);
+	ipp_copy_string(bufptr, " ID", bufend - bufptr + 1);
 	bufptr += strlen(bufptr);
 	break;
       }
@@ -1039,7 +1004,7 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
       else if (!strcmp(name, "-uri"))
       {
 	name += 4;
-	strlcpy(bufptr, " URI", bufend - bufptr + 1);
+	ipp_copy_string(bufptr, " URI", bufend - bufptr + 1);
 	bufptr += strlen(bufptr);
 	break;
       }
@@ -1055,10 +1020,10 @@ ipp_get_localized(const char *attribute,/* I - Attribute */
   }
 
   if (suffix)
-    strlcpy(bufptr, suffix, bufend - bufptr + 1);
+    ipp_copy_string(bufptr, suffix, bufend - bufptr + 1);
   else
     *bufptr = '\0';
 
   return (buffer);
 }
-#endif /* !__IPP_STRINGS_H__ */
+#endif // !IPP_STRINGS_H
