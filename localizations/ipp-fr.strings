@@ -1,0 +1,4183 @@
+/* TRANSLATORS: Units */
+"accuracy-units" = "Unités";
+/* TRANSLATORS: Millimeters */
+"accuracy-units.mm" = "Millimètres";
+/* TRANSLATORS: Nanometers */
+"accuracy-units.nm" = "Nanomètres";
+/* TRANSLATORS: Micrometers */
+"accuracy-units.um" = "Micromètres";
+/* TRANSLATORS: Bale Output */
+"baling" = "Produit balnéaire";
+/* TRANSLATORS: Bale Using */
+"baling-type" = "Bale Utilisation";
+/* TRANSLATORS: Band */
+"baling-type.band" = "Bande";
+/* TRANSLATORS: Shrink wrap */
+"baling-type.shrink-wrap" = "Enveloppe de rideau";
+/* TRANSLATORS: Wrap */
+"baling-type.wrap" = "Wrap";
+/* TRANSLATORS: Bale After */
+"baling-when" = "Bale After";
+/* TRANSLATORS: Job */
+"baling-when.after-job" = "Job";
+/* TRANSLATORS: Sets */
+"baling-when.after-sets" = "Sets";
+/* TRANSLATORS: Bind Output */
+"binding" = "Produit Bind";
+/* TRANSLATORS: Bind Edge */
+"binding-reference-edge" = "Bind Edge";
+/* TRANSLATORS: Bottom */
+"binding-reference-edge.bottom" = "Bottom";
+/* TRANSLATORS: Left */
+"binding-reference-edge.left" = "Gauche";
+/* TRANSLATORS: Right */
+"binding-reference-edge.right" = "Droit";
+/* TRANSLATORS: Top */
+"binding-reference-edge.top" = "Top";
+/* TRANSLATORS: Binder Type */
+"binding-type" = "Type de classe";
+/* TRANSLATORS: Adhesive */
+"binding-type.adhesive" = "Adhésif";
+/* TRANSLATORS: Comb */
+"binding-type.comb" = "Comb";
+/* TRANSLATORS: Flat */
+"binding-type.flat" = "Plat";
+/* TRANSLATORS: Padding */
+"binding-type.padding" = "Padding";
+/* TRANSLATORS: Perfect */
+"binding-type.perfect" = "Parfait.";
+/* TRANSLATORS: Spiral */
+"binding-type.spiral" = "Spiral";
+/* TRANSLATORS: Tape */
+"binding-type.tape" = "Tape";
+/* TRANSLATORS: Velo */
+"binding-type.velo" = "Velo";
+"client-type.3" = "Demande";
+"client-type.4" = "Système de fonctionnement";
+"client-type.5" = "Conducteur";
+"client-type.6" = "Autres";
+/* TRANSLATORS: Coat Sheets */
+"coating" = "Feuilles de revêtement";
+/* TRANSLATORS: Add Coating To */
+"coating-sides" = "Ajouter Coating To";
+/* TRANSLATORS: Back */
+"coating-sides.back" = "Retour";
+/* TRANSLATORS: Front and back */
+"coating-sides.both" = "Avant et arrière";
+/* TRANSLATORS: Front */
+"coating-sides.front" = "Front";
+/* TRANSLATORS: Type of Coating */
+"coating-type" = "Type de revêtement";
+/* TRANSLATORS: Archival */
+"coating-type.archival" = "Archival";
+/* TRANSLATORS: Archival glossy */
+"coating-type.archival-glossy" = "Archival glossy";
+/* TRANSLATORS: Archival matte */
+"coating-type.archival-matte" = "Archival matte";
+/* TRANSLATORS: Archival semi gloss */
+"coating-type.archival-semi-gloss" = "Archival semi gloss";
+/* TRANSLATORS: Glossy */
+"coating-type.glossy" = "Glossy";
+/* TRANSLATORS: High gloss */
+"coating-type.high-gloss" = "High gloss";
+/* TRANSLATORS: Matte */
+"coating-type.matte" = "Matte";
+/* TRANSLATORS: Semi-gloss */
+"coating-type.semi-gloss" = "Semi-gloss";
+/* TRANSLATORS: Silicone */
+"coating-type.silicone" = "Silicone";
+/* TRANSLATORS: Translucent */
+"coating-type.translucent" = "Translucent";
+"coating-type.water-resistant" = "Résistant à l ' eau";
+/* TRANSLATORS: Print Confirmation Sheet */
+"confirmation-sheet-print" = "Confirmation d ' impression Feuille";
+/* TRANSLATORS: Back Cover */
+"cover-back" = "Couverture arrière";
+/* TRANSLATORS: Front Cover */
+"cover-front" = "Couverture frontale";
+/* TRANSLATORS: Printed Cover */
+"cover-type" = "Couverture imprimée";
+/* TRANSLATORS: No cover */
+"cover-type.no-cover" = "Pas de couverture";
+/* TRANSLATORS: Back only */
+"cover-type.print-back" = "Retour seulement";
+/* TRANSLATORS: Front and back */
+"cover-type.print-both" = "Avant et arrière";
+/* TRANSLATORS: Front only */
+"cover-type.print-front" = "Front seulement";
+/* TRANSLATORS: None */
+"cover-type.print-none" = "None";
+/* TRANSLATORS: Cover Output */
+"covering" = "Produit de couverture";
+/* TRANSLATORS: Add Cover */
+"covering-name" = "Ajouter le couvercle";
+/* TRANSLATORS: Plain */
+"covering-name.plain" = "Plaine";
+/* TRANSLATORS: Pre-cut */
+"covering-name.pre-cut" = "Pre-cut";
+/* TRANSLATORS: Pre-printed */
+"covering-name.pre-printed" = "Préimprimé";
+/* TRANSLATORS: Aborted by system */
+"document-state-reasons.aborted-by-system" = "Avortée par le système";
+/* TRANSLATORS: Canceled at device */
+"document-state-reasons.canceled-at-device" = "Annulé à l'appareil";
+/* TRANSLATORS: Canceled by operator */
+"document-state-reasons.canceled-by-operator" = "Annulé par l ' opérateur";
+/* TRANSLATORS: Canceled by user */
+"document-state-reasons.canceled-by-user" = "Annulé par l'utilisateur";
+/* TRANSLATORS: Completed successfully */
+"document-state-reasons.completed-successfully" = "Complété avec succès";
+/* TRANSLATORS: Completed with errors */
+"document-state-reasons.completed-with-errors" = "Complété par erreur";
+/* TRANSLATORS: Completed with warnings */
+"document-state-reasons.completed-with-warnings" = "Complet avec avertissements";
+/* TRANSLATORS: Compression error */
+"document-state-reasons.compression-error" = "Erreur de compression";
+/* TRANSLATORS: Data insufficient */
+"document-state-reasons.data-insufficient" = "Données insuffisantes";
+/* TRANSLATORS: Digital signature did not verify */
+"document-state-reasons.digital-signature-did-not-verify" = "La signature numérique n'a pas vérifié";
+/* TRANSLATORS: Digital signature type not supported */
+"document-state-reasons.digital-signature-type-not-supported" = "Type de signature numérique non supporté";
+/* TRANSLATORS: Digital signature wait */
+"document-state-reasons.digital-signature-wait" = "Digital signature wait";
+/* TRANSLATORS: Document access error */
+"document-state-reasons.document-access-error" = "Erreur d ' accès aux documents";
+/* TRANSLATORS: Document fetchable */
+"document-state-reasons.document-fetchable" = "Document extensible";
+/* TRANSLATORS: Document format error */
+"document-state-reasons.document-format-error" = "Erreur de format de document";
+/* TRANSLATORS: Document password error */
+"document-state-reasons.document-password-error" = "Document password error";
+/* TRANSLATORS: Document permission error */
+"document-state-reasons.document-permission-error" = "Document permission error";
+/* TRANSLATORS: Document security error */
+"document-state-reasons.document-security-error" = "Erreur de sécurité";
+/* TRANSLATORS: Document unprintable error */
+"document-state-reasons.document-unprintable-error" = "Document une erreur imprimable";
+/* TRANSLATORS: Errors detected */
+"document-state-reasons.errors-detected" = "Erreurs détectées";
+/* TRANSLATORS: Incoming */
+"document-state-reasons.incoming" = "À venir";
+/* TRANSLATORS: Interpreting */
+"document-state-reasons.interpreting" = "Interprétation";
+/* TRANSLATORS: None */
+"document-state-reasons.none" = "None";
+/* TRANSLATORS: Outgoing */
+"document-state-reasons.outgoing" = "En cours";
+/* TRANSLATORS: Printing */
+"document-state-reasons.printing" = "Impression";
+/* TRANSLATORS: Processing to stop point */
+"document-state-reasons.processing-to-stop-point" = "Traitement du point d ' arrêt";
+/* TRANSLATORS: Queued */
+"document-state-reasons.queued" = "Queued";
+/* TRANSLATORS: Queued for marker */
+"document-state-reasons.queued-for-marker" = "Queued for marker";
+/* TRANSLATORS: Queued in device */
+"document-state-reasons.queued-in-device" = "Queued in device";
+/* TRANSLATORS: Resources are not ready */
+"document-state-reasons.resources-are-not-ready" = "Les ressources ne sont pas prêtes";
+/* TRANSLATORS: Resources are not supported */
+"document-state-reasons.resources-are-not-supported" = "Les ressources ne sont pas soutenues";
+/* TRANSLATORS: Submission interrupted */
+"document-state-reasons.submission-interrupted" = "Demande interrompue";
+/* TRANSLATORS: Transforming */
+"document-state-reasons.transforming" = "Transformation";
+/* TRANSLATORS: Unsupported compression */
+"document-state-reasons.unsupported-compression" = "compression non soutenue";
+/* TRANSLATORS: Unsupported document format */
+"document-state-reasons.unsupported-document-format" = "Format de document non supporté";
+/* TRANSLATORS: Warnings detected */
+"document-state-reasons.warnings-detected" = "Avertissements détectés";
+/* TRANSLATORS: Pending */
+"document-state.3" = "En attente";
+/* TRANSLATORS: Processing */
+"document-state.5" = "Traitement";
+/* TRANSLATORS: Stopped */
+"document-state.6" = "Arrêté";
+/* TRANSLATORS: Canceled */
+"document-state.7" = "Annulé";
+/* TRANSLATORS: Aborted */
+"document-state.8" = "Avortée";
+/* TRANSLATORS: Completed */
+"document-state.9" = "Complété";
+/* TRANSLATORS: Bale */
+"finishing-template.bale" = "Bale";
+/* TRANSLATORS: Bind */
+"finishing-template.bind" = "Bind";
+/* TRANSLATORS: Bind bottom */
+"finishing-template.bind-bottom" = "Bind bottom";
+/* TRANSLATORS: Bind left */
+"finishing-template.bind-left" = "Bind gauche";
+/* TRANSLATORS: Bind right */
+"finishing-template.bind-right" = "Bind right";
+/* TRANSLATORS: Bind top */
+"finishing-template.bind-top" = "Bind top";
+/* TRANSLATORS: Booklet maker */
+"finishing-template.booklet-maker" = "Booklet maker";
+/* TRANSLATORS: Coat */
+"finishing-template.coat" = "Coat";
+/* TRANSLATORS: Cover */
+"finishing-template.cover" = "Couverture";
+/* TRANSLATORS: Edge stitch */
+"finishing-template.edge-stitch" = "Bordure";
+/* TRANSLATORS: Edge stitch bottom */
+"finishing-template.edge-stitch-bottom" = "Point inférieur";
+/* TRANSLATORS: Edge stitch left */
+"finishing-template.edge-stitch-left" = "Couture gauche";
+/* TRANSLATORS: Edge stitch right */
+"finishing-template.edge-stitch-right" = "Couture droite";
+/* TRANSLATORS: Edge stitch top */
+"finishing-template.edge-stitch-top" = "Point de bord";
+/* TRANSLATORS: Fold */
+"finishing-template.fold" = "Fold";
+/* TRANSLATORS: Accordion fold */
+"finishing-template.fold-accordion" = "Repli d ' accord";
+/* TRANSLATORS: Double gate fold */
+"finishing-template.fold-double-gate" = "Double porte pliant";
+/* TRANSLATORS: Engineering Z fold */
+"finishing-template.fold-engineering-z" = "Ingénierie pli Z";
+/* TRANSLATORS: Gate fold */
+"finishing-template.fold-gate" = "Porte pliant";
+/* TRANSLATORS: Half fold */
+"finishing-template.fold-half" = "Demi pli";
+/* TRANSLATORS: Half Z fold */
+"finishing-template.fold-half-z" = "Half Z";
+/* TRANSLATORS: Left gate fold */
+"finishing-template.fold-left-gate" = "Repli de la porte gauche";
+/* TRANSLATORS: Letter fold */
+"finishing-template.fold-letter" = "Lit pli";
+/* TRANSLATORS: Parallel fold */
+"finishing-template.fold-parallel" = "Repli parallèle";
+/* TRANSLATORS: Poster fold */
+"finishing-template.fold-poster" = "Poster pli";
+/* TRANSLATORS: Right gate fold */
+"finishing-template.fold-right-gate" = "Tour droit";
+/* TRANSLATORS: Z fold */
+"finishing-template.fold-z" = "Z pli";
+/* TRANSLATORS: JDF F10-1 */
+"finishing-template.jdf-f10-1" = "JDF F10-1";
+/* TRANSLATORS: JDF F10-2 */
+"finishing-template.jdf-f10-2" = "JDF F10-2";
+/* TRANSLATORS: JDF F10-3 */
+"finishing-template.jdf-f10-3" = "JDF F10-3";
+/* TRANSLATORS: JDF F12-1 */
+"finishing-template.jdf-f12-1" = "JDF F12-1";
+/* TRANSLATORS: JDF F12-10 */
+"finishing-template.jdf-f12-10" = "JDF F12-10";
+/* TRANSLATORS: JDF F12-11 */
+"finishing-template.jdf-f12-11" = "JDF F12-11";
+/* TRANSLATORS: JDF F12-12 */
+"finishing-template.jdf-f12-12" = "JDF F12-12";
+/* TRANSLATORS: JDF F12-13 */
+"finishing-template.jdf-f12-13" = "JDF F12-13";
+/* TRANSLATORS: JDF F12-14 */
+"finishing-template.jdf-f12-14" = "JDF F12-14";
+/* TRANSLATORS: JDF F12-2 */
+"finishing-template.jdf-f12-2" = "JDF F12-2";
+/* TRANSLATORS: JDF F12-3 */
+"finishing-template.jdf-f12-3" = "JDF F12-3";
+/* TRANSLATORS: JDF F12-4 */
+"finishing-template.jdf-f12-4" = "JDF F12-4";
+/* TRANSLATORS: JDF F12-5 */
+"finishing-template.jdf-f12-5" = "JDF F12-5";
+/* TRANSLATORS: JDF F12-6 */
+"finishing-template.jdf-f12-6" = "JDF F12-6";
+/* TRANSLATORS: JDF F12-7 */
+"finishing-template.jdf-f12-7" = "JDF F12-7";
+/* TRANSLATORS: JDF F12-8 */
+"finishing-template.jdf-f12-8" = "JDF F12-8";
+/* TRANSLATORS: JDF F12-9 */
+"finishing-template.jdf-f12-9" = "JDF F12-9";
+/* TRANSLATORS: JDF F14-1 */
+"finishing-template.jdf-f14-1" = "JDF F14-1";
+/* TRANSLATORS: JDF F16-1 */
+"finishing-template.jdf-f16-1" = "JDF F16-1";
+/* TRANSLATORS: JDF F16-10 */
+"finishing-template.jdf-f16-10" = "JDF F16-10";
+/* TRANSLATORS: JDF F16-11 */
+"finishing-template.jdf-f16-11" = "JDF F16-11";
+/* TRANSLATORS: JDF F16-12 */
+"finishing-template.jdf-f16-12" = "JDF F16-12";
+/* TRANSLATORS: JDF F16-13 */
+"finishing-template.jdf-f16-13" = "JDF F16-13";
+/* TRANSLATORS: JDF F16-14 */
+"finishing-template.jdf-f16-14" = "JDF F16-14";
+/* TRANSLATORS: JDF F16-2 */
+"finishing-template.jdf-f16-2" = "JDF F16-2";
+/* TRANSLATORS: JDF F16-3 */
+"finishing-template.jdf-f16-3" = "JDF F16-3";
+/* TRANSLATORS: JDF F16-4 */
+"finishing-template.jdf-f16-4" = "JDF F16-4";
+/* TRANSLATORS: JDF F16-5 */
+"finishing-template.jdf-f16-5" = "JDF F16-5";
+/* TRANSLATORS: JDF F16-6 */
+"finishing-template.jdf-f16-6" = "JDF F16-6";
+/* TRANSLATORS: JDF F16-7 */
+"finishing-template.jdf-f16-7" = "JDF F16-7";
+/* TRANSLATORS: JDF F16-8 */
+"finishing-template.jdf-f16-8" = "JDF F16-8";
+/* TRANSLATORS: JDF F16-9 */
+"finishing-template.jdf-f16-9" = "JDF F16-9";
+/* TRANSLATORS: JDF F18-1 */
+"finishing-template.jdf-f18-1" = "JDF F18-1";
+/* TRANSLATORS: JDF F18-2 */
+"finishing-template.jdf-f18-2" = "JDF F18-2";
+/* TRANSLATORS: JDF F18-3 */
+"finishing-template.jdf-f18-3" = "JDF F18-3";
+/* TRANSLATORS: JDF F18-4 */
+"finishing-template.jdf-f18-4" = "JDF F18-4";
+/* TRANSLATORS: JDF F18-5 */
+"finishing-template.jdf-f18-5" = "JDF F18-5";
+/* TRANSLATORS: JDF F18-6 */
+"finishing-template.jdf-f18-6" = "JDF F18-6";
+/* TRANSLATORS: JDF F18-7 */
+"finishing-template.jdf-f18-7" = "JDF F18-7";
+/* TRANSLATORS: JDF F18-8 */
+"finishing-template.jdf-f18-8" = "JDF F18-8";
+/* TRANSLATORS: JDF F18-9 */
+"finishing-template.jdf-f18-9" = "JDF F18-9";
+/* TRANSLATORS: JDF F2-1 */
+"finishing-template.jdf-f2-1" = "JDF F2-1";
+/* TRANSLATORS: JDF F20-1 */
+"finishing-template.jdf-f20-1" = "JDF F20-1";
+/* TRANSLATORS: JDF F20-2 */
+"finishing-template.jdf-f20-2" = "JDF F20-2";
+/* TRANSLATORS: JDF F24-1 */
+"finishing-template.jdf-f24-1" = "JDF F24-1";
+/* TRANSLATORS: JDF F24-10 */
+"finishing-template.jdf-f24-10" = "JDF F24-10";
+/* TRANSLATORS: JDF F24-11 */
+"finishing-template.jdf-f24-11" = "JDF F24-11";
+/* TRANSLATORS: JDF F24-2 */
+"finishing-template.jdf-f24-2" = "JDF F24-2";
+/* TRANSLATORS: JDF F24-3 */
+"finishing-template.jdf-f24-3" = "JDF F24-3";
+/* TRANSLATORS: JDF F24-4 */
+"finishing-template.jdf-f24-4" = "JDF F24-4";
+/* TRANSLATORS: JDF F24-5 */
+"finishing-template.jdf-f24-5" = "JDF F24-5";
+/* TRANSLATORS: JDF F24-6 */
+"finishing-template.jdf-f24-6" = "JDF F24-6";
+/* TRANSLATORS: JDF F24-7 */
+"finishing-template.jdf-f24-7" = "JDF F24-7";
+/* TRANSLATORS: JDF F24-8 */
+"finishing-template.jdf-f24-8" = "JDF F24-8";
+/* TRANSLATORS: JDF F24-9 */
+"finishing-template.jdf-f24-9" = "JDF F24-9";
+/* TRANSLATORS: JDF F28-1 */
+"finishing-template.jdf-f28-1" = "JDF F28-1";
+/* TRANSLATORS: JDF F32-1 */
+"finishing-template.jdf-f32-1" = "JDF F32-1";
+/* TRANSLATORS: JDF F32-2 */
+"finishing-template.jdf-f32-2" = "JDF F32-2";
+/* TRANSLATORS: JDF F32-3 */
+"finishing-template.jdf-f32-3" = "JDF F32-3";
+/* TRANSLATORS: JDF F32-4 */
+"finishing-template.jdf-f32-4" = "JDF F32-4";
+/* TRANSLATORS: JDF F32-5 */
+"finishing-template.jdf-f32-5" = "JDF F32-5";
+/* TRANSLATORS: JDF F32-6 */
+"finishing-template.jdf-f32-6" = "JDF F32-6";
+/* TRANSLATORS: JDF F32-7 */
+"finishing-template.jdf-f32-7" = "JDF F32-7";
+/* TRANSLATORS: JDF F32-8 */
+"finishing-template.jdf-f32-8" = "JDF F32-8";
+/* TRANSLATORS: JDF F32-9 */
+"finishing-template.jdf-f32-9" = "JDF F32-9";
+/* TRANSLATORS: JDF F36-1 */
+"finishing-template.jdf-f36-1" = "JDF F36-1";
+/* TRANSLATORS: JDF F36-2 */
+"finishing-template.jdf-f36-2" = "JDF F36-2";
+/* TRANSLATORS: JDF F4-1 */
+"finishing-template.jdf-f4-1" = "JDF F4-1";
+/* TRANSLATORS: JDF F4-2 */
+"finishing-template.jdf-f4-2" = "JDF F4-2";
+/* TRANSLATORS: JDF F40-1 */
+"finishing-template.jdf-f40-1" = "JDF F40-1";
+/* TRANSLATORS: JDF F48-1 */
+"finishing-template.jdf-f48-1" = "JDF F48-1";
+/* TRANSLATORS: JDF F48-2 */
+"finishing-template.jdf-f48-2" = "JDF F48-2";
+/* TRANSLATORS: JDF F6-1 */
+"finishing-template.jdf-f6-1" = "JDF F6-1";
+/* TRANSLATORS: JDF F6-2 */
+"finishing-template.jdf-f6-2" = "JDF F6-2";
+/* TRANSLATORS: JDF F6-3 */
+"finishing-template.jdf-f6-3" = "JDF F6-3";
+/* TRANSLATORS: JDF F6-4 */
+"finishing-template.jdf-f6-4" = "JDF F6-4";
+/* TRANSLATORS: JDF F6-5 */
+"finishing-template.jdf-f6-5" = "JDF F6-5";
+/* TRANSLATORS: JDF F6-6 */
+"finishing-template.jdf-f6-6" = "JDF F6-6";
+/* TRANSLATORS: JDF F6-7 */
+"finishing-template.jdf-f6-7" = "JDF F6-7";
+/* TRANSLATORS: JDF F6-8 */
+"finishing-template.jdf-f6-8" = "JDF F6-8";
+/* TRANSLATORS: JDF F64-1 */
+"finishing-template.jdf-f64-1" = "JDF F64-1";
+/* TRANSLATORS: JDF F64-2 */
+"finishing-template.jdf-f64-2" = "JDF F64-2";
+/* TRANSLATORS: JDF F8-1 */
+"finishing-template.jdf-f8-1" = "JDF F8-1";
+/* TRANSLATORS: JDF F8-2 */
+"finishing-template.jdf-f8-2" = "JDF F8-2";
+/* TRANSLATORS: JDF F8-3 */
+"finishing-template.jdf-f8-3" = "JDF F8-3";
+/* TRANSLATORS: JDF F8-4 */
+"finishing-template.jdf-f8-4" = "JDF F8-4";
+/* TRANSLATORS: JDF F8-5 */
+"finishing-template.jdf-f8-5" = "JDF F8-5";
+/* TRANSLATORS: JDF F8-6 */
+"finishing-template.jdf-f8-6" = "JDF F8-6";
+/* TRANSLATORS: JDF F8-7 */
+"finishing-template.jdf-f8-7" = "JDF F8-7";
+/* TRANSLATORS: Jog offset */
+"finishing-template.jog-offset" = "Jog offset";
+/* TRANSLATORS: Laminate */
+"finishing-template.laminate" = "Laminate";
+/* TRANSLATORS: Punch */
+"finishing-template.punch" = "Punch";
+/* TRANSLATORS: Punch bottom left */
+"finishing-template.punch-bottom-left" = "Punch bottom left";
+/* TRANSLATORS: Punch bottom right */
+"finishing-template.punch-bottom-right" = "Poinçon bas droit";
+/* TRANSLATORS: 2-hole punch bottom */
+"finishing-template.punch-dual-bottom" = "2 trous en bas";
+/* TRANSLATORS: 2-hole punch left */
+"finishing-template.punch-dual-left" = "2 trous à gauche";
+/* TRANSLATORS: 2-hole punch right */
+"finishing-template.punch-dual-right" = "2 trous à droite";
+/* TRANSLATORS: 2-hole punch top */
+"finishing-template.punch-dual-top" = "Top 2 trous";
+/* TRANSLATORS: Multi-hole punch bottom */
+"finishing-template.punch-multiple-bottom" = "Poinçon multi-trouilles";
+/* TRANSLATORS: Multi-hole punch left */
+"finishing-template.punch-multiple-left" = "Poinçon multi trous à gauche";
+/* TRANSLATORS: Multi-hole punch right */
+"finishing-template.punch-multiple-right" = "Poinçon multifonctions à droite";
+/* TRANSLATORS: Multi-hole punch top */
+"finishing-template.punch-multiple-top" = "Poinçon multi trous";
+/* TRANSLATORS: 4-hole punch bottom */
+"finishing-template.punch-quad-bottom" = "4 trous en bas";
+/* TRANSLATORS: 4-hole punch left */
+"finishing-template.punch-quad-left" = "4 trous à gauche";
+/* TRANSLATORS: 4-hole punch right */
+"finishing-template.punch-quad-right" = "4 trous à droite";
+/* TRANSLATORS: 4-hole punch top */
+"finishing-template.punch-quad-top" = "Top 4 trous";
+/* TRANSLATORS: Punch top left */
+"finishing-template.punch-top-left" = "Punch top left";
+/* TRANSLATORS: Punch top right */
+"finishing-template.punch-top-right" = "Punch top right";
+/* TRANSLATORS: 3-hole punch bottom */
+"finishing-template.punch-triple-bottom" = "3 trous en bas";
+/* TRANSLATORS: 3-hole punch left */
+"finishing-template.punch-triple-left" = "3 trous à gauche";
+/* TRANSLATORS: 3-hole punch right */
+"finishing-template.punch-triple-right" = "3 trous à droite";
+/* TRANSLATORS: 3-hole punch top */
+"finishing-template.punch-triple-top" = "Top 3 trous";
+/* TRANSLATORS: Saddle stitch */
+"finishing-template.saddle-stitch" = "Triste couture";
+/* TRANSLATORS: Staple */
+"finishing-template.staple" = "Staple";
+/* TRANSLATORS: Staple bottom left */
+"finishing-template.staple-bottom-left" = "En bas gauche";
+/* TRANSLATORS: Staple bottom right */
+"finishing-template.staple-bottom-right" = "En bas droit";
+/* TRANSLATORS: 2 staples on bottom */
+"finishing-template.staple-dual-bottom" = "2 agrafes en bas";
+/* TRANSLATORS: 2 staples on left */
+"finishing-template.staple-dual-left" = "2 agrafes à gauche";
+/* TRANSLATORS: 2 staples on right */
+"finishing-template.staple-dual-right" = "2 agrafes à droite";
+/* TRANSLATORS: 2 staples on top */
+"finishing-template.staple-dual-top" = "2 agrafes sur le dessus";
+/* TRANSLATORS: Staple top left */
+"finishing-template.staple-top-left" = "Staple top gauche";
+/* TRANSLATORS: Staple top right */
+"finishing-template.staple-top-right" = "Staple top right";
+/* TRANSLATORS: 3 staples on bottom */
+"finishing-template.staple-triple-bottom" = "3 agrafes en bas";
+/* TRANSLATORS: 3 staples on left */
+"finishing-template.staple-triple-left" = "3 agrafes à gauche";
+/* TRANSLATORS: 3 staples on right */
+"finishing-template.staple-triple-right" = "3 agrafes à droite";
+/* TRANSLATORS: 3 staples on top */
+"finishing-template.staple-triple-top" = "3 agrafes sur le dessus";
+/* TRANSLATORS: Cut */
+"finishing-template.trim" = "Coupe";
+/* TRANSLATORS: Cut after every set */
+"finishing-template.trim-after-copies" = "Couper après chaque set";
+/* TRANSLATORS: Cut after every document */
+"finishing-template.trim-after-documents" = "Couper après chaque document";
+/* TRANSLATORS: Cut after job */
+"finishing-template.trim-after-job" = "Couper après le travail";
+/* TRANSLATORS: Cut after every page */
+"finishing-template.trim-after-pages" = "Couper après chaque page";
+/* TRANSLATORS: Fold */
+"finishings.10" = "Fold";
+/* TRANSLATORS: Z fold */
+"finishings.100" = "Z pli";
+/* TRANSLATORS: Engineering Z fold */
+"finishings.101" = "Ingénierie pli Z";
+/* TRANSLATORS: Cut */
+"finishings.11" = "Coupe";
+/* TRANSLATORS: Bale */
+"finishings.12" = "Bale";
+/* TRANSLATORS: Booklet maker */
+"finishings.13" = "Booklet maker";
+/* TRANSLATORS: Jog offset */
+"finishings.14" = "Jog offset";
+/* TRANSLATORS: Coat */
+"finishings.15" = "Coat";
+/* TRANSLATORS: Laminate */
+"finishings.16" = "Laminate";
+/* TRANSLATORS: Staple top left */
+"finishings.20" = "Staple top gauche";
+/* TRANSLATORS: Staple bottom left */
+"finishings.21" = "En bas gauche";
+/* TRANSLATORS: Staple top right */
+"finishings.22" = "Staple top right";
+/* TRANSLATORS: Staple bottom right */
+"finishings.23" = "En bas droit";
+/* TRANSLATORS: Edge stitch left */
+"finishings.24" = "Couture gauche";
+/* TRANSLATORS: Edge stitch top */
+"finishings.25" = "Point de bord";
+/* TRANSLATORS: Edge stitch right */
+"finishings.26" = "Couture droite";
+/* TRANSLATORS: Edge stitch bottom */
+"finishings.27" = "Point inférieur";
+/* TRANSLATORS: 2 staples on left */
+"finishings.28" = "2 agrafes à gauche";
+/* TRANSLATORS: 2 staples on top */
+"finishings.29" = "2 agrafes sur le dessus";
+/* TRANSLATORS: None */
+"finishings.3" = "None";
+/* TRANSLATORS: 2 staples on right */
+"finishings.30" = "2 agrafes à droite";
+/* TRANSLATORS: 2 staples on bottom */
+"finishings.31" = "2 agrafes en bas";
+/* TRANSLATORS: 3 staples on left */
+"finishings.32" = "3 agrafes à gauche";
+/* TRANSLATORS: 3 staples on top */
+"finishings.33" = "3 agrafes sur le dessus";
+/* TRANSLATORS: 3 staples on right */
+"finishings.34" = "3 agrafes à droite";
+/* TRANSLATORS: 3 staples on bottom */
+"finishings.35" = "3 agrafes en bas";
+/* TRANSLATORS: Staple */
+"finishings.4" = "Staple";
+/* TRANSLATORS: Punch */
+"finishings.5" = "Punch";
+/* TRANSLATORS: Bind left */
+"finishings.50" = "Bind gauche";
+/* TRANSLATORS: Bind top */
+"finishings.51" = "Bind top";
+/* TRANSLATORS: Bind right */
+"finishings.52" = "Bind right";
+/* TRANSLATORS: Bind bottom */
+"finishings.53" = "Bind bottom";
+/* TRANSLATORS: Cover */
+"finishings.6" = "Couverture";
+/* TRANSLATORS: Cut after every page */
+"finishings.60" = "Couper après chaque page";
+/* TRANSLATORS: Cut after every document */
+"finishings.61" = "Couper après chaque document";
+/* TRANSLATORS: Cut after every set */
+"finishings.62" = "Couper après chaque set";
+/* TRANSLATORS: Cut after job */
+"finishings.63" = "Couper après le travail";
+/* TRANSLATORS: Bind */
+"finishings.7" = "Bind";
+/* TRANSLATORS: Punch top left */
+"finishings.70" = "Punch top left";
+/* TRANSLATORS: Punch bottom left */
+"finishings.71" = "Punch bottom left";
+/* TRANSLATORS: Punch top right */
+"finishings.72" = "Punch top right";
+/* TRANSLATORS: Punch bottom right */
+"finishings.73" = "Poinçon bas droit";
+/* TRANSLATORS: 2-hole punch left */
+"finishings.74" = "2 trous à gauche";
+/* TRANSLATORS: 2-hole punch top */
+"finishings.75" = "Top 2 trous";
+/* TRANSLATORS: 2-hole punch right */
+"finishings.76" = "2 trous à droite";
+/* TRANSLATORS: 2-hole punch bottom */
+"finishings.77" = "2 trous en bas";
+/* TRANSLATORS: 3-hole punch left */
+"finishings.78" = "3 trous à gauche";
+/* TRANSLATORS: 3-hole punch top */
+"finishings.79" = "Top 3 trous";
+/* TRANSLATORS: Saddle stitch */
+"finishings.8" = "Triste couture";
+/* TRANSLATORS: 3-hole punch right */
+"finishings.80" = "3 trous à droite";
+/* TRANSLATORS: 3-hole punch bottom */
+"finishings.81" = "3 trous en bas";
+/* TRANSLATORS: 4-hole punch left */
+"finishings.82" = "4 trous à gauche";
+/* TRANSLATORS: 4-hole punch top */
+"finishings.83" = "Top 4 trous";
+/* TRANSLATORS: 4-hole punch right */
+"finishings.84" = "4 trous à droite";
+/* TRANSLATORS: 4-hole punch bottom */
+"finishings.85" = "4 trous en bas";
+/* TRANSLATORS: Multi-hole punch left */
+"finishings.86" = "Poinçon multi trous à gauche";
+/* TRANSLATORS: Multi-hole punch top */
+"finishings.87" = "Poinçon multi trous";
+/* TRANSLATORS: Multi-hole punch right */
+"finishings.88" = "Poinçon multifonctions à droite";
+/* TRANSLATORS: Multi-hole punch bottom */
+"finishings.89" = "Poinçon multi-trouilles";
+/* TRANSLATORS: Edge stitch */
+"finishings.9" = "Bordure";
+/* TRANSLATORS: Accordion fold */
+"finishings.90" = "Repli d ' accord";
+/* TRANSLATORS: Double gate fold */
+"finishings.91" = "Double porte pliant";
+/* TRANSLATORS: Gate fold */
+"finishings.92" = "Porte pliant";
+/* TRANSLATORS: Half fold */
+"finishings.93" = "Demi pli";
+/* TRANSLATORS: Half Z fold */
+"finishings.94" = "Half Z";
+/* TRANSLATORS: Left gate fold */
+"finishings.95" = "Repli de la porte gauche";
+/* TRANSLATORS: Letter fold */
+"finishings.96" = "Lit pli";
+/* TRANSLATORS: Parallel fold */
+"finishings.97" = "Repli parallèle";
+/* TRANSLATORS: Poster fold */
+"finishings.98" = "Poster pli";
+/* TRANSLATORS: Right gate fold */
+"finishings.99" = "Tour droit";
+/* TRANSLATORS: Fold */
+"folding" = "Fold";
+/* TRANSLATORS: Fold Direction */
+"folding-direction" = "Fold Direction";
+/* TRANSLATORS: Inward */
+"folding-direction.inward" = "Entendu";
+/* TRANSLATORS: Outward */
+"folding-direction.outward" = "Vers l ' extérieur";
+/* TRANSLATORS: Fold Position */
+"folding-offset" = "Position froide";
+/* TRANSLATORS: Fold Edge */
+"folding-reference-edge" = "Fold Edge";
+/* TRANSLATORS: Bottom */
+"folding-reference-edge.bottom" = "Bottom";
+/* TRANSLATORS: Left */
+"folding-reference-edge.left" = "Gauche";
+/* TRANSLATORS: Right */
+"folding-reference-edge.right" = "Droit";
+/* TRANSLATORS: Top */
+"folding-reference-edge.top" = "Top";
+"imposition-template.banner" = "Banner";
+"imposition-template.banner-compressed" = "Banner compressé";
+"imposition-template.booklet" = "Booklet";
+/* TRANSLATORS: None */
+"imposition-template.none" = "None";
+"imposition-template.position_center_bottom" = "Position centre bas";
+"imposition-template.position_center_middle" = "Centre de position centrale";
+"imposition-template.position_center_top" = "Point central";
+"imposition-template.position_left_bottom" = "Position gauche";
+"imposition-template.position_left_middle" = "Position gauche";
+"imposition-template.position_left_top" = "Position gauche";
+"imposition-template.position_right_bottom" = "Position en bas";
+"imposition-template.position_right_middle" = "Position à droite";
+"imposition-template.position_right_top" = "Position en haut";
+"imposition-template.same-up_2_2_104x148mm" = "Même chose 2 104x148mm";
+"imposition-template.same-up_2_2_3.5x5in" = "Même chose 2 3,5x5in";
+"imposition-template.same-up_4_3_2x3.5in" = "Même chose 4 3 2x3.5in";
+/* TRANSLATORS: Signature */
+"imposition-template.signature" = "Signature";
+"imposition-template.tile" = "Carrelage";
+/* TRANSLATORS: Scanning Mode */
+"input-color-mode" = "Mode de numérisation";
+/* TRANSLATORS: Automatic */
+"input-color-mode.auto" = "Automatique";
+/* TRANSLATORS: Text */
+"input-color-mode.bi-level" = "Texte";
+/* TRANSLATORS: 16-bit CMYK */
+"input-color-mode.cmyk_16" = "CMYK de 16 bits";
+/* TRANSLATORS: 8-bit CMYK */
+"input-color-mode.cmyk_8" = "8-bit CMYK";
+/* TRANSLATORS: Color */
+"input-color-mode.color" = "Couleur";
+/* TRANSLATORS: 8-bit Color */
+"input-color-mode.color_8" = "Couleur 8-bit";
+/* TRANSLATORS: Monochrome */
+"input-color-mode.monochrome" = "Monochrome";
+/* TRANSLATORS: 16-bit monochrome */
+"input-color-mode.monochrome_16" = "monochrome de 16 bits";
+/* TRANSLATORS: 4-bit monochrome */
+"input-color-mode.monochrome_4" = "monochrome à 4 bits";
+/* TRANSLATORS: 8-bit monochrome */
+"input-color-mode.monochrome_8" = "monochrome à 8 bits";
+/* TRANSLATORS: 16-bit RGB */
+"input-color-mode.rgb_16" = "RGB de 16 bits";
+/* TRANSLATORS: 16-bit RGBA */
+"input-color-mode.rgba_16" = "RGBA 16 bits";
+/* TRANSLATORS: 8-bit RGBA */
+"input-color-mode.rgba_8" = "8-bit RGBA";
+/* TRANSLATORS: Scan Content */
+"input-content-type" = "Scan Content";
+/* TRANSLATORS: Automatic */
+"input-content-type.auto" = "Automatique";
+/* TRANSLATORS: Halftone */
+"input-content-type.halftone" = "Halftone";
+/* TRANSLATORS: Line art */
+"input-content-type.line-art" = "Art de ligne";
+/* TRANSLATORS: Magazine */
+"input-content-type.magazine" = "Magazine";
+/* TRANSLATORS: Photo */
+"input-content-type.photo" = "Photo";
+/* TRANSLATORS: Text */
+"input-content-type.text" = "Texte";
+/* TRANSLATORS: Text and photo */
+"input-content-type.text-and-photo" = "Texte et photo";
+/* TRANSLATORS: Film Type */
+"input-film-scan-mode" = "Type de film";
+/* TRANSLATORS: Black and white negative film */
+"input-film-scan-mode.black-and-white-negative-film" = "Film négatif noir et blanc";
+/* TRANSLATORS: Color negative film */
+"input-film-scan-mode.color-negative-film" = "Film négatif couleur";
+/* TRANSLATORS: Color slide film */
+"input-film-scan-mode.color-slide-film" = "Film couleur";
+/* TRANSLATORS: Not applicable */
+"input-film-scan-mode.not-applicable" = "Sans objet";
+/* TRANSLATORS: Automatic */
+"input-media.auto" = "Automatique";
+/* TRANSLATORS: 2-Sided Scanning */
+"input-sides" = "2-Sided Scanning";
+/* TRANSLATORS: Automatic Document Feeder */
+"input-source.adf" = "Automatic Document Feeder";
+/* TRANSLATORS: Film reader */
+"input-source.film-reader" = "Film reader";
+/* TRANSLATORS: Platen */
+"input-source.platen" = "Platen";
+"job-complete-before.day-time" = "Heure";
+"job-complete-before.evening" = "Bonsoir";
+"job-complete-before.night" = "Nuit";
+"job-complete-before.none" = "None";
+"job-complete-before.second-shift" = "Deuxième quart";
+"job-complete-before.third-shift" = "Troisième quart";
+"job-complete-before.weekend" = "Week-end";
+/* TRANSLATORS: Delay Output Until */
+"job-delay-output-until" = "Sortie de retard";
+/* TRANSLATORS: Daytime */
+"job-delay-output-until.day-time" = "Heure";
+/* TRANSLATORS: Evening */
+"job-delay-output-until.evening" = "Bonsoir";
+/* TRANSLATORS: Released */
+"job-delay-output-until.indefinite" = "Libéré";
+/* TRANSLATORS: Night */
+"job-delay-output-until.night" = "Nuit";
+/* TRANSLATORS: No delay */
+"job-delay-output-until.no-delay-output" = "Pas de retard";
+/* TRANSLATORS: Second shift */
+"job-delay-output-until.second-shift" = "Deuxième quart";
+/* TRANSLATORS: Third shift */
+"job-delay-output-until.third-shift" = "Troisième quart";
+/* TRANSLATORS: Weekend */
+"job-delay-output-until.weekend" = "Week-end";
+/* TRANSLATORS: On Error */
+"job-error-action" = "Erreur";
+/* TRANSLATORS: Abort job */
+"job-error-action.abort-job" = "Abort job";
+/* TRANSLATORS: Cancel job */
+"job-error-action.cancel-job" = "Annuler l'emploi.";
+/* TRANSLATORS: Continue job */
+"job-error-action.continue-job" = "Continuer de travailler";
+/* TRANSLATORS: Suspend job */
+"job-error-action.suspend-job" = "Suspendre le travail";
+/* TRANSLATORS: Print Error Sheet */
+"job-error-sheet" = "Imprimer la fiche d'erreur";
+/* TRANSLATORS: Type of Error Sheet */
+"job-error-sheet-type" = "Type de fiche d'erreur";
+/* TRANSLATORS: None */
+"job-error-sheet-type.none" = "None";
+/* TRANSLATORS: Standard */
+"job-error-sheet-type.standard" = "Standard";
+/* TRANSLATORS: Print Error Sheet */
+"job-error-sheet-when" = "Imprimer la fiche d'erreur";
+/* TRANSLATORS: Always */
+"job-error-sheet-when.always" = "Toujours";
+/* TRANSLATORS: On error */
+"job-error-sheet-when.on-error" = "Erreur";
+/* TRANSLATORS: Hold Until */
+"job-hold-until" = "Attends.";
+/* TRANSLATORS: Daytime */
+"job-hold-until.day-time" = "Heure";
+/* TRANSLATORS: Evening */
+"job-hold-until.evening" = "Bonsoir";
+/* TRANSLATORS: Released */
+"job-hold-until.indefinite" = "Libéré";
+/* TRANSLATORS: Night */
+"job-hold-until.night" = "Nuit";
+/* TRANSLATORS: No hold */
+"job-hold-until.no-hold" = "Non.";
+/* TRANSLATORS: Second shift */
+"job-hold-until.second-shift" = "Deuxième quart";
+/* TRANSLATORS: Third shift */
+"job-hold-until.third-shift" = "Troisième quart";
+/* TRANSLATORS: Weekend */
+"job-hold-until.weekend" = "Week-end";
+/* TRANSLATORS: Retain Job */
+"job-retain-until" = "Retain Job";
+/* TRANSLATORS: End of day */
+"job-retain-until.end-of-day" = "Fin de la journée";
+/* TRANSLATORS: End of month */
+"job-retain-until.end-of-month" = "Fin du mois";
+/* TRANSLATORS: End of week */
+"job-retain-until.end-of-week" = "Fin de semaine";
+/* TRANSLATORS: Forever */
+"job-retain-until.indefinite" = "Pour toujours";
+/* TRANSLATORS: Never */
+"job-retain-until.none" = "Jamais";
+/* TRANSLATORS: Banner Pages */
+"job-sheets" = "Pages Banner";
+/* TRANSLATORS: Banner Pages */
+"job-sheets-col" = "Pages Banner";
+/* TRANSLATORS: First page in document */
+"job-sheets.first-print-stream-page" = "Première page dans le document";
+/* TRANSLATORS: Start and end sheets */
+"job-sheets.job-both-sheet" = "Démarrage et feuilles d ' extrémité";
+"job-sheets.job-both-sheets" = "Job deux feuilles";
+/* TRANSLATORS: End sheet */
+"job-sheets.job-end-sheet" = "Fiche technique";
+/* TRANSLATORS: Start sheet */
+"job-sheets.job-start-sheet" = "Démarrage";
+/* TRANSLATORS: None */
+"job-sheets.none" = "None";
+/* TRANSLATORS: Standard */
+"job-sheets.standard" = "Standard";
+/* TRANSLATORS: Stopping */
+"job-state-reasons.aborted-by-system" = "Arrête.";
+/* TRANSLATORS: Account authorization failed */
+"job-state-reasons.account-authorization-failed" = "Autorisation du compte";
+/* TRANSLATORS: Account closed */
+"job-state-reasons.account-closed" = "Compte fermé";
+/* TRANSLATORS: Account info needed */
+"job-state-reasons.account-info-needed" = "Informations de compte nécessaires";
+/* TRANSLATORS: Account limit reached */
+"job-state-reasons.account-limit-reached" = "Limite du compte";
+/* TRANSLATORS: Decompression error */
+"job-state-reasons.compression-error" = "Erreur de décompression";
+/* TRANSLATORS: Conflicting attributes */
+"job-state-reasons.conflicting-attributes" = "Attributs conflictuels";
+/* TRANSLATORS: Connected to destination */
+"job-state-reasons.connected-to-destination" = "Connecté à destination";
+/* TRANSLATORS: Connecting to destination */
+"job-state-reasons.connecting-to-destination" = "Connexion à destination";
+/* TRANSLATORS: Destination uri failed */
+"job-state-reasons.destination-uri-failed" = "Destination uri échoué";
+/* TRANSLATORS: Digital signature did not verify */
+"job-state-reasons.digital-signature-did-not-verify" = "La signature numérique n'a pas vérifié";
+/* TRANSLATORS: Digital signature type not supported */
+"job-state-reasons.digital-signature-type-not-supported" = "Type de signature numérique non supporté";
+/* TRANSLATORS: Document access error */
+"job-state-reasons.document-access-error" = "Erreur d ' accès aux documents";
+/* TRANSLATORS: Document format error */
+"job-state-reasons.document-format-error" = "Erreur de format de document";
+/* TRANSLATORS: Document password error */
+"job-state-reasons.document-password-error" = "Document password error";
+/* TRANSLATORS: Document permission error */
+"job-state-reasons.document-permission-error" = "Document permission error";
+/* TRANSLATORS: Document security error */
+"job-state-reasons.document-security-error" = "Erreur de sécurité";
+/* TRANSLATORS: Document unprintable error */
+"job-state-reasons.document-unprintable-error" = "Document une erreur imprimable";
+/* TRANSLATORS: Errors detected */
+"job-state-reasons.errors-detected" = "Erreurs détectées";
+/* TRANSLATORS: Canceled at printer */
+"job-state-reasons.job-canceled-at-device" = "Annulé à l'imprimante";
+/* TRANSLATORS: Canceled by operator */
+"job-state-reasons.job-canceled-by-operator" = "Annulé par l ' opérateur";
+/* TRANSLATORS: Canceled by user */
+"job-state-reasons.job-canceled-by-user" = "Annulé par l'utilisateur";
+/* TRANSLATORS: */
+"job-state-reasons.job-completed-successfully" = " ";
+/* TRANSLATORS: Completed with errors */
+"job-state-reasons.job-completed-with-errors" = "Complété par erreur";
+/* TRANSLATORS: Completed with warnings */
+"job-state-reasons.job-completed-with-warnings" = "Complet avec avertissements";
+/* TRANSLATORS: Insufficient data */
+"job-state-reasons.job-data-insufficient" = "Données insuffisantes";
+/* TRANSLATORS: Job delay output until specified */
+"job-state-reasons.job-delay-output-until-specified" = "Durée de l ' emploi";
+/* TRANSLATORS: Job digital signature wait */
+"job-state-reasons.job-digital-signature-wait" = "Job signature numérique attendez";
+/* TRANSLATORS: Job fetchable */
+"job-state-reasons.job-fetchable" = "Job fetchable";
+/* TRANSLATORS: Job held for review */
+"job-state-reasons.job-held-for-review" = "Job held for review";
+/* TRANSLATORS: Job held */
+"job-state-reasons.job-hold-until-specified" = "Job held";
+/* TRANSLATORS: Incoming */
+"job-state-reasons.job-incoming" = "À venir";
+/* TRANSLATORS: Interpreting */
+"job-state-reasons.job-interpreting" = "Interprétation";
+/* TRANSLATORS: Outgoing */
+"job-state-reasons.job-outgoing" = "En cours";
+/* TRANSLATORS: Job password wait */
+"job-state-reasons.job-password-wait" = "Job password";
+/* TRANSLATORS: Job printed successfully */
+"job-state-reasons.job-printed-successfully" = "Job imprimé avec succès";
+/* TRANSLATORS: Job printed with errors */
+"job-state-reasons.job-printed-with-errors" = "Job imprimé avec des erreurs";
+/* TRANSLATORS: Job printed with warnings */
+"job-state-reasons.job-printed-with-warnings" = "Job imprimé avec avertissements";
+/* TRANSLATORS: Printing */
+"job-state-reasons.job-printing" = "Impression";
+/* TRANSLATORS: Preparing to print */
+"job-state-reasons.job-queued" = "Préparation à imprimer";
+/* TRANSLATORS: Processing document */
+"job-state-reasons.job-queued-for-marker" = "Document de traitement";
+/* TRANSLATORS: Job release wait */
+"job-state-reasons.job-release-wait" = "Job release wait";
+/* TRANSLATORS: Restartable */
+"job-state-reasons.job-restartable" = "Restartable";
+/* TRANSLATORS: Job resuming */
+"job-state-reasons.job-resuming" = "Resuming Job";
+/* TRANSLATORS: Job saved successfully */
+"job-state-reasons.job-saved-successfully" = "Job sauvé avec succès";
+/* TRANSLATORS: Job saved with errors */
+"job-state-reasons.job-saved-with-errors" = "Job enregistré avec des erreurs";
+/* TRANSLATORS: Job saved with warnings */
+"job-state-reasons.job-saved-with-warnings" = "Job sauvé avec des avertissements";
+/* TRANSLATORS: Job saving */
+"job-state-reasons.job-saving" = "Sauvegarde d ' emplois";
+/* TRANSLATORS: Job spooling */
+"job-state-reasons.job-spooling" = "Covoiturage de travail";
+/* TRANSLATORS: Job streaming */
+"job-state-reasons.job-streaming" = "Job streaming";
+/* TRANSLATORS: Suspended */
+"job-state-reasons.job-suspended" = "Suspendue";
+/* TRANSLATORS: Job suspended by operator */
+"job-state-reasons.job-suspended-by-operator" = "Emploi suspendu par l ' opérateur";
+/* TRANSLATORS: Job suspended by system */
+"job-state-reasons.job-suspended-by-system" = "Emploi suspendu par système";
+/* TRANSLATORS: Job suspended by user */
+"job-state-reasons.job-suspended-by-user" = "Emploi suspendu par l ' utilisateur";
+/* TRANSLATORS: Job suspending */
+"job-state-reasons.job-suspending" = "Postes suspendus";
+/* TRANSLATORS: Job transferring */
+"job-state-reasons.job-transferring" = "Transfert d ' emplois";
+/* TRANSLATORS: Transforming */
+"job-state-reasons.job-transforming" = "Transformation";
+/* TRANSLATORS: None */
+"job-state-reasons.none" = "None";
+/* TRANSLATORS: Printer offline */
+"job-state-reasons.printer-stopped" = "Imprimante hors ligne";
+/* TRANSLATORS: Printer partially stopped */
+"job-state-reasons.printer-stopped-partly" = "Imprimante partiellement arrêtée";
+/* TRANSLATORS: Stopping */
+"job-state-reasons.processing-to-stop-point" = "Arrête.";
+/* TRANSLATORS: Ready */
+"job-state-reasons.queued-in-device" = "Prêt";
+/* TRANSLATORS: Resources are not ready */
+"job-state-reasons.resources-are-not-ready" = "Les ressources ne sont pas prêtes";
+/* TRANSLATORS: Resources are not supported */
+"job-state-reasons.resources-are-not-supported" = "Les ressources ne sont pas soutenues";
+/* TRANSLATORS: Service offline */
+"job-state-reasons.service-off-line" = "Service offline";
+/* TRANSLATORS: Submission interrupted */
+"job-state-reasons.submission-interrupted" = "Demande interrompue";
+/* TRANSLATORS: Unsupported attributes or values */
+"job-state-reasons.unsupported-attributes-or-values" = "Attributs ou valeurs non supportés";
+/* TRANSLATORS: Unsupported compression */
+"job-state-reasons.unsupported-compression" = "compression non soutenue";
+/* TRANSLATORS: Unsupported document format */
+"job-state-reasons.unsupported-document-format" = "Format de document non supporté";
+/* TRANSLATORS: Waiting for user action */
+"job-state-reasons.waiting-for-user-action" = "Attendre une action utilisateur";
+/* TRANSLATORS: Warnings detected */
+"job-state-reasons.warnings-detected" = "Avertissements détectés";
+/* TRANSLATORS: Pending */
+"job-state.3" = "En attente";
+/* TRANSLATORS: Held */
+"job-state.4" = "tenue";
+/* TRANSLATORS: Processing */
+"job-state.5" = "Traitement";
+/* TRANSLATORS: Stopped */
+"job-state.6" = "Arrêté";
+/* TRANSLATORS: Canceled */
+"job-state.7" = "Annulé";
+/* TRANSLATORS: Aborted */
+"job-state.8" = "Avortée";
+/* TRANSLATORS: Completed */
+"job-state.9" = "Complété";
+"label-mode-configured.applicator" = "Applicateur";
+"label-mode-configured.cutter" = "Cutter";
+"label-mode-configured.cutter-delayed" = "Cutter delayed";
+"label-mode-configured.kiosk" = "Kiosk";
+"label-mode-configured.peel-off" = "Peel off";
+"label-mode-configured.peel-off-prepeel" = "Peler le prépeel";
+"label-mode-configured.rewind" = "Rewind";
+"label-mode-configured.rfid" = "Rfid";
+"label-mode-configured.tear-off" = "Déchirez.";
+/* TRANSLATORS: Laminate Pages */
+"laminating" = "Pages stratifiées";
+/* TRANSLATORS: Laminate */
+"laminating-sides" = "Laminate";
+/* TRANSLATORS: Back only */
+"laminating-sides.back" = "Retour seulement";
+/* TRANSLATORS: Front and back */
+"laminating-sides.both" = "Avant et arrière";
+/* TRANSLATORS: Front only */
+"laminating-sides.front" = "Front seulement";
+/* TRANSLATORS: Type of Lamination */
+"laminating-type" = "Type de lamination";
+/* TRANSLATORS: Archival */
+"laminating-type.archival" = "Archival";
+"laminating-type.archival-glossy" = "Archival glossy";
+"laminating-type.archival-matte" = "Archival matte";
+"laminating-type.archival-semi-gloss" = "Archival semi gloss";
+/* TRANSLATORS: Glossy */
+"laminating-type.glossy" = "Glossy";
+/* TRANSLATORS: High gloss */
+"laminating-type.high-gloss" = "High gloss";
+/* TRANSLATORS: Matte */
+"laminating-type.matte" = "Matte";
+/* TRANSLATORS: Semi-gloss */
+"laminating-type.semi-gloss" = "Semi-gloss";
+/* TRANSLATORS: Translucent */
+"laminating-type.translucent" = "Translucent";
+"laminating-type.water-resistant" = "Résistant à l ' eau";
+/* TRANSLATORS: Amount of Material */
+"material-amount" = "Montant du matériel";
+/* TRANSLATORS: Units */
+"material-amount-units" = "Unités";
+/* TRANSLATORS: Grams */
+"material-amount-units.g" = "Grams";
+/* TRANSLATORS: Kilograms */
+"material-amount-units.kg" = "Kilogrammes";
+/* TRANSLATORS: Liters */
+"material-amount-units.l" = "Liters";
+/* TRANSLATORS: Meters */
+"material-amount-units.m" = "Meters";
+/* TRANSLATORS: Milliliters */
+"material-amount-units.ml" = "Milliliters";
+/* TRANSLATORS: Millimeters */
+"material-amount-units.mm" = "Millimètres";
+/* TRANSLATORS: Use Material For */
+"material-purpose" = "Matériau d'utilisation pour";
+/* TRANSLATORS: Everything */
+"material-purpose.all" = "Tout";
+/* TRANSLATORS: Base */
+"material-purpose.base" = "Base";
+/* TRANSLATORS: In-fill */
+"material-purpose.in-fill" = "Remplissage";
+/* TRANSLATORS: Shell */
+"material-purpose.shell" = "Shell";
+/* TRANSLATORS: Supports */
+"material-purpose.support" = "Appuis";
+/* TRANSLATORS: Feed Rate */
+"material-rate" = "Taux d ' alimentation";
+/* TRANSLATORS: Units */
+"material-rate-units" = "Unités";
+/* TRANSLATORS: Milligrams per second */
+"material-rate-units.mg_second" = "Milligrammes par seconde";
+/* TRANSLATORS: Milliliters per second */
+"material-rate-units.ml_second" = "Milliliters par seconde";
+/* TRANSLATORS: Millimeters per second */
+"material-rate-units.mm_second" = "Millimètres par seconde";
+/* TRANSLATORS: ABS */
+"material-type.abs" = "ABS";
+/* TRANSLATORS: Carbon fiber ABS */
+"material-type.abs-carbon-fiber" = "Fibre de carbone ABS";
+/* TRANSLATORS: Carbon nanotube ABS */
+"material-type.abs-carbon-nanotube" = "nanotube de carbone ABS";
+/* TRANSLATORS: Chocolate */
+"material-type.chocolate" = "Chocolat";
+/* TRANSLATORS: Gold */
+"material-type.gold" = "Or";
+/* TRANSLATORS: Nylon */
+"material-type.nylon" = "Nylon";
+/* TRANSLATORS: PET */
+"material-type.pet" = "PET";
+/* TRANSLATORS: Photopolymer */
+"material-type.photopolymer" = "Photopolymer";
+/* TRANSLATORS: PLA */
+"material-type.pla" = "PLACE";
+/* TRANSLATORS: Conductive PLA */
+"material-type.pla-conductive" = "PLAN DE conduite";
+/* TRANSLATORS: Dissolvable PLA */
+"material-type.pla-dissolvable" = "Dissolvable PLA";
+/* TRANSLATORS: Flexible PLA */
+"material-type.pla-flexible" = "Flexible PLA";
+/* TRANSLATORS: Magnetic PLA */
+"material-type.pla-magnetic" = "Magnetic PLA";
+/* TRANSLATORS: Steel PLA */
+"material-type.pla-steel" = "Steel PLA";
+/* TRANSLATORS: Stone PLA */
+"material-type.pla-stone" = "Stone PLA";
+/* TRANSLATORS: Wood PLA */
+"material-type.pla-wood" = "Wood PLA";
+/* TRANSLATORS: Polycarbonate */
+"material-type.polycarbonate" = "Polycarbonate";
+/* TRANSLATORS: Dissolvable PVA */
+"material-type.pva-dissolvable" = "PVA dissolvable";
+/* TRANSLATORS: Silver */
+"material-type.silver" = "Argent";
+/* TRANSLATORS: Titanium */
+"material-type.titanium" = "Titanium";
+/* TRANSLATORS: Wax */
+"material-type.wax" = "Wax";
+/* TRANSLATORS: Media Size */
+"media" = "Taille des médias";
+/* TRANSLATORS: Back Coating of Media */
+"media-back-coating" = "Back Coating of Media";
+/* TRANSLATORS: Glossy */
+"media-back-coating.glossy" = "Glossy";
+/* TRANSLATORS: High gloss */
+"media-back-coating.high-gloss" = "High gloss";
+/* TRANSLATORS: Matte */
+"media-back-coating.matte" = "Matte";
+/* TRANSLATORS: None */
+"media-back-coating.none" = "None";
+/* TRANSLATORS: Satin */
+"media-back-coating.satin" = "Satin";
+/* TRANSLATORS: Semi-gloss */
+"media-back-coating.semi-gloss" = "Semi-gloss";
+/* TRANSLATORS: Media */
+"media-col" = "Médias";
+/* TRANSLATORS: Black */
+"media-color.black" = "Noir";
+/* TRANSLATORS: Blue */
+"media-color.blue" = "Bleu";
+/* TRANSLATORS: Brown */
+"media-color.brown" = "Brown";
+/* TRANSLATORS: Buff */
+"media-color.buff" = "Buff";
+/* TRANSLATORS: Clear black */
+"media-color.clear-black" = "Noir clair";
+/* TRANSLATORS: Clear blue */
+"media-color.clear-blue" = "Bleu clair";
+/* TRANSLATORS: Clear brown */
+"media-color.clear-brown" = "Brun clair";
+/* TRANSLATORS: Clear buff */
+"media-color.clear-buff" = "Buff clair";
+/* TRANSLATORS: Clear cyan */
+"media-color.clear-cyan" = "Cyan clair";
+/* TRANSLATORS: Clear gold */
+"media-color.clear-gold" = "Or clair";
+/* TRANSLATORS: Clear goldenrod */
+"media-color.clear-goldenrod" = "Bague d'or claire";
+/* TRANSLATORS: Clear gray */
+"media-color.clear-gray" = "gris clair";
+/* TRANSLATORS: Clear green */
+"media-color.clear-green" = "Vert clair";
+/* TRANSLATORS: Clear ivory */
+"media-color.clear-ivory" = "ivoire clair";
+/* TRANSLATORS: Clear magenta */
+"media-color.clear-magenta" = "Magenta clair";
+/* TRANSLATORS: Clear multi color */
+"media-color.clear-multi-color" = "Couleur multicolore";
+/* TRANSLATORS: Clear mustard */
+"media-color.clear-mustard" = "Moutarde claire";
+/* TRANSLATORS: Clear orange */
+"media-color.clear-orange" = "Orangé clair";
+/* TRANSLATORS: Clear pink */
+"media-color.clear-pink" = "Rose libre";
+/* TRANSLATORS: Clear red */
+"media-color.clear-red" = "Rouge clair";
+/* TRANSLATORS: Clear silver */
+"media-color.clear-silver" = "Argent clair";
+/* TRANSLATORS: Clear turquoise */
+"media-color.clear-turquoise" = "Turquoise claire";
+/* TRANSLATORS: Clear violet */
+"media-color.clear-violet" = "violet clair";
+/* TRANSLATORS: Clear white */
+"media-color.clear-white" = "Blanc clair";
+/* TRANSLATORS: Clear yellow */
+"media-color.clear-yellow" = "Jaune clair";
+/* TRANSLATORS: Cyan */
+"media-color.cyan" = "Cyan";
+/* TRANSLATORS: Dark blue */
+"media-color.dark-blue" = "Bleu foncé";
+/* TRANSLATORS: Dark brown */
+"media-color.dark-brown" = "Brun foncé";
+/* TRANSLATORS: Dark buff */
+"media-color.dark-buff" = "Dark Buff";
+/* TRANSLATORS: Dark cyan */
+"media-color.dark-cyan" = "Cyan foncé";
+/* TRANSLATORS: Dark gold */
+"media-color.dark-gold" = "Or noir";
+/* TRANSLATORS: Dark goldenrod */
+"media-color.dark-goldenrod" = "Dark goldenrod";
+/* TRANSLATORS: Dark gray */
+"media-color.dark-gray" = "Gris foncé";
+/* TRANSLATORS: Dark green */
+"media-color.dark-green" = "Vert foncé";
+/* TRANSLATORS: Dark ivory */
+"media-color.dark-ivory" = "ivoire sombre";
+/* TRANSLATORS: Dark magenta */
+"media-color.dark-magenta" = "Dark magenta";
+/* TRANSLATORS: Dark mustard */
+"media-color.dark-mustard" = "Moutarde foncée";
+/* TRANSLATORS: Dark orange */
+"media-color.dark-orange" = "Orange foncé";
+/* TRANSLATORS: Dark pink */
+"media-color.dark-pink" = "Rose foncée";
+/* TRANSLATORS: Dark red */
+"media-color.dark-red" = "Rouge foncé";
+/* TRANSLATORS: Dark silver */
+"media-color.dark-silver" = "Argent foncé";
+/* TRANSLATORS: Dark turquoise */
+"media-color.dark-turquoise" = "Turquoise foncée";
+/* TRANSLATORS: Dark violet */
+"media-color.dark-violet" = "Violette foncée";
+/* TRANSLATORS: Dark yellow */
+"media-color.dark-yellow" = "Jaune foncé";
+/* TRANSLATORS: Gold */
+"media-color.gold" = "Or";
+/* TRANSLATORS: Goldenrod */
+"media-color.goldenrod" = "Goldenrod";
+/* TRANSLATORS: Gray */
+"media-color.gray" = "Gray";
+/* TRANSLATORS: Green */
+"media-color.green" = "Vert";
+/* TRANSLATORS: Ivory */
+"media-color.ivory" = "Ivoire";
+/* TRANSLATORS: Light black */
+"media-color.light-black" = "Lumière noire";
+/* TRANSLATORS: Light blue */
+"media-color.light-blue" = "Bleu clair";
+/* TRANSLATORS: Light brown */
+"media-color.light-brown" = "Brun clair";
+/* TRANSLATORS: Light buff */
+"media-color.light-buff" = "Buffet léger";
+/* TRANSLATORS: Light cyan */
+"media-color.light-cyan" = "Cyan clair";
+/* TRANSLATORS: Light gold */
+"media-color.light-gold" = "Or clair";
+/* TRANSLATORS: Light goldenrod */
+"media-color.light-goldenrod" = "D'or léger";
+/* TRANSLATORS: Light gray */
+"media-color.light-gray" = "gris clair";
+/* TRANSLATORS: Light green */
+"media-color.light-green" = "Vert clair";
+/* TRANSLATORS: Light ivory */
+"media-color.light-ivory" = "Léger ivoire";
+/* TRANSLATORS: Light magenta */
+"media-color.light-magenta" = "Magenta léger";
+/* TRANSLATORS: Light mustard */
+"media-color.light-mustard" = "Moutarde légère";
+/* TRANSLATORS: Light orange */
+"media-color.light-orange" = "Orange clair";
+/* TRANSLATORS: Light pink */
+"media-color.light-pink" = "Rose clair";
+/* TRANSLATORS: Light red */
+"media-color.light-red" = "Rouge clair";
+/* TRANSLATORS: Light silver */
+"media-color.light-silver" = "Argent clair";
+/* TRANSLATORS: Light turquoise */
+"media-color.light-turquoise" = "Turquoise légère";
+/* TRANSLATORS: Light violet */
+"media-color.light-violet" = "violet clair";
+/* TRANSLATORS: Light yellow */
+"media-color.light-yellow" = "Jaune clair";
+/* TRANSLATORS: Magenta */
+"media-color.magenta" = "Magenta";
+/* TRANSLATORS: Multi-color */
+"media-color.multi-color" = "Multicolore";
+/* TRANSLATORS: Mustard */
+"media-color.mustard" = "Mustard";
+/* TRANSLATORS: No color */
+"media-color.no-color" = "Pas de couleur";
+/* TRANSLATORS: Orange */
+"media-color.orange" = "Orange";
+/* TRANSLATORS: Pink */
+"media-color.pink" = "Rose";
+/* TRANSLATORS: Red */
+"media-color.red" = "Rouge";
+/* TRANSLATORS: Silver */
+"media-color.silver" = "Argent";
+/* TRANSLATORS: Turquoise */
+"media-color.turquoise" = "Turquoise";
+/* TRANSLATORS: Violet */
+"media-color.violet" = "Violet";
+/* TRANSLATORS: White */
+"media-color.white" = "Blanc";
+/* TRANSLATORS: Yellow */
+"media-color.yellow" = "Jaune";
+/* TRANSLATORS: Front Coating of Media */
+"media-front-coating" = "Front Coating of Media";
+/* TRANSLATORS: Cross-Feed Direction */
+"media-grain.x-direction" = "Direction transversale";
+/* TRANSLATORS: Feed Direction */
+"media-grain.y-direction" = "Direction des aliments";
+/* TRANSLATORS: Media Markings */
+"media-pre-printed" = "Marques médiatiques";
+/* TRANSLATORS: Blank */
+"media-pre-printed.blank" = "Blank";
+/* TRANSLATORS: Letterhead */
+"media-pre-printed.letter-head" = "Letterhead";
+/* TRANSLATORS: Preprinted */
+"media-pre-printed.pre-printed" = "Préimprimé";
+/* TRANSLATORS: Recycled Media */
+"media-recycled" = "Médias recyclés";
+/* TRANSLATORS: None */
+"media-recycled.none" = "None";
+/* TRANSLATORS: Standard */
+"media-recycled.standard" = "Standard";
+/* TRANSLATORS: Media Dimensions */
+"media-size" = "Dimensions des médias";
+/* TRANSLATORS: Media Name */
+"media-size-name" = "Nom du média";
+/* TRANSLATORS: Alternate */
+"media-source.alternate" = "Alternate";
+/* TRANSLATORS: Alternate roll */
+"media-source.alternate-roll" = "Roulement alternatif";
+/* TRANSLATORS: Automatic */
+"media-source.auto" = "Automatique";
+/* TRANSLATORS: Bottom */
+"media-source.bottom" = "Bottom";
+/* TRANSLATORS: Multipurpose tray */
+"media-source.by-pass-tray" = "Plateau polyvalent";
+/* TRANSLATORS: Center */
+"media-source.center" = "Center";
+/* TRANSLATORS: Disc */
+"media-source.disc" = "Disc";
+/* TRANSLATORS: Envelope */
+"media-source.envelope" = "Enveloppe";
+/* TRANSLATORS: Hagaki */
+"media-source.hagaki" = "Hagaki";
+/* TRANSLATORS: Large capacity */
+"media-source.large-capacity" = "Grande capacité";
+/* TRANSLATORS: Left */
+"media-source.left" = "Gauche";
+/* TRANSLATORS: Main */
+"media-source.main" = "Main";
+/* TRANSLATORS: Main roll */
+"media-source.main-roll" = "Roulement principal";
+/* TRANSLATORS: Manual */
+"media-source.manual" = "Manuel";
+/* TRANSLATORS: Middle */
+"media-source.middle" = "Moyen-Orient";
+/* TRANSLATORS: Photo */
+"media-source.photo" = "Photo";
+/* TRANSLATORS: Rear */
+"media-source.rear" = "Arrière";
+/* TRANSLATORS: Right */
+"media-source.right" = "Droit";
+/* TRANSLATORS: Roll 1 */
+"media-source.roll-1" = "Roll 1";
+/* TRANSLATORS: Roll 10 */
+"media-source.roll-10" = "Roll 10";
+/* TRANSLATORS: Roll 2 */
+"media-source.roll-2" = "Roll 2";
+/* TRANSLATORS: Roll 3 */
+"media-source.roll-3" = "Roll 3";
+/* TRANSLATORS: Roll 4 */
+"media-source.roll-4" = "Roll 4";
+/* TRANSLATORS: Roll 5 */
+"media-source.roll-5" = "Roll 5";
+/* TRANSLATORS: Roll 6 */
+"media-source.roll-6" = "Roll 6";
+/* TRANSLATORS: Roll 7 */
+"media-source.roll-7" = "Roll 7";
+/* TRANSLATORS: Roll 8 */
+"media-source.roll-8" = "Roll 8";
+/* TRANSLATORS: Roll 9 */
+"media-source.roll-9" = "Roll 9";
+/* TRANSLATORS: Side */
+"media-source.side" = "Side";
+/* TRANSLATORS: Top */
+"media-source.top" = "Top";
+/* TRANSLATORS: Tray 1 */
+"media-source.tray-1" = "Tray 1";
+/* TRANSLATORS: Tray 10 */
+"media-source.tray-10" = "Tray 10";
+/* TRANSLATORS: Tray 11 */
+"media-source.tray-11" = "Tray 11";
+/* TRANSLATORS: Tray 12 */
+"media-source.tray-12" = "Tray 12";
+/* TRANSLATORS: Tray 13 */
+"media-source.tray-13" = "Tray 13";
+/* TRANSLATORS: Tray 14 */
+"media-source.tray-14" = "Tray 14";
+/* TRANSLATORS: Tray 15 */
+"media-source.tray-15" = "Tray 15";
+/* TRANSLATORS: Tray 16 */
+"media-source.tray-16" = "Tray 16";
+/* TRANSLATORS: Tray 17 */
+"media-source.tray-17" = "Tray 17";
+/* TRANSLATORS: Tray 18 */
+"media-source.tray-18" = "Tray 18";
+/* TRANSLATORS: Tray 19 */
+"media-source.tray-19" = "Tray 19";
+/* TRANSLATORS: Tray 2 */
+"media-source.tray-2" = "Tray 2";
+/* TRANSLATORS: Tray 20 */
+"media-source.tray-20" = "Tray 20";
+/* TRANSLATORS: Tray 3 */
+"media-source.tray-3" = "Tray 3";
+/* TRANSLATORS: Tray 4 */
+"media-source.tray-4" = "Tray 4";
+/* TRANSLATORS: Tray 5 */
+"media-source.tray-5" = "Tray 5";
+/* TRANSLATORS: Tray 6 */
+"media-source.tray-6" = "Tray 6";
+/* TRANSLATORS: Tray 7 */
+"media-source.tray-7" = "Tray 7";
+/* TRANSLATORS: Tray 8 */
+"media-source.tray-8" = "Tray 8";
+/* TRANSLATORS: Tray 9 */
+"media-source.tray-9" = "Tray 9";
+"media-source.virtual" = "Virtuel";
+/* TRANSLATORS: Media Tooth (Texture) */
+"media-tooth" = "Dent Média (Texture)";
+/* TRANSLATORS: Antique */
+"media-tooth.antique" = "Antique";
+/* TRANSLATORS: Extra smooth */
+"media-tooth.calendared" = "Extra lisse";
+/* TRANSLATORS: Coarse */
+"media-tooth.coarse" = "Coarse";
+/* TRANSLATORS: Fine */
+"media-tooth.fine" = "Bien.";
+/* TRANSLATORS: Linen */
+"media-tooth.linen" = "Linen";
+/* TRANSLATORS: Medium */
+"media-tooth.medium" = "Moyenne";
+/* TRANSLATORS: Smooth */
+"media-tooth.smooth" = "Smooth";
+/* TRANSLATORS: Stipple */
+"media-tooth.stipple" = "Stipple";
+/* TRANSLATORS: Rough */
+"media-tooth.uncalendared" = "Rough";
+/* TRANSLATORS: Vellum */
+"media-tooth.vellum" = "Vellum";
+"media-tracking.continuous" = "Continuous";
+"media-tracking.mark" = "Mark";
+"media-tracking.web" = "Web";
+/* TRANSLATORS: Aluminum */
+"media-type.aluminum" = "Aluminium";
+/* TRANSLATORS: Automatic */
+"media-type.auto" = "Automatique";
+/* TRANSLATORS: Back print film */
+"media-type.back-print-film" = "Film de retour";
+/* TRANSLATORS: Cardboard */
+"media-type.cardboard" = "Cardboard";
+/* TRANSLATORS: Cardstock */
+"media-type.cardstock" = "Cardstock";
+"media-type.cardstock-coated" = "Cardstock enduit";
+"media-type.cardstock-heavyweight" = "Cardstock poids lourd";
+"media-type.cardstock-heavyweight-coated" = "Cardstock lourd enduit";
+"media-type.cardstock-lightweight" = "Cardstock léger";
+"media-type.cardstock-lightweight-coated" = "Cardstock léger enduit";
+/* TRANSLATORS: CD */
+"media-type.cd" = "CD";
+/* TRANSLATORS: Continuous */
+"media-type.continuous" = "Continuous";
+/* TRANSLATORS: Continuous long */
+"media-type.continuous-long" = "Longtemps continu";
+/* TRANSLATORS: Continuous short */
+"media-type.continuous-short" = "Short continu";
+/* TRANSLATORS: Corrugated board */
+"media-type.corrugated-board" = "Plan d ' action";
+/* TRANSLATORS: Optical disc */
+"media-type.disc" = "Disque optique";
+/* TRANSLATORS: Glossy optical disc */
+"media-type.disc-glossy" = "Disque optique brillant";
+/* TRANSLATORS: High gloss optical disc */
+"media-type.disc-high-gloss" = "Disque optique à haute brillance";
+/* TRANSLATORS: Matte optical disc */
+"media-type.disc-matte" = "Disque optique Matte";
+/* TRANSLATORS: Satin optical disc */
+"media-type.disc-satin" = "Disque optique satin";
+/* TRANSLATORS: Semi-gloss optical disc */
+"media-type.disc-semi-gloss" = "Disque optique semi-brillant";
+/* TRANSLATORS: Double wall */
+"media-type.double-wall" = "Double mur";
+/* TRANSLATORS: Dry film */
+"media-type.dry-film" = "Film sec";
+/* TRANSLATORS: DVD */
+"media-type.dvd" = "DVD";
+/* TRANSLATORS: Embossing foil */
+"media-type.embossing-foil" = "Feuille d ' emballage";
+/* TRANSLATORS: End board */
+"media-type.end-board" = "End board";
+/* TRANSLATORS: Envelope */
+"media-type.envelope" = "Enveloppe";
+/* TRANSLATORS: Archival envelope */
+"media-type.envelope-archival" = "Enveloppe d ' archivage";
+/* TRANSLATORS: Bond envelope */
+"media-type.envelope-bond" = "Enveloppe d ' obligations";
+/* TRANSLATORS: Coated envelope */
+"media-type.envelope-coated" = "Enveloppe revêtue";
+/* TRANSLATORS: Cotton envelope */
+"media-type.envelope-cotton" = "Enveloppe de coton";
+/* TRANSLATORS: Fine envelope */
+"media-type.envelope-fine" = "Enveloppe fine";
+/* TRANSLATORS: Heavyweight envelope */
+"media-type.envelope-heavyweight" = "Enveloppe lourde";
+/* TRANSLATORS: Inkjet envelope */
+"media-type.envelope-inkjet" = "Enveloppe de jet d ' encre";
+/* TRANSLATORS: Lightweight envelope */
+"media-type.envelope-lightweight" = "Enveloppe légère";
+/* TRANSLATORS: Plain envelope */
+"media-type.envelope-plain" = "Enveloppe plaine";
+/* TRANSLATORS: Preprinted envelope */
+"media-type.envelope-preprinted" = "Enveloppe préimprimée";
+/* TRANSLATORS: Windowed envelope */
+"media-type.envelope-window" = "Enveloppe de fenêtre";
+/* TRANSLATORS: Fabric */
+"media-type.fabric" = "Tissu";
+/* TRANSLATORS: Archival fabric */
+"media-type.fabric-archival" = "Tissu d ' archivage";
+/* TRANSLATORS: Glossy fabric */
+"media-type.fabric-glossy" = "Tissu brillant";
+/* TRANSLATORS: High gloss fabric */
+"media-type.fabric-high-gloss" = "Tissu brillant";
+/* TRANSLATORS: Matte fabric */
+"media-type.fabric-matte" = "Tissu mat";
+/* TRANSLATORS: Semi-gloss fabric */
+"media-type.fabric-semi-gloss" = "Tissu semi-gloss";
+/* TRANSLATORS: Waterproof fabric */
+"media-type.fabric-waterproof" = "Tissu étanche";
+/* TRANSLATORS: Film */
+"media-type.film" = "Film";
+/* TRANSLATORS: Flexo base */
+"media-type.flexo-base" = "Base Flexo";
+/* TRANSLATORS: Flexo photo polymer */
+"media-type.flexo-photo-polymer" = "Flexo photo polymère";
+/* TRANSLATORS: Flute */
+"media-type.flute" = "Flute";
+/* TRANSLATORS: Foil */
+"media-type.foil" = "Foil";
+/* TRANSLATORS: Full cut tabs */
+"media-type.full-cut-tabs" = "onglets de coupe complète";
+/* TRANSLATORS: Glass */
+"media-type.glass" = "Verre";
+/* TRANSLATORS: Glass colored */
+"media-type.glass-colored" = "Verre coloré";
+/* TRANSLATORS: Glass opaque */
+"media-type.glass-opaque" = "Verre opaque";
+/* TRANSLATORS: Glass surfaced */
+"media-type.glass-surfaced" = "Verre en surface";
+/* TRANSLATORS: Glass textured */
+"media-type.glass-textured" = "Verre texturé";
+/* TRANSLATORS: Gravure cylinder */
+"media-type.gravure-cylinder" = "Boutet d ' échappement";
+/* TRANSLATORS: Image setter paper */
+"media-type.image-setter-paper" = "Image setter paper";
+/* TRANSLATORS: Imaging cylinder */
+"media-type.imaging-cylinder" = "Cylindre d ' image";
+/* TRANSLATORS: Labels */
+"media-type.labels" = "Étiquettes";
+/* TRANSLATORS: Colored labels */
+"media-type.labels-colored" = "Étiquettes colorées";
+"media-type.labels-continuous" = "Étiquettes continues";
+/* TRANSLATORS: Glossy labels */
+"media-type.labels-glossy" = "Étiquettes brillantes";
+"media-type.labels-heavyweight" = "Étiquettes poids lourd";
+/* TRANSLATORS: High gloss labels */
+"media-type.labels-high-gloss" = "Étiquettes haute brillance";
+/* TRANSLATORS: Inkjet labels */
+"media-type.labels-inkjet" = "Étiquettes à jet d ' encre";
+"media-type.labels-lightweight" = "Étiquettes légères";
+/* TRANSLATORS: Matte labels */
+"media-type.labels-matte" = "Étiquettes de papier";
+/* TRANSLATORS: Permanent labels */
+"media-type.labels-permanent" = "Étiquettes permanentes";
+/* TRANSLATORS: Satin labels */
+"media-type.labels-satin" = "labels satins";
+/* TRANSLATORS: Security labels */
+"media-type.labels-security" = "Étiquettes de sécurité";
+/* TRANSLATORS: Semi-gloss labels */
+"media-type.labels-semi-gloss" = "Étiquettes semi-brillantes";
+/* TRANSLATORS: Laminating foil */
+"media-type.laminating-foil" = "Feuille de plastification";
+/* TRANSLATORS: Letterhead */
+"media-type.letterhead" = "Letterhead";
+/* TRANSLATORS: Metal */
+"media-type.metal" = "Métal";
+/* TRANSLATORS: Metal glossy */
+"media-type.metal-glossy" = "Metal glossy";
+/* TRANSLATORS: Metal high gloss */
+"media-type.metal-high-gloss" = "Metal high gloss";
+/* TRANSLATORS: Metal matte */
+"media-type.metal-matte" = "Métal mat";
+/* TRANSLATORS: Metal satin */
+"media-type.metal-satin" = "Metal satin";
+/* TRANSLATORS: Metal semi gloss */
+"media-type.metal-semi-gloss" = "Metal semi gloss";
+/* TRANSLATORS: Mounting tape */
+"media-type.mounting-tape" = "Bande de montage";
+/* TRANSLATORS: Multi layer */
+"media-type.multi-layer" = "Multi calque";
+/* TRANSLATORS: Multi part form */
+"media-type.multi-part-form" = "Forme multipartite";
+/* TRANSLATORS: Other */
+"media-type.other" = "Autres";
+/* TRANSLATORS: Paper */
+"media-type.paper" = "Paper";
+/* TRANSLATORS: Photo paper */
+"media-type.photographic" = "Photo paper";
+/* TRANSLATORS: Photographic archival */
+"media-type.photographic-archival" = "Archival photographique";
+/* TRANSLATORS: Photo film */
+"media-type.photographic-film" = "Photo film";
+/* TRANSLATORS: Glossy photo paper */
+"media-type.photographic-glossy" = "Papier photo Glossy";
+/* TRANSLATORS: High gloss photo paper */
+"media-type.photographic-high-gloss" = "Papier photo de haute brillance";
+/* TRANSLATORS: Matte photo paper */
+"media-type.photographic-matte" = "Matte photo paper";
+/* TRANSLATORS: Satin photo paper */
+"media-type.photographic-satin" = "Papier photo satin";
+/* TRANSLATORS: Semi-gloss photo paper */
+"media-type.photographic-semi-gloss" = "Papier photo semi-gloss";
+/* TRANSLATORS: Plastic */
+"media-type.plastic" = "Plastique";
+/* TRANSLATORS: Plastic archival */
+"media-type.plastic-archival" = "Archival plastique";
+/* TRANSLATORS: Plastic colored */
+"media-type.plastic-colored" = "Couleur plastique";
+/* TRANSLATORS: Plastic glossy */
+"media-type.plastic-glossy" = "Matière plastique brillante";
+/* TRANSLATORS: Plastic high gloss */
+"media-type.plastic-high-gloss" = "Plastique haute brillance";
+/* TRANSLATORS: Plastic matte */
+"media-type.plastic-matte" = "mat plastique";
+/* TRANSLATORS: Plastic satin */
+"media-type.plastic-satin" = "Satin plastique";
+/* TRANSLATORS: Plastic semi gloss */
+"media-type.plastic-semi-gloss" = "Plastique semi brillant";
+/* TRANSLATORS: Plate */
+"media-type.plate" = "Plate-forme";
+/* TRANSLATORS: Polyester */
+"media-type.polyester" = "Polyester";
+/* TRANSLATORS: Pre cut tabs */
+"media-type.pre-cut-tabs" = "onglets pré-coupés";
+/* TRANSLATORS: Roll */
+"media-type.roll" = "Roll";
+/* TRANSLATORS: Screen */
+"media-type.screen" = "Écran";
+/* TRANSLATORS: Screen paged */
+"media-type.screen-paged" = "Écran paged";
+/* TRANSLATORS: Self adhesive */
+"media-type.self-adhesive" = "Autocollant";
+/* TRANSLATORS: Self adhesive film */
+"media-type.self-adhesive-film" = "Film adhésif auto-adhésif";
+/* TRANSLATORS: Shrink foil */
+"media-type.shrink-foil" = "Feuille de film";
+/* TRANSLATORS: Single face */
+"media-type.single-face" = "Face unique";
+/* TRANSLATORS: Single wall */
+"media-type.single-wall" = "Mur unique";
+/* TRANSLATORS: Sleeve */
+"media-type.sleeve" = "Sleeve";
+/* TRANSLATORS: Stationery */
+"media-type.stationery" = "Papeterie";
+/* TRANSLATORS: Stationery archival */
+"media-type.stationery-archival" = "Arche de papeterie";
+"media-type.stationery-bond" = "Liaison de papeterie";
+/* TRANSLATORS: Coated paper */
+"media-type.stationery-coated" = "Coated paper";
+/* TRANSLATORS: Stationery cotton */
+"media-type.stationery-cotton" = "Coton papeterie";
+/* TRANSLATORS: Vellum paper */
+"media-type.stationery-fine" = "Vellum paper";
+/* TRANSLATORS: Heavyweight paper */
+"media-type.stationery-heavyweight" = "Papier lourd";
+/* TRANSLATORS: Stationery heavyweight coated */
+"media-type.stationery-heavyweight-coated" = "Stationnement lourd enduit";
+/* TRANSLATORS: Stationery inkjet paper */
+"media-type.stationery-inkjet" = "Papier à jet d'encre papeterie";
+/* TRANSLATORS: Letterhead */
+"media-type.stationery-letterhead" = "Letterhead";
+/* TRANSLATORS: Lightweight paper */
+"media-type.stationery-lightweight" = "Papier léger";
+/* TRANSLATORS: Preprinted paper */
+"media-type.stationery-preprinted" = "Document préimprimé";
+/* TRANSLATORS: Punched paper */
+"media-type.stationery-prepunched" = "Papier poinçonné";
+"media-type.stationery-recycled" = "Papeterie recyclée";
+/* TRANSLATORS: Tab stock */
+"media-type.tab-stock" = "Stock";
+/* TRANSLATORS: Tractor */
+"media-type.tractor" = "Tractor";
+/* TRANSLATORS: Transfer */
+"media-type.transfer" = "Transfert";
+/* TRANSLATORS: Transparency */
+"media-type.transparency" = "Transparence";
+/* TRANSLATORS: Triple wall */
+"media-type.triple-wall" = "Mur triple";
+/* TRANSLATORS: Wet film */
+"media-type.wet-film" = "Film humide";
+/* TRANSLATORS: Media Weight (grams per m²) */
+"media-weight-metric" = "Poids des médias (grammes par m)";
+/* TRANSLATORS: 28 x 40″ */
+"media.asme_f_28x40in" = "28 x 40";
+/* TRANSLATORS: A4 or US Letter */
+"media.choice_iso_a4_210x297mm_na_letter_8.5x11in" = "A4 ou US Letter";
+/* TRANSLATORS: 2a0 */
+"media.iso_2a0_1189x1682mm" = "2a0";
+/* TRANSLATORS: A0 */
+"media.iso_a0_841x1189mm" = "A0";
+/* TRANSLATORS: A0x3 */
+"media.iso_a0x3_1189x2523mm" = "A0x3";
+/* TRANSLATORS: A10 */
+"media.iso_a10_26x37mm" = "A10";
+/* TRANSLATORS: A1 */
+"media.iso_a1_594x841mm" = "A1";
+/* TRANSLATORS: A1x3 */
+"media.iso_a1x3_841x1783mm" = "A1x3";
+/* TRANSLATORS: A1x4 */
+"media.iso_a1x4_841x2378mm" = "A1x4";
+/* TRANSLATORS: A2 */
+"media.iso_a2_420x594mm" = "A2";
+/* TRANSLATORS: A2x3 */
+"media.iso_a2x3_594x1261mm" = "A2x3";
+/* TRANSLATORS: A2x4 */
+"media.iso_a2x4_594x1682mm" = "A2x4";
+/* TRANSLATORS: A2x5 */
+"media.iso_a2x5_594x2102mm" = "A2x5";
+/* TRANSLATORS: A3 (extra) */
+"media.iso_a3-extra_322x445mm" = "A3 (extra)";
+/* TRANSLATORS: A3 */
+"media.iso_a3_297x420mm" = "A3";
+/* TRANSLATORS: A3x3 */
+"media.iso_a3x3_420x891mm" = "A3x3";
+/* TRANSLATORS: A3x4 */
+"media.iso_a3x4_420x1189mm" = "A3x4";
+/* TRANSLATORS: A3x5 */
+"media.iso_a3x5_420x1486mm" = "A3x5";
+/* TRANSLATORS: A3x6 */
+"media.iso_a3x6_420x1783mm" = "A3x6";
+/* TRANSLATORS: A3x7 */
+"media.iso_a3x7_420x2080mm" = "A3x7";
+/* TRANSLATORS: A4 (extra) */
+"media.iso_a4-extra_235.5x322.3mm" = "A4 (extra)";
+/* TRANSLATORS: A4 (tab) */
+"media.iso_a4-tab_225x297mm" = "A4 (tab)";
+/* TRANSLATORS: A4 */
+"media.iso_a4_210x297mm" = "A4";
+/* TRANSLATORS: A4x3 */
+"media.iso_a4x3_297x630mm" = "A4x3";
+/* TRANSLATORS: A4x4 */
+"media.iso_a4x4_297x841mm" = "A4x4";
+/* TRANSLATORS: A4x5 */
+"media.iso_a4x5_297x1051mm" = "A4x5";
+/* TRANSLATORS: A4x6 */
+"media.iso_a4x6_297x1261mm" = "A4x6";
+/* TRANSLATORS: A4x7 */
+"media.iso_a4x7_297x1471mm" = "A4x7";
+/* TRANSLATORS: A4x8 */
+"media.iso_a4x8_297x1682mm" = "A4x8";
+/* TRANSLATORS: A4x9 */
+"media.iso_a4x9_297x1892mm" = "A4x9";
+/* TRANSLATORS: A5 (extra) */
+"media.iso_a5-extra_174x235mm" = "A5 (extra)";
+/* TRANSLATORS: A5 */
+"media.iso_a5_148x210mm" = "A5";
+/* TRANSLATORS: A6 */
+"media.iso_a6_105x148mm" = "A6";
+/* TRANSLATORS: A7 */
+"media.iso_a7_74x105mm" = "A7";
+/* TRANSLATORS: A8 */
+"media.iso_a8_52x74mm" = "A8";
+/* TRANSLATORS: A9 */
+"media.iso_a9_37x52mm" = "A9";
+/* TRANSLATORS: B0 */
+"media.iso_b0_1000x1414mm" = "B0";
+/* TRANSLATORS: B10 */
+"media.iso_b10_31x44mm" = "B10";
+/* TRANSLATORS: B1 */
+"media.iso_b1_707x1000mm" = "B1";
+/* TRANSLATORS: B2 */
+"media.iso_b2_500x707mm" = "B2";
+/* TRANSLATORS: B3 */
+"media.iso_b3_353x500mm" = "B3";
+/* TRANSLATORS: B4 */
+"media.iso_b4_250x353mm" = "B4";
+/* TRANSLATORS: B5 (extra) */
+"media.iso_b5-extra_201x276mm" = "B5 (extra)";
+/* TRANSLATORS: Envelope B5 */
+"media.iso_b5_176x250mm" = "Enveloppe B5";
+/* TRANSLATORS: B6 */
+"media.iso_b6_125x176mm" = "B6";
+/* TRANSLATORS: Envelope B6/C4 */
+"media.iso_b6c4_125x324mm" = "Enveloppe B6/C4";
+/* TRANSLATORS: B7 */
+"media.iso_b7_88x125mm" = "B7";
+/* TRANSLATORS: B8 */
+"media.iso_b8_62x88mm" = "B8";
+/* TRANSLATORS: B9 */
+"media.iso_b9_44x62mm" = "B9";
+/* TRANSLATORS: CEnvelope 0 */
+"media.iso_c0_917x1297mm" = "CEnvelope 0";
+/* TRANSLATORS: CEnvelope 10 */
+"media.iso_c10_28x40mm" = "CEnvelope 10";
+/* TRANSLATORS: CEnvelope 1 */
+"media.iso_c1_648x917mm" = "CEnvelope 1";
+/* TRANSLATORS: CEnvelope 2 */
+"media.iso_c2_458x648mm" = "CEnvelope 2";
+/* TRANSLATORS: CEnvelope 3 */
+"media.iso_c3_324x458mm" = "CEnvelope 3";
+/* TRANSLATORS: CEnvelope 4 */
+"media.iso_c4_229x324mm" = "CEnvelope 4";
+/* TRANSLATORS: CEnvelope 5 */
+"media.iso_c5_162x229mm" = "CEnvelope 5";
+/* TRANSLATORS: CEnvelope 6 */
+"media.iso_c6_114x162mm" = "CEnvelope 6";
+/* TRANSLATORS: CEnvelope 6c5 */
+"media.iso_c6c5_114x229mm" = "CEnvelope 6c5";
+/* TRANSLATORS: CEnvelope 7 */
+"media.iso_c7_81x114mm" = "CEnvelope 7";
+/* TRANSLATORS: CEnvelope 7c6 */
+"media.iso_c7c6_81x162mm" = "CEnvelope 7c6";
+/* TRANSLATORS: CEnvelope 8 */
+"media.iso_c8_57x81mm" = "CEnvelope 8";
+/* TRANSLATORS: CEnvelope 9 */
+"media.iso_c9_40x57mm" = "CEnvelope 9";
+/* TRANSLATORS: Envelope DL */
+"media.iso_dl_110x220mm" = "Enveloppe DL";
+/* TRANSLATORS: Id-1 */
+"media.iso_id-1_53.98x85.6mm" = "Id-1";
+/* TRANSLATORS: Id-3 */
+"media.iso_id-3_88x125mm" = "Id-3";
+/* TRANSLATORS: ISO RA0 */
+"media.iso_ra0_860x1220mm" = "ISO RA0";
+/* TRANSLATORS: ISO RA1 */
+"media.iso_ra1_610x860mm" = "ISO RA1";
+/* TRANSLATORS: ISO RA2 */
+"media.iso_ra2_430x610mm" = "ISO RA2";
+/* TRANSLATORS: ISO RA3 */
+"media.iso_ra3_305x430mm" = "ISO RA3";
+/* TRANSLATORS: ISO RA4 */
+"media.iso_ra4_215x305mm" = "ISO RA4";
+/* TRANSLATORS: ISO SRA0 */
+"media.iso_sra0_900x1280mm" = "ISO SRA0";
+/* TRANSLATORS: ISO SRA1 */
+"media.iso_sra1_640x900mm" = "ISO SRA1";
+/* TRANSLATORS: ISO SRA2 */
+"media.iso_sra2_450x640mm" = "ISO SRA2";
+/* TRANSLATORS: ISO SRA3 */
+"media.iso_sra3_320x450mm" = "ISO SRA3";
+/* TRANSLATORS: ISO SRA4 */
+"media.iso_sra4_225x320mm" = "ISO SRA4";
+/* TRANSLATORS: JIS B0 */
+"media.jis_b0_1030x1456mm" = "JIS B0";
+/* TRANSLATORS: JIS B10 */
+"media.jis_b10_32x45mm" = "JIS B10";
+/* TRANSLATORS: JIS B1 */
+"media.jis_b1_728x1030mm" = "JIS B1";
+/* TRANSLATORS: JIS B2 */
+"media.jis_b2_515x728mm" = "JIS B2";
+/* TRANSLATORS: JIS B3 */
+"media.jis_b3_364x515mm" = "JIS B3";
+/* TRANSLATORS: JIS B4 */
+"media.jis_b4_257x364mm" = "JIS B4";
+/* TRANSLATORS: JIS B5 */
+"media.jis_b5_182x257mm" = "JIS B5";
+/* TRANSLATORS: JIS B6 */
+"media.jis_b6_128x182mm" = "JIS B6";
+/* TRANSLATORS: JIS B7 */
+"media.jis_b7_91x128mm" = "JIS B7";
+/* TRANSLATORS: JIS B8 */
+"media.jis_b8_64x91mm" = "JIS B8";
+/* TRANSLATORS: JIS B9 */
+"media.jis_b9_45x64mm" = "JIS B9";
+/* TRANSLATORS: JIS Executive */
+"media.jis_exec_216x330mm" = "JIS Executive";
+/* TRANSLATORS: Envelope Chou 2 */
+"media.jpn_chou2_111.1x146mm" = "Enveloppe Chou 2";
+/* TRANSLATORS: Envelope Chou 3 */
+"media.jpn_chou3_120x235mm" = "Enveloppe Chou 3";
+/* TRANSLATORS: Envelope Chou 40 */
+"media.jpn_chou40_90x225mm" = "Enveloppe Chou 40";
+/* TRANSLATORS: Envelope Chou 4 */
+"media.jpn_chou4_90x205mm" = "Enveloppe Chou 4";
+/* TRANSLATORS: Hagaki */
+"media.jpn_hagaki_100x148mm" = "Hagaki";
+/* TRANSLATORS: Envelope Kahu */
+"media.jpn_kahu_240x322.1mm" = "Enveloppe Kahu";
+/* TRANSLATORS: 270 x 382mm */
+"media.jpn_kaku1_270x382mm" = "270 x 382m m";
+/* TRANSLATORS: Envelope Kahu 2 */
+"media.jpn_kaku2_240x332mm" = "Enveloppe Kahu 2";
+/* TRANSLATORS: 216 x 277mm */
+"media.jpn_kaku3_216x277mm" = "216 x 277mm";
+/* TRANSLATORS: 197 x 267mm */
+"media.jpn_kaku4_197x267mm" = "197 x 267m m";
+/* TRANSLATORS: 190 x 240mm */
+"media.jpn_kaku5_190x240mm" = "190 x 240mm";
+/* TRANSLATORS: 142 x 205mm */
+"media.jpn_kaku7_142x205mm" = "142 x 205mm";
+/* TRANSLATORS: 119 x 197mm */
+"media.jpn_kaku8_119x197mm" = "119 x 197mm";
+/* TRANSLATORS: Oufuku Reply Postcard */
+"media.jpn_oufuku_148x200mm" = "Oufuku Répondre Postcard";
+/* TRANSLATORS: Envelope You 4 */
+"media.jpn_you4_105x235mm" = "Enveloppe Vous 4";
+/* TRANSLATORS: 10 x 11″ */
+"media.na_10x11_10x11in" = "10 x 11";
+/* TRANSLATORS: 10 x 13″ */
+"media.na_10x13_10x13in" = "10 x 13";
+/* TRANSLATORS: 10 x 14″ */
+"media.na_10x14_10x14in" = "10 x 14";
+/* TRANSLATORS: 10 x 15″ */
+"media.na_10x15_10x15in" = "10 x 15";
+/* TRANSLATORS: 11 x 12″ */
+"media.na_11x12_11x12in" = "11 x 12";
+/* TRANSLATORS: 11 x 15″ */
+"media.na_11x15_11x15in" = "11 x 15";
+/* TRANSLATORS: 12 x 19″ */
+"media.na_12x19_12x19in" = "12 x 19";
+/* TRANSLATORS: 5 x 7″ */
+"media.na_5x7_5x7in" = "5 x 7";
+/* TRANSLATORS: 6 x 9″ */
+"media.na_6x9_6x9in" = "6 x 9";
+/* TRANSLATORS: 7 x 9″ */
+"media.na_7x9_7x9in" = "7 x 9";
+/* TRANSLATORS: 9 x 11″ */
+"media.na_9x11_9x11in" = "9 x 11";
+/* TRANSLATORS: Envelope A2 */
+"media.na_a2_4.375x5.75in" = "Enveloppe A2";
+/* TRANSLATORS: 9 x 12″ */
+"media.na_arch-a_9x12in" = "9 x 12";
+/* TRANSLATORS: 12 x 18″ */
+"media.na_arch-b_12x18in" = "12 x 18";
+/* TRANSLATORS: 18 x 24″ */
+"media.na_arch-c_18x24in" = "18 x 24";
+/* TRANSLATORS: 24 x 36″ */
+"media.na_arch-d_24x36in" = "24 x 36";
+/* TRANSLATORS: 26 x 38″ */
+"media.na_arch-e2_26x38in" = "26 x 38";
+/* TRANSLATORS: 27 x 39″ */
+"media.na_arch-e3_27x39in" = "27 x 39";
+/* TRANSLATORS: 36 x 48″ */
+"media.na_arch-e_36x48in" = "36 x 48";
+/* TRANSLATORS: 12 x 19.17″ */
+"media.na_b-plus_12x19.17in" = "12 x 19.17";
+/* TRANSLATORS: Envelope C5 */
+"media.na_c5_6.5x9.5in" = "Enveloppe C5";
+/* TRANSLATORS: 17 x 22″ */
+"media.na_c_17x22in" = "17 x 22";
+/* TRANSLATORS: 22 x 34″ */
+"media.na_d_22x34in" = "22 x 34";
+/* TRANSLATORS: 34 x 44″ */
+"media.na_e_34x44in" = "34 x 44";
+/* TRANSLATORS: 11 x 14″ */
+"media.na_edp_11x14in" = "11 x 14";
+/* TRANSLATORS: 12 x 14″ */
+"media.na_eur-edp_12x14in" = "12 x 14";
+/* TRANSLATORS: Executive */
+"media.na_executive_7.25x10.5in" = "Executive";
+/* TRANSLATORS: 44 x 68″ */
+"media.na_f_44x68in" = "44 x 68";
+/* TRANSLATORS: European Fanfold */
+"media.na_fanfold-eur_8.5x12in" = "European Fanfold";
+/* TRANSLATORS: US Fanfold */
+"media.na_fanfold-us_11x14.875in" = "Fanfold";
+/* TRANSLATORS: Foolscap */
+"media.na_foolscap_8.5x13in" = "Foolscap";
+/* TRANSLATORS: 8 x 13″ */
+"media.na_govt-legal_8x13in" = "8 x 13";
+/* TRANSLATORS: 8 x 10″ */
+"media.na_govt-letter_8x10in" = "8 x 10";
+/* TRANSLATORS: 3 x 5″ */
+"media.na_index-3x5_3x5in" = "3 x 5";
+/* TRANSLATORS: 6 x 8″ */
+"media.na_index-4x6-ext_6x8in" = "6 x 8";
+/* TRANSLATORS: 4 x 6″ */
+"media.na_index-4x6_4x6in" = "4 x 6";
+/* TRANSLATORS: 5 x 8″ */
+"media.na_index-5x8_5x8in" = "5 x 8";
+/* TRANSLATORS: Statement */
+"media.na_invoice_5.5x8.5in" = "État";
+/* TRANSLATORS: 11 x 17″ */
+"media.na_ledger_11x17in" = "11 x 17";
+/* TRANSLATORS: US Legal (Extra) */
+"media.na_legal-extra_9.5x15in" = "US Legal (Extra)";
+/* TRANSLATORS: US Legal */
+"media.na_legal_8.5x14in" = "US Legal";
+/* TRANSLATORS: US Letter (Extra) */
+"media.na_letter-extra_9.5x12in" = "Lettre américaine (Extra)";
+/* TRANSLATORS: US Letter (Plus) */
+"media.na_letter-plus_8.5x12.69in" = "Lettre américaine (Plus)";
+/* TRANSLATORS: US Letter */
+"media.na_letter_8.5x11in" = "US Letter";
+/* TRANSLATORS: Envelope Monarch */
+"media.na_monarch_3.875x7.5in" = "Monarque d ' enveloppe";
+/* TRANSLATORS: Envelope #10 */
+"media.na_number-10_4.125x9.5in" = "Enveloppe #10";
+/* TRANSLATORS: Envelope #11 */
+"media.na_number-11_4.5x10.375in" = "Enveloppe #11";
+/* TRANSLATORS: Envelope #12 */
+"media.na_number-12_4.75x11in" = "Enveloppe #12";
+/* TRANSLATORS: Envelope #14 */
+"media.na_number-14_5x11.5in" = "Enveloppe #14";
+/* TRANSLATORS: Envelope #9 */
+"media.na_number-9_3.875x8.875in" = "Enveloppe #9";
+/* TRANSLATORS: 8.5 x 13.4″ */
+"media.na_oficio_8.5x13.4in" = "8.5 x 13.4";
+/* TRANSLATORS: Envelope Personal */
+"media.na_personal_3.625x6.5in" = "Enveloppe personnelle";
+/* TRANSLATORS: Quarto */
+"media.na_quarto_8.5x10.83in" = "Quarto";
+/* TRANSLATORS: 8.94 x 14″ */
+"media.na_super-a_8.94x14in" = "8.94 x 14";
+/* TRANSLATORS: 13 x 19″ */
+"media.na_super-b_13x19in" = "13 x 19";
+/* TRANSLATORS: 30 x 42″ */
+"media.na_wide-format_30x42in" = "30 x 42";
+/* TRANSLATORS: 12 x 16″ */
+"media.oe_12x16_12x16in" = "12 x 16";
+/* TRANSLATORS: 14 x 17″ */
+"media.oe_14x17_14x17in" = "14 x 17";
+/* TRANSLATORS: 18 x 22″ */
+"media.oe_18x22_18x22in" = "18 x 22";
+/* TRANSLATORS: 17 x 24″ */
+"media.oe_a2plus_17x24in" = "17 x 24";
+/* TRANSLATORS: 2 x 3.5″ */
+"media.oe_business-card_2x3.5in" = "2 x 3.5";
+/* TRANSLATORS: 10 x 12″ */
+"media.oe_photo-10r_10x12in" = "10 x 12";
+"media.oe_photo-12r_12x15in" = "12 x 15";
+"media.oe_photo-14x18_14x18in" = "14 x 18";
+"media.oe_photo-16r_16x20in" = "16 x 20";
+/* TRANSLATORS: 20 x 24″ */
+"media.oe_photo-20r_20x24in" = "20 x 24";
+"media.oe_photo-22r_22x29.5in" = "22 x 29.5";
+"media.oe_photo-22x28_22x28in" = "22 x 28";
+"media.oe_photo-24r_24x31.5in" = "24 x 31.5";
+"media.oe_photo-24x30_24x30in" = "24 x 30";
+"media.oe_photo-30r_30x40in" = "30 x 40";
+/* TRANSLATORS: 3.5 x 5″ */
+"media.oe_photo-l_3.5x5in" = "3.5 x 5";
+/* TRANSLATORS: 10 x 15″ */
+"media.oe_photo-s10r_10x15in" = "10 x 15″";
+"media.oe_photo-s8r_8x12in" = "8 x 12";
+/* TRANSLATORS: 4 x 4″ */
+"media.oe_square-photo_4x4in" = "4 x 4";
+/* TRANSLATORS: 5 x 5″ */
+"media.oe_square-photo_5x5in" = "5 x 5";
+/* TRANSLATORS: 184 x 260mm */
+"media.om_16k_184x260mm" = "184 x 260mm";
+/* TRANSLATORS: 195 x 270mm */
+"media.om_16k_195x270mm" = "195 x 270mm";
+/* TRANSLATORS: 55 x 85mm */
+"media.om_business-card_55x85mm" = "55 x 85mm";
+/* TRANSLATORS: 55 x 91mm */
+"media.om_business-card_55x91mm" = "55 x 91mm";
+/* TRANSLATORS: 54 x 86mm */
+"media.om_card_54x86mm" = "54 x 86mm";
+/* TRANSLATORS: 275 x 395mm */
+"media.om_dai-pa-kai_275x395mm" = "275 x 395mm";
+/* TRANSLATORS: 89 x 119mm */
+"media.om_dsc-photo_89x119mm" = "89 x 119m m";
+/* TRANSLATORS: Folio */
+"media.om_folio-sp_215x315mm" = "Folio";
+/* TRANSLATORS: Folio (Special) */
+"media.om_folio_210x330mm" = "Folio (Special)";
+/* TRANSLATORS: Envelope Invitation */
+"media.om_invite_220x220mm" = "Invitation d ' enveloppe";
+/* TRANSLATORS: Envelope Italian */
+"media.om_italian_110x230mm" = "Enveloppe italienne";
+/* TRANSLATORS: 198 x 275mm */
+"media.om_juuro-ku-kai_198x275mm" = "198 x 275mm";
+/* TRANSLATORS: 200 x 300 */
+"media.om_large-photo_200x300" = "200 x 300";
+"media.om_large-photo_200x300mm" = "200 x 300mm";
+/* TRANSLATORS: 130 x 180mm */
+"media.om_medium-photo_130x180mm" = "130 x 180mm";
+/* TRANSLATORS: 267 x 389mm */
+"media.om_pa-kai_267x389mm" = "267 x 389m m";
+"media.om_photo-30x40_300x400mm" = "300 x 400mm";
+"media.om_photo-30x45_300x450mm" = "300 x 450mm";
+"media.om_photo-35x46_350x460mm" = "350 x 460mm";
+"media.om_photo-40x60_400x600mm" = "400 x 600 mm";
+"media.om_photo-50x75_500x750mm" = "500 x 750 mm";
+"media.om_photo-50x76_500x760mm" = "500 x 760mm";
+"media.om_photo-60x90_600x900mm" = "600 x 900 mm";
+/* TRANSLATORS: Envelope Postfix */
+"media.om_postfix_114x229mm" = "Envelope Postfix";
+/* TRANSLATORS: 100 x 150mm */
+"media.om_small-photo_100x150mm" = "100 x 150 mm";
+/* TRANSLATORS: 89 x 89mm */
+"media.om_square-photo_89x89mm" = "89 x 89mm";
+/* TRANSLATORS: 100 x 200mm */
+"media.om_wide-photo_100x200mm" = "100 x 200mm";
+/* TRANSLATORS: Envelope chinese #10 */
+"media.prc_10_324x458mm" = "Envelope chinese #10";
+/* TRANSLATORS: Chinese 16k */
+"media.prc_16k_146x215mm" = "Chinois 16k";
+/* TRANSLATORS: Envelope chinese #1 */
+"media.prc_1_102x165mm" = "Enveloppe chinoise #1";
+/* TRANSLATORS: Envelope chinese #2 */
+"media.prc_2_102x176mm" = "Enveloppe chinoise #2";
+/* TRANSLATORS: Chinese 32k */
+"media.prc_32k_97x151mm" = "Chinois 32k";
+/* TRANSLATORS: Envelope chinese #3 */
+"media.prc_3_125x176mm" = "Envelope chinese #3";
+/* TRANSLATORS: Envelope chinese #4 */
+"media.prc_4_110x208mm" = "Enveloppe chinoise #4";
+/* TRANSLATORS: Envelope chinese #5 */
+"media.prc_5_110x220mm" = "Envelope chinese #5";
+/* TRANSLATORS: Envelope chinese #6 */
+"media.prc_6_120x320mm" = "Enveloppe chinoise #6";
+/* TRANSLATORS: Envelope chinese #7 */
+"media.prc_7_160x230mm" = "Enveloppe chinoise #7";
+/* TRANSLATORS: Envelope chinese #8 */
+"media.prc_8_120x309mm" = "Enveloppe chinoise #8";
+/* TRANSLATORS: ROC 16k */
+"media.roc_16k_7.75x10.75in" = "ROC 16k";
+/* TRANSLATORS: ROC 8k */
+"media.roc_8k_10.75x15.5in" = "ROC 8k";
+/* TRANSLATORS: Number-Up */
+"number-up" = "Nombre";
+/* TRANSLATORS: Orientation */
+"orientation-requested" = "Orientation";
+/* TRANSLATORS: Portrait */
+"orientation-requested.3" = "Portrait";
+/* TRANSLATORS: Landscape */
+"orientation-requested.4" = "Paysage";
+/* TRANSLATORS: Reverse landscape */
+"orientation-requested.5" = "Paysage inversé";
+/* TRANSLATORS: Reverse portrait */
+"orientation-requested.6" = "Portrait inversé";
+/* TRANSLATORS: None */
+"orientation-requested.7" = "None";
+/* TRANSLATORS: Output Tray */
+"output-bin" = "Sortie Tray";
+/* TRANSLATORS: Automatic */
+"output-bin.auto" = "Automatique";
+/* TRANSLATORS: Bottom */
+"output-bin.bottom" = "Bottom";
+/* TRANSLATORS: Center */
+"output-bin.center" = "Center";
+/* TRANSLATORS: Face down */
+"output-bin.face-down" = "Face à terre";
+/* TRANSLATORS: Face up */
+"output-bin.face-up" = "Face à face";
+/* TRANSLATORS: Large capacity */
+"output-bin.large-capacity" = "Grande capacité";
+/* TRANSLATORS: Left */
+"output-bin.left" = "Gauche";
+/* TRANSLATORS: Mailbox 1 */
+"output-bin.mailbox-1" = "Mailbox 1";
+/* TRANSLATORS: Mailbox 10 */
+"output-bin.mailbox-10" = "Mailbox 10";
+/* TRANSLATORS: Mailbox 2 */
+"output-bin.mailbox-2" = "Mailbox 2";
+/* TRANSLATORS: Mailbox 3 */
+"output-bin.mailbox-3" = "Mailbox 3";
+/* TRANSLATORS: Mailbox 4 */
+"output-bin.mailbox-4" = "Mailbox 4";
+/* TRANSLATORS: Mailbox 5 */
+"output-bin.mailbox-5" = "Mailbox 5";
+/* TRANSLATORS: Mailbox 6 */
+"output-bin.mailbox-6" = "Mailbox 6";
+/* TRANSLATORS: Mailbox 7 */
+"output-bin.mailbox-7" = "Mailbox 7";
+/* TRANSLATORS: Mailbox 8 */
+"output-bin.mailbox-8" = "Mailbox 8";
+/* TRANSLATORS: Mailbox 9 */
+"output-bin.mailbox-9" = "Mailbox 9";
+/* TRANSLATORS: Middle */
+"output-bin.middle" = "Moyen-Orient";
+/* TRANSLATORS: My mailbox */
+"output-bin.my-mailbox" = "Ma boîte aux lettres";
+/* TRANSLATORS: Rear */
+"output-bin.rear" = "Arrière";
+/* TRANSLATORS: Right */
+"output-bin.right" = "Droit";
+/* TRANSLATORS: Side */
+"output-bin.side" = "Side";
+/* TRANSLATORS: Stacker 1 */
+"output-bin.stacker-1" = "Stacker 1";
+/* TRANSLATORS: Stacker 10 */
+"output-bin.stacker-10" = "Stacker 10";
+/* TRANSLATORS: Stacker 2 */
+"output-bin.stacker-2" = "Stacker 2";
+/* TRANSLATORS: Stacker 3 */
+"output-bin.stacker-3" = "Stacker 3";
+/* TRANSLATORS: Stacker 4 */
+"output-bin.stacker-4" = "Stacker 4";
+/* TRANSLATORS: Stacker 5 */
+"output-bin.stacker-5" = "Stacker 5";
+/* TRANSLATORS: Stacker 6 */
+"output-bin.stacker-6" = "Stacker 6";
+/* TRANSLATORS: Stacker 7 */
+"output-bin.stacker-7" = "Stacker 7";
+/* TRANSLATORS: Stacker 8 */
+"output-bin.stacker-8" = "Stacker 8";
+/* TRANSLATORS: Stacker 9 */
+"output-bin.stacker-9" = "Stacker 9";
+/* TRANSLATORS: Top */
+"output-bin.top" = "Top";
+/* TRANSLATORS: Tray 1 */
+"output-bin.tray-1" = "Tray 1";
+/* TRANSLATORS: Tray 10 */
+"output-bin.tray-10" = "Tray 10";
+/* TRANSLATORS: Tray 2 */
+"output-bin.tray-2" = "Tray 2";
+/* TRANSLATORS: Tray 3 */
+"output-bin.tray-3" = "Tray 3";
+/* TRANSLATORS: Tray 4 */
+"output-bin.tray-4" = "Tray 4";
+/* TRANSLATORS: Tray 5 */
+"output-bin.tray-5" = "Tray 5";
+/* TRANSLATORS: Tray 6 */
+"output-bin.tray-6" = "Tray 6";
+/* TRANSLATORS: Tray 7 */
+"output-bin.tray-7" = "Tray 7";
+/* TRANSLATORS: Tray 8 */
+"output-bin.tray-8" = "Tray 8";
+/* TRANSLATORS: Tray 9 */
+"output-bin.tray-9" = "Tray 9";
+/* TRANSLATORS: Post-Dial String */
+"post-dial-string" = "String post-dial";
+"power-state.100" = "Réinitialiser mbr";
+"power-state.110" = "Réinitialiser nmi";
+"power-state.120" = "Délicat";
+"power-state.130" = "Hors de liberté";
+"power-state.140" = "Réinitialiser mbr gracieux";
+"power-state.150" = "Réinitialiser doux gracieux";
+"power-state.160" = "Réinitialiser dur gracieux";
+"power-state.170" = "Réinitialiser init";
+"power-state.180" = "Sans objet";
+"power-state.190" = "Pas de changement";
+"power-state.20" = "On y va";
+"power-state.21" = "Sur le fournisseur1";
+"power-state.22" = "Sur le vendeur2";
+"power-state.23" = "Sur le vendeur3";
+"power-state.24" = "Sur le vendeur4";
+"power-state.25" = "Sur le fournisseur5";
+"power-state.30" = "Standby";
+"power-state.31" = "Soldat en attente1";
+"power-state.32" = "Standby vendeur2";
+"power-state.33" = "Vendeur en attente3";
+"power-state.34" = "Soldat en attente4";
+"power-state.35" = "Vendeur en attente5";
+"power-state.40" = "Suspend";
+"power-state.41" = "Suspend vendeur1";
+"power-state.42" = "Suspend vendeur2";
+"power-state.43" = "Suspend vendeur3";
+"power-state.44" = "Suspend vendeur4";
+"power-state.45" = "Suspend vendeur5";
+"power-state.50" = "Réinitialiser";
+"power-state.60" = "Désactiver";
+"power-state.70" = "Hibernate";
+"power-state.71" = "Hibernate vendeur1";
+"power-state.72" = "Hibernate vendor2";
+"power-state.73" = "Hibernate vendeur3";
+"power-state.74" = "Hibernate vendeur4";
+"power-state.75" = "Hibernate vendor5";
+"power-state.80" = "Délicieux";
+"power-state.81" = "Désactiver le vendeur souple1";
+"power-state.82" = "Désactiver le vendeur souple2";
+"power-state.83" = "En vente libre3";
+"power-state.84" = "Désactiver le vendeur souple4";
+"power-state.85" = "Désactiver le vendeur souple5";
+"power-state.90" = "Réinitialiser dur";
+/* TRANSLATORS: Pre-Dial String */
+"pre-dial-string" = "Boucle pré-dial";
+/* TRANSLATORS: Number-Up Layout */
+"presentation-direction-number-up" = "Layout";
+/* TRANSLATORS: Brim */
+"print-base.brim" = "Brim";
+/* TRANSLATORS: None */
+"print-base.none" = "None";
+/* TRANSLATORS: Raft */
+"print-base.raft" = "Raft";
+/* TRANSLATORS: Skirt */
+"print-base.skirt" = "Jupe";
+/* TRANSLATORS: Standard */
+"print-base.standard" = "Standard";
+/* TRANSLATORS: Automatic */
+"print-color-mode.auto" = "Automatique";
+/* TRANSLATORS: Auto monochrome */
+"print-color-mode.auto-monochrome" = "Auto monochrome";
+/* TRANSLATORS: Text */
+"print-color-mode.bi-level" = "Texte";
+/* TRANSLATORS: Color */
+"print-color-mode.color" = "Couleur";
+/* TRANSLATORS: Highlight */
+"print-color-mode.highlight" = "Highlight";
+/* TRANSLATORS: Monochrome */
+"print-color-mode.monochrome" = "Monochrome";
+/* TRANSLATORS: Process Text */
+"print-color-mode.process-bi-level" = "Texte du processus";
+/* TRANSLATORS: Process monochrome */
+"print-color-mode.process-monochrome" = "Processus monochrome";
+/* TRANSLATORS: Print Optimization */
+"print-content-optimize" = "Optimisation de l ' impression";
+/* TRANSLATORS: Automatic */
+"print-content-optimize.auto" = "Automatique";
+/* TRANSLATORS: Graphics */
+"print-content-optimize.graphic" = "Graphiques";
+/* TRANSLATORS: Photo */
+"print-content-optimize.photo" = "Photo";
+/* TRANSLATORS: Text */
+"print-content-optimize.text" = "Texte";
+/* TRANSLATORS: Text and graphics */
+"print-content-optimize.text-and-graphic" = "Texte et graphiques";
+/* TRANSLATORS: Draft */
+"print-quality.3" = "Draft";
+/* TRANSLATORS: Normal */
+"print-quality.4" = "Normal";
+/* TRANSLATORS: High */
+"print-quality.5" = "High";
+/* TRANSLATORS: Absolute */
+"print-rendering-intent.absolute" = "Absolu";
+/* TRANSLATORS: Automatic */
+"print-rendering-intent.auto" = "Automatique";
+/* TRANSLATORS: Perceptual */
+"print-rendering-intent.perceptual" = "Perceptuel";
+/* TRANSLATORS: Relative */
+"print-rendering-intent.relative" = "relative";
+/* TRANSLATORS: Relative w/black point compensation */
+"print-rendering-intent.relative-bpc" = "Indemnité relative en w/black point";
+/* TRANSLATORS: Saturation */
+"print-rendering-intent.saturation" = "Saturation";
+/* TRANSLATORS: Automatic */
+"print-scaling.auto" = "Automatique";
+/* TRANSLATORS: Auto-fit */
+"print-scaling.auto-fit" = "Auto-fit";
+/* TRANSLATORS: Fill */
+"print-scaling.fill" = "Rempli";
+/* TRANSLATORS: Fit */
+"print-scaling.fit" = "Fit";
+/* TRANSLATORS: None */
+"print-scaling.none" = "None";
+/* TRANSLATORS: With specified material */
+"print-supports.material" = "With specified material";
+/* TRANSLATORS: None */
+"print-supports.none" = "None";
+/* TRANSLATORS: Standard */
+"print-supports.standard" = "Standard";
+/* TRANSLATORS: Print Resolution */
+"printer-resolution" = "Résolution d ' impression";
+"printer-service-type.copy" = "Copie";
+"printer-service-type.faxin" = "Faxin";
+"printer-service-type.faxout" = "Faxout";
+"printer-service-type.print" = "Imprimer";
+"printer-service-type.print3d" = "Print3d";
+"printer-service-type.scan" = "Scan";
+"printer-service-type.transform" = "Transformation";
+/* TRANSLATORS: Old Alerts Have Been Removed */
+"printer-state-reasons.alert-removal-of-binary-change-entry" = "Nouvelles alertes ont été retirées";
+/* TRANSLATORS: Bander added */
+"printer-state-reasons.bander-added" = "Bander ajouté";
+/* TRANSLATORS: Bander almost empty */
+"printer-state-reasons.bander-almost-empty" = "Bander presque vide";
+/* TRANSLATORS: Bander almost full */
+"printer-state-reasons.bander-almost-full" = "Bander presque plein";
+/* TRANSLATORS: Bander at limit */
+"printer-state-reasons.bander-at-limit" = "Bandeur à limite";
+/* TRANSLATORS: Bander closed */
+"printer-state-reasons.bander-closed" = "Bander fermé";
+/* TRANSLATORS: Bander configuration change */
+"printer-state-reasons.bander-configuration-change" = "Changement de configuration de Bander";
+/* TRANSLATORS: Bander cover closed */
+"printer-state-reasons.bander-cover-closed" = "Couverture de bande fermée";
+/* TRANSLATORS: Bander cover open */
+"printer-state-reasons.bander-cover-open" = "Couverture de bande ouverte";
+/* TRANSLATORS: Bander empty */
+"printer-state-reasons.bander-empty" = "Bander vide";
+/* TRANSLATORS: Bander full */
+"printer-state-reasons.bander-full" = "Bander complet";
+/* TRANSLATORS: Bander interlock closed */
+"printer-state-reasons.bander-interlock-closed" = "Bander interlock fermé";
+/* TRANSLATORS: Bander interlock open */
+"printer-state-reasons.bander-interlock-open" = "Bander interlock ouvert";
+/* TRANSLATORS: Bander jam */
+"printer-state-reasons.bander-jam" = "Bander jam";
+/* TRANSLATORS: Replace bander soon */
+"printer-state-reasons.bander-life-almost-over" = "Remplacer bander bientôt";
+/* TRANSLATORS: Replace bander */
+"printer-state-reasons.bander-life-over" = "Remplacer bander";
+/* TRANSLATORS: Bander memory exhausted */
+"printer-state-reasons.bander-memory-exhausted" = "Bander memory exhausted";
+/* TRANSLATORS: Install bander */
+"printer-state-reasons.bander-missing" = "Installer bander";
+/* TRANSLATORS: Bander motor failed */
+"printer-state-reasons.bander-motor-failure" = "Moteur de bande a échoué";
+/* TRANSLATORS: Bander near limit */
+"printer-state-reasons.bander-near-limit" = "Bander près de la limite";
+/* TRANSLATORS: Bander offline */
+"printer-state-reasons.bander-offline" = "Bander offline";
+/* TRANSLATORS: Bander opened */
+"printer-state-reasons.bander-opened" = "Bander ouvert";
+/* TRANSLATORS: Bander temperature high */
+"printer-state-reasons.bander-over-temperature" = "Température de bande élevée";
+/* TRANSLATORS: Bander power saver */
+"printer-state-reasons.bander-power-saver" = "Panteur de puissance";
+/* TRANSLATORS: Bander recoverable failure */
+"printer-state-reasons.bander-recoverable-failure" = "Bander défaillance récupérable";
+/* TRANSLATORS: Bander recoverable storage */
+"printer-state-reasons.bander-recoverable-storage" = "Stockage récupérable";
+/* TRANSLATORS: Bander removed */
+"printer-state-reasons.bander-removed" = "Bander enlevé";
+/* TRANSLATORS: Bander resource added */
+"printer-state-reasons.bander-resource-added" = "Bander resource added";
+/* TRANSLATORS: Bander resource removed */
+"printer-state-reasons.bander-resource-removed" = "Ressources de bande enlevées";
+/* TRANSLATORS: Bander temperature sensor failed */
+"printer-state-reasons.bander-thermistor-failure" = "Détecteur de température de bande a échoué";
+/* TRANSLATORS: Bander failed */
+"printer-state-reasons.bander-timing-failure" = "Bander a échoué";
+/* TRANSLATORS: Bander turned off */
+"printer-state-reasons.bander-turned-off" = "Bander désactivé";
+/* TRANSLATORS: Bander turned on */
+"printer-state-reasons.bander-turned-on" = "Bander s'est allumé";
+/* TRANSLATORS: Bander temperature low */
+"printer-state-reasons.bander-under-temperature" = "Température de bande basse";
+/* TRANSLATORS: Bander unrecoverable failure */
+"printer-state-reasons.bander-unrecoverable-failure" = "Bander non recouvrable";
+/* TRANSLATORS: Bander unrecoverable storage error */
+"printer-state-reasons.bander-unrecoverable-storage-error" = "Erreur de stockage non récupérable Bander";
+/* TRANSLATORS: Bander warming up */
+"printer-state-reasons.bander-warming-up" = "Bander se réchauffe";
+/* TRANSLATORS: Binder added */
+"printer-state-reasons.binder-added" = "Binder ajouté";
+/* TRANSLATORS: Binder almost empty */
+"printer-state-reasons.binder-almost-empty" = "Binder presque vide";
+/* TRANSLATORS: Binder almost full */
+"printer-state-reasons.binder-almost-full" = "Binder presque plein";
+/* TRANSLATORS: Binder at limit */
+"printer-state-reasons.binder-at-limit" = "Binder at limit";
+/* TRANSLATORS: Binder closed */
+"printer-state-reasons.binder-closed" = "Binder closed";
+/* TRANSLATORS: Binder configuration change */
+"printer-state-reasons.binder-configuration-change" = "Changement de configuration";
+/* TRANSLATORS: Binder cover closed */
+"printer-state-reasons.binder-cover-closed" = "Binder cover closed";
+/* TRANSLATORS: Binder cover open */
+"printer-state-reasons.binder-cover-open" = "Binder cover open";
+/* TRANSLATORS: Binder empty */
+"printer-state-reasons.binder-empty" = "Binder vide";
+/* TRANSLATORS: Binder full */
+"printer-state-reasons.binder-full" = "Binder full";
+/* TRANSLATORS: Binder interlock closed */
+"printer-state-reasons.binder-interlock-closed" = "Binder interlock closed";
+/* TRANSLATORS: Binder interlock open */
+"printer-state-reasons.binder-interlock-open" = "Binder interlock open";
+/* TRANSLATORS: Binder jam */
+"printer-state-reasons.binder-jam" = "Binder jam";
+/* TRANSLATORS: Binder life almost over */
+"printer-state-reasons.binder-life-almost-over" = "La vie de liant presque finie";
+/* TRANSLATORS: Binder life over */
+"printer-state-reasons.binder-life-over" = "La vie en prison";
+/* TRANSLATORS: Binder memory exhausted */
+"printer-state-reasons.binder-memory-exhausted" = "Mémoire de liant épuisée";
+/* TRANSLATORS: Binder missing */
+"printer-state-reasons.binder-missing" = "Binder manquant";
+/* TRANSLATORS: Binder motor failure */
+"printer-state-reasons.binder-motor-failure" = "Binder motor failure";
+/* TRANSLATORS: Binder near limit */
+"printer-state-reasons.binder-near-limit" = "Binder near limit";
+/* TRANSLATORS: Binder offline */
+"printer-state-reasons.binder-offline" = "Binder offline";
+/* TRANSLATORS: Binder opened */
+"printer-state-reasons.binder-opened" = "Binder opened";
+/* TRANSLATORS: Binder over temperature */
+"printer-state-reasons.binder-over-temperature" = "Binder over temperature";
+/* TRANSLATORS: Binder power saver */
+"printer-state-reasons.binder-power-saver" = "Binder power saver";
+/* TRANSLATORS: Binder recoverable failure */
+"printer-state-reasons.binder-recoverable-failure" = "Binder recoveryable failure";
+/* TRANSLATORS: Binder recoverable storage */
+"printer-state-reasons.binder-recoverable-storage" = "Boîtier récupérable";
+/* TRANSLATORS: Binder removed */
+"printer-state-reasons.binder-removed" = "Binder removed";
+/* TRANSLATORS: Binder resource added */
+"printer-state-reasons.binder-resource-added" = "Binder resource added";
+/* TRANSLATORS: Binder resource removed */
+"printer-state-reasons.binder-resource-removed" = "Binder resource removed";
+/* TRANSLATORS: Binder thermistor failure */
+"printer-state-reasons.binder-thermistor-failure" = "Binder thermistor failure";
+/* TRANSLATORS: Binder timing failure */
+"printer-state-reasons.binder-timing-failure" = "Binder timing failure";
+/* TRANSLATORS: Binder turned off */
+"printer-state-reasons.binder-turned-off" = "Binder s'est éteint";
+/* TRANSLATORS: Binder turned on */
+"printer-state-reasons.binder-turned-on" = "Binder s'est allumé";
+/* TRANSLATORS: Binder under temperature */
+"printer-state-reasons.binder-under-temperature" = "Binder under temperature";
+/* TRANSLATORS: Binder unrecoverable failure */
+"printer-state-reasons.binder-unrecoverable-failure" = "Binder unrecoverable failure";
+/* TRANSLATORS: Binder unrecoverable storage error */
+"printer-state-reasons.binder-unrecoverable-storage-error" = "Erreur de stockage non récupérable Binder";
+/* TRANSLATORS: Binder warming up */
+"printer-state-reasons.binder-warming-up" = "Binder se réchauffe";
+/* TRANSLATORS: Camera failed */
+"printer-state-reasons.camera-failure" = "Caméra échouée";
+/* TRANSLATORS: Chamber cooling */
+"printer-state-reasons.chamber-cooling" = "Refroidissement de la chambre";
+/* TRANSLATORS: Chamber failure */
+"printer-state-reasons.chamber-failure" = "Arrêt de la Chambre";
+/* TRANSLATORS: Chamber heating */
+"printer-state-reasons.chamber-heating" = "Chauffage par chambre";
+/* TRANSLATORS: Chamber temperature high */
+"printer-state-reasons.chamber-temperature-high" = "Température de chambre élevée";
+/* TRANSLATORS: Chamber temperature low */
+"printer-state-reasons.chamber-temperature-low" = "Température de chambre basse";
+/* TRANSLATORS: Replace cleaner soon */
+"printer-state-reasons.cleaner-life-almost-over" = "Remplacer nettoyant bientôt";
+/* TRANSLATORS: Replace cleaner */
+"printer-state-reasons.cleaner-life-over" = "Remplacer nettoyant";
+/* TRANSLATORS: Configuration change */
+"printer-state-reasons.configuration-change" = "Changement de configuration";
+/* TRANSLATORS: Connecting to device */
+"printer-state-reasons.connecting-to-device" = "Connexion à l'appareil";
+/* TRANSLATORS: Cover open */
+"printer-state-reasons.cover-open" = "Couverture ouverte";
+/* TRANSLATORS: Deactivated */
+"printer-state-reasons.deactivated" = "Désactivation";
+"printer-state-reasons.deleted" = "Deleted";
+/* TRANSLATORS: Developer empty */
+"printer-state-reasons.developer-empty" = "Développeur vide";
+/* TRANSLATORS: Developer low */
+"printer-state-reasons.developer-low" = "Developer low";
+/* TRANSLATORS: Die cutter added */
+"printer-state-reasons.die-cutter-added" = "Die cutter ajouté";
+/* TRANSLATORS: Die cutter almost empty */
+"printer-state-reasons.die-cutter-almost-empty" = "Die cutter presque vide";
+/* TRANSLATORS: Die cutter almost full */
+"printer-state-reasons.die-cutter-almost-full" = "Die cutter presque plein";
+/* TRANSLATORS: Die cutter at limit */
+"printer-state-reasons.die-cutter-at-limit" = "Die cutter at limit";
+/* TRANSLATORS: Die cutter closed */
+"printer-state-reasons.die-cutter-closed" = "Die cutter closed";
+/* TRANSLATORS: Die cutter configuration change */
+"printer-state-reasons.die-cutter-configuration-change" = "Changement de configuration";
+/* TRANSLATORS: Die cutter cover closed */
+"printer-state-reasons.die-cutter-cover-closed" = "Couverture de coupe fermée";
+/* TRANSLATORS: Die cutter cover open */
+"printer-state-reasons.die-cutter-cover-open" = "Die cutter cover open";
+/* TRANSLATORS: Die cutter empty */
+"printer-state-reasons.die-cutter-empty" = "Cutter vide";
+/* TRANSLATORS: Die cutter full */
+"printer-state-reasons.die-cutter-full" = "Die cutter plein";
+/* TRANSLATORS: Die cutter interlock closed */
+"printer-state-reasons.die-cutter-interlock-closed" = "Cutter interlock fermé";
+/* TRANSLATORS: Die cutter interlock open */
+"printer-state-reasons.die-cutter-interlock-open" = "Die cutter interlock open";
+/* TRANSLATORS: Die cutter jam */
+"printer-state-reasons.die-cutter-jam" = "Die cutter jam";
+/* TRANSLATORS: Replace die cutter soon */
+"printer-state-reasons.die-cutter-life-almost-over" = "Remplacez la cutter bientôt";
+/* TRANSLATORS: Die cutter life over */
+"printer-state-reasons.die-cutter-life-over" = "Crève la vie";
+/* TRANSLATORS: Die cutter memory exhausted */
+"printer-state-reasons.die-cutter-memory-exhausted" = "Die cutter memory exhausted";
+/* TRANSLATORS: Install die cutter */
+"printer-state-reasons.die-cutter-missing" = "Installez la cutter";
+/* TRANSLATORS: Die cutter motor failed */
+"printer-state-reasons.die-cutter-motor-failure" = "Moteur de cutter échoué";
+/* TRANSLATORS: Die cutter near limit */
+"printer-state-reasons.die-cutter-near-limit" = "Die cutter near limit";
+/* TRANSLATORS: Die cutter offline */
+"printer-state-reasons.die-cutter-offline" = "Die cutter offline";
+/* TRANSLATORS: Die cutter opened */
+"printer-state-reasons.die-cutter-opened" = "Die cutter opened";
+/* TRANSLATORS: Die cutter temperature high */
+"printer-state-reasons.die-cutter-over-temperature" = "Cutter température élevée";
+/* TRANSLATORS: Die cutter power saver */
+"printer-state-reasons.die-cutter-power-saver" = "Die cutter power saver";
+/* TRANSLATORS: Die cutter recoverable failure */
+"printer-state-reasons.die-cutter-recoverable-failure" = "Die cutter recoveryable failure";
+/* TRANSLATORS: Die cutter recoverable storage */
+"printer-state-reasons.die-cutter-recoverable-storage" = "Die cutter récupérable";
+/* TRANSLATORS: Die cutter removed */
+"printer-state-reasons.die-cutter-removed" = "Die cutter removed";
+/* TRANSLATORS: Die cutter resource added */
+"printer-state-reasons.die-cutter-resource-added" = "Die cutter resource added";
+/* TRANSLATORS: Die cutter resource removed */
+"printer-state-reasons.die-cutter-resource-removed" = "Die cutter resource removed";
+/* TRANSLATORS: Die cutter temperature sensor failed */
+"printer-state-reasons.die-cutter-thermistor-failure" = "Détecteur de température de cutter";
+/* TRANSLATORS: Die cutter failed */
+"printer-state-reasons.die-cutter-timing-failure" = "Die cutter failed";
+/* TRANSLATORS: Die cutter turned off */
+"printer-state-reasons.die-cutter-turned-off" = "Die cutter désactivé";
+/* TRANSLATORS: Die cutter turned on */
+"printer-state-reasons.die-cutter-turned-on" = "Die cutter s'est allumé";
+/* TRANSLATORS: Die cutter temperature low */
+"printer-state-reasons.die-cutter-under-temperature" = "Température de coupe faible";
+/* TRANSLATORS: Die cutter unrecoverable failure */
+"printer-state-reasons.die-cutter-unrecoverable-failure" = "Die cutter unrecoverable failure";
+/* TRANSLATORS: Die cutter unrecoverable storage error */
+"printer-state-reasons.die-cutter-unrecoverable-storage-error" = "Die cutter erreur de stockage indécouvrable";
+/* TRANSLATORS: Die cutter warming up */
+"printer-state-reasons.die-cutter-warming-up" = "Cutter réchauffer";
+/* TRANSLATORS: Door open */
+"printer-state-reasons.door-open" = "Porte ouverte";
+/* TRANSLATORS: Extruder cooling */
+"printer-state-reasons.extruder-cooling" = "Refroidissement extrudé";
+/* TRANSLATORS: Extruder failure */
+"printer-state-reasons.extruder-failure" = "Défaut extrudé";
+/* TRANSLATORS: Extruder heating */
+"printer-state-reasons.extruder-heating" = "Chauffage extérieur";
+/* TRANSLATORS: Extruder jammed */
+"printer-state-reasons.extruder-jam" = "Extruder jammed";
+/* TRANSLATORS: Extruder temperature high */
+"printer-state-reasons.extruder-temperature-high" = "Température de sortie élevée";
+/* TRANSLATORS: Extruder temperature low */
+"printer-state-reasons.extruder-temperature-low" = "Température de sortie faible";
+/* TRANSLATORS: Fan failed */
+"printer-state-reasons.fan-failure" = "Fan échoué";
+/* TRANSLATORS: Replace fax modem soon */
+"printer-state-reasons.fax-modem-life-almost-over" = "Remplacer le modem fax bientôt";
+/* TRANSLATORS: Replace fax modem */
+"printer-state-reasons.fax-modem-life-over" = "Remplacer le modem de télécopie";
+/* TRANSLATORS: Install fax modem */
+"printer-state-reasons.fax-modem-missing" = "Installez le modem fax";
+/* TRANSLATORS: Fax modem turned off */
+"printer-state-reasons.fax-modem-turned-off" = "Fax modem désactivé";
+/* TRANSLATORS: Fax modem turned on */
+"printer-state-reasons.fax-modem-turned-on" = "Modem de fax activé";
+/* TRANSLATORS: Folder added */
+"printer-state-reasons.folder-added" = "Dossier ajouté";
+/* TRANSLATORS: Folder almost empty */
+"printer-state-reasons.folder-almost-empty" = "Folder presque vide";
+/* TRANSLATORS: Folder almost full */
+"printer-state-reasons.folder-almost-full" = "Folder presque complet";
+/* TRANSLATORS: Folder at limit */
+"printer-state-reasons.folder-at-limit" = "Dossier à limite";
+/* TRANSLATORS: Folder closed */
+"printer-state-reasons.folder-closed" = "Dossier fermé";
+/* TRANSLATORS: Folder configuration change */
+"printer-state-reasons.folder-configuration-change" = "Changement de configuration du dossier";
+/* TRANSLATORS: Folder cover closed */
+"printer-state-reasons.folder-cover-closed" = "Couverture de dossier fermée";
+/* TRANSLATORS: Folder cover open */
+"printer-state-reasons.folder-cover-open" = "Couverture de dossier ouverte";
+/* TRANSLATORS: Folder empty */
+"printer-state-reasons.folder-empty" = "Dossier vide";
+/* TRANSLATORS: Folder full */
+"printer-state-reasons.folder-full" = "Dossier complet";
+/* TRANSLATORS: Folder interlock closed */
+"printer-state-reasons.folder-interlock-closed" = "Folder interlock fermé";
+/* TRANSLATORS: Folder interlock open */
+"printer-state-reasons.folder-interlock-open" = "Folder interlock ouvert";
+/* TRANSLATORS: Folder jammed */
+"printer-state-reasons.folder-jam" = "Folder jammed";
+/* TRANSLATORS: Replace folder soon */
+"printer-state-reasons.folder-life-almost-over" = "Remplacer le dossier bientôt";
+/* TRANSLATORS: Replace folder */
+"printer-state-reasons.folder-life-over" = "Remplacer le dossier";
+/* TRANSLATORS: Folder memory exhausted */
+"printer-state-reasons.folder-memory-exhausted" = "Mémoire de dossier épuisé";
+/* TRANSLATORS: Install folder */
+"printer-state-reasons.folder-missing" = "Installez le dossier";
+/* TRANSLATORS: Folder motor failure */
+"printer-state-reasons.folder-motor-failure" = "Défaut moteur de dossier";
+/* TRANSLATORS: Folder near limit */
+"printer-state-reasons.folder-near-limit" = "Folder near limit";
+/* TRANSLATORS: Folder offline */
+"printer-state-reasons.folder-offline" = "Folder offline";
+/* TRANSLATORS: Folder opened */
+"printer-state-reasons.folder-opened" = "Folder ouvert";
+/* TRANSLATORS: Folder temperature high */
+"printer-state-reasons.folder-over-temperature" = "Température de dossier élevée";
+/* TRANSLATORS: Folder power saver */
+"printer-state-reasons.folder-power-saver" = "Réparateur de puissance";
+/* TRANSLATORS: Folder recoverable failure */
+"printer-state-reasons.folder-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Folder recoverable storage */
+"printer-state-reasons.folder-recoverable-storage" = "Dossier de stockage récupérable";
+/* TRANSLATORS: Folder removed */
+"printer-state-reasons.folder-removed" = "Dossier enlevé";
+/* TRANSLATORS: Folder resource added */
+"printer-state-reasons.folder-resource-added" = "Folder resource added";
+/* TRANSLATORS: Folder resource removed */
+"printer-state-reasons.folder-resource-removed" = "Ressources du dossier supprimées";
+/* TRANSLATORS: Folder temperature sensor failed */
+"printer-state-reasons.folder-thermistor-failure" = "Capteur de température de dossier échoué";
+/* TRANSLATORS: Folder failed */
+"printer-state-reasons.folder-timing-failure" = "Folder a échoué";
+/* TRANSLATORS: Folder turned off */
+"printer-state-reasons.folder-turned-off" = "Folder désactivé";
+/* TRANSLATORS: Folder turned on */
+"printer-state-reasons.folder-turned-on" = "Folder a tourné";
+/* TRANSLATORS: Folder temperature low */
+"printer-state-reasons.folder-under-temperature" = "Température de dossier faible";
+/* TRANSLATORS: Folder unrecoverable failure */
+"printer-state-reasons.folder-unrecoverable-failure" = "Défaut non récupérable";
+/* TRANSLATORS: Folder unrecoverable storage error */
+"printer-state-reasons.folder-unrecoverable-storage-error" = "Erreur de stockage irrécupérable";
+/* TRANSLATORS: Folder warming up */
+"printer-state-reasons.folder-warming-up" = "Dossier chaud";
+/* TRANSLATORS: Fuser temperature high */
+"printer-state-reasons.fuser-over-temp" = "Température de fonctionnement élevée";
+/* TRANSLATORS: Fuser temperature low */
+"printer-state-reasons.fuser-under-temp" = "Température faible";
+"printer-state-reasons.hibernate" = "Hibernate";
+/* TRANSLATORS: Hold new jobs */
+"printer-state-reasons.hold-new-jobs" = "Maintien de nouveaux emplois";
+/* TRANSLATORS: Identify printer */
+"printer-state-reasons.identify-printer-requested" = "Identifier l'imprimante";
+/* TRANSLATORS: Imprinter added */
+"printer-state-reasons.imprinter-added" = "Imprinter ajouté";
+/* TRANSLATORS: Imprinter almost empty */
+"printer-state-reasons.imprinter-almost-empty" = "Imprinter presque vide";
+/* TRANSLATORS: Imprinter almost full */
+"printer-state-reasons.imprinter-almost-full" = "Imprinter presque plein";
+/* TRANSLATORS: Imprinter at limit */
+"printer-state-reasons.imprinter-at-limit" = "Imprient à la limite";
+/* TRANSLATORS: Imprinter closed */
+"printer-state-reasons.imprinter-closed" = "Imprinter fermer";
+/* TRANSLATORS: Imprinter configuration change */
+"printer-state-reasons.imprinter-configuration-change" = "Changement de configuration";
+/* TRANSLATORS: Imprinter cover closed */
+"printer-state-reasons.imprinter-cover-closed" = "Couverture rigide";
+/* TRANSLATORS: Imprinter cover open */
+"printer-state-reasons.imprinter-cover-open" = "Couverture rigide ouverte";
+/* TRANSLATORS: Imprinter empty */
+"printer-state-reasons.imprinter-empty" = "Imprinter vide";
+/* TRANSLATORS: Imprinter full */
+"printer-state-reasons.imprinter-full" = "Imprinter plein";
+/* TRANSLATORS: Imprinter interlock closed */
+"printer-state-reasons.imprinter-interlock-closed" = "Interlock d ' entrée fermé";
+/* TRANSLATORS: Imprinter interlock open */
+"printer-state-reasons.imprinter-interlock-open" = "Imprinterrupteur ouvert";
+/* TRANSLATORS: Imprinter jammed */
+"printer-state-reasons.imprinter-jam" = "Imprinter jammed";
+/* TRANSLATORS: Replace imprinter soon */
+"printer-state-reasons.imprinter-life-almost-over" = "Remplacer l'imprinterprète bientôt";
+/* TRANSLATORS: Replace imprinter */
+"printer-state-reasons.imprinter-life-over" = "Remplacer l ' intermédiaire";
+/* TRANSLATORS: Imprinter memory exhausted */
+"printer-state-reasons.imprinter-memory-exhausted" = "Mémoire d ' inflammation épuisée";
+/* TRANSLATORS: Install imprinter */
+"printer-state-reasons.imprinter-missing" = "Installe imprinter";
+/* TRANSLATORS: Imprinter motor failed */
+"printer-state-reasons.imprinter-motor-failure" = "Moteur d ' échappement échoué";
+/* TRANSLATORS: Imprinter near limit */
+"printer-state-reasons.imprinter-near-limit" = "Imprinter near limit";
+/* TRANSLATORS: Imprinter offline */
+"printer-state-reasons.imprinter-offline" = "Imprinter offline";
+/* TRANSLATORS: Imprinter opened */
+"printer-state-reasons.imprinter-opened" = "Imprinter ouvert";
+/* TRANSLATORS: Imprinter temperature high */
+"printer-state-reasons.imprinter-over-temperature" = "Température d ' exposition élevée";
+/* TRANSLATORS: Imprinter power saver */
+"printer-state-reasons.imprinter-power-saver" = "Réparateur de puissance";
+/* TRANSLATORS: Imprinter recoverable failure */
+"printer-state-reasons.imprinter-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Imprinter recoverable storage */
+"printer-state-reasons.imprinter-recoverable-storage" = "Stockage irrécupérable";
+/* TRANSLATORS: Imprinter removed */
+"printer-state-reasons.imprinter-removed" = "Emprinter enlevé";
+/* TRANSLATORS: Imprinter resource added */
+"printer-state-reasons.imprinter-resource-added" = "Imprinter resource added";
+/* TRANSLATORS: Imprinter resource removed */
+"printer-state-reasons.imprinter-resource-removed" = "Ressources pour l ' environnement supprimées";
+/* TRANSLATORS: Imprinter temperature sensor failed */
+"printer-state-reasons.imprinter-thermistor-failure" = "Le capteur de température de l ' environnement a échoué";
+/* TRANSLATORS: Imprinter failed */
+"printer-state-reasons.imprinter-timing-failure" = "Imprinter échec";
+/* TRANSLATORS: Imprinter turned off */
+"printer-state-reasons.imprinter-turned-off" = "Imprinter s'est éteint";
+/* TRANSLATORS: Imprinter turned on */
+"printer-state-reasons.imprinter-turned-on" = "Imprinter s'est allumé";
+/* TRANSLATORS: Imprinter temperature low */
+"printer-state-reasons.imprinter-under-temperature" = "Température d ' exposition faible";
+/* TRANSLATORS: Imprinter unrecoverable failure */
+"printer-state-reasons.imprinter-unrecoverable-failure" = "Imprinter unrecoverable failure";
+/* TRANSLATORS: Imprinter unrecoverable storage error */
+"printer-state-reasons.imprinter-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Imprinter";
+/* TRANSLATORS: Imprinter warming up */
+"printer-state-reasons.imprinter-warming-up" = "Réchauffement de l'immense";
+/* TRANSLATORS: Input cannot feed size selected */
+"printer-state-reasons.input-cannot-feed-size-selected" = "Input cannot feed size selected";
+/* TRANSLATORS: Load paper */
+"printer-state-reasons.input-manual-input-request" = "Charge paper";
+/* TRANSLATORS: Paper changed */
+"printer-state-reasons.input-media-color-change" = "Paper changed";
+/* TRANSLATORS: Paper changed */
+"printer-state-reasons.input-media-form-parts-change" = "Paper changed";
+/* TRANSLATORS: Paper changed */
+"printer-state-reasons.input-media-size-change" = "Paper changed";
+/* TRANSLATORS: Paper tray failed */
+"printer-state-reasons.input-media-tray-failure" = "Le plateau de papier a échoué";
+/* TRANSLATORS: Paper tray feed error */
+"printer-state-reasons.input-media-tray-feed-error" = "Erreur d'alimentation de plateau papier";
+/* TRANSLATORS: Input media tray jam */
+"printer-state-reasons.input-media-tray-jam" = "Confiture de plateau média d'entrée";
+/* TRANSLATORS: Paper changed */
+"printer-state-reasons.input-media-type-change" = "Paper changed";
+/* TRANSLATORS: Paper changed */
+"printer-state-reasons.input-media-weight-change" = "Paper changed";
+/* TRANSLATORS: Pick roller failed */
+"printer-state-reasons.input-pick-roller-failure" = "Pick roller échoué";
+/* TRANSLATORS: Replace pick roller */
+"printer-state-reasons.input-pick-roller-life-over" = "Remplacer le rouleau";
+/* TRANSLATORS: Replace pick roller soon */
+"printer-state-reasons.input-pick-roller-life-warn" = "Remplacez pick roller bientôt";
+/* TRANSLATORS: Input pick roller missing */
+"printer-state-reasons.input-pick-roller-missing" = "Input pick roller manquant";
+/* TRANSLATORS: Paper tray elevation failed */
+"printer-state-reasons.input-tray-elevation-failure" = "Faible élévation du plateau de papier";
+/* TRANSLATORS: Paper tray is missing */
+"printer-state-reasons.input-tray-missing" = "Le plateau en papier est manquant";
+/* TRANSLATORS: Paper tray position failed */
+"printer-state-reasons.input-tray-position-failure" = "Position du plateau en papier échouée";
+/* TRANSLATORS: Inserter added */
+"printer-state-reasons.inserter-added" = "Inserter ajouté";
+/* TRANSLATORS: Inserter almost empty */
+"printer-state-reasons.inserter-almost-empty" = "Insérer presque vide";
+/* TRANSLATORS: Inserter almost full */
+"printer-state-reasons.inserter-almost-full" = "Inserter presque plein";
+/* TRANSLATORS: Inserter at limit */
+"printer-state-reasons.inserter-at-limit" = "Insérer à la limite";
+/* TRANSLATORS: Inserter closed */
+"printer-state-reasons.inserter-closed" = "Insérer fermé";
+/* TRANSLATORS: Inserter configuration change */
+"printer-state-reasons.inserter-configuration-change" = "Changement de configuration";
+/* TRANSLATORS: Inserter cover closed */
+"printer-state-reasons.inserter-cover-closed" = "Couverture d ' insertion fermée";
+/* TRANSLATORS: Inserter cover open */
+"printer-state-reasons.inserter-cover-open" = "Couverture d ' insertion ouverte";
+/* TRANSLATORS: Inserter empty */
+"printer-state-reasons.inserter-empty" = "Inserter vide";
+/* TRANSLATORS: Inserter full */
+"printer-state-reasons.inserter-full" = "Insérer plein";
+/* TRANSLATORS: Inserter interlock closed */
+"printer-state-reasons.inserter-interlock-closed" = "Inserter interlock closed";
+/* TRANSLATORS: Inserter interlock open */
+"printer-state-reasons.inserter-interlock-open" = "Inserter interlock open";
+/* TRANSLATORS: Inserter jammed */
+"printer-state-reasons.inserter-jam" = "Inserter jammed";
+/* TRANSLATORS: Replace inserter soon */
+"printer-state-reasons.inserter-life-almost-over" = "Remplacer inserter soon";
+/* TRANSLATORS: Replace inserter */
+"printer-state-reasons.inserter-life-over" = "Remplacer inserter";
+/* TRANSLATORS: Inserter memory exhausted */
+"printer-state-reasons.inserter-memory-exhausted" = "Insérer la mémoire épuisée";
+/* TRANSLATORS: Install inserter */
+"printer-state-reasons.inserter-missing" = "Installer inserter";
+/* TRANSLATORS: Inserter motor failed */
+"printer-state-reasons.inserter-motor-failure" = "Moteur d ' insertion échoué";
+/* TRANSLATORS: Inserter near limit */
+"printer-state-reasons.inserter-near-limit" = "Inserter near limit";
+/* TRANSLATORS: Inserter offline */
+"printer-state-reasons.inserter-offline" = "Inserter offline";
+/* TRANSLATORS: Inserter opened */
+"printer-state-reasons.inserter-opened" = "Insérer ouvert";
+/* TRANSLATORS: Inserter temperature high */
+"printer-state-reasons.inserter-over-temperature" = "Température d ' entrée élevée";
+/* TRANSLATORS: Inserter power saver */
+"printer-state-reasons.inserter-power-saver" = "Réparateur d ' alimentation";
+/* TRANSLATORS: Inserter recoverable failure */
+"printer-state-reasons.inserter-recoverable-failure" = "Insérer une défaillance récupérable";
+/* TRANSLATORS: Inserter recoverable storage */
+"printer-state-reasons.inserter-recoverable-storage" = "Insérer le stockage récupérable";
+/* TRANSLATORS: Inserter removed */
+"printer-state-reasons.inserter-removed" = "Inserter enlevé";
+/* TRANSLATORS: Inserter resource added */
+"printer-state-reasons.inserter-resource-added" = "Insérer des ressources ajoutées";
+/* TRANSLATORS: Inserter resource removed */
+"printer-state-reasons.inserter-resource-removed" = "Ressources en matière d ' insertion enlevées";
+/* TRANSLATORS: Inserter temperature sensor failed */
+"printer-state-reasons.inserter-thermistor-failure" = "Capteur de température de l'insertateur échoué";
+/* TRANSLATORS: Inserter failed */
+"printer-state-reasons.inserter-timing-failure" = "Inserter failed";
+/* TRANSLATORS: Inserter turned off */
+"printer-state-reasons.inserter-turned-off" = "Inserter désactivé";
+/* TRANSLATORS: Inserter turned on */
+"printer-state-reasons.inserter-turned-on" = "Inserter tourné";
+/* TRANSLATORS: Inserter temperature low */
+"printer-state-reasons.inserter-under-temperature" = "Température d ' entrée faible";
+/* TRANSLATORS: Inserter unrecoverable failure */
+"printer-state-reasons.inserter-unrecoverable-failure" = "Insérer un échec non recouvrable";
+/* TRANSLATORS: Inserter unrecoverable storage error */
+"printer-state-reasons.inserter-unrecoverable-storage-error" = "Insérer une erreur de stockage irrécupérable";
+/* TRANSLATORS: Inserter warming up */
+"printer-state-reasons.inserter-warming-up" = "Insérer réchauffement";
+/* TRANSLATORS: Interlock closed */
+"printer-state-reasons.interlock-closed" = "Interlock fermé";
+/* TRANSLATORS: Interlock open */
+"printer-state-reasons.interlock-open" = "Interlock ouvert";
+/* TRANSLATORS: Interpreter cartridge added */
+"printer-state-reasons.interpreter-cartridge-added" = "Cartouche d'interprète ajoutée";
+/* TRANSLATORS: Interpreter cartridge removed */
+"printer-state-reasons.interpreter-cartridge-deleted" = "Cartouche d ' interprète enlevée";
+/* TRANSLATORS: Interpreter complex page encountered */
+"printer-state-reasons.interpreter-complex-page-encountered" = "Page complexe d'interprète rencontrée";
+/* TRANSLATORS: Interpreter memory decrease */
+"printer-state-reasons.interpreter-memory-decrease" = "Réduction de la mémoire d'interprète";
+/* TRANSLATORS: Interpreter memory increase */
+"printer-state-reasons.interpreter-memory-increase" = "Augmentation de la mémoire d'interprète";
+/* TRANSLATORS: Interpreter resource added */
+"printer-state-reasons.interpreter-resource-added" = "Ressources d ' interprète ajoutées";
+/* TRANSLATORS: Interpreter resource deleted */
+"printer-state-reasons.interpreter-resource-deleted" = "Ressources d ' interprète supprimées";
+/* TRANSLATORS: Printer resource unavailable */
+"printer-state-reasons.interpreter-resource-unavailable" = "Ressources imprimantes non disponibles";
+/* TRANSLATORS: Replace lamp */
+"printer-state-reasons.lamp-at-eol" = "Remplacer la lampe";
+/* TRANSLATORS: Lamp failed */
+"printer-state-reasons.lamp-failure" = "La lampe a échoué";
+/* TRANSLATORS: Replace lamp soon */
+"printer-state-reasons.lamp-near-eol" = "Remplacer la lampe bientôt";
+/* TRANSLATORS: Replace laser */
+"printer-state-reasons.laser-at-eol" = "Remplacer laser";
+/* TRANSLATORS: Laser failed */
+"printer-state-reasons.laser-failure" = "Laser échoué";
+/* TRANSLATORS: Replace laser soon */
+"printer-state-reasons.laser-near-eol" = "Remplacer le laser bientôt";
+/* TRANSLATORS: Envelope maker added */
+"printer-state-reasons.make-envelope-added" = "Envelope maker added";
+/* TRANSLATORS: Envelope maker almost empty */
+"printer-state-reasons.make-envelope-almost-empty" = "Enveloppeur presque vide";
+/* TRANSLATORS: Envelope maker almost full */
+"printer-state-reasons.make-envelope-almost-full" = "Enveloppeur presque plein";
+/* TRANSLATORS: Envelope maker at limit */
+"printer-state-reasons.make-envelope-at-limit" = "Enveloppeur à limite";
+/* TRANSLATORS: Envelope maker closed */
+"printer-state-reasons.make-envelope-closed" = "Envelope maker closed";
+/* TRANSLATORS: Envelope maker configuration change */
+"printer-state-reasons.make-envelope-configuration-change" = "Changement de configuration de maker enveloppe";
+/* TRANSLATORS: Envelope maker cover closed */
+"printer-state-reasons.make-envelope-cover-closed" = "Couverture enveloppe fermée";
+/* TRANSLATORS: Envelope maker cover open */
+"printer-state-reasons.make-envelope-cover-open" = "Couverture enveloppe ouverte";
+/* TRANSLATORS: Envelope maker empty */
+"printer-state-reasons.make-envelope-empty" = "Envelope maker empty";
+/* TRANSLATORS: Envelope maker full */
+"printer-state-reasons.make-envelope-full" = "Envelope maker full";
+/* TRANSLATORS: Envelope maker interlock closed */
+"printer-state-reasons.make-envelope-interlock-closed" = "Envelope maker interlock closed";
+/* TRANSLATORS: Envelope maker interlock open */
+"printer-state-reasons.make-envelope-interlock-open" = "Envelope maker interlock open";
+/* TRANSLATORS: Envelope maker jammed */
+"printer-state-reasons.make-envelope-jam" = "Envelope maker jammed";
+/* TRANSLATORS: Replace envelope maker soon */
+"printer-state-reasons.make-envelope-life-almost-over" = "Remplacer l'enveloppe maker bientôt";
+/* TRANSLATORS: Replace envelope maker */
+"printer-state-reasons.make-envelope-life-over" = "Remplacer maker enveloppe";
+/* TRANSLATORS: Envelope maker memory exhausted */
+"printer-state-reasons.make-envelope-memory-exhausted" = "Mémoire du fabricant d'enveloppe épuisée";
+/* TRANSLATORS: Install envelope maker */
+"printer-state-reasons.make-envelope-missing" = "Installez maker envelope";
+/* TRANSLATORS: Envelope maker motor failed */
+"printer-state-reasons.make-envelope-motor-failure" = "Moteur enveloppeur échoué";
+/* TRANSLATORS: Envelope maker near limit */
+"printer-state-reasons.make-envelope-near-limit" = "Constructeur enveloppe près de la limite";
+/* TRANSLATORS: Envelope maker offline */
+"printer-state-reasons.make-envelope-offline" = "Envelope maker offline";
+/* TRANSLATORS: Envelope maker opened */
+"printer-state-reasons.make-envelope-opened" = "Envelope maker opened";
+/* TRANSLATORS: Envelope maker temperature high */
+"printer-state-reasons.make-envelope-over-temperature" = "Température élevée du fabricant d ' enveloppe";
+/* TRANSLATORS: Envelope maker in power save mode */
+"printer-state-reasons.make-envelope-power-saver" = "Enveloppeur en mode de sauvegarde de puissance";
+/* TRANSLATORS: Envelope maker recoverable failure */
+"printer-state-reasons.make-envelope-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Envelope maker recoverable storage */
+"printer-state-reasons.make-envelope-recoverable-storage" = "Envelope maker rangeable";
+/* TRANSLATORS: Envelope maker removed */
+"printer-state-reasons.make-envelope-removed" = "Envelope maker removed";
+/* TRANSLATORS: Envelope maker resource added */
+"printer-state-reasons.make-envelope-resource-added" = "Envelope maker resource added";
+/* TRANSLATORS: Envelope maker resource removed */
+"printer-state-reasons.make-envelope-resource-removed" = "Envelope maker resource removed";
+/* TRANSLATORS: Envelope maker temperature sensor failed */
+"printer-state-reasons.make-envelope-thermistor-failure" = "Le capteur de température du fabricant d'enveloppe a échoué";
+/* TRANSLATORS: Envelope maker failed */
+"printer-state-reasons.make-envelope-timing-failure" = "Envelope maker failed";
+/* TRANSLATORS: Envelope maker turned off */
+"printer-state-reasons.make-envelope-turned-off" = "Envelope maker turned off";
+/* TRANSLATORS: Envelope maker turned on */
+"printer-state-reasons.make-envelope-turned-on" = "Envelope maker activé";
+/* TRANSLATORS: Envelope maker temperature low */
+"printer-state-reasons.make-envelope-under-temperature" = "Température faible du fabricant d ' enveloppe";
+/* TRANSLATORS: Envelope maker unrecoverable failure */
+"printer-state-reasons.make-envelope-unrecoverable-failure" = "Défaut d ' enveloppe";
+/* TRANSLATORS: Envelope maker unrecoverable storage error */
+"printer-state-reasons.make-envelope-unrecoverable-storage-error" = "Erreur de stockage de l'enveloppe";
+/* TRANSLATORS: Envelope maker warming up */
+"printer-state-reasons.make-envelope-warming-up" = "Chaudière enveloppante";
+"printer-state-reasons.marker-added" = "Marqueur ajouté";
+/* TRANSLATORS: Optimizing print quality */
+"printer-state-reasons.marker-adjusting-print-quality" = "Optimisation de la qualité de l'impression";
+"printer-state-reasons.marker-at-limit" = "Marqueur à limite";
+"printer-state-reasons.marker-carrier-failure" = "Défaut du transporteur de marques";
+/* TRANSLATORS: Install cleaner */
+"printer-state-reasons.marker-cleaner-missing" = "Installer nettoyant";
+"printer-state-reasons.marker-closed" = "Marqueur fermé";
+/* TRANSLATORS: Developer almost empty */
+"printer-state-reasons.marker-developer-almost-empty" = "Développeur presque vide";
+/* TRANSLATORS: Developer empty */
+"printer-state-reasons.marker-developer-empty" = "Développeur vide";
+/* TRANSLATORS: Replace developer */
+"printer-state-reasons.marker-developer-missing" = "Remplacer développeur";
+/* TRANSLATORS: Install fuser */
+"printer-state-reasons.marker-fuser-missing" = "Installer le fusible";
+/* TRANSLATORS: Fuser temperature sensor failed */
+"printer-state-reasons.marker-fuser-thermistor-failure" = "Capteur de température de l'utilisateur échoué";
+/* TRANSLATORS: Fuser failed */
+"printer-state-reasons.marker-fuser-timing-failure" = "Fuser failed";
+/* TRANSLATORS: Ink low */
+"printer-state-reasons.marker-ink-almost-empty" = "Ink low";
+/* TRANSLATORS: Ink empty */
+"printer-state-reasons.marker-ink-empty" = "Encre vide";
+/* TRANSLATORS: Install ink */
+"printer-state-reasons.marker-ink-missing" = "Installer l'encre";
+"printer-state-reasons.marker-life-almost-over" = "La vie de marqueur presque finie";
+"printer-state-reasons.marker-life-over" = "La vie de marqueur";
+"printer-state-reasons.marker-memory-exhausted" = "Marqueur mémoire épuisé";
+"printer-state-reasons.marker-missing" = "Marker manquant";
+"printer-state-reasons.marker-motor-failure" = "Défaut moteur du marqueur";
+"printer-state-reasons.marker-near-limit" = "Marqueur près de la limite";
+"printer-state-reasons.marker-offline" = "Marker offline";
+/* TRANSLATORS: Install OPC */
+"printer-state-reasons.marker-opc-missing" = "Installer OPC";
+"printer-state-reasons.marker-opened" = "Marker ouvert";
+"printer-state-reasons.marker-over-temperature" = "Marqueur à température";
+"printer-state-reasons.marker-power-saver" = "Énergie de marqueur";
+/* TRANSLATORS: Print ribbon low */
+"printer-state-reasons.marker-print-ribbon-almost-empty" = "Bande d'impression basse";
+/* TRANSLATORS: Print ribbon empty */
+"printer-state-reasons.marker-print-ribbon-empty" = "Bande d'impression vide";
+/* TRANSLATORS: Install print ribbon */
+"printer-state-reasons.marker-print-ribbon-missing" = "Installez le ruban imprimé";
+"printer-state-reasons.marker-recoverable-failure" = "Défaut récupérable";
+"printer-state-reasons.marker-removed" = "Marqueur enlevé";
+"printer-state-reasons.marker-resource-added" = "Ressources de marque ajoutées";
+"printer-state-reasons.marker-resource-removed" = "Ressources du marqueur supprimées";
+/* TRANSLATORS: Ink/toner very low */
+"printer-state-reasons.marker-supply-almost-empty" = "Encre/toner très bas";
+/* TRANSLATORS: Ink/toner empty */
+"printer-state-reasons.marker-supply-empty" = "Ink/toner vide";
+"printer-state-reasons.marker-supply-failure" = "Défaut d ' alimentation du marqueur";
+/* TRANSLATORS: Ink/toner low */
+"printer-state-reasons.marker-supply-low" = "Ink/toner bas";
+/* TRANSLATORS: Marker supply missing */
+"printer-state-reasons.marker-supply-missing" = "Fourniture de marque manquante";
+"printer-state-reasons.marker-thermistor-failure" = "Défaut du marqueur";
+"printer-state-reasons.marker-timing-failure" = "Défaut de décalage du marqueur";
+/* TRANSLATORS: Replace toner cartridge */
+"printer-state-reasons.marker-toner-cartridge-missing" = "Remplacer la cartouche de toner";
+/* TRANSLATORS: Install toner */
+"printer-state-reasons.marker-toner-missing" = "Installez toner";
+"printer-state-reasons.marker-turned-off" = "Marker s'est éteint";
+"printer-state-reasons.marker-turned-on" = "Marqueur tourné";
+"printer-state-reasons.marker-under-temperature" = "Marqueur à température";
+"printer-state-reasons.marker-unrecoverable-failure" = "Défaut non récupérable";
+"printer-state-reasons.marker-warming-up" = "Marker se réchauffe";
+/* TRANSLATORS: Ink/toner waste bin almost full */
+"printer-state-reasons.marker-waste-almost-full" = "Corbeille à encre/toner presque pleine";
+/* TRANSLATORS: Ink/toner waste bin full */
+"printer-state-reasons.marker-waste-full" = "Corbeille à encre/toner pleine";
+/* TRANSLATORS: Ink waste bin almost full */
+"printer-state-reasons.marker-waste-ink-receptacle-almost-full" = "Corbeille d'encre presque complète";
+/* TRANSLATORS: Ink waste bin full */
+"printer-state-reasons.marker-waste-ink-receptacle-full" = "Corbeille d'encre complète";
+/* TRANSLATORS: Replace ink waste bin */
+"printer-state-reasons.marker-waste-ink-receptacle-missing" = "Remplacer les déchets d ' encre";
+/* TRANSLATORS: Install waste bin */
+"printer-state-reasons.marker-waste-missing" = "Installer la poubelle";
+/* TRANSLATORS: Toner waste bin almost full */
+"printer-state-reasons.marker-waste-toner-receptacle-almost-full" = "Toner waste bin presque full";
+/* TRANSLATORS: Toner waste bin full */
+"printer-state-reasons.marker-waste-toner-receptacle-full" = "Toner poubelle full";
+/* TRANSLATORS: Install toner waste bin */
+"printer-state-reasons.marker-waste-toner-receptacle-missing" = "Installer toner waste bin";
+/* TRANSLATORS: Material empty */
+"printer-state-reasons.material-empty" = "Matériel vide";
+/* TRANSLATORS: Material low */
+"printer-state-reasons.material-low" = "Matériel faible";
+/* TRANSLATORS: Load material */
+"printer-state-reasons.material-needed" = "Matériel de charge";
+/* TRANSLATORS: Paper drying */
+"printer-state-reasons.media-drying" = "Séchage du papier";
+/* TRANSLATORS: Paper tray is empty */
+"printer-state-reasons.media-empty" = "Le plateau en papier est vide";
+/* TRANSLATORS: Paper jam */
+"printer-state-reasons.media-jam" = "Paper jam";
+/* TRANSLATORS: Paper tray is almost empty */
+"printer-state-reasons.media-low" = "Le plateau en papier est presque vide";
+/* TRANSLATORS: Load paper */
+"printer-state-reasons.media-needed" = "Charge paper";
+/* TRANSLATORS: Cannot print 2-sided */
+"printer-state-reasons.media-path-cannot-duplex-media-selected" = "Ne peut pas imprimer 2 faces";
+/* TRANSLATORS: Paper path failed */
+"printer-state-reasons.media-path-failure" = "La voie du papier a échoué";
+/* TRANSLATORS: Paper input empty */
+"printer-state-reasons.media-path-input-empty" = "Entrée en papier vide";
+/* TRANSLATORS: Paper input error */
+"printer-state-reasons.media-path-input-feed-error" = "Erreur d ' entrée";
+/* TRANSLATORS: Paper input jam */
+"printer-state-reasons.media-path-input-jam" = "Communication d ' informations";
+/* TRANSLATORS: Load paper */
+"printer-state-reasons.media-path-input-request" = "Charge paper";
+/* TRANSLATORS: Paper path jam */
+"printer-state-reasons.media-path-jam" = "Paper path jam";
+/* TRANSLATORS: Output tray almost full */
+"printer-state-reasons.media-path-media-tray-almost-full" = "Plateau de sortie presque complet";
+/* TRANSLATORS: Output tray full */
+"printer-state-reasons.media-path-media-tray-full" = "Plateau de sortie complet";
+/* TRANSLATORS: Install output tray */
+"printer-state-reasons.media-path-media-tray-missing" = "Installez le plateau de sortie";
+/* TRANSLATORS: Paper output error */
+"printer-state-reasons.media-path-output-feed-error" = "Erreur de sortie de papier";
+/* TRANSLATORS: Paper output full */
+"printer-state-reasons.media-path-output-full" = "Sortie en papier";
+/* TRANSLATORS: Paper output jam */
+"printer-state-reasons.media-path-output-jam" = "Stock de sortie papier";
+/* TRANSLATORS: Pickup roller failed */
+"printer-state-reasons.media-path-pick-roller-failure" = "Le rouleau de ramassage a échoué";
+/* TRANSLATORS: Replace pickup roller */
+"printer-state-reasons.media-path-pick-roller-life-over" = "Replace pickup roller";
+/* TRANSLATORS: Replace pickup roller soon */
+"printer-state-reasons.media-path-pick-roller-life-warn" = "Remplacer le rouleau de ramassage bientôt";
+/* TRANSLATORS: Install pickup roller */
+"printer-state-reasons.media-path-pick-roller-missing" = "Installez le rouleau de récupération";
+/* TRANSLATORS: Motor failed */
+"printer-state-reasons.motor-failure" = "Moteur échoué";
+/* TRANSLATORS: Printer going offline */
+"printer-state-reasons.moving-to-paused" = "Imprimante hors ligne";
+/* TRANSLATORS: None */
+"printer-state-reasons.none" = "None";
+/* TRANSLATORS: Replace OPC */
+"printer-state-reasons.opc-life-over" = "Remplacer OPC";
+/* TRANSLATORS: Replace OPC soon */
+"printer-state-reasons.opc-near-eol" = "Remplacer le CPVP bientôt";
+/* TRANSLATORS: Check printer */
+"printer-state-reasons.other" = "Contrôle de l ' imprimante";
+/* TRANSLATORS: Output bin almost full */
+"printer-state-reasons.output-area-almost-full" = "Corbeille de sortie presque complète";
+/* TRANSLATORS: Output bin full */
+"printer-state-reasons.output-area-full" = "Corbeille de sortie pleine";
+/* TRANSLATORS: Mailbox failed */
+"printer-state-reasons.output-mailbox-select-failure" = "Mailbox failed";
+/* TRANSLATORS: Output bin failed */
+"printer-state-reasons.output-media-tray-failure" = "Bloc de sortie échoué";
+/* TRANSLATORS: Output bin feeder failed */
+"printer-state-reasons.output-media-tray-feed-error" = "Bénéficiaire de sortie échoué";
+/* TRANSLATORS: Output bin jammed */
+"printer-state-reasons.output-media-tray-jam" = "Bloc de sortie confisqué";
+/* TRANSLATORS: Install output tray */
+"printer-state-reasons.output-tray-missing" = "Installez le plateau de sortie";
+/* TRANSLATORS: Paused */
+"printer-state-reasons.paused" = "Paused";
+/* TRANSLATORS: Perforater added */
+"printer-state-reasons.perforater-added" = "Perforater ajouté";
+/* TRANSLATORS: Perforater almost empty */
+"printer-state-reasons.perforater-almost-empty" = "Perforater presque vide";
+/* TRANSLATORS: Perforater almost full */
+"printer-state-reasons.perforater-almost-full" = "Perforater presque plein";
+/* TRANSLATORS: Perforater at limit */
+"printer-state-reasons.perforater-at-limit" = "Perforater à limite";
+/* TRANSLATORS: Perforater closed */
+"printer-state-reasons.perforater-closed" = "Perforater closed";
+/* TRANSLATORS: Perforater configuration change */
+"printer-state-reasons.perforater-configuration-change" = "Changement de configuration de Perforater";
+/* TRANSLATORS: Perforater cover closed */
+"printer-state-reasons.perforater-cover-closed" = "Couverture perforater fermée";
+/* TRANSLATORS: Perforater cover open */
+"printer-state-reasons.perforater-cover-open" = "Couverture perforater ouverte";
+/* TRANSLATORS: Perforater empty */
+"printer-state-reasons.perforater-empty" = "Perforater vide";
+/* TRANSLATORS: Perforater full */
+"printer-state-reasons.perforater-full" = "Perforater complet";
+/* TRANSLATORS: Perforater interlock closed */
+"printer-state-reasons.perforater-interlock-closed" = "Perforater interlock closed";
+/* TRANSLATORS: Perforater interlock open */
+"printer-state-reasons.perforater-interlock-open" = "Perforater interlock open";
+/* TRANSLATORS: Perforater jam */
+"printer-state-reasons.perforater-jam" = "Confiture de perforater";
+/* TRANSLATORS: Perforater life almost over */
+"printer-state-reasons.perforater-life-almost-over" = "Perforater la vie presque finie";
+/* TRANSLATORS: Perforater life over */
+"printer-state-reasons.perforater-life-over" = "Perforater life over";
+/* TRANSLATORS: Perforater memory exhausted */
+"printer-state-reasons.perforater-memory-exhausted" = "Mémoire perforater épuisée";
+/* TRANSLATORS: Perforater missing */
+"printer-state-reasons.perforater-missing" = "Perforater manquant";
+/* TRANSLATORS: Perforater motor failure */
+"printer-state-reasons.perforater-motor-failure" = "Perforater panne moteur";
+/* TRANSLATORS: Perforater near limit */
+"printer-state-reasons.perforater-near-limit" = "Perforater near limit";
+/* TRANSLATORS: Perforater offline */
+"printer-state-reasons.perforater-offline" = "Perforater offline";
+/* TRANSLATORS: Perforater opened */
+"printer-state-reasons.perforater-opened" = "Perforater ouvert";
+/* TRANSLATORS: Perforater over temperature */
+"printer-state-reasons.perforater-over-temperature" = "Perforater à la température";
+/* TRANSLATORS: Perforater power saver */
+"printer-state-reasons.perforater-power-saver" = "Perforater power saver";
+/* TRANSLATORS: Perforater recoverable failure */
+"printer-state-reasons.perforater-recoverable-failure" = "Perforater défaillance récupérable";
+/* TRANSLATORS: Perforater recoverable storage */
+"printer-state-reasons.perforater-recoverable-storage" = "Stockage récupérable Perforater";
+/* TRANSLATORS: Perforater removed */
+"printer-state-reasons.perforater-removed" = "Perforater enlevé";
+/* TRANSLATORS: Perforater resource added */
+"printer-state-reasons.perforater-resource-added" = "Perforater resource added";
+/* TRANSLATORS: Perforater resource removed */
+"printer-state-reasons.perforater-resource-removed" = "Perforater resource removed";
+/* TRANSLATORS: Perforater thermistor failure */
+"printer-state-reasons.perforater-thermistor-failure" = "Perforater thermistor failure";
+/* TRANSLATORS: Perforater timing failure */
+"printer-state-reasons.perforater-timing-failure" = "Perforater timing failure";
+/* TRANSLATORS: Perforater turned off */
+"printer-state-reasons.perforater-turned-off" = "Perforater désactivé";
+/* TRANSLATORS: Perforater turned on */
+"printer-state-reasons.perforater-turned-on" = "Perforater tourné";
+/* TRANSLATORS: Perforater under temperature */
+"printer-state-reasons.perforater-under-temperature" = "Perforater sous température";
+/* TRANSLATORS: Perforater unrecoverable failure */
+"printer-state-reasons.perforater-unrecoverable-failure" = "Perforater unrecoverable failure";
+/* TRANSLATORS: Perforater unrecoverable storage error */
+"printer-state-reasons.perforater-unrecoverable-storage-error" = "Perforater erreur de stockage inrecoverable";
+/* TRANSLATORS: Perforater warming up */
+"printer-state-reasons.perforater-warming-up" = "Perforater réchauffer";
+/* TRANSLATORS: Platform cooling */
+"printer-state-reasons.platform-cooling" = "Refroidissement de la plate-forme";
+/* TRANSLATORS: Platform failed */
+"printer-state-reasons.platform-failure" = "Plateforme échouée";
+/* TRANSLATORS: Platform heating */
+"printer-state-reasons.platform-heating" = "Chauffage par plateforme";
+/* TRANSLATORS: Platform temperature high */
+"printer-state-reasons.platform-temperature-high" = "Température de la plate-forme";
+/* TRANSLATORS: Platform temperature low */
+"printer-state-reasons.platform-temperature-low" = "Température de la plate-forme basse";
+/* TRANSLATORS: Power down */
+"printer-state-reasons.power-down" = "Puissance baissée";
+/* TRANSLATORS: Power up */
+"printer-state-reasons.power-up" = "Pouvoir";
+/* TRANSLATORS: Printer reset manually */
+"printer-state-reasons.printer-manual-reset" = "Réinitialisation manuelle de l'imprimante";
+/* TRANSLATORS: Printer reset remotely */
+"printer-state-reasons.printer-nms-reset" = "Imprimante réinitialisée à distance";
+/* TRANSLATORS: Printer ready to print */
+"printer-state-reasons.printer-ready-to-print" = "Imprimante prête à imprimer";
+/* TRANSLATORS: Puncher added */
+"printer-state-reasons.puncher-added" = "Puncher ajouté";
+/* TRANSLATORS: Puncher almost empty */
+"printer-state-reasons.puncher-almost-empty" = "Puncher presque vide";
+/* TRANSLATORS: Puncher almost full */
+"printer-state-reasons.puncher-almost-full" = "Puncher presque complet";
+/* TRANSLATORS: Puncher at limit */
+"printer-state-reasons.puncher-at-limit" = "Puncher à la limite";
+/* TRANSLATORS: Puncher closed */
+"printer-state-reasons.puncher-closed" = "Puncher closed";
+/* TRANSLATORS: Puncher changed */
+"printer-state-reasons.puncher-configuration-change" = "Puncher a changé";
+/* TRANSLATORS: Puncher cover closed */
+"printer-state-reasons.puncher-cover-closed" = "Poinçon fermé";
+/* TRANSLATORS: Puncher cover open */
+"printer-state-reasons.puncher-cover-open" = "Couverture de frappe ouverte";
+/* TRANSLATORS: Puncher empty */
+"printer-state-reasons.puncher-empty" = "Poinçon vide";
+/* TRANSLATORS: Puncher full */
+"printer-state-reasons.puncher-full" = "Puncher full";
+/* TRANSLATORS: Puncher interlock closed */
+"printer-state-reasons.puncher-interlock-closed" = "Puncher interlock closed";
+/* TRANSLATORS: Puncher interlock open */
+"printer-state-reasons.puncher-interlock-open" = "Puncher interlock open";
+/* TRANSLATORS: Puncher jammed */
+"printer-state-reasons.puncher-jam" = "Puncher jammed";
+/* TRANSLATORS: Replace puncher soon */
+"printer-state-reasons.puncher-life-almost-over" = "Remplacer puncher bientôt";
+/* TRANSLATORS: Replace puncher */
+"printer-state-reasons.puncher-life-over" = "Remplacer puncher";
+/* TRANSLATORS: Puncher memory exhausted */
+"printer-state-reasons.puncher-memory-exhausted" = "Poinçon mémoire épuisé";
+/* TRANSLATORS: Install puncher */
+"printer-state-reasons.puncher-missing" = "Installer puncher";
+/* TRANSLATORS: Puncher motor failed */
+"printer-state-reasons.puncher-motor-failure" = "Moteur de frappe échoué";
+/* TRANSLATORS: Puncher near limit */
+"printer-state-reasons.puncher-near-limit" = "Puncher near limit";
+/* TRANSLATORS: Puncher offline */
+"printer-state-reasons.puncher-offline" = "Puncher offline";
+/* TRANSLATORS: Puncher opened */
+"printer-state-reasons.puncher-opened" = "Puncher opened";
+/* TRANSLATORS: Puncher temperature high */
+"printer-state-reasons.puncher-over-temperature" = "Température de coupeur élevée";
+/* TRANSLATORS: Puncher in power save mode */
+"printer-state-reasons.puncher-power-saver" = "Puncher in power save mode";
+/* TRANSLATORS: Puncher recoverable failure */
+"printer-state-reasons.puncher-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Puncher recoverable storage */
+"printer-state-reasons.puncher-recoverable-storage" = "Stockage récupérable";
+/* TRANSLATORS: Puncher removed */
+"printer-state-reasons.puncher-removed" = "Puncher removed";
+/* TRANSLATORS: Puncher resource added */
+"printer-state-reasons.puncher-resource-added" = "Puncher resource added";
+/* TRANSLATORS: Puncher resource removed */
+"printer-state-reasons.puncher-resource-removed" = "Puncher resource removed";
+/* TRANSLATORS: Puncher temperature sensor failed */
+"printer-state-reasons.puncher-thermistor-failure" = "Détecteur de température de marque";
+/* TRANSLATORS: Puncher failed */
+"printer-state-reasons.puncher-timing-failure" = "Puncher a échoué";
+/* TRANSLATORS: Puncher turned off */
+"printer-state-reasons.puncher-turned-off" = "Puncher s'est éteint.";
+/* TRANSLATORS: Puncher turned on */
+"printer-state-reasons.puncher-turned-on" = "Puncher a tourné";
+/* TRANSLATORS: Puncher temperature low */
+"printer-state-reasons.puncher-under-temperature" = "Température faible";
+/* TRANSLATORS: Puncher unrecoverable failure */
+"printer-state-reasons.puncher-unrecoverable-failure" = "Puncher unrecoverable failure";
+/* TRANSLATORS: Puncher unrecoverable storage error */
+"printer-state-reasons.puncher-unrecoverable-storage-error" = "Puncher erreur de stockage inrecoverable";
+/* TRANSLATORS: Puncher warming up */
+"printer-state-reasons.puncher-warming-up" = "Puncher se réchauffe";
+"printer-state-reasons.resuming" = "Reprise";
+/* TRANSLATORS: Scanner ADF failed */
+"printer-state-reasons.scan-media-path-failure" = "Scanner ADF a échoué";
+"printer-state-reasons.scan-media-path-input-empty" = "Scanner ADF vide";
+/* TRANSLATORS: Scanner ADF load error */
+"printer-state-reasons.scan-media-path-input-feed-error" = "Scanner erreur de charge ADF";
+/* TRANSLATORS: Scanner ADF jammed */
+"printer-state-reasons.scan-media-path-input-jam" = "Scanner ADF a bloqué";
+/* TRANSLATORS: Load document */
+"printer-state-reasons.scan-media-path-input-request" = "Document de gestion";
+/* TRANSLATORS: Scanner ADF jammed */
+"printer-state-reasons.scan-media-path-jam" = "Scanner ADF a bloqué";
+/* TRANSLATORS: Scanner ADF eject error */
+"printer-state-reasons.scan-media-path-output-feed-error" = "Erreur d'éjecteur ADF";
+/* TRANSLATORS: Scanner ADF full */
+"printer-state-reasons.scan-media-path-output-full" = "Scanner ADF complet";
+/* TRANSLATORS: Scanner ADF jammed */
+"printer-state-reasons.scan-media-path-output-jam" = "Scanner ADF a bloqué";
+/* TRANSLATORS: Scanner ADF pick roller failed */
+"printer-state-reasons.scan-media-path-pick-roller-failure" = "Scanner ADF pick roller échoué";
+/* TRANSLATORS: Replace scanner ADF pick roller */
+"printer-state-reasons.scan-media-path-pick-roller-life-over" = "Remplacer le scanner ADF pick roller";
+/* TRANSLATORS: Replace scanner ADF pick roller soon */
+"printer-state-reasons.scan-media-path-pick-roller-life-warn" = "Remplacer le scanner ADF pick roller bientôt";
+/* TRANSLATORS: Install scanner ADF pick roller */
+"printer-state-reasons.scan-media-path-pick-roller-missing" = "Installer le scanner ADF pick roller";
+/* TRANSLATORS: Scanner ADF output tray almost full */
+"printer-state-reasons.scan-media-path-tray-almost-full" = "Scanner ADF sortie tray presque complet";
+/* TRANSLATORS: Scanner ADF output tray full */
+"printer-state-reasons.scan-media-path-tray-full" = "Plateau de sortie Scanner ADF complet";
+/* TRANSLATORS: Install scanner ADF output tray */
+"printer-state-reasons.scan-media-path-tray-missing" = "Installer le scanner ADF sortie tray";
+/* TRANSLATORS: Scan light failed */
+"printer-state-reasons.scanner-light-failure" = "Scan léger échoué";
+/* TRANSLATORS: Replace scan light soon */
+"printer-state-reasons.scanner-light-life-almost-over" = "Remplacer la lumière de scan bientôt";
+/* TRANSLATORS: Replace scan light */
+"printer-state-reasons.scanner-light-life-over" = "Remplacer la lumière du scan";
+/* TRANSLATORS: Install scan light */
+"printer-state-reasons.scanner-light-missing" = "Installer la lumière de scan";
+/* TRANSLATORS: Scan sensor failed */
+"printer-state-reasons.scanner-sensor-failure" = "Détecteur de détection échoué";
+/* TRANSLATORS: Replace scan sensor soon */
+"printer-state-reasons.scanner-sensor-life-almost-over" = "Remplacer le capteur de scan bientôt";
+/* TRANSLATORS: Replace scan sensor */
+"printer-state-reasons.scanner-sensor-life-over" = "Remplacer le capteur de scan";
+/* TRANSLATORS: Install scan sensor */
+"printer-state-reasons.scanner-sensor-missing" = "Installer le capteur de scan";
+/* TRANSLATORS: Separation cutter added */
+"printer-state-reasons.separation-cutter-added" = "Cutter de séparation ajouté";
+/* TRANSLATORS: Separation cutter almost empty */
+"printer-state-reasons.separation-cutter-almost-empty" = "Cutter de séparation presque vide";
+/* TRANSLATORS: Separation cutter almost full */
+"printer-state-reasons.separation-cutter-almost-full" = "Cutter de séparation presque plein";
+/* TRANSLATORS: Separation cutter at limit */
+"printer-state-reasons.separation-cutter-at-limit" = "Cutter de séparation à limite";
+/* TRANSLATORS: Separation cutter closed */
+"printer-state-reasons.separation-cutter-closed" = "Cutter de séparation fermé";
+/* TRANSLATORS: Separation cutter changed */
+"printer-state-reasons.separation-cutter-configuration-change" = "La coupe de séparation a changé";
+/* TRANSLATORS: Separation cutter cover closed */
+"printer-state-reasons.separation-cutter-cover-closed" = "Couverture de coupe de séparation fermée";
+/* TRANSLATORS: Separation cutter cover open */
+"printer-state-reasons.separation-cutter-cover-open" = "Couverture de coupe Séparation ouverte";
+/* TRANSLATORS: Separation cutter empty */
+"printer-state-reasons.separation-cutter-empty" = "Cutter de séparation vide";
+/* TRANSLATORS: Separation cutter full */
+"printer-state-reasons.separation-cutter-full" = "Cutter de séparation complet";
+/* TRANSLATORS: Separation cutter interlock closed */
+"printer-state-reasons.separation-cutter-interlock-closed" = "Cutter de séparation interlock fermé";
+/* TRANSLATORS: Separation cutter interlock open */
+"printer-state-reasons.separation-cutter-interlock-open" = "Séparation de cutter interlock ouvert";
+/* TRANSLATORS: Separation cutter jammed */
+"printer-state-reasons.separation-cutter-jam" = "Separation cutter jammed";
+/* TRANSLATORS: Replace separation cutter soon */
+"printer-state-reasons.separation-cutter-life-almost-over" = "Remplacer la coupe de séparation bientôt";
+/* TRANSLATORS: Replace separation cutter */
+"printer-state-reasons.separation-cutter-life-over" = "Remplacer la coupe de séparation";
+/* TRANSLATORS: Separation cutter memory exhausted */
+"printer-state-reasons.separation-cutter-memory-exhausted" = "Séparation de la mémoire de coupe épuisée";
+/* TRANSLATORS: Install separation cutter */
+"printer-state-reasons.separation-cutter-missing" = "Installez la coupe de séparation";
+/* TRANSLATORS: Separation cutter motor failed */
+"printer-state-reasons.separation-cutter-motor-failure" = "Moteur de coupe de séparation échoué";
+/* TRANSLATORS: Separation cutter near limit */
+"printer-state-reasons.separation-cutter-near-limit" = "Cutter de séparation près de la limite";
+/* TRANSLATORS: Separation cutter offline */
+"printer-state-reasons.separation-cutter-offline" = "Coupe de séparation hors ligne";
+/* TRANSLATORS: Separation cutter opened */
+"printer-state-reasons.separation-cutter-opened" = "Cutter de séparation ouvert";
+/* TRANSLATORS: Separation cutter temperature high */
+"printer-state-reasons.separation-cutter-over-temperature" = "Température de coupe de séparation élevée";
+/* TRANSLATORS: Separation cutter in power save mode */
+"printer-state-reasons.separation-cutter-power-saver" = "Cutter de séparation en mode de sauvegarde de puissance";
+/* TRANSLATORS: Separation cutter recoverable failure */
+"printer-state-reasons.separation-cutter-recoverable-failure" = "Défaut de séparation récupérable";
+/* TRANSLATORS: Separation cutter recoverable storage */
+"printer-state-reasons.separation-cutter-recoverable-storage" = "Séparation de cutter récupérable";
+/* TRANSLATORS: Separation cutter removed */
+"printer-state-reasons.separation-cutter-removed" = "Cutter de séparation enlevé";
+/* TRANSLATORS: Separation cutter resource added */
+"printer-state-reasons.separation-cutter-resource-added" = "Cutter ressource ajouté";
+/* TRANSLATORS: Separation cutter resource removed */
+"printer-state-reasons.separation-cutter-resource-removed" = "Ressources de coupe de séparation enlevées";
+/* TRANSLATORS: Separation cutter temperature sensor failed */
+"printer-state-reasons.separation-cutter-thermistor-failure" = "Capteur de température de coupe de séparation échoué";
+/* TRANSLATORS: Separation cutter failed */
+"printer-state-reasons.separation-cutter-timing-failure" = "La coupe de séparation a échoué";
+/* TRANSLATORS: Separation cutter turned off */
+"printer-state-reasons.separation-cutter-turned-off" = "Cutter de séparation éteint";
+/* TRANSLATORS: Separation cutter turned on */
+"printer-state-reasons.separation-cutter-turned-on" = "Cutter de séparation tourné";
+/* TRANSLATORS: Separation cutter temperature low */
+"printer-state-reasons.separation-cutter-under-temperature" = "Température de coupe de séparation faible";
+/* TRANSLATORS: Separation cutter unrecoverable failure */
+"printer-state-reasons.separation-cutter-unrecoverable-failure" = "Défaut de séparation indécouvrable";
+/* TRANSLATORS: Separation cutter unrecoverable storage error */
+"printer-state-reasons.separation-cutter-unrecoverable-storage-error" = "Erreur de stockage non récupérable de séparation";
+/* TRANSLATORS: Separation cutter warming up */
+"printer-state-reasons.separation-cutter-warming-up" = "Cutter de séparation réchauffement";
+/* TRANSLATORS: Sheet rotator added */
+"printer-state-reasons.sheet-rotator-added" = "Rotateur de feuilles ajouté";
+/* TRANSLATORS: Sheet rotator almost empty */
+"printer-state-reasons.sheet-rotator-almost-empty" = "Rotateur de feuilles presque vide";
+/* TRANSLATORS: Sheet rotator almost full */
+"printer-state-reasons.sheet-rotator-almost-full" = "Rotateur de feuilles presque complet";
+/* TRANSLATORS: Sheet rotator at limit */
+"printer-state-reasons.sheet-rotator-at-limit" = "Rotateur de feuilles à la limite";
+/* TRANSLATORS: Sheet rotator closed */
+"printer-state-reasons.sheet-rotator-closed" = "Rotateur de feuilles fermé";
+/* TRANSLATORS: Sheet rotator changed */
+"printer-state-reasons.sheet-rotator-configuration-change" = "Rotateur de feuilles changé";
+/* TRANSLATORS: Sheet rotator cover closed */
+"printer-state-reasons.sheet-rotator-cover-closed" = "Revêtement de rotateur fermé";
+/* TRANSLATORS: Sheet rotator cover open */
+"printer-state-reasons.sheet-rotator-cover-open" = "Revêtement de rotateur ouvert";
+/* TRANSLATORS: Sheet rotator empty */
+"printer-state-reasons.sheet-rotator-empty" = "Rotateur de feuilles vide";
+/* TRANSLATORS: Sheet rotator full */
+"printer-state-reasons.sheet-rotator-full" = "Rotateur de feuilles complet";
+/* TRANSLATORS: Sheet rotator interlock closed */
+"printer-state-reasons.sheet-rotator-interlock-closed" = "Rotateur de feuilles interlock fermé";
+/* TRANSLATORS: Sheet rotator interlock open */
+"printer-state-reasons.sheet-rotator-interlock-open" = "Rotateur de feuilles interlock ouvert";
+/* TRANSLATORS: Sheet rotator jammed */
+"printer-state-reasons.sheet-rotator-jam" = "Rotateur de feuilles configuré";
+/* TRANSLATORS: Replace sheet rotator soon */
+"printer-state-reasons.sheet-rotator-life-almost-over" = "Remplacer le rotateur de feuille bientôt";
+/* TRANSLATORS: Replace sheet rotator */
+"printer-state-reasons.sheet-rotator-life-over" = "Remplacer le rotateur de feuilles";
+/* TRANSLATORS: Sheet rotator memory exhausted */
+"printer-state-reasons.sheet-rotator-memory-exhausted" = "Mémoire de rotateur de feuille épuisée";
+/* TRANSLATORS: Install sheet rotator */
+"printer-state-reasons.sheet-rotator-missing" = "Installer le rotateur de feuilles";
+/* TRANSLATORS: Sheet rotator motor failed */
+"printer-state-reasons.sheet-rotator-motor-failure" = "Moteur de rotation de feuille échoué";
+/* TRANSLATORS: Sheet rotator near limit */
+"printer-state-reasons.sheet-rotator-near-limit" = "Rotateur de feuilles près de la limite";
+/* TRANSLATORS: Sheet rotator offline */
+"printer-state-reasons.sheet-rotator-offline" = "Rotateur de feuilles hors ligne";
+/* TRANSLATORS: Sheet rotator opened */
+"printer-state-reasons.sheet-rotator-opened" = "Rotateur de feuilles ouvert";
+/* TRANSLATORS: Sheet rotator temperature high */
+"printer-state-reasons.sheet-rotator-over-temperature" = "Température de rotation des feuilles";
+/* TRANSLATORS: Sheet rotator in power save mode */
+"printer-state-reasons.sheet-rotator-power-saver" = "Rotateur de feuilles en mode de sauvegarde de puissance";
+/* TRANSLATORS: Sheet rotator recoverable failure */
+"printer-state-reasons.sheet-rotator-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Sheet rotator recoverable storage */
+"printer-state-reasons.sheet-rotator-recoverable-storage" = "Rotateur de feuilles récupérable";
+/* TRANSLATORS: Sheet rotator removed */
+"printer-state-reasons.sheet-rotator-removed" = "Rotateur de feuilles enlevé";
+/* TRANSLATORS: Sheet rotator resource added */
+"printer-state-reasons.sheet-rotator-resource-added" = "Ressources pour rotateurs de feuilles ajoutées";
+/* TRANSLATORS: Sheet rotator resource removed */
+"printer-state-reasons.sheet-rotator-resource-removed" = "Ressources pour rotateurs de feuilles enlevées";
+/* TRANSLATORS: Sheet rotator temperature sensor failed */
+"printer-state-reasons.sheet-rotator-thermistor-failure" = "Détecteur de température de la feuille";
+/* TRANSLATORS: Sheet rotator failed */
+"printer-state-reasons.sheet-rotator-timing-failure" = "Rotateur de feuilles échoué";
+/* TRANSLATORS: Sheet rotator turned off */
+"printer-state-reasons.sheet-rotator-turned-off" = "Rotateur de feuilles éteint";
+/* TRANSLATORS: Sheet rotator turned on */
+"printer-state-reasons.sheet-rotator-turned-on" = "Rotateur de feuilles tourné";
+/* TRANSLATORS: Sheet rotator temperature low */
+"printer-state-reasons.sheet-rotator-under-temperature" = "Température de rotation des feuilles";
+/* TRANSLATORS: Sheet rotator unrecoverable failure */
+"printer-state-reasons.sheet-rotator-unrecoverable-failure" = "Défaut non récupérable";
+/* TRANSLATORS: Sheet rotator unrecoverable storage error */
+"printer-state-reasons.sheet-rotator-unrecoverable-storage-error" = "Erreur de stockage de feuilles récupérable";
+/* TRANSLATORS: Sheet rotator warming up */
+"printer-state-reasons.sheet-rotator-warming-up" = "Rotateur de feuilles réchauffement";
+/* TRANSLATORS: Printer offline */
+"printer-state-reasons.shutdown" = "Imprimante hors ligne";
+/* TRANSLATORS: Slitter added */
+"printer-state-reasons.slitter-added" = "Slitter ajouté";
+/* TRANSLATORS: Slitter almost empty */
+"printer-state-reasons.slitter-almost-empty" = "Slitter presque vide";
+/* TRANSLATORS: Slitter almost full */
+"printer-state-reasons.slitter-almost-full" = "Slitter presque complet";
+/* TRANSLATORS: Slitter at limit */
+"printer-state-reasons.slitter-at-limit" = "Slitter à la limite";
+/* TRANSLATORS: Slitter closed */
+"printer-state-reasons.slitter-closed" = "Slitter fermée";
+/* TRANSLATORS: Slitter changed */
+"printer-state-reasons.slitter-configuration-change" = "Slitter change";
+/* TRANSLATORS: Slitter cover closed */
+"printer-state-reasons.slitter-cover-closed" = "Couverture rigide";
+/* TRANSLATORS: Slitter cover open */
+"printer-state-reasons.slitter-cover-open" = "Couverture de lavette ouverte";
+/* TRANSLATORS: Slitter empty */
+"printer-state-reasons.slitter-empty" = "Slitter vide";
+/* TRANSLATORS: Slitter full */
+"printer-state-reasons.slitter-full" = "Slitter complet";
+/* TRANSLATORS: Slitter interlock closed */
+"printer-state-reasons.slitter-interlock-closed" = "Slitter interlock fermé";
+/* TRANSLATORS: Slitter interlock open */
+"printer-state-reasons.slitter-interlock-open" = "Slitter interlock ouvert";
+/* TRANSLATORS: Slitter jammed */
+"printer-state-reasons.slitter-jam" = "Slitter jammed";
+/* TRANSLATORS: Replace slitter soon */
+"printer-state-reasons.slitter-life-almost-over" = "Remplacez slitter bientôt";
+/* TRANSLATORS: Replace slitter */
+"printer-state-reasons.slitter-life-over" = "Remplacer slitter";
+/* TRANSLATORS: Slitter memory exhausted */
+"printer-state-reasons.slitter-memory-exhausted" = "Mémoire d ' échappement";
+/* TRANSLATORS: Install slitter */
+"printer-state-reasons.slitter-missing" = "Installez slitter";
+/* TRANSLATORS: Slitter motor failed */
+"printer-state-reasons.slitter-motor-failure" = "Moteur Slitter échoué";
+/* TRANSLATORS: Slitter near limit */
+"printer-state-reasons.slitter-near-limit" = "Slitter near limit";
+/* TRANSLATORS: Slitter offline */
+"printer-state-reasons.slitter-offline" = "Slitter offline";
+/* TRANSLATORS: Slitter opened */
+"printer-state-reasons.slitter-opened" = "Slitter ouverte";
+/* TRANSLATORS: Slitter temperature high */
+"printer-state-reasons.slitter-over-temperature" = "Température de charge élevée";
+/* TRANSLATORS: Slitter in power save mode */
+"printer-state-reasons.slitter-power-saver" = "Slitter en mode de sauvegarde de puissance";
+/* TRANSLATORS: Slitter recoverable failure */
+"printer-state-reasons.slitter-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Slitter recoverable storage */
+"printer-state-reasons.slitter-recoverable-storage" = "Stockage récupérable";
+/* TRANSLATORS: Slitter removed */
+"printer-state-reasons.slitter-removed" = "Slitter enlevé";
+/* TRANSLATORS: Slitter resource added */
+"printer-state-reasons.slitter-resource-added" = "Slitter resource added";
+/* TRANSLATORS: Slitter resource removed */
+"printer-state-reasons.slitter-resource-removed" = "Ressources disponibles supprimées";
+/* TRANSLATORS: Slitter temperature sensor failed */
+"printer-state-reasons.slitter-thermistor-failure" = "Capteur de température de l'émetteur échoué";
+/* TRANSLATORS: Slitter failed */
+"printer-state-reasons.slitter-timing-failure" = "Slitter failed";
+/* TRANSLATORS: Slitter turned off */
+"printer-state-reasons.slitter-turned-off" = "Slitter désactivé";
+/* TRANSLATORS: Slitter turned on */
+"printer-state-reasons.slitter-turned-on" = "Slitter a tourné";
+/* TRANSLATORS: Slitter temperature low */
+"printer-state-reasons.slitter-under-temperature" = "Température faible";
+/* TRANSLATORS: Slitter unrecoverable failure */
+"printer-state-reasons.slitter-unrecoverable-failure" = "Slitter unrecoverable failure";
+/* TRANSLATORS: Slitter unrecoverable storage error */
+"printer-state-reasons.slitter-unrecoverable-storage-error" = "Erreur de stockage non récupérable Slitter";
+/* TRANSLATORS: Slitter warming up */
+"printer-state-reasons.slitter-warming-up" = "Slitter réchauffement";
+/* TRANSLATORS: Printer busy */
+"printer-state-reasons.spool-area-full" = "Imprimante occupée";
+/* TRANSLATORS: Stacker added */
+"printer-state-reasons.stacker-added" = "Stacker ajouté";
+/* TRANSLATORS: Stacker almost empty */
+"printer-state-reasons.stacker-almost-empty" = "Stacker presque vide";
+/* TRANSLATORS: Stacker almost full */
+"printer-state-reasons.stacker-almost-full" = "Stacker presque plein";
+/* TRANSLATORS: Stacker at limit */
+"printer-state-reasons.stacker-at-limit" = "Stacker à la limite";
+/* TRANSLATORS: Stacker closed */
+"printer-state-reasons.stacker-closed" = "Stacker fermé";
+/* TRANSLATORS: Stacker changed */
+"printer-state-reasons.stacker-configuration-change" = "Stacker a changé.";
+/* TRANSLATORS: Stacker cover closed */
+"printer-state-reasons.stacker-cover-closed" = "Fermeture de couverture fermée";
+/* TRANSLATORS: Stacker cover open */
+"printer-state-reasons.stacker-cover-open" = "Fermeture de couverture ouverte";
+/* TRANSLATORS: Stacker empty */
+"printer-state-reasons.stacker-empty" = "Stacker vide";
+/* TRANSLATORS: Stacker full */
+"printer-state-reasons.stacker-full" = "Stacker complet";
+/* TRANSLATORS: Stacker interlock closed */
+"printer-state-reasons.stacker-interlock-closed" = "Stacker interlock fermé";
+/* TRANSLATORS: Stacker interlock open */
+"printer-state-reasons.stacker-interlock-open" = "Stacker interlock ouvert";
+/* TRANSLATORS: Stacker jammed */
+"printer-state-reasons.stacker-jam" = "Stacker brouillé";
+/* TRANSLATORS: Replace stacker soon */
+"printer-state-reasons.stacker-life-almost-over" = "Remplacer le stacker bientôt";
+/* TRANSLATORS: Replace stacker */
+"printer-state-reasons.stacker-life-over" = "Remplacer le stacker";
+/* TRANSLATORS: Stacker memory exhausted */
+"printer-state-reasons.stacker-memory-exhausted" = "Mémoire d ' épaule épuisée";
+/* TRANSLATORS: Install stacker */
+"printer-state-reasons.stacker-missing" = "Installez stacker";
+/* TRANSLATORS: Stacker motor failed */
+"printer-state-reasons.stacker-motor-failure" = "Moteur Stacker échoué";
+/* TRANSLATORS: Stacker near limit */
+"printer-state-reasons.stacker-near-limit" = "Stacker près de la limite";
+/* TRANSLATORS: Stacker offline */
+"printer-state-reasons.stacker-offline" = "Stacker offline";
+/* TRANSLATORS: Stacker opened */
+"printer-state-reasons.stacker-opened" = "Stacker ouvert";
+/* TRANSLATORS: Stacker temperature high */
+"printer-state-reasons.stacker-over-temperature" = "Température élevée";
+/* TRANSLATORS: Stacker in power save mode */
+"printer-state-reasons.stacker-power-saver" = "Stacker en mode de sauvegarde de puissance";
+/* TRANSLATORS: Stacker recoverable failure */
+"printer-state-reasons.stacker-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Stacker recoverable storage */
+"printer-state-reasons.stacker-recoverable-storage" = "Stockage récupérable";
+/* TRANSLATORS: Stacker removed */
+"printer-state-reasons.stacker-removed" = "Stacker enlevé";
+/* TRANSLATORS: Stacker resource added */
+"printer-state-reasons.stacker-resource-added" = "Stacker resource added";
+/* TRANSLATORS: Stacker resource removed */
+"printer-state-reasons.stacker-resource-removed" = "Ressources brutes supprimées";
+/* TRANSLATORS: Stacker temperature sensor failed */
+"printer-state-reasons.stacker-thermistor-failure" = "Capteur de température Stacker échoué";
+/* TRANSLATORS: Stacker failed */
+"printer-state-reasons.stacker-timing-failure" = "Stacker a échoué.";
+/* TRANSLATORS: Stacker turned off */
+"printer-state-reasons.stacker-turned-off" = "Stacker s'est éteint.";
+/* TRANSLATORS: Stacker turned on */
+"printer-state-reasons.stacker-turned-on" = "Stacker s'est allumé.";
+/* TRANSLATORS: Stacker temperature low */
+"printer-state-reasons.stacker-under-temperature" = "Température de rupture";
+/* TRANSLATORS: Stacker unrecoverable failure */
+"printer-state-reasons.stacker-unrecoverable-failure" = "Défaut irrécupérable de Stacker";
+/* TRANSLATORS: Stacker unrecoverable storage error */
+"printer-state-reasons.stacker-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Stacker";
+/* TRANSLATORS: Stacker warming up */
+"printer-state-reasons.stacker-warming-up" = "Stacker se réchauffe";
+"printer-state-reasons.standby" = "Standby";
+/* TRANSLATORS: Stapler added */
+"printer-state-reasons.stapler-added" = "Stapler ajouté";
+/* TRANSLATORS: Stapler almost empty */
+"printer-state-reasons.stapler-almost-empty" = "Stapler presque vide";
+/* TRANSLATORS: Stapler almost full */
+"printer-state-reasons.stapler-almost-full" = "Stapler presque plein";
+/* TRANSLATORS: Stapler at limit */
+"printer-state-reasons.stapler-at-limit" = "Stapler à limite";
+/* TRANSLATORS: Stapler closed */
+"printer-state-reasons.stapler-closed" = "Stapler fermé";
+/* TRANSLATORS: Stapler changed */
+"printer-state-reasons.stapler-configuration-change" = "Stapler a changé";
+/* TRANSLATORS: Stapler cover closed */
+"printer-state-reasons.stapler-cover-closed" = "Étrier fermé";
+/* TRANSLATORS: Stapler cover open */
+"printer-state-reasons.stapler-cover-open" = "Étrier ouvert";
+/* TRANSLATORS: Stapler empty */
+"printer-state-reasons.stapler-empty" = "Stapler vide";
+/* TRANSLATORS: Stapler full */
+"printer-state-reasons.stapler-full" = "Stapler complet";
+/* TRANSLATORS: Stapler interlock closed */
+"printer-state-reasons.stapler-interlock-closed" = "Stapler interlock fermé";
+/* TRANSLATORS: Stapler interlock open */
+"printer-state-reasons.stapler-interlock-open" = "Stapler interlock ouvert";
+/* TRANSLATORS: Stapler jammed */
+"printer-state-reasons.stapler-jam" = "Stapler jammed";
+/* TRANSLATORS: Replace stapler soon */
+"printer-state-reasons.stapler-life-almost-over" = "Remplacer stapler bientôt";
+/* TRANSLATORS: Replace stapler */
+"printer-state-reasons.stapler-life-over" = "Remplacer l ' agrafeuse";
+/* TRANSLATORS: Stapler memory exhausted */
+"printer-state-reasons.stapler-memory-exhausted" = "Mémoire de Stapler épuisée";
+/* TRANSLATORS: Install stapler */
+"printer-state-reasons.stapler-missing" = "Installer l'agrafeuse";
+/* TRANSLATORS: Stapler motor failed */
+"printer-state-reasons.stapler-motor-failure" = "Moteur d ' échappement échoué";
+/* TRANSLATORS: Stapler near limit */
+"printer-state-reasons.stapler-near-limit" = "Stapler near limit";
+/* TRANSLATORS: Stapler offline */
+"printer-state-reasons.stapler-offline" = "Stapler offline";
+/* TRANSLATORS: Stapler opened */
+"printer-state-reasons.stapler-opened" = "Stapler ouvert";
+/* TRANSLATORS: Stapler temperature high */
+"printer-state-reasons.stapler-over-temperature" = "Température d ' amortisseur";
+/* TRANSLATORS: Stapler in power save mode */
+"printer-state-reasons.stapler-power-saver" = "Stapler en mode de sauvegarde de puissance";
+/* TRANSLATORS: Stapler recoverable failure */
+"printer-state-reasons.stapler-recoverable-failure" = "Défaut récupérable de Stapler";
+/* TRANSLATORS: Stapler recoverable storage */
+"printer-state-reasons.stapler-recoverable-storage" = "Stockage récupérable Stapler";
+/* TRANSLATORS: Stapler removed */
+"printer-state-reasons.stapler-removed" = "Stapler enlevé";
+/* TRANSLATORS: Stapler resource added */
+"printer-state-reasons.stapler-resource-added" = "Stapler resource added";
+/* TRANSLATORS: Stapler resource removed */
+"printer-state-reasons.stapler-resource-removed" = "Ressources de Stapler enlevées";
+/* TRANSLATORS: Stapler temperature sensor failed */
+"printer-state-reasons.stapler-thermistor-failure" = "Capteur de température de Stapler échoué";
+/* TRANSLATORS: Stapler failed */
+"printer-state-reasons.stapler-timing-failure" = "Stapler a échoué.";
+/* TRANSLATORS: Stapler turned off */
+"printer-state-reasons.stapler-turned-off" = "Stapler s'est éteint.";
+/* TRANSLATORS: Stapler turned on */
+"printer-state-reasons.stapler-turned-on" = "Stapler s'est retourné";
+/* TRANSLATORS: Stapler temperature low */
+"printer-state-reasons.stapler-under-temperature" = "Température de l ' étrier basse";
+/* TRANSLATORS: Stapler unrecoverable failure */
+"printer-state-reasons.stapler-unrecoverable-failure" = "Défaut indécouvrable de Stapler";
+/* TRANSLATORS: Stapler unrecoverable storage error */
+"printer-state-reasons.stapler-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Stapler";
+/* TRANSLATORS: Stapler warming up */
+"printer-state-reasons.stapler-warming-up" = "Stapler se réchauffe";
+/* TRANSLATORS: Stitcher added */
+"printer-state-reasons.stitcher-added" = "Stitcher ajouté";
+/* TRANSLATORS: Stitcher almost empty */
+"printer-state-reasons.stitcher-almost-empty" = "Stitcher presque vide";
+/* TRANSLATORS: Stitcher almost full */
+"printer-state-reasons.stitcher-almost-full" = "Stitcher presque plein";
+/* TRANSLATORS: Stitcher at limit */
+"printer-state-reasons.stitcher-at-limit" = "Stitcher à limite";
+/* TRANSLATORS: Stitcher closed */
+"printer-state-reasons.stitcher-closed" = "Stitcher fermer";
+/* TRANSLATORS: Stitcher changed */
+"printer-state-reasons.stitcher-configuration-change" = "Stitcher a changé";
+/* TRANSLATORS: Stitcher cover closed */
+"printer-state-reasons.stitcher-cover-closed" = "Couverture rigide";
+/* TRANSLATORS: Stitcher cover open */
+"printer-state-reasons.stitcher-cover-open" = "Couverture rigide ouverte";
+/* TRANSLATORS: Stitcher empty */
+"printer-state-reasons.stitcher-empty" = "Stitcher vide";
+/* TRANSLATORS: Stitcher full */
+"printer-state-reasons.stitcher-full" = "Stitcher complet";
+/* TRANSLATORS: Stitcher interlock closed */
+"printer-state-reasons.stitcher-interlock-closed" = "Stitcher interlock fermé";
+/* TRANSLATORS: Stitcher interlock open */
+"printer-state-reasons.stitcher-interlock-open" = "Stitcher interlock open";
+/* TRANSLATORS: Stitcher jammed */
+"printer-state-reasons.stitcher-jam" = "Stitcher jammed";
+/* TRANSLATORS: Replace stitcher soon */
+"printer-state-reasons.stitcher-life-almost-over" = "Remplacer maille bientôt";
+/* TRANSLATORS: Replace stitcher */
+"printer-state-reasons.stitcher-life-over" = "Remplacer maille";
+/* TRANSLATORS: Stitcher memory exhausted */
+"printer-state-reasons.stitcher-memory-exhausted" = "Mémoire de Stitcher épuisé";
+/* TRANSLATORS: Install stitcher */
+"printer-state-reasons.stitcher-missing" = "Installer maille";
+/* TRANSLATORS: Stitcher motor failed */
+"printer-state-reasons.stitcher-motor-failure" = "Moteur de sécurité échoué";
+/* TRANSLATORS: Stitcher near limit */
+"printer-state-reasons.stitcher-near-limit" = "Stitcher near limit";
+/* TRANSLATORS: Stitcher offline */
+"printer-state-reasons.stitcher-offline" = "Hors ligne";
+/* TRANSLATORS: Stitcher opened */
+"printer-state-reasons.stitcher-opened" = "Stitcher ouvert";
+/* TRANSLATORS: Stitcher temperature high */
+"printer-state-reasons.stitcher-over-temperature" = "Température de stabilité élevée";
+/* TRANSLATORS: Stitcher in power save mode */
+"printer-state-reasons.stitcher-power-saver" = "Stitcher en mode de sauvegarde de puissance";
+/* TRANSLATORS: Stitcher recoverable failure */
+"printer-state-reasons.stitcher-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Stitcher recoverable storage */
+"printer-state-reasons.stitcher-recoverable-storage" = "Stockage récupérable Stitcher";
+/* TRANSLATORS: Stitcher removed */
+"printer-state-reasons.stitcher-removed" = "Stitcher enlevé";
+/* TRANSLATORS: Stitcher resource added */
+"printer-state-reasons.stitcher-resource-added" = "Stitcher resource added";
+/* TRANSLATORS: Stitcher resource removed */
+"printer-state-reasons.stitcher-resource-removed" = "Ressources de l ' État";
+/* TRANSLATORS: Stitcher temperature sensor failed */
+"printer-state-reasons.stitcher-thermistor-failure" = "Détecteur de température de l ' étui";
+/* TRANSLATORS: Stitcher failed */
+"printer-state-reasons.stitcher-timing-failure" = "Stitcher a échoué";
+/* TRANSLATORS: Stitcher turned off */
+"printer-state-reasons.stitcher-turned-off" = "Stitcher s'est éteint.";
+/* TRANSLATORS: Stitcher turned on */
+"printer-state-reasons.stitcher-turned-on" = "Stitcher a tourné";
+/* TRANSLATORS: Stitcher temperature low */
+"printer-state-reasons.stitcher-under-temperature" = "Température basse";
+/* TRANSLATORS: Stitcher unrecoverable failure */
+"printer-state-reasons.stitcher-unrecoverable-failure" = "Défaut indécouvrable";
+/* TRANSLATORS: Stitcher unrecoverable storage error */
+"printer-state-reasons.stitcher-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Stitcher";
+/* TRANSLATORS: Stitcher warming up */
+"printer-state-reasons.stitcher-warming-up" = "Se réchauffer";
+/* TRANSLATORS: Partially stopped */
+"printer-state-reasons.stopped-partly" = "Arrêt partiel";
+/* TRANSLATORS: Stopping */
+"printer-state-reasons.stopping" = "Arrête.";
+/* TRANSLATORS: Subunit added */
+"printer-state-reasons.subunit-added" = "Subunit added";
+/* TRANSLATORS: Subunit almost empty */
+"printer-state-reasons.subunit-almost-empty" = "Sous-unité presque vide";
+/* TRANSLATORS: Subunit almost full */
+"printer-state-reasons.subunit-almost-full" = "Subunit almost full";
+/* TRANSLATORS: Subunit at limit */
+"printer-state-reasons.subunit-at-limit" = "Sous-unité à limite";
+/* TRANSLATORS: Subunit closed */
+"printer-state-reasons.subunit-closed" = "Subunit closed";
+/* TRANSLATORS: Subunit cooling down */
+"printer-state-reasons.subunit-cooling-down" = "Refroidissement du sous-unité";
+/* TRANSLATORS: Subunit empty */
+"printer-state-reasons.subunit-empty" = "Sous-unité vide";
+/* TRANSLATORS: Subunit full */
+"printer-state-reasons.subunit-full" = "Total partiel";
+/* TRANSLATORS: Replace subunit soon */
+"printer-state-reasons.subunit-life-almost-over" = "Remplacer la sous-unité bientôt";
+/* TRANSLATORS: Replace subunit */
+"printer-state-reasons.subunit-life-over" = "Remplacer subunit";
+/* TRANSLATORS: Subunit memory exhausted */
+"printer-state-reasons.subunit-memory-exhausted" = "Mémoire subunit épuisée";
+/* TRANSLATORS: Install subunit */
+"printer-state-reasons.subunit-missing" = "Installez subunit";
+/* TRANSLATORS: Subunit motor failed */
+"printer-state-reasons.subunit-motor-failure" = "Moteur subunit échoué";
+/* TRANSLATORS: Subunit near limit */
+"printer-state-reasons.subunit-near-limit" = "Subunit near limit";
+/* TRANSLATORS: Subunit offline */
+"printer-state-reasons.subunit-offline" = "Subunit offline";
+/* TRANSLATORS: Subunit opened */
+"printer-state-reasons.subunit-opened" = "Subunit opened";
+/* TRANSLATORS: Subunit temperature high */
+"printer-state-reasons.subunit-over-temperature" = "Température de sous-unité élevée";
+/* TRANSLATORS: Subunit in power save mode */
+"printer-state-reasons.subunit-power-saver" = "Sous-unité en mode de sauvegarde de puissance";
+/* TRANSLATORS: Subunit recoverable failure */
+"printer-state-reasons.subunit-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Subunit recoverable storage */
+"printer-state-reasons.subunit-recoverable-storage" = "Stockage récupérable";
+/* TRANSLATORS: Subunit removed */
+"printer-state-reasons.subunit-removed" = "Subunit removed";
+/* TRANSLATORS: Subunit resource added */
+"printer-state-reasons.subunit-resource-added" = "Subunit resource added";
+/* TRANSLATORS: Subunit resource removed */
+"printer-state-reasons.subunit-resource-removed" = "Ressources sous-unité supprimées";
+/* TRANSLATORS: Subunit temperature sensor failed */
+"printer-state-reasons.subunit-thermistor-failure" = "Détecteur de température subunitaire échoué";
+/* TRANSLATORS: Subunit timing Failure */
+"printer-state-reasons.subunit-timing-Failure" = "Défaillance";
+/* TRANSLATORS: Subunit turned off */
+"printer-state-reasons.subunit-turned-off" = "Subunit turned off";
+/* TRANSLATORS: Subunit turned on */
+"printer-state-reasons.subunit-turned-on" = "Subunit turned on";
+/* TRANSLATORS: Subunit temperature low */
+"printer-state-reasons.subunit-under-temperature" = "Température de subsistance faible";
+/* TRANSLATORS: Subunit unrecoverable failure */
+"printer-state-reasons.subunit-unrecoverable-failure" = "Défaut indécouvrable";
+/* TRANSLATORS: Subunit unrecoverable storage */
+"printer-state-reasons.subunit-unrecoverable-storage" = "Stockage non recouvrable";
+/* TRANSLATORS: Subunit warming up */
+"printer-state-reasons.subunit-warming-up" = "Réchauffement du sol";
+"printer-state-reasons.suspend" = "Suspend";
+"printer-state-reasons.testing" = "Essais";
+/* TRANSLATORS: Printer stopped responding */
+"printer-state-reasons.timed-out" = "Printer n'a pas répondu";
+/* TRANSLATORS: Out of toner */
+"printer-state-reasons.toner-empty" = "Out of toner";
+/* TRANSLATORS: Toner low */
+"printer-state-reasons.toner-low" = "Toner low";
+/* TRANSLATORS: Trimmer added */
+"printer-state-reasons.trimmer-added" = "Trimmer ajouté";
+/* TRANSLATORS: Trimmer almost empty */
+"printer-state-reasons.trimmer-almost-empty" = "Trimmer presque vide";
+/* TRANSLATORS: Trimmer almost full */
+"printer-state-reasons.trimmer-almost-full" = "Trimmer presque plein";
+/* TRANSLATORS: Trimmer at limit */
+"printer-state-reasons.trimmer-at-limit" = "Trimmer à limite";
+/* TRANSLATORS: Trimmer closed */
+"printer-state-reasons.trimmer-closed" = "Trimmer fermée";
+/* TRANSLATORS: Trimmer changed */
+"printer-state-reasons.trimmer-configuration-change" = "Trimmer a changé";
+/* TRANSLATORS: Trimmer cover closed */
+"printer-state-reasons.trimmer-cover-closed" = "Couverture rigide";
+/* TRANSLATORS: Trimmer cover open */
+"printer-state-reasons.trimmer-cover-open" = "Couverture rigide";
+/* TRANSLATORS: Trimmer empty */
+"printer-state-reasons.trimmer-empty" = "Trimmer vide";
+/* TRANSLATORS: Trimmer full */
+"printer-state-reasons.trimmer-full" = "Trimmer complet";
+/* TRANSLATORS: Trimmer interlock closed */
+"printer-state-reasons.trimmer-interlock-closed" = "Trimmer interlock fermé";
+/* TRANSLATORS: Trimmer interlock open */
+"printer-state-reasons.trimmer-interlock-open" = "Trimmer interlock ouvert";
+/* TRANSLATORS: Trimmer jammed */
+"printer-state-reasons.trimmer-jam" = "Trimmer jammed";
+/* TRANSLATORS: Replace trimmer soon */
+"printer-state-reasons.trimmer-life-almost-over" = "Remplacez le trimestre bientôt";
+/* TRANSLATORS: Replace trimmer */
+"printer-state-reasons.trimmer-life-over" = "Remplacer le trimestre";
+/* TRANSLATORS: Trimmer memory exhausted */
+"printer-state-reasons.trimmer-memory-exhausted" = "Mémoire Trimmer épuisée";
+/* TRANSLATORS: Install trimmer */
+"printer-state-reasons.trimmer-missing" = "Installez trimmer";
+/* TRANSLATORS: Trimmer motor failed */
+"printer-state-reasons.trimmer-motor-failure" = "Moteur Trimmer échoué";
+/* TRANSLATORS: Trimmer near limit */
+"printer-state-reasons.trimmer-near-limit" = "Trimmer near limit";
+/* TRANSLATORS: Trimmer offline */
+"printer-state-reasons.trimmer-offline" = "Trimmer offline";
+/* TRANSLATORS: Trimmer opened */
+"printer-state-reasons.trimmer-opened" = "Trimmer ouvert";
+/* TRANSLATORS: Trimmer temperature high */
+"printer-state-reasons.trimmer-over-temperature" = "Température maximale";
+/* TRANSLATORS: Trimmer in power save mode */
+"printer-state-reasons.trimmer-power-saver" = "Trimmer en mode de sauvegarde de puissance";
+/* TRANSLATORS: Trimmer recoverable failure */
+"printer-state-reasons.trimmer-recoverable-failure" = "Défaut récupérable";
+/* TRANSLATORS: Trimmer recoverable storage */
+"printer-state-reasons.trimmer-recoverable-storage" = "Stockage récupérable Trimmer";
+/* TRANSLATORS: Trimmer removed */
+"printer-state-reasons.trimmer-removed" = "Trimmer enlevée";
+/* TRANSLATORS: Trimmer resource added */
+"printer-state-reasons.trimmer-resource-added" = "Trimmer resource added";
+/* TRANSLATORS: Trimmer resource removed */
+"printer-state-reasons.trimmer-resource-removed" = "Ressources disponibles";
+/* TRANSLATORS: Trimmer temperature sensor failed */
+"printer-state-reasons.trimmer-thermistor-failure" = "Capteur de température Trimmer échoué";
+/* TRANSLATORS: Trimmer failed */
+"printer-state-reasons.trimmer-timing-failure" = "Trimmer a échoué";
+/* TRANSLATORS: Trimmer turned off */
+"printer-state-reasons.trimmer-turned-off" = "Trimmer s'est éteint";
+/* TRANSLATORS: Trimmer turned on */
+"printer-state-reasons.trimmer-turned-on" = "Trimmer a tourné";
+/* TRANSLATORS: Trimmer temperature low */
+"printer-state-reasons.trimmer-under-temperature" = "Température basse";
+/* TRANSLATORS: Trimmer unrecoverable failure */
+"printer-state-reasons.trimmer-unrecoverable-failure" = "Défaut indécouvrable";
+/* TRANSLATORS: Trimmer unrecoverable storage error */
+"printer-state-reasons.trimmer-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Trimmer";
+/* TRANSLATORS: Trimmer warming up */
+"printer-state-reasons.trimmer-warming-up" = "Réchauffez-vous.";
+/* TRANSLATORS: Unknown */
+"printer-state-reasons.unknown" = "Inconnu";
+/* TRANSLATORS: Wrapper added */
+"printer-state-reasons.wrapper-added" = "Wrapper ajouté";
+/* TRANSLATORS: Wrapper almost empty */
+"printer-state-reasons.wrapper-almost-empty" = "Wrapper presque vide";
+/* TRANSLATORS: Wrapper almost full */
+"printer-state-reasons.wrapper-almost-full" = "Wrapper presque plein";
+/* TRANSLATORS: Wrapper at limit */
+"printer-state-reasons.wrapper-at-limit" = "Wrapper at limit";
+/* TRANSLATORS: Wrapper closed */
+"printer-state-reasons.wrapper-closed" = "Wrapper closed";
+/* TRANSLATORS: Wrapper changed */
+"printer-state-reasons.wrapper-configuration-change" = "Wrapper a changé";
+/* TRANSLATORS: Wrapper cover closed */
+"printer-state-reasons.wrapper-cover-closed" = "Wrapper cover closed";
+/* TRANSLATORS: Wrapper cover open */
+"printer-state-reasons.wrapper-cover-open" = "Wrapper cover open";
+/* TRANSLATORS: Wrapper empty */
+"printer-state-reasons.wrapper-empty" = "Wrapper vide";
+/* TRANSLATORS: Wrapper full */
+"printer-state-reasons.wrapper-full" = "Wrapper complet";
+/* TRANSLATORS: Wrapper interlock closed */
+"printer-state-reasons.wrapper-interlock-closed" = "Wrapper interlock fermé";
+/* TRANSLATORS: Wrapper interlock open */
+"printer-state-reasons.wrapper-interlock-open" = "Wrapper interlock open";
+/* TRANSLATORS: Wrapper jammed */
+"printer-state-reasons.wrapper-jam" = "Wrapper jammed";
+/* TRANSLATORS: Replace wrapper soon */
+"printer-state-reasons.wrapper-life-almost-over" = "Remplacer l'emballage bientôt";
+/* TRANSLATORS: Replace wrapper */
+"printer-state-reasons.wrapper-life-over" = "Remplacer l ' enveloppe";
+/* TRANSLATORS: Wrapper memory exhausted */
+"printer-state-reasons.wrapper-memory-exhausted" = "Wrapper memory exhausted";
+/* TRANSLATORS: Install wrapper */
+"printer-state-reasons.wrapper-missing" = "Installez l'emballage";
+/* TRANSLATORS: Wrapper motor failed */
+"printer-state-reasons.wrapper-motor-failure" = "Moteur Wrapper échoué";
+/* TRANSLATORS: Wrapper near limit */
+"printer-state-reasons.wrapper-near-limit" = "Wrapper near limit";
+/* TRANSLATORS: Wrapper offline */
+"printer-state-reasons.wrapper-offline" = "Wrapper offline";
+/* TRANSLATORS: Wrapper opened */
+"printer-state-reasons.wrapper-opened" = "Wrapper s'est ouvert";
+/* TRANSLATORS: Wrapper temperature high */
+"printer-state-reasons.wrapper-over-temperature" = "Température de l ' éventreur élevée";
+/* TRANSLATORS: Wrapper in power save mode */
+"printer-state-reasons.wrapper-power-saver" = "Wrapper in power save mode";
+/* TRANSLATORS: Wrapper recoverable failure */
+"printer-state-reasons.wrapper-recoverable-failure" = "Wrapper recoveryable failure";
+/* TRANSLATORS: Wrapper recoverable storage */
+"printer-state-reasons.wrapper-recoverable-storage" = "Stockage récupérable Wrapper";
+/* TRANSLATORS: Wrapper removed */
+"printer-state-reasons.wrapper-removed" = "Wrapper removed";
+/* TRANSLATORS: Wrapper resource added */
+"printer-state-reasons.wrapper-resource-added" = "Wrapper resource added";
+/* TRANSLATORS: Wrapper resource removed */
+"printer-state-reasons.wrapper-resource-removed" = "Wrapper resource removed";
+/* TRANSLATORS: Wrapper temperature sensor failed */
+"printer-state-reasons.wrapper-thermistor-failure" = "Détecteur de température Wrapper échoué";
+/* TRANSLATORS: Wrapper failed */
+"printer-state-reasons.wrapper-timing-failure" = "Wrapper a échoué.";
+/* TRANSLATORS: Wrapper turned off */
+"printer-state-reasons.wrapper-turned-off" = "Wrapper s'est éteint.";
+/* TRANSLATORS: Wrapper turned on */
+"printer-state-reasons.wrapper-turned-on" = "Wrapper a tourné";
+/* TRANSLATORS: Wrapper temperature low */
+"printer-state-reasons.wrapper-under-temperature" = "Température faible";
+/* TRANSLATORS: Wrapper unrecoverable failure */
+"printer-state-reasons.wrapper-unrecoverable-failure" = "Wrapper unrecoverable failure";
+/* TRANSLATORS: Wrapper unrecoverable storage error */
+"printer-state-reasons.wrapper-unrecoverable-storage-error" = "Erreur de stockage irrécupérable Wrapper";
+/* TRANSLATORS: Wrapper warming up */
+"printer-state-reasons.wrapper-warming-up" = "Wrapper réchauffer";
+/* TRANSLATORS: Idle */
+"printer-state.3" = "Idle";
+/* TRANSLATORS: Processing */
+"printer-state.4" = "Traitement";
+/* TRANSLATORS: Stopped */
+"printer-state.5" = "Arrêté";
+/* TRANSLATORS: Punch Edge */
+"punching-reference-edge" = "Punch Edge";
+/* TRANSLATORS: Bottom */
+"punching-reference-edge.bottom" = "Bottom";
+/* TRANSLATORS: Left */
+"punching-reference-edge.left" = "Gauche";
+/* TRANSLATORS: Right */
+"punching-reference-edge.right" = "Droit";
+/* TRANSLATORS: Top */
+"punching-reference-edge.top" = "Top";
+"resource-state-reasons.cancel-requested" = "Annuler";
+"resource-state-reasons.install-requested" = "Installez";
+"resource-state-reasons.resource-incoming" = "Ressources à venir";
+"resource-state.3" = "En attente";
+"resource-state.4" = "Disponible";
+"resource-state.5" = "Installé";
+"resource-state.6" = "Annulé";
+"resource-state.7" = "Avortée";
+"resource-type.executable-firmware" = "firmware exécutable";
+"resource-type.executable-software" = "Logiciel d ' exécution";
+"resource-type.static-font" = "Police Static";
+"resource-type.static-form" = "Forme statique";
+"resource-type.static-icc-profile" = "Profil icc statique";
+"resource-type.static-image" = "Image statique";
+"resource-type.static-logo" = "Logo statique";
+"resource-type.static-other" = "Static other";
+"resource-type.static-strings" = "Cordes statiques";
+"resource-type.template-document" = "Document de synthèse";
+"resource-type.template-job" = "Template job";
+"resource-type.template-printer" = "Imprimante de modèle";
+/* TRANSLATORS: Retry Timeout */
+"retry-time-out" = "Temps de rentrée";
+/* TRANSLATORS: Type of Separator Sheets */
+"separator-sheets-type" = "Type de feuilles de séparateur";
+/* TRANSLATORS: Start and end sheets */
+"separator-sheets-type.both-sheets" = "Démarrage et feuilles d ' extrémité";
+/* TRANSLATORS: End sheet */
+"separator-sheets-type.end-sheet" = "Fiche technique";
+/* TRANSLATORS: None */
+"separator-sheets-type.none" = "None";
+/* TRANSLATORS: Slip sheets */
+"separator-sheets-type.slip-sheets" = "Slip sheets";
+/* TRANSLATORS: Start sheet */
+"separator-sheets-type.start-sheet" = "Démarrage";
+/* TRANSLATORS: 2-Sided Printing */
+"sides" = "Impression 2-Sided";
+/* TRANSLATORS: Off */
+"sides.one-sided" = "Officier";
+/* TRANSLATORS: On (portrait) */
+"sides.two-sided-long-edge" = "Sur (portrait)";
+/* TRANSLATORS: On (landscape) */
+"sides.two-sided-short-edge" = "On (landscape)";
+/* TRANSLATORS: Staple */
+"stitching" = "Staple";
+/* TRANSLATORS: Staple Method */
+"stitching-method" = "Méthode d ' agrafe";
+/* TRANSLATORS: Automatic */
+"stitching-method.auto" = "Automatique";
+/* TRANSLATORS: Crimp */
+"stitching-method.crimp" = "Crimp";
+/* TRANSLATORS: Wire */
+"stitching-method.wire" = "Wire";
+/* TRANSLATORS: Staple Edge */
+"stitching-reference-edge" = "Staple Edge";
+/* TRANSLATORS: Bottom */
+"stitching-reference-edge.bottom" = "Bottom";
+/* TRANSLATORS: Left */
+"stitching-reference-edge.left" = "Gauche";
+/* TRANSLATORS: Right */
+"stitching-reference-edge.right" = "Droit";
+/* TRANSLATORS: Top */
+"stitching-reference-edge.top" = "Top";
+"system-state.3" = "Idle";
+"system-state.4" = "Traitement";
+"system-state.5" = "Arrêté";
+"system-time-source.dhcp" = "Dhcp";
+"system-time-source.ntp" = "Ntp";
+"system-time-source.onboard" = "À bord";
+"system-time-source.sntp" = "Sntp";
+"timeout-predicate.activity" = "Activité";
+"timeout-predicate.inactivity" = "Inactivité";
+"timeout-predicate.none" = "None";
+/* TRANSLATORS: Pending */
+"transmission-status.3" = "En attente";
+/* TRANSLATORS: Pending retry */
+"transmission-status.4" = "Pending retry";
+/* TRANSLATORS: Processing */
+"transmission-status.5" = "Traitement";
+/* TRANSLATORS: Canceled */
+"transmission-status.7" = "Annulé";
+/* TRANSLATORS: Aborted */
+"transmission-status.8" = "Avortée";
+/* TRANSLATORS: Completed */
+"transmission-status.9" = "Complété";
+/* TRANSLATORS: Cut */
+"trimming" = "Coupe";
+/* TRANSLATORS: Cut Position */
+"trimming-offset" = "Position coupée";
+/* TRANSLATORS: Cut Edge */
+"trimming-reference-edge" = "Cut Edge";
+/* TRANSLATORS: Bottom */
+"trimming-reference-edge.bottom" = "Bottom";
+/* TRANSLATORS: Left */
+"trimming-reference-edge.left" = "Gauche";
+/* TRANSLATORS: Right */
+"trimming-reference-edge.right" = "Droit";
+/* TRANSLATORS: Top */
+"trimming-reference-edge.top" = "Top";
+/* TRANSLATORS: Type of Cut */
+"trimming-type" = "Type de coupe";
+/* TRANSLATORS: Draw line */
+"trimming-type.draw-line" = "Ligne de tir";
+/* TRANSLATORS: Full */
+"trimming-type.full" = "Plein";
+/* TRANSLATORS: Partial */
+"trimming-type.partial" = "Partial";
+/* TRANSLATORS: Perforate */
+"trimming-type.perforate" = "Perforate";
+/* TRANSLATORS: Score */
+"trimming-type.score" = "Score";
+/* TRANSLATORS: Tab */
+"trimming-type.tab" = "Tab";
+/* TRANSLATORS: Cut After */
+"trimming-when" = "Couper";
+/* TRANSLATORS: Every document */
+"trimming-when.after-documents" = "Chaque document";
+/* TRANSLATORS: Job */
+"trimming-when.after-job" = "Job";
+/* TRANSLATORS: Every set */
+"trimming-when.after-sets" = "Chaque set";
+/* TRANSLATORS: Every page */
+"trimming-when.after-sheets" = "Chaque page";
+"which-printers.all" = "Tout";
+"which-printers.idle" = "Idle";
+"which-printers.not-accepting" = "Ne pas accepter";
+"which-printers.processing" = "Traitement";
+"which-printers.shutdown" = "Tais-toi.";
+"which-printers.stopped" = "Arrêté";
+"which-printers.testing" = "Essais";

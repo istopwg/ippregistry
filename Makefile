@@ -22,6 +22,12 @@ LIBS		=	`pkg-config --libs mxml4`
 OPTIM		=	-g -Os
 
 
+# URLs and languages
+IANAIPP_URL	=	http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
+TRANSLATE_LANGS	=	ar cs de el es fa fi fr ga hi hu id it ja ko nl pl pt ru sk sv tr uk vi zh
+TRANSLATE_URL	=	http://localhost:9000
+
+
 # Default targets...
 SOURCES		=	register.c regtosm.c regtostrings.c
 TARGETS		=	register regtosm regtostrings
@@ -70,24 +76,30 @@ regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 # Update the localizations of the IANA IPP registry
 .PHONY: strings
 strings:	localizations/base.strings
-#	for lang in de es fr it; do \
-#		echo Generating $$lang strings...; \
-#		./regtostrings-mt --language $$lang iana-ipp-registrations.xml >localizations/ipp-$$lang.strings; \
-#	done
 
 
-# Preview the
-.PHONY: preview
-preview:
-	xsltproc preview/iana-registry.xsl ipp-registrations.xml >preview/ipp-registrations.xhtml
-
-
-# Update the IANA IPP registration XML file...
-.PHONY: iana-ipp-registrations.xml
-iana-ipp-registrations.xml:
-	curl -z $@ -o $@ http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
+# Do a baseline translation using stringsutil and LibreTranslate
+.PHONY: translate
+translate:	localizations/base.strings
+	cp localizations/base.strings localizations/ipp-en.strings
+	for lang in $(TRANSLATE_LANGS); do \
+		stringsutil -c -f localizations/ipp-$$lang.strings merge localizations/base.strings; \
+		stringsutil -f localizations/ipp-$$lang.strings -l $$lang -T $(TRANSLATE_URL) translate localizations/base.strings; \
+	done
 
 
 # Update the base .strings file for the IANA IPP registry...
 localizations/base.strings:	regtostrings iana-ipp-registrations.xml
 	./regtostrings iana-ipp-registrations.xml >localizations/base.strings
+
+
+# Update the IANA IPP registration XML file using curl...
+.PHONY: iana-ipp-registrations.xml
+iana-ipp-registrations.xml:
+	curl -z $@ -o $@ $(IANAIPP_URL)
+
+
+# Preview the IANA IPP registry
+.PHONY: preview
+preview:
+	xsltproc preview/iana-registry.xsl ipp-registrations.xml >preview/ipp-registrations.xhtml
