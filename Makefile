@@ -24,7 +24,7 @@ OPTIM		=	-g -Os
 
 # URLs and languages
 IANAIPP_URL	=	http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
-TRANSLATE_LANGS	=	ar cs de el es fa fi fr ga hi hu id it ja ko nl pl pt ru sk sv tr uk vi zh
+TRANSLATE_LANGS	=	cs de el es fi fr ga hi hu id it ja ko nl pl pt sk sv tr vi zh
 TRANSLATE_URL	=	http://localhost:9000
 
 
