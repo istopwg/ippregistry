@@ -38,7 +38,7 @@
 "coating-type.archival" = "Archival";
 "coating-type.archival-glossy" = "Archival glossy";
 "coating-type.archival-matte" = "Archival matte";
-"coating-type.archival-semi-gloss" = "Archival semi gloss";
+"coating-type.archival-semi-gloss" = "Archival semi-gloss";
 "coating-type.glossy" = "Glossy";
 "coating-type.high-gloss" = "High gloss";
 "coating-type.matte" = "Matte";
@@ -464,7 +464,7 @@
 "job-state-reasons.job-canceled-at-device" = "Canceled at printer";
 "job-state-reasons.job-canceled-by-operator" = "Canceled by operator";
 "job-state-reasons.job-canceled-by-user" = "Canceled by user";
-"job-state-reasons.job-completed-successfully" = " ";
+"job-state-reasons.job-completed-successfully" = "Completed successfully";
 "job-state-reasons.job-completed-with-errors" = "Completed with errors";
 "job-state-reasons.job-completed-with-warnings" = "Completed with warnings";
 "job-state-reasons.job-data-insufficient" = "Insufficient data";
@@ -538,7 +538,7 @@
 "laminating-type.archival" = "Archival";
 "laminating-type.archival-glossy" = "Archival glossy";
 "laminating-type.archival-matte" = "Archival matte";
-"laminating-type.archival-semi-gloss" = "Archival semi gloss";
+"laminating-type.archival-semi-gloss" = "Archival semi-gloss";
 "laminating-type.glossy" = "Glossy";
 "laminating-type.high-gloss" = "High gloss";
 "laminating-type.matte" = "Matte";
@@ -830,7 +830,7 @@
 "media-type.metal-high-gloss" = "Metal high gloss";
 "media-type.metal-matte" = "Metal matte";
 "media-type.metal-satin" = "Metal satin";
-"media-type.metal-semi-gloss" = "Metal semi gloss";
+"media-type.metal-semi-gloss" = "Metal semi-gloss";
 "media-type.mounting-tape" = "Mounting tape";
 "media-type.multi-layer" = "Multi layer";
 "media-type.multi-part-form" = "Multi part form";
@@ -851,7 +851,7 @@
 "media-type.plastic-high-gloss" = "Plastic high gloss";
 "media-type.plastic-matte" = "Plastic matte";
 "media-type.plastic-satin" = "Plastic satin";
-"media-type.plastic-semi-gloss" = "Plastic semi gloss";
+"media-type.plastic-semi-gloss" = "Plastic semi-gloss";
 "media-type.plate" = "Plate";
 "media-type.polyester" = "Polyester";
 "media-type.pre-cut-tabs" = "Pre cut tabs";
@@ -1466,7 +1466,7 @@
 "printer-state-reasons.input-pick-roller-life-warn" = "Replace pick roller soon";
 "printer-state-reasons.input-pick-roller-missing" = "Input pick roller missing";
 "printer-state-reasons.input-tray-elevation-failure" = "Paper tray elevation failed";
-"printer-state-reasons.input-tray-missing" = "Paper tray is missing";
+"printer-state-reasons.input-tray-missing" = "Install paper tray";
 "printer-state-reasons.input-tray-position-failure" = "Paper tray position failed";
 "printer-state-reasons.inserter-added" = "Inserter added";
 "printer-state-reasons.inserter-almost-empty" = "Inserter almost empty";

@@ -1844,8 +1844,6 @@
 "media.iso_dl_110x220mm" = "Enveloppe DL";
 /* TRANSLATORS: Id-1 */
 "media.iso_id-1_53.98x85.6mm" = "Id-1";
-/* TRANSLATORS: Id-3 */
-"media.iso_id-3_88x125mm" = "Id-3";
 /* TRANSLATORS: ISO RA0 */
 "media.iso_ra0_860x1220mm" = "ISO RA0";
 /* TRANSLATORS: ISO RA1 */
@@ -2056,8 +2054,6 @@
 "media.oe_photo-30r_30x40in" = "30 x 40";
 /* TRANSLATORS: 3.5 x 5″ */
 "media.oe_photo-l_3.5x5in" = "3.5 x 5";
-/* TRANSLATORS: 10 x 15″ */
-"media.oe_photo-s10r_10x15in" = "10 x 15″";
 "media.oe_photo-s8r_8x12in" = "8 x 12";
 /* TRANSLATORS: 4 x 4″ */
 "media.oe_square-photo_4x4in" = "4 x 4";
@@ -2087,8 +2083,6 @@
 "media.om_italian_110x230mm" = "Enveloppe italienne";
 /* TRANSLATORS: 198 x 275mm */
 "media.om_juuro-ku-kai_198x275mm" = "198 x 275mm";
-/* TRANSLATORS: 200 x 300 */
-"media.om_large-photo_200x300" = "200 x 300";
 "media.om_large-photo_200x300mm" = "200 x 300mm";
 /* TRANSLATORS: 130 x 180mm */
 "media.om_medium-photo_130x180mm" = "130 x 180mm";
@@ -2101,16 +2095,12 @@
 "media.om_photo-50x75_500x750mm" = "500 x 750 mm";
 "media.om_photo-50x76_500x760mm" = "500 x 760mm";
 "media.om_photo-60x90_600x900mm" = "600 x 900 mm";
-/* TRANSLATORS: Envelope Postfix */
-"media.om_postfix_114x229mm" = "Envelope Postfix";
 /* TRANSLATORS: 100 x 150mm */
 "media.om_small-photo_100x150mm" = "100 x 150 mm";
 /* TRANSLATORS: 89 x 89mm */
 "media.om_square-photo_89x89mm" = "89 x 89mm";
 /* TRANSLATORS: 100 x 200mm */
 "media.om_wide-photo_100x200mm" = "100 x 200mm";
-/* TRANSLATORS: Envelope chinese #10 */
-"media.prc_10_324x458mm" = "Envelope chinese #10";
 /* TRANSLATORS: Chinese 16k */
 "media.prc_16k_146x215mm" = "Chinois 16k";
 /* TRANSLATORS: Envelope chinese #1 */
@@ -2119,12 +2109,8 @@
 "media.prc_2_102x176mm" = "Enveloppe chinoise #2";
 /* TRANSLATORS: Chinese 32k */
 "media.prc_32k_97x151mm" = "Chinois 32k";
-/* TRANSLATORS: Envelope chinese #3 */
-"media.prc_3_125x176mm" = "Envelope chinese #3";
 /* TRANSLATORS: Envelope chinese #4 */
 "media.prc_4_110x208mm" = "Enveloppe chinoise #4";
-/* TRANSLATORS: Envelope chinese #5 */
-"media.prc_5_110x220mm" = "Envelope chinese #5";
 /* TRANSLATORS: Envelope chinese #6 */
 "media.prc_6_120x320mm" = "Enveloppe chinoise #6";
 /* TRANSLATORS: Envelope chinese #7 */
