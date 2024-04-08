@@ -81,7 +81,6 @@ strings:	localizations/base.strings
 # Do a baseline translation using stringsutil and LibreTranslate
 .PHONY: translate
 translate:	localizations/base.strings
-	cp localizations/base.strings localizations/ipp-en.strings
 	for lang in $(TRANSLATE_LANGS); do \
 		stringsutil -c -f localizations/ipp-$$lang.strings merge localizations/base.strings; \
 		stringsutil -f localizations/ipp-$$lang.strings -l $$lang -T $(TRANSLATE_URL) translate localizations/base.strings; \
