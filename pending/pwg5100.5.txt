@@ -1,0 +1,138 @@
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf
+
+Document Description attributes:	Reference
+--------------------------	---------
+document-name (name(MAX))	[PWG5100.5]
+
+Document Status attributes:	Reference
+--------------------------	---------
+attributes-charset (charset)	[PWG5100.5]
+attributes-natural-language (naturalLanguage)	[PWG5100.5]
+date-time-at-completed (dateTime)	[PWG5100.5]
+date-time-at-created (dateTime)	[PWG5100.5]
+date-time-at-processing (dateTime)	[PWG5100.5]
+detailed-status-messages (1setOf text(MAX))	[PWG5100.5]
+document-access-errors (1setOf text(MAX))	[PWG5100.5]
+document-charset (charset)	[PWG5100.5]
+document-digital-signature(obsolete) (type2 keyword)	[PWG5100.5]
+document-format (mimeMediaType)	[PWG5100.5]
+document-format-detected (mimeMediaType)	[PWG5100.5]
+document-job-id (integer(1:MAX))	[PWG5100.5]
+document-job-uri (uri)	[PWG5100.5]
+document-message (text(MAX))	[PWG5100.5]
+document-natural-language (naturalLanguage)	[PWG5100.5]
+document-number (integer(1:MAX))	[PWG5100.5]
+document-printer-uri (uri)	[PWG5100.5]
+document-state (type1 enum)	[PWG5100.5]
+document-state-message (text(MAX))	[PWG5100.5]
+document-state-reasons (1setOf type2 keyword)	[PWG5100.5]
+document-uri (uri)	[PWG5100.5]
+impressions (integer(0:MAX))	[PWG5100.5]
+impressions-completed (integer(0:MAX))	[PWG5100.5]
+k-octets (integer(0:MAX))	[PWG5100.5]
+k-octets-processed (integer(0:MAX))	[PWG5100.5]
+last-document (boolean)	[PWG5100.5]
+media-sheets (integer(0:MAX))	[PWG5100.5]
+media-sheets-completed (integer(0:MAX))	[PWG5100.5]
+more-info (uri)	[PWG5100.5]
+output-device-assigned (name(MAX))	[PWG5100.5]
+printer-up-time (integer(1:MAX))	[PWG5100.5]
+time-at-completed (integer(MIN:MAX))	[PWG5100.5]
+time-at-creation (integer(MIN:MAX))	[PWG5100.5]
+time-at-processing (integer(MIN:MAX))	[PWG5100.5]
+
+Document Template attributes:	Reference
+--------------------------	---------
+copies (integer(1:MAX))	[PWG5100.5]
+cover-back(deprecated) (collection)	[PWG5100.5]
+  <Member attributes are the same as the "cover-back" Job Template attribute>	[PWG5100.5]
+cover-front(deprecated) (collection)	[PWG5100.5]
+  <Member attributes are the same as the "cover-front" Job Template attribute>	[PWG5100.5]
+finishings (1setOf type2 enum)	[PWG5100.5]
+finishings-col (1setOf collection)	[PWG5100.5]
+  <Member attributes are the same as the "finishings-col" Job Template attribute>	[PWG5100.5]
+force-front-side (1setOf integer(1:MAX))	[PWG5100.5]
+imposition-template (type2 keyword | name(MAX))	[PWG5100.5]
+media (type2 keyword | name(MAX))	[PWG5100.5]
+media-col (collection)	[PWG5100.5]
+  <Member attributes are the same as the "media-col" Job Template attribute>	[PWG5100.5]
+media-input-tray-check(deprecated) (type2 keyword | name(MAX))	[PWG5100.5]
+number-up (integer(1:MAX))	[PWG5100.5]
+orientation-requested (type2 enum)	[PWG5100.5]
+output-bin (type2 keyword | name(MAX))	[PWG5100.5]
+page-delivery (type2 keyword)	[PWG5100.5]
+page-ranges (1setOf rangeOfInteger(1:MAX))	[PWG5100.5]
+presentation-direction-number-up(deprecated) (type2 keyword)	[PWG5100.5]
+print-quality (type2 enum)	[PWG5100.5]
+printer-resolution (resolution)	[PWG5100.5]
+sides (type2 keyword)	[PWG5100.5]
+x-image-position (type2 keyword)	[PWG5100.5]
+x-image-shift (integer(MIN:MAX))	[PWG5100.5]
+x-side1-image-shift (integer(MIN:MAX))	[PWG5100.5]
+x-side2-image-shift (integer(MIN:MAX))	[PWG5100.5]
+y-image-position (type2 keyword)	[PWG5100.5]
+y-image-shift (integer(MIN:MAX))	[PWG5100.5]
+y-side1-image-shift (integer(MIN:MAX))	[PWG5100.5]
+y-side2-image-shift (integer(MIN:MAX))	[PWG5100.5]
+
+Operation attributes:	Reference
+--------------------	---------
+document-charset (charset)	[PWG5100.5]
+document-number (integer(1:MAX))	[PWG5100.5]
+
+Printer Description attributes:	Reference
+------------------------------	---------
+document-creation-attributes-supported (1setOf keyword)	[PWG5100.5]
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+notify-events (1setOf type2 keyword)	[RFC3995]
+  document-completed	[PWG5100.5]
+  document-config-changed	[PWG5100.5]
+  document-created	[PWG5100.5]
+  document-state-changed	[PWG5100.5]
+  document-stopped	[PWG5100.5]
+
+requested-attributes (1setOf type2 keyword)	[STD92]
+  document-description	[PWG5100.5]
+  document-template	[PWG5100.5]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	---------
+document-state (type1 enum)	[PWG5100.5]
+  3	pending	[PWG5100.5]
+  5	procesing	[PWG5100.5]
+  6	processing-stopped	[PWG5100.5]
+  7	canceled	[PWG5100.5]
+  8	aborted	[PWG5100.5]
+  9	completed	[PWG5100.5]
+
+operations-supported (1setOf type2 enum)	[STD92]
+  0x0033	Cancel-Document	[PWG5100.5]
+  0x0034	Get-Document-Attributes	{PWG5100.5]
+  0x0035	Get-Documents	[PWG5100.5]
+  0x0037	Set-Document-Attributes	[PWG5100.5]
+
+
+Operation Name	Reference
+--------------	---------
+Cancel-Document	[PWG5100.5]
+Cancel-Job(extension)	[PWG5100.5]
+Get-Document-Attributes	[PWG5100.5]
+Get-Documents	[PWG5100.5]
+Hold-Job(extension)	[PWG5100.5]
+Print-Job(extension)	[PWG5100.5]
+Print-URI(extension)	[PWG5100.5]
+Release-Job(extension)	[PWG5100.5]
+Send-Document(extension)	[PWG5100.5]
+Send-URI(extension)	[PWG5100.5]
+Set-Document-Attributes	[PWG5100.5]
+
+
+Value    Attribute Group Name	Reference
+------   ---------------------------------------------	---------
+0x09	document-attributes-tag	[PWG5100.5]
