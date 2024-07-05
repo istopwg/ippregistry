@@ -29,8 +29,8 @@ TRANSLATE_URL	=	http://localhost:9000
 
 
 # Default targets...
-SOURCES		=	register.c regtosm.c regtostrings.c
-TARGETS		=	register regtosm regtostrings
+SOURCES		=	register.c regtomap.c regtosm.c regtostrings.c
+TARGETS		=	register regtomap regtosm regtostrings
 
 
 # Make everything...
@@ -61,6 +61,11 @@ cppcheck:
 # Build the register program which manages the IANA IPP registry XML file
 register:	register.c ipp-registry.h
 	$(CC) $(CFLAGS) -o register register.c $(LIBS)
+
+
+# Build the regtomap program which creates a map of Job Template attributes
+regtomap:	regtomap.c ipp-registry.h
+	$(CC) $(CFLAGS) -o regtomap regtomap.c $(LIBS)
 
 
 # Build the regtosm program which creates a Semantic Model schema

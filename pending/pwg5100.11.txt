@@ -1,0 +1,181 @@
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf
+
+Operation attributes:	Reference
+----------------------------------------	-------------
+job-password (octetString(255))	[PWG5100.11]
+job-password-encryption (type2 keyword)	[PWG5100.11]
+job-release-action (type2 keyword)	[PWG5100.11]
+job-storage (collection)	[PWG5100.11]
+  job-storage-access (type2 keyword)	[PWG5100.11]
+  job-storage-disposition (type2 keyword)	[PWG5100.11]
+  job-storage-group (name(MAX)	[PWG5100.11]
+
+
+Job Status attributes:	Reference
+----------------------------------------	-------------
+job-release-action (type2 keyword)	[PWG5100.11]
+job-storage (collection)	[PWG5100.11]
+  <Any "job-storage" member attribute>	[PWG5100.11]
+parent-job-id (integer(1:MAX))	[PWG5100.11]
+parent-job-uuid (uri(45))	[PWG5100.11]
+
+
+Job Template attributes:	Reference
+----------------------------------------	-------------
+feed-orientation(obsolete) (type2 keyword)	[PWG5100.11]
+job-cancel-after (integer(1:MAX))	[PWG5100.11]
+job-save-disposition(obsolete) (collection)	[PWG5100.11]
+pdl-init-file(obsolete) (1setOf collection)	[PWG5100.11]
+proof-copies (integer(1:MAX))	[PWG5100.11]
+proof-print(deprecated) (collection)	[PWG5100.11]
+  proof-print-copies (integer (0:MAX))	[PWG5100.11]
+  media (type2 keyword | name(MAX))	[PWG5100.11]
+  media-col (collection)	[PWG5100.11]
+
+
+Printer Description attributes:	Reference
+----------------------------------------	-------------
+feed-orientation-default(obsolete) (type2 keyword)	[PWG5100.11]
+feed-orientation-supported(obsolete) (type2 keyword)	[PWG5100.11]
+job-cancel-after-default (integer(1:MAX))	[PWG5100.11]
+job-password-encryption-supported (1setOf type2 keyword)	[PWG5100.11]
+job-password-length-supported (rangeOfInteger(4:765))	[PWG5100.11]
+job-password-repertoire-configured (1setOf (type2 keyword | name(MAX)))	[PWG5100.11]
+job-password-repertoire-supported (1setOf (type2 keyword | name(MAX)))	[PWG5100.11]
+job-password-supported (integer(0:255))	[PWG5100.11]
+job-release-action-default (type2 keyword)	[PWG5100.11]
+job-release-action-supported (1setOf type2 keyword)	[PWG5100.11]
+job-storage-access-supported (1setOf type2 keyword)	[PWG5100.11]
+job-storage-disposition-supported (1setOf type2 keyword)	[PWG5100.11]
+job-storage-group-supported (1setOf name(MAX))	[PWG5100.11]
+job-storage-supported (1setOf keyword)	[PWG5100.11]
+pdl-init-file-default(obsolete) (1setOf collection) (obsolete)	[PWG5100.11]
+pdl-init-file-entry-supported(obsolete) (1setOf name(MAX)) (obsolete)	[PWG5100.11]
+pdl-init-file-location-supported(obsolete) (1setOf uri) (obsolete)	[PWG5100.11]
+pdl-init-file-name-supported(obsolete) (1setOf name(MAX)) (obsolete)	[PWG5100.11]
+pdl-init-file-supported(obsolete) (1setOf type2 keyword) (obsolete)	[PWG5100.11]
+printer-asset-tag (octetString(MAX))	[PWG5100.11]
+printer-detailed-status-messages (1setOf text(MAX))	[PWG5100.11]
+printer-service-contact-col (collection)	[PWG5100.11]
+  contact-name (name(MAX))	[PWG5100.11]
+  contact-uri (uri)	[PWG5100.11]
+  contact-vcard (1setOf text(MAX))	[PWG5100.11]
+proof-copies-supported (rangeOfInteger(1:MAX))	[PWG5100.11]
+proof-print-copies-supported (rangeOfInteger(0:MAX))	[PWG5100.11]
+proof-print-default(deprecated) (collection)	[PWG5100.11]
+proof-print-supported(deprecated) (1setOf keyword)	[PWG5100.11]
+save-disposition-supported(obsolete) (1setOf keyword) (obsolete)	[PWG5100.11]
+save-document-format-default(obsolete) (mimeMediaType) (obsolete)	[PWG5100.11]
+save-document-format-supported(obsolete) (1setOf mimeMediaType) (obsolete)	[PWG5100.11]
+save-location-default(obsolete) (uri) (obsolete)	[PWG5100.11]
+save-location-supported(obsolete) (1setOf uri) (obsolete)	[PWG5100.11]
+save-name-supported(obsolete) (boolean) (obsolete)	[PWG5100.11]
+
+
+Printer Status attributes:	Reference
+----------------------------------------	-------------
+printer-serial-number (text(255))	[PWG5100.11]
+printer-storage (1setOf octetString(MAX))	[PWG5100.11]
+printer-storage-description (1setOf text(MAX))	[PWG5100.11]
+
+
+Attribute (attribute syntax)
+  Keyword Attribute Value	Reference
+-------------------------------	-------------
+feed-orientation(obsolete) (type2 keyword) (obsolete)	[PWG5100.11]
+
+ipp-features-supported (1setOf type2 keyword)	[PWG5100.13]
+  job-release	[PWG5100.11]
+  job-storage	[PWG5100.11]
+  print-policy	[PWG5100.11]
+  proof-and-suspend	[PWG5100.11]
+  proof-print	[PWG5100.11]
+
+job-release-action (type2 keyword)	[PWG5100.11]
+  none	[PWG5100.11]
+  button-press	[PWG5100.11]
+  job-password	[PWG5100.11]
+  owner-authorized	[PWG5100.11]
+
+job-password-encryption (type2 keyword | name(MAX))	[PWG5100.11]
+  none	[PWG5100.11]
+  md2(obsolete)	[PWG5100.11]
+  md4(obsolete)	[PWG5100.11]
+  md5(obsolete)	[PWG5100.11]
+  sha(obsolete)	[PWG5100.11]
+  sha2-224	[PWG5100.11]
+  sha2-256	[PWG5100.11]
+  sha2-384	[PWG5100.11]
+  sha2-512	[PWG5100.11]
+  sha2-512_224	[PWG5100.11]
+  sha2-512_256	[PWG5100.11]
+  sha3-224	[PWG5100.11]
+  sha3-256	[PWG5100.11]
+  sha3-384	[PWG5100.11]
+  sha3-512	[PWG5100.11]
+  sha3-512_224	[PWG5100.11]
+  sha3-512_256	[PWG5100.11]
+  shake-256	[PWG5100.11]
+  shake-512	[PWG5100.11]
+
+job-state-reasons (1setOf type2 keyword)	[STD92]
+  conflicting-attributes	[PWG5100.11]
+  job-canceled-after-timeout	[PWG5100.11]
+  job-held-for-authorization	[PWG5100.11]
+  job-held-for-button-press	[PWG5100.11]
+  job-held-for-release	[PWG5100.11]
+  job-password-wait	[PWG5100.11]
+  job-printed-successfully	[PWG5100.11]
+  job-printed-with-errors	[PWG5100.11]
+  job-printed-with-warnings	[PWG5100.11]
+  job-resuming	[PWG5100.11]
+  job-release-wait	[PWG5100.11]
+  job-saved-successfully (obsolete)	[PWG5100.11]
+  job-saved-with-errors (obsolete)	[PWG5100.11]
+  job-saved-with-warnings (obsolete)	[PWG5100.11]
+  job-saving (obsolete)	[PWG5100.11]
+  job-stored	[PWG5100.11]
+  job-storing	[PWG5100.11]
+  job-suspended-by-operator	[PWG5100.11]
+  job-suspended-by-system	[PWG5100.11]
+  job-suspended-by-user	[PWG5100.11]
+  job-suspended-for-approval	[PWG5100.11]
+  job-suspending	[PWG5100.11]
+  unsupported-attributes-or-values	[PWG5100.11]
+
+job-storage-access-supported (1setOf type2 keyword)	[PWG5100.11]
+  group	[PWG5100.11]
+  owner	[PWG5100.11]
+  public	[PWG5100.11]
+
+job-storage-disposition-supported (1setOf type2 keyword)	[PWG5100.11]
+  none	[PWG5100.11]
+  print-and-store	[PWG5100.11]
+  store-only	[PWG5100.11]
+
+which-jobs (type2 keyword)	[STD92]
+  proof-print	[PWG5100.11]
+  proof-and-suspend	[PWG5100.11]
+  saved (obsolete)	[PWG5100.11]
+  stored-group	[PWG5100.11]
+  stored-owner	[PWG5100.11]
+  stored-public	[PWG5100.11]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	-------------
+operations-supported (1setOf type2 enum)	[STD92]
+  0x0066	Get-User-Printer-Attributes	[PWG5100.11]
+
+
+Operation Name	Reference
+--------------	-------------
+Create-Job(Extension)	[PWG5100.11]
+Get-Jobs(Extension)	[PWG5100.11]
+Get-User-Printer-Attributes	[PWG5100.11]
+Print-Job(Extension)	[PWG5100.11]
+Print-URI(Extension)	[PWG5100.11]
+Reprocess-Job(Extension)	[PWG5100.11]
+Resubmit-Job(Extension)	[PWG5100.11]
+Validate-Job(Extension)	[PWG5100.11]
