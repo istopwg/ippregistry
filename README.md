@@ -130,6 +130,10 @@ The `--po` option tells `regtostrings` to generate a GNU gettext `.po` file:
 The source XML file should be the current IANA IPP registration file at
 <http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml>.
 
+We use [Weblate][WL] to manage the localization of these strings files.
+
+[WL]: https://hosted.weblate.org
+
 
 Legal Stuff
 -----------
