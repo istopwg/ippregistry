@@ -2256,6 +2256,8 @@ ws_cb(void        *data,		// I - Callback data (not used)
   int		level;			// Indentation level
   const char	*name = mxmlGetElement(node);
 					// Element name
+  const char	*pname = mxmlGetElement(mxmlGetParent(node));
+					// Parent element name
   mxml_type_t	type = mxmlGetType(node);
 					// Node type
   static const char *spaces = "                                        ";
@@ -2267,8 +2269,8 @@ ws_cb(void        *data,		// I - Callback data (not used)
   if (!name)
     name = "unknown";
 
-  if (mxmlGetParent(node) && !strcmp(name, "note"))
-    return (NULL);
+//  if (mxmlGetParent(node) && !strcmp(name, "note"))
+//    return (NULL);
 
   if (ws == MXML_WS_AFTER_OPEN)
   {
@@ -2281,6 +2283,11 @@ ws_cb(void        *data,		// I - Callback data (not used)
   {
     if (strcmp(name, "registry") && strcmp(name, "record") && strcmp(name, "range"))
       return (NULL);
+  }
+  else if (!strcmp(name, "xref") && pname && !strcmp(pname, "note"))
+  {
+    // No whitespace added before/after xrefs in notes...
+    return (NULL);
   }
   else if (ws == MXML_WS_AFTER_CLOSE)
   {

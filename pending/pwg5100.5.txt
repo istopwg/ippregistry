@@ -105,7 +105,7 @@ Attributes (attribute syntax)
   ----------	------------------	---------
 document-state (type1 enum)	[PWG5100.5]
   3	pending	[PWG5100.5]
-  5	procesing	[PWG5100.5]
+  5	proccesing	[PWG5100.5]
   6	processing-stopped	[PWG5100.5]
   7	canceled	[PWG5100.5]
   8	aborted	[PWG5100.5]
