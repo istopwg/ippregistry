@@ -1,0 +1,29 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+media (type2 keyword | name(MAX))	[RFC8011]
+  iso_c1-long-edge_917x648mm	[ENVELOPE]
+  iso_c2-long-edge_648x458mm	[ENVELOPE]
+  iso_c3-long-edge_458x324mm	[ENVELOPE]
+  iso_c4-long-edge_324x229mm	[ENVELOPE]
+  iso_c5-long-edge_229x162mm	[ENVELOPE]
+  iso_c6-long-edge_162x114mm	[ENVELOPE]
+  iso_c7-long-edge_114x81mm	[ENVELOPE]
+  iso_c8-long-edge_81x57mm	[ENVELOPE]
+  iso_c9-long-edge_57x40mm	[ENVELOPE]
+  iso_c10-long-edge_40x28mm	[ENVELOPE]
+  iso_dl-long-edge_220x110mm	[ENVELOPE]
+  jpn_you4_235x105mm	[ENVELOPE]
+  jpn_you6_190x98mm	[ENVELOPE]
+  jpn_youchou2_146x111.1mm	[ENVELOPE]
+  jpn_youchou3_235x120mm	[ENVELOPE]
+  jpn_youchou4_205x90mm	[ENVELOPE]
+  na_personal-long-edge_6.5x3.625in	[ENVELOPE]
+  na_monarch-long-edge_7.5x3.875in	[ENVELOPE]
+  na_number-9-long-edge_8.875x3.875in	[ENVELOPE]
+  na_number-10-long-edge_9.5x4.125in	[ENVELOPE]
+  na_number-11-long-edge_10.375x4.5in	[ENVELOPE]
+  na_number-12-long-edge_11x4.75in	[ENVELOPE]
+  na_number-14-long-edge_11.5x5in	[ENVELOPE]

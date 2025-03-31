@@ -1,0 +1,8 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippconsole10-20250227.pdf
+
+Printer Status attributes:	Reference
+------------------------------	---------
+printer-console-display (1setOf text(MAX))	[CONSOLE]
+printer-console-light (1setOf octetString(MAX))	[CONSOLE]
+printer-console-light-description (1setOf text(MAX))	[CONSOLE]
+printer-home-page-uri (uri)	[CONSOLE]
