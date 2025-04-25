@@ -1,0 +1,122 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf
+
+Operation attributes:	Reference
+--------------------	---------
+document-preprocessed (boolean)	[PWG5100.18]
+fetch-status-code (type2 enum)	[PWG5100.18]
+fetch-status-message (text(MAX))	[PWG5100.18]
+output-device-job-states (1setOf type1 enum)	[PWG5100.18]
+output-device-uuid (uri)	[PWG5100.18]
+
+Document Status attributes:	Reference
+--------------------------	---------
+document-format-ready (1setOf mimeMediaType)	[PWG5100.18]
+output-device-document-state (type2 enum)	[PWG5100.18]
+output-device-document-state-message (text(MAX))	[PWG5100.18]
+output-device-document-state-reasons (1setOf type2 keyword)		[PWG5100.18]
+
+Job Status attributes:	Reference
+--------------------------	---------
+document-format-ready (1setOf mimeMediaType)	[PWG5100.18]
+output-device-job-state (type2 enum)	[PWG5100.18]
+output-device-job-state-message (text(MAX))	[PWG5100.18]
+output-device-job-state-reasons (1setOf type2 keyword)	[PWG5100.18]
+output-device-uuid-assigned (uri)	[PWG5100.18]
+
+Printer Description attributes:	Reference
+------------------------------	---------
+fetch-document-attributes-supported (1setOf keyword)	[PWG5100.18]
+output-device-uuid-supported (1setOf uri)	[PWG5100.18]
+printer-mode-configured (type2 keyword)	[PWG5100.18]
+printer-mode-supported (1setOf type2 keyword)	[PWG5100.18]
+printer-static-resource-directory-uri (uri)	[PWG5100.18]
+printer-static-resource-k-octets-supported (integer(0:MAX))	[PWG5100.18]
+
+Printer Status attributes:	Reference
+--------------------------	---------
+printer-static-resource-k-octets-free (integer(0:MAX))	[PWG5100.18]
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+document-state-reasons (1setOf type2 keyword)	[PWG5100.5]
+  document-fetchable	[PWG5100.18]
+
+ipp-features-supported (1setOf type2 keyword)	[PWG5100.13]
+  infrastructure-printer	[PWG5100.18]
+
+job-state-reasons (1setOf type2 keyword)	[STD92]
+  job-fetchable	[PWG5100.18]
+
+notify-events (1setOf type2 keyword)	[RFC3995]
+  document-completed	[PWG5100.18]
+  document-config-changed	[PWG5100.18]
+  document-created	[PWG5100.18]
+  document-fetchable	[PWG5100.18]
+  document-state-changed	[PWG5100.18]
+  document-stopped	[PWG5100.18]
+  job-fetchable	[PWG5100.18]
+
+printer-mode-configured (type2 keyword)	[PWG5100.18]
+  passthrough	[PWG5100.18]
+  release-action	[PWG5100.18]
+  release-printing	[PWG5100.18]
+
+printer-mode-supported (1setOf type2 keyword) 	[PWG5100.18]
+  <Any "printer-mode-configured" value>	[PWG5100.18]
+
+printer-state-reasons (1setOf type2 keyword)	[STD92]
+  identify-printer-requested	[PWG5100.18]
+
+which-jobs (type2 keyword)	[STD92]
+  fetchable	[PWG5100.18]
+
+
+Attributes (attribute syntax)
+  Enum Value	Enum Symbolic Name	Reference
+  ----------	------------------	---------
+fetch-status-code (type2 enum)	[PWG5100.18]
+  < all status code values other than 'successful-ok' >	[PWG5100.18]
+
+operations-supported (1setOf type2 enum)	[STD92]
+  0x003F	Acknowledge-Document	[PWG5100.18]
+  0x0040	Acknowledge-Identify-Printer	[PWG5100.18]
+  0x0041	Acknowledge-Job	[PWG5100.18]
+  0x0042	Fetch-Document	[PWG5100.18]
+  0x0043	Fetch-Job	[PWG5100.18]
+  0x0044	Get-Output-Device-Attributes	[PWG5100.18]
+  0x0045	Update-Active-Jobs	[PWG5100.18]
+  0x0046	Deregister-Output-Device	[PWG5100.18]
+  0x0047	Update-Document-Status	[PWG5100.18]
+  0x0048	Update-Job-Status	[PWG5100.18]
+  0x0049	Update-Output-Device-Attributes	[PWG5100.18]
+
+output-device-job-states (1setOf type1 enum)	[PWG5100.18]
+  < all job-state values >	[PWG5100.18]
+
+
+Operation Name	Reference
+--------------	---------
+Acknowledge-Document	[PWG5100.18]
+Acknowledge-Identify-Printer	[PWG5100.18]
+Acknowledge-Job	[PWG5100.18]
+Deregister-Output-Device	[PWG5100.18]
+Fetch-Document	[PWG5100.18]
+Fetch-Job	[PWG5100.18]
+Get-Jobs (extension)	[PWG5100.18]
+Get-Notifications (extension)	[PWG5100.18]
+Get-Output-Device-Attributes	[PWG5100.18]
+Get-Printer-Attributes (extension)	[PWG5100.18]
+Identify-Printer (extension)	[PWG5100.18]
+Release-Job (extension)	[PWG5100.18]
+Update-Active-Jobs	[PWG5100.18]
+Update-Document-Status	[PWG5100.18]
+Update-Job-Status	[PWG5100.18]
+Update-Output-Device-Attributes	[PWG5100.18]
+
+
+Value    Status Code Name	Reference
+------   ---------------------------------------------	---------
+0x0400:0x04FF - Client Error:
+  0x0420	client-error-not-fetchable	[PWG5100.18]

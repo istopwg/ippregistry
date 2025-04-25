@@ -1,0 +1,12 @@
+https://ftp.pwg.org/pub/ipp/registrations/vendor-canon-20250424.txt
+
+Canon would like to request PWG to add following new media sizes to IANA IPP
+registry and MSN2.1:
+
+Attributes (attribute syntax)
+  Keyword Attribute Value       Reference
+  -----------------------       ---------
+media (type2 keyword | name(MAX))       [RFC8011]
+  oe_13x22_13x22in
+  oe_photo-20x30_20x30in
+  om_photo-30x90_300x900mm

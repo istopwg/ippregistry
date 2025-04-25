@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf
 
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
@@ -15,8 +15,12 @@ media (type2 keyword | name(MAX))	[RFC8011]
   iso_c9-long-edge_57x40mm	[ENVELOPE]
   iso_c10-long-edge_40x28mm	[ENVELOPE]
   iso_dl-long-edge_220x110mm	[ENVELOPE]
+  jpn_you1_176x120mm	[ENVELOPE]
+  jpn_you3_148x98mm	[ENVELOPE]
   jpn_you4_235x105mm	[ENVELOPE]
+  jpn_you5_217x95mm	[ENVELOPE]
   jpn_you6_190x98mm	[ENVELOPE]
+  jpn_you7_165x92mm	[ENVELOPE]
   jpn_youchou2_146x111.1mm	[ENVELOPE]
   jpn_youchou3_235x120mm	[ENVELOPE]
   jpn_youchou4_205x90mm	[ENVELOPE]
