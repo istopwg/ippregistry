@@ -17,7 +17,7 @@ fi
 
 echo Applying pending registrations:
 for file in $files; do
-	title=`basename $file .txt | sed -e '1,$s/^vendor-//' | awk '{print toupper($1);}'`
+	title=`basename $file .txt | sed -e '1,$s/^vendor-//' -e '1,$s/^reg-//' | awk '{print toupper($1);}'`
 	url=`head -1 $file`
 	echo "$file: $url"
 	./register $dst -x $url -t $title $src $file || exit 1
