@@ -1,7 +1,7 @@
 //
 // Standard localizations of IPP keywords and enums.
 //
-// Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2018-2025 by The IEEE-ISTO Printer Working Group.
 // Copyright © 2008-2017 by Michael R Sweet
 //
 // Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -246,9 +246,30 @@ static ipp_loc_t	ipp_strings[] =
   { "media-type.stationery-prepunched", "Punched paper" },
   { "media-weight-metric", "Media Weight (grams per m²)" },
   { "media.choice_iso_a4_210x297mm_na_letter_8.5x11in", "A4 or US Letter" },
-  { "media.iso_b5_176x250mm", "Envelope B5" },
-  { "media.iso_b6c4_125x324mm", "Envelope B6/C4" },
-  { "media.iso_dl_110x220mm", "Envelope DL" },
+  { "media.iso_b5_176x250mm", "B5 Envelope" },
+  { "media.iso_b6c4_125x324mm", "B6/C4 Envelope" },
+  { "media.iso_c1-long-flap_917x648mm", "C1 Envelope (Long Flap)" },
+  { "media.iso_c1_648x917mm", "C1 Envelope" },
+  { "media.iso_c10-long-flap_40x28mm", "C10 Envelope (Long Flap)" },
+  { "media.iso_c10_28x40mm", "C10 Envelope" },
+  { "media.iso_c2-long-flap_648x458mm", "C2 Envelope (Long Flap)" },
+  { "media.iso_c2_458x648mm", "C2 Envelope" },
+  { "media.iso_c3-long-flap_458x324mm", "C3 Envelope (Long Flap)" },
+  { "media.iso_c3_324x458mm", "C3 Envelope" },
+  { "media.iso_c4-long-flap_324x229mm", "C4 Envelope (Long Flap)" },
+  { "media.iso_c4_229x324mm", "C4 Envelope" },
+  { "media.iso_c5-long-flap_229x162mm", "C5 Envelope (Long Flap)" },
+  { "media.iso_c5_162x229mm", "C5 Envelope" },
+  { "media.iso_c6-long-flap_162x114mm", "C6 Envelope (Long Flap)" },
+  { "media.iso_c6_114x162mm", "C6 Envelope" },
+  { "media.iso_c7-long-flap_114x81mm", "C7 Envelope (Long Flap)" },
+  { "media.iso_c7_81x114mm", "C7 Envelope" },
+  { "media.iso_c8-long-flap_81x57mm", "C8 Envelope (Long Flap)" },
+  { "media.iso_c8_57x81mm", "C8 Envelope" },
+  { "media.iso_c9-long-flap_57x40mm", "C9 Envelope (Long Flap)" },
+  { "media.iso_c9_40x57mm", "C9 Envelope" },
+  { "media.iso_dl-long-flap_220x110mm", "DL Envelope (Long Flap)" },
+  { "media.iso_dl_110x220mm", "DL Envelope" },
   { "media.iso_ra0_860x1220mm", "ISO RA0" },
   { "media.iso_ra1_610x860mm", "ISO RA1" },
   { "media.iso_ra2_430x610mm", "ISO RA2" },
@@ -260,8 +281,8 @@ static ipp_loc_t	ipp_strings[] =
   { "media.iso_sra3_320x450mm", "ISO SRA3" },
   { "media.iso_sra4_225x320mm", "ISO SRA4" },
   { "media.jis_b0_1030x1456mm", "JIS B0" },
-  { "media.jis_b1_728x1030mm", "JIS B1" },
   { "media.jis_b10_32x45mm", "JIS B10" },
+  { "media.jis_b1_728x1030mm", "JIS B1" },
   { "media.jis_b2_515x728mm", "JIS B2" },
   { "media.jis_b3_364x515mm", "JIS B3" },
   { "media.jis_b4_257x364mm", "JIS B4" },
@@ -271,51 +292,72 @@ static ipp_loc_t	ipp_strings[] =
   { "media.jis_b8_64x91mm", "JIS B8" },
   { "media.jis_b9_45x64mm", "JIS B9" },
   { "media.jis_exec_216x330mm", "JIS Executive" },
-  { "media.jpn_chou2_111.1x146mm", "Envelope Chou 2" },
-  { "media.jpn_chou3_120x235mm", "Envelope Chou 3" },
-  { "media.jpn_chou4_90x205mm", "Envelope Chou 4" },
-  { "media.jpn_chou40_90x225mm", "Envelope Chou 40" },
+  { "media.jpn_chou2_111.1x146mm", "Chou2 Envelope" },
+  { "media.jpn_chou3_120x235mm", "Chou3 Envelope" },
+  { "media.jpn_chou40_90x225mm", "Chou40 Envelope" },
+  { "media.jpn_chou4_90x205mm", "Chou4 Envelope" },
   { "media.jpn_hagaki_100x148mm", "Hagaki" },
-  { "media.jpn_kahu_240x322.1mm", "Envelope Kahu" },
-  { "media.jpn_kaku2_240x332mm", "Envelope Kahu 2" },
+  { "media.jpn_kahu_240x322.1mm", "Kahu Envelope" },
+  { "media.jpn_kaku2_240x332mm", "Kahu2 Envelope" },
   { "media.jpn_oufuku_148x200mm", "Oufuku Reply Postcard" },
-  { "media.jpn_you4_105x235mm", "Envelope You 4" },
-  { "media.na_a2_4.375x5.75in", "Envelope A2" },
-  { "media.na_c5_6.5x9.5in", "Envelope C5" },
+  { "media.jpn_you1-long-flap_176x120mm", "You1 Envelope" },
+  { "media.jpn_you1_120x176mm", "You1 Tate Envelope" },
+  { "media.jpn_you3-long-flap_148x98mm", "You3 Envelope" },
+  { "media.jpn_you3_98x148mm", "You3 Tate Envelope" },
+  { "media.jpn_you4-long-flap_235x105mm", "You4 Envelope" },
+  { "media.jpn_you4_105x235mm", "You4 Tate Envelope" },
+  { "media.jpn_you5-long-flap_217x95mm", "You5 Envelope" },
+  { "media.jpn_you5_95x217mm", "You5 Tate Envelope" },
+  { "media.jpn_you6-long-flap_190x98mm", "You6 Envelope" },
+  { "media.jpn_you6_98x190mm", "You6 Tate Envelope" },
+  { "media.jpn_you7-long-flap_165x92mm", "You7 Envelope" },
+  { "media.jpn_you7_92x165mm", "You7 Tate Envelope" },
+  { "media.jpn_youchou2-long-flap_146x111.1mm", "You Chou2 Envelope" },
+  { "media.jpn_youchou3-long-flap_235x120mm", "You Chou3 Envelope" },
+  { "media.jpn_youchou4-long-flap_205x90mm", "You Chou4 Envelope" },
+  { "media.na_a2_4.375x5.75in", "A2 Envelope" },
+  { "media.na_c5_6.5x9.5in", "C5 Envelope" },
   { "media.na_executive_7.25x10.5in", "Executive" },
   { "media.na_fanfold-eur_8.5x12in", "European Fanfold" },
   { "media.na_fanfold-us_11x14.875in", "US Fanfold" },
   { "media.na_foolscap_8.5x13in", "Foolscap" },
   { "media.na_invoice_5.5x8.5in", "Statement" },
-  { "media.na_legal_8.5x14in", "US Legal" },
   { "media.na_legal-extra_9.5x15in", "US Legal (Extra)" },
-  { "media.na_letter_8.5x11in", "US Letter" },
+  { "media.na_legal_8.5x14in", "US Legal" },
   { "media.na_letter-extra_9.5x12in", "US Letter (Extra)" },
   { "media.na_letter-plus_8.5x12.69in", "US Letter (Plus)" },
-  { "media.na_monarch_3.875x7.5in", "Envelope Monarch" },
-  { "media.na_number-10_4.125x9.5in", "Envelope #10" },
-  { "media.na_number-11_4.5x10.375in", "Envelope #11" },
-  { "media.na_number-12_4.75x11in", "Envelope #12" },
-  { "media.na_number-14_5x11.5in", "Envelope #14" },
-  { "media.na_number-9_3.875x8.875in", "Envelope #9" },
-  { "media.na_personal_3.625x6.5in", "Envelope Personal" },
+  { "media.na_letter_8.5x11in", "US Letter" },
+  { "media.na_monarch-long-flap_7.5x3.875in", "Monarch Envelope (Long Flap)" },
+  { "media.na_monarch_3.875x7.5in", "Monarch Envelope" },
+  { "media.na_number-10-long-flap_9.5x4.125in", "#10 Envelope (Long Flap)" },
+  { "media.na_number-10_4.125x9.5in", "#10 Envelope" },
+  { "media.na_number-11-long-flap_10.375x4.5in", "#11 Envelope (Long Flap)" },
+  { "media.na_number-11_4.5x10.375in", "#11 Envelope" },
+  { "media.na_number-12-long-flap_11x4.75in", "#12 Envelope (Long Flap)" },
+  { "media.na_number-12_4.75x11in", "#12 Envelope" },
+  { "media.na_number-14-long-flap_11.5x5in", "#14 Envelope (Long Flap)" },
+  { "media.na_number-14_5x11.5in", "#14 Envelope" },
+  { "media.na_number-9-long-flap_8.875x3.875in", "#9 Envelope (Long Flap)" },
+  { "media.na_number-9_3.875x8.875in", "#9 Envelope" },
+  { "media.na_personal-long-flap_6.5x3.625in", "Personal Envelope (Long Flap)" },
+  { "media.na_personal_3.625x6.5in", "Personal Envelope" },
   { "media.na_quarto_8.5x10.83in", "Quarto" },
-  { "media.om_folio_210x330mm", "Folio (Special)" },
   { "media.om_folio-sp_215x315mm", "Folio" },
-  { "media.om_invite_220x220mm", "Envelope Invitation" },
-  { "media.om_italian_110x230mm", "Envelope Italian" },
-  { "media.om_postfix_114x229mm", "Envelope Postfix" },
-  { "media.prc_1_102x165mm", "Envelope chinese #1" },
-  { "media.prc_10_324x458mm", "Envelope chinese #10" },
+  { "media.om_folio_210x330mm", "Folio (Special)" },
+  { "media.om_invite_220x220mm", "Invitation Envelope" },
+  { "media.om_italian_110x230mm", "Italian Envelope" },
+  { "media.om_postfix_114x229mm", "Postfix Envelope" },
+  { "media.prc_10_324x458mm", "Chinese #10 Envelope" },
   { "media.prc_16k_146x215mm", "Chinese 16k" },
-  { "media.prc_2_102x176mm", "Envelope chinese #2" },
-  { "media.prc_3_125x176mm", "Envelope chinese #3" },
+  { "media.prc_1_102x165mm", "Chinese #1 Envelope" },
+  { "media.prc_2_102x176mm", "Chinese #2 Envelope" },
   { "media.prc_32k_97x151mm", "Chinese 32k" },
-  { "media.prc_4_110x208mm", "Envelope chinese #4" },
-  { "media.prc_5_110x220mm", "Envelope chinese #5" },
-  { "media.prc_6_120x320mm", "Envelope chinese #6" },
-  { "media.prc_7_160x230mm", "Envelope chinese #7" },
-  { "media.prc_8_120x309mm", "Envelope chinese #8" },
+  { "media.prc_3_125x176mm", "Chinese #3 Envelope" },
+  { "media.prc_4_110x208mm", "Chinese #4 Envelope" },
+  { "media.prc_5_110x220mm", "Chinese #5 Envelope" },
+  { "media.prc_6_120x320mm", "Chinese #6 Envelope" },
+  { "media.prc_7_160x230mm", "Chinese #7 Envelope" },
+  { "media.prc_8_120x309mm", "Chinese #8 Envelope" },
   { "media.roc_16k_7.75x10.75in", "ROC 16k" },
   { "media.roc_8k_10.75x15.5in", "ROC 8k" },
   { "number-up", "Number-Up" },
@@ -746,24 +788,18 @@ ipp_get_localized(const char *attribute,// I - Attribute
 
       *bufptr++ = toupper(*value++);
 
-      if (buffer[0] == 'C')
-      {
-        ipp_copy_string(bufptr, "Envelope ", bufend - bufptr + 1);
-        bufptr += strlen(bufptr);
-      }
-
       while (*value && *value != '_' && bufptr < bufend)
       {
         if (!strncmp(value, "-extra", 6))
         {
           value += 6;
-          ipp_copy_string(bufptr, " (extra)", bufend - bufptr + 1);
+          ipp_copy_string(bufptr, " (Extra)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else if (!strncmp(value, "-tab", 4))
         {
           value += 4;
-          ipp_copy_string(bufptr, " (tab)", bufend - bufptr + 1);
+          ipp_copy_string(bufptr, " (Tab)", bufend - bufptr + 1);
           bufptr += strlen(bufptr);
         }
         else
