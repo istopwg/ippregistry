@@ -828,6 +828,10 @@
 "job-hold-until.third-shift" = "Terzo turno";
 /* TRANSLATORS: Weekend */
 "job-hold-until.weekend" = "Fine settimana";
+"job-release-action.button-press" = "Button press";
+"job-release-action.job-password" = "Job password";
+"job-release-action.none" = "None";
+"job-release-action.owner-authorized" = "Owner authorized";
 /* TRANSLATORS: Retain Job */
 "job-retain-until" = "Mantenere lavoro";
 /* TRANSLATORS: End of day */
@@ -879,8 +883,6 @@
 "job-state-reasons.destination-uri-failed" = "Destinazione uri fallito";
 /* TRANSLATORS: Digital signature did not verify */
 "job-state-reasons.digital-signature-did-not-verify" = "Firma digitale non verificata";
-/* TRANSLATORS: Digital signature type not supported */
-"job-state-reasons.digital-signature-type-not-supported" = "Tipo di firma digitale non supportato";
 /* TRANSLATORS: Document access error */
 "job-state-reasons.document-access-error" = "Errore di accesso ai documenti";
 /* TRANSLATORS: Document format error */
@@ -895,6 +897,7 @@
 "job-state-reasons.document-unprintable-error" = "Documento errore non stampabile";
 /* TRANSLATORS: Errors detected */
 "job-state-reasons.errors-detected" = "Errori rilevati";
+"job-state-reasons.job-canceled-after-timeout" = "Job canceled timeout";
 /* TRANSLATORS: Canceled at printer */
 "job-state-reasons.job-canceled-at-device" = "Annullato dalla stampante";
 /* TRANSLATORS: Canceled by operator */
@@ -911,10 +914,11 @@
 "job-state-reasons.job-data-insufficient" = "Dati insufficienti";
 /* TRANSLATORS: Job delay output until specified */
 "job-state-reasons.job-delay-output-until-specified" = "Uscita di ritardo di lavoro fino a quando specificato";
-/* TRANSLATORS: Job digital signature wait */
-"job-state-reasons.job-digital-signature-wait" = "Lavoro firma digitale attendere";
 /* TRANSLATORS: Job fetchable */
 "job-state-reasons.job-fetchable" = "Lavoro prestabilito";
+"job-state-reasons.job-held-for-authorization" = "Job held for authorization";
+"job-state-reasons.job-held-for-button-press" = "Job held for button press";
+"job-state-reasons.job-held-for-release" = "Job held for release";
 /* TRANSLATORS: Job held for review */
 "job-state-reasons.job-held-for-review" = "Lavoro tenuto in rassegna";
 /* TRANSLATORS: Job held */
@@ -955,6 +959,8 @@
 "job-state-reasons.job-saving" = "Risparmio di lavoro";
 /* TRANSLATORS: Job spooling */
 "job-state-reasons.job-spooling" = "Lavoro spooling";
+"job-state-reasons.job-stored" = "Job stored";
+"job-state-reasons.job-storing" = "Job storing";
 /* TRANSLATORS: Job streaming */
 "job-state-reasons.job-streaming" = "Sviluppo del lavoro";
 /* TRANSLATORS: Suspended */
@@ -965,6 +971,7 @@
 "job-state-reasons.job-suspended-by-system" = "Lavoro sospeso dal sistema";
 /* TRANSLATORS: Job suspended by user */
 "job-state-reasons.job-suspended-by-user" = "Lavoro sospeso dall'utente";
+"job-state-reasons.job-suspended-for-approval" = "Job suspended for approval";
 /* TRANSLATORS: Job suspending */
 "job-state-reasons.job-suspending" = "Sospensione del lavoro";
 /* TRANSLATORS: Job transferring */
@@ -1013,6 +1020,12 @@
 "job-state.8" = "Abortito";
 /* TRANSLATORS: Completed */
 "job-state.9" = "Completato";
+"job-storage-access-supported.group" = "Group";
+"job-storage-access-supported.owner" = "Owner";
+"job-storage-access-supported.public" = "Public";
+"job-storage-disposition-supported.none" = "None";
+"job-storage-disposition-supported.print-and-store" = "Print and store";
+"job-storage-disposition-supported.store-only" = "Store only";
 "label-mode-configured.applicator" = "Richiedente";
 "label-mode-configured.cutter" = "Cutter";
 "label-mode-configured.cutter-delayed" = "Cutter ritardato";
@@ -1513,6 +1526,7 @@
 "media-type.envelope-bond" = "Busta di legame";
 /* TRANSLATORS: Coated envelope */
 "media-type.envelope-coated" = "Busta rivestita";
+"media-type.envelope-colored" = "Colored envelope";
 /* TRANSLATORS: Cotton envelope */
 "media-type.envelope-cotton" = "Busta di cotone";
 /* TRANSLATORS: Fine envelope */
@@ -1683,6 +1697,7 @@
 "media-type.stationery-bond" = "Lega di stazionamento";
 /* TRANSLATORS: Coated paper */
 "media-type.stationery-coated" = "Carta rivestita";
+"media-type.stationery-colored" = "Stationery colored";
 /* TRANSLATORS: Stationery cotton */
 "media-type.stationery-cotton" = "Cotone di cancelleria";
 /* TRANSLATORS: Vellum paper */
@@ -1816,30 +1831,41 @@
 "media.iso_b9_44x62mm" = "B.";
 /* TRANSLATORS: CEnvelope 0 */
 "media.iso_c0_917x1297mm" = "Cenavetta 0";
+"media.iso_c1-long-flap_917x648mm" = "C1 Envelope (Long Flap)";
+"media.iso_c10-long-flap_40x28mm" = "C10 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 10 */
 "media.iso_c10_28x40mm" = "CEnvelope 10";
 /* TRANSLATORS: CEnvelope 1 */
 "media.iso_c1_648x917mm" = "CEnvelope 1";
+"media.iso_c2-long-flap_648x458mm" = "C2 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 2 */
 "media.iso_c2_458x648mm" = "CEnvelope 2";
+"media.iso_c3-long-flap_458x324mm" = "C3 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 3 */
 "media.iso_c3_324x458mm" = "CEnvelope 3";
+"media.iso_c4-long-flap_324x229mm" = "C4 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 4 */
 "media.iso_c4_229x324mm" = "CEnvelope 4";
+"media.iso_c5-long-flap_229x162mm" = "C5 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 5 */
 "media.iso_c5_162x229mm" = "CEnvelope 5";
+"media.iso_c6-long-flap_162x114mm" = "C6 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 6 */
 "media.iso_c6_114x162mm" = "CEnvelope 6";
 /* TRANSLATORS: CEnvelope 6c5 */
 "media.iso_c6c5_114x229mm" = "CEnvelope 6c5";
+"media.iso_c7-long-flap_114x81mm" = "C7 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 7 */
 "media.iso_c7_81x114mm" = "CEnvelope 7";
 /* TRANSLATORS: CEnvelope 7c6 */
 "media.iso_c7c6_81x162mm" = "CEnvelope 7c6";
+"media.iso_c8-long-flap_81x57mm" = "C8 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 8 */
 "media.iso_c8_57x81mm" = "CEnvelope 8";
+"media.iso_c9-long-flap_57x40mm" = "C9 Envelope (Long Flap)";
 /* TRANSLATORS: CEnvelope 9 */
 "media.iso_c9_40x57mm" = "CEnvelope 9";
+"media.iso_dl-long-flap_220x110mm" = "DL Envelope (Long Flap)";
 /* TRANSLATORS: Envelope DL */
 "media.iso_dl_110x220mm" = "Busta DL";
 /* TRANSLATORS: Id-1 */
@@ -1916,16 +1942,28 @@
 "media.jpn_kaku8_119x197mm" = "119 x 197mm";
 /* TRANSLATORS: Oufuku Reply Postcard */
 "media.jpn_oufuku_148x200mm" = "Oufuku Rispondi";
+"media.jpn_you1-long-flap_176x120mm" = "You1 Envelope";
+"media.jpn_you1_120x176mm" = "You1 Tate Envelope";
+"media.jpn_you3-long-flap_148x98mm" = "You3 Envelope";
+"media.jpn_you3_98x148mm" = "You3 Tate Envelope";
+"media.jpn_you4-long-flap_235x105mm" = "You4 Envelope";
 /* TRANSLATORS: Envelope You 4 */
 "media.jpn_you4_105x235mm" = "Busta 4";
+"media.jpn_you5-long-flap_217x95mm" = "You5 Envelope";
+"media.jpn_you5_95x217mm" = "You5 Tate Envelope";
+"media.jpn_you6-long-flap_190x98mm" = "You6 Envelope";
+"media.jpn_you6_98x190mm" = "You6 Tate Envelope";
+"media.jpn_you7-long-flap_165x92mm" = "You7 Envelope";
+"media.jpn_you7_92x165mm" = "You7 Tate Envelope";
+"media.jpn_youchou2-long-flap_146x111.1mm" = "You Chou2 Envelope";
+"media.jpn_youchou3-long-flap_235x120mm" = "You Chou3 Envelope";
+"media.jpn_youchou4-long-flap_205x90mm" = "You Chou4 Envelope";
 /* TRANSLATORS: 10 x 11″ */
 "media.na_10x11_10x11in" = "10 x 11";
 /* TRANSLATORS: 10 x 13″ */
 "media.na_10x13_10x13in" = "10 x 13";
 /* TRANSLATORS: 10 x 14″ */
 "media.na_10x14_10x14in" = "10 x 14";
-/* TRANSLATORS: 10 x 15″ */
-"media.na_10x15_10x15in" = "10 x 15";
 /* TRANSLATORS: 11 x 12″ */
 "media.na_11x12_11x12in" = "11 x 12";
 /* TRANSLATORS: 11 x 15″ */
@@ -2006,20 +2044,27 @@
 "media.na_letter-plus_8.5x12.69in" = "Lettera degli Stati Uniti (Plus)";
 /* TRANSLATORS: US Letter */
 "media.na_letter_8.5x11in" = "Lettera degli Stati Uniti";
+"media.na_monarch-long-flap_7.5x3.875in" = "Monarch Envelope (Long Flap)";
 /* TRANSLATORS: Envelope Monarch */
 "media.na_monarch_3.875x7.5in" = "Busta Monarch";
+"media.na_number-10-long-flap_9.5x4.125in" = "#10 Envelope (Long Flap)";
 /* TRANSLATORS: Envelope #10 */
 "media.na_number-10_4.125x9.5in" = "Busta #10";
+"media.na_number-11-long-flap_10.375x4.5in" = "#11 Envelope (Long Flap)";
 /* TRANSLATORS: Envelope #11 */
 "media.na_number-11_4.5x10.375in" = "Busta #11";
+"media.na_number-12-long-flap_11x4.75in" = "#12 Envelope (Long Flap)";
 /* TRANSLATORS: Envelope #12 */
 "media.na_number-12_4.75x11in" = "Busta #12";
+"media.na_number-14-long-flap_11.5x5in" = "#14 Envelope (Long Flap)";
 /* TRANSLATORS: Envelope #14 */
 "media.na_number-14_5x11.5in" = "Busta #14";
+"media.na_number-9-long-flap_8.875x3.875in" = "#9 Envelope (Long Flap)";
 /* TRANSLATORS: Envelope #9 */
 "media.na_number-9_3.875x8.875in" = "Busta #9";
 /* TRANSLATORS: 8.5 x 13.4″ */
 "media.na_oficio_8.5x13.4in" = "8.5 x 13.4";
+"media.na_personal-long-flap_6.5x3.625in" = "Personal Envelope (Long Flap)";
 /* TRANSLATORS: Envelope Personal */
 "media.na_personal_3.625x6.5in" = "Busta personale";
 /* TRANSLATORS: Quarto */
@@ -2032,6 +2077,7 @@
 "media.na_wide-format_30x42in" = "30 x 42";
 /* TRANSLATORS: 12 x 16″ */
 "media.oe_12x16_12x16in" = "12 x 16";
+"media.oe_13x22_13x22in" = "13 x 22″";
 /* TRANSLATORS: 14 x 17″ */
 "media.oe_14x17_14x17in" = "14 x 17";
 /* TRANSLATORS: 18 x 22″ */
@@ -2047,6 +2093,7 @@
 "media.oe_photo-16r_16x20in" = "16 x 20";
 /* TRANSLATORS: 20 x 24″ */
 "media.oe_photo-20r_20x24in" = "20 x 24";
+"media.oe_photo-20x30_20x30in" = "20 x 30″";
 "media.oe_photo-22r_22x29.5in" = "22 x 29.5";
 "media.oe_photo-22x28_22x28in" = "22 x 28";
 "media.oe_photo-24r_24x31.5in" = "24 x 31,5";
@@ -2054,6 +2101,7 @@
 "media.oe_photo-30r_30x40in" = "30 x 40";
 /* TRANSLATORS: 3.5 x 5″ */
 "media.oe_photo-l_3.5x5in" = "3.5 x 5";
+"media.oe_photo-s10r_10x15in" = "10 x 15″";
 "media.oe_photo-s8r_8x12in" = "8 x 12";
 /* TRANSLATORS: 4 x 4″ */
 "media.oe_square-photo_4x4in" = "4 x 4";
@@ -2077,6 +2125,9 @@
 "media.om_folio-sp_215x315mm" = "Folio";
 /* TRANSLATORS: Folio (Special) */
 "media.om_folio_210x330mm" = "Folio (Special)";
+"media.om_india-fs_215x245mm" = "215 x 245mm";
+"media.om_india-legal1_215x235mm" = "215 x 235mm";
+"media.om_india-legal2_215x255mm" = "215 x 255mm";
 /* TRANSLATORS: Envelope Invitation */
 "media.om_invite_220x220mm" = "Invito della busta";
 /* TRANSLATORS: Envelope Italian */
@@ -2090,6 +2141,7 @@
 "media.om_pa-kai_267x389mm" = "267 x 389m m";
 "media.om_photo-30x40_300x400mm" = "300 x 400 mm";
 "media.om_photo-30x45_300x450mm" = "300 x 450 mm";
+"media.om_photo-30x90_300x900mm" = "300 x 900mm";
 "media.om_photo-35x46_350x460mm" = "350 x 460mm";
 "media.om_photo-40x60_400x600mm" = "400 x 600 mm";
 "media.om_photo-50x75_500x750mm" = "500 x 750 mm";
@@ -2270,8 +2322,6 @@
 "power-state.90" = "Ripristinare duro";
 /* TRANSLATORS: Pre-Dial String */
 "pre-dial-string" = "Pre-Dial String";
-/* TRANSLATORS: Number-Up Layout */
-"presentation-direction-number-up" = "Layout Number-Up";
 /* TRANSLATORS: Brim */
 "print-base.brim" = "Brim";
 /* TRANSLATORS: None */
@@ -2344,6 +2394,9 @@
 "print-supports.none" = "Nessuno";
 /* TRANSLATORS: Standard */
 "print-supports.standard" = "Standard";
+"printer-mode-configured.passthrough" = "Passthrough";
+"printer-mode-configured.release-action" = "Release action";
+"printer-mode-configured.release-printing" = "Release printing";
 /* TRANSLATORS: Print Resolution */
 "printer-resolution" = "Risoluzione di stampa";
 "printer-service-type.copy" = "Copia";
@@ -2602,6 +2655,7 @@
 "printer-state-reasons.die-cutter-warming-up" = "Die cutter riscaldamento";
 /* TRANSLATORS: Door open */
 "printer-state-reasons.door-open" = "Porta aperta";
+"printer-state-reasons.encrypted-job-attributes-requested" = "Encrypted job attributes";
 /* TRANSLATORS: Extruder cooling */
 "printer-state-reasons.extruder-cooling" = "Raffreddamento estrusore";
 /* TRANSLATORS: Extruder failure */
@@ -3806,6 +3860,28 @@
 "printer-state-reasons.stopped-partly" = "Particolare fermata";
 /* TRANSLATORS: Stopping */
 "printer-state-reasons.stopping" = "Fermare";
+"printer-state-reasons.storage-added" = "Storage added";
+"printer-state-reasons.storage-almost-full" = "Storage almost full";
+"printer-state-reasons.storage-configuration-change" = "Storage configuration change";
+"printer-state-reasons.storage-cover-closed" = "Storage cover closed";
+"printer-state-reasons.storage-cover-open" = "Storage cover open";
+"printer-state-reasons.storage-full" = "Storage full";
+"printer-state-reasons.storage-interlock-closed" = "Storage interlock closed";
+"printer-state-reasons.storage-interlock-open" = "Storage interlock open";
+"printer-state-reasons.storage-life-almost-over" = "Storage life almost over";
+"printer-state-reasons.storage-life-over" = "Storage life over";
+"printer-state-reasons.storage-missing" = "Storage missing";
+"printer-state-reasons.storage-offline" = "Storage offline";
+"printer-state-reasons.storage-over-temperature" = "Storage over temperature";
+"printer-state-reasons.storage-power-saver" = "Storage power saver";
+"printer-state-reasons.storage-recoverable-failure" = "Storage recoverable failure";
+"printer-state-reasons.storage-removed" = "Storage removed";
+"printer-state-reasons.storage-thermistor-failure" = "Storage thermistor failure";
+"printer-state-reasons.storage-turned-off" = "Storage turned off";
+"printer-state-reasons.storage-turned-on" = "Storage turned on";
+"printer-state-reasons.storage-under-temperature" = "Storage under temperature";
+"printer-state-reasons.storage-unrecoverable-failure" = "Storage unrecoverable failure";
+"printer-state-reasons.storage-warming-up" = "Storage warming up";
 /* TRANSLATORS: Subunit added */
 "printer-state-reasons.subunit-added" = "Subunit aggiunto";
 /* TRANSLATORS: Subunit almost empty */
@@ -3950,6 +4026,7 @@
 "printer-state-reasons.trimmer-warming-up" = "Trimmer riscaldamento";
 /* TRANSLATORS: Unknown */
 "printer-state-reasons.unknown" = "Sconosciuto";
+"printer-state-reasons.wifi-not-configured" = "Wifi not configured";
 /* TRANSLATORS: Wrapper added */
 "printer-state-reasons.wrapper-added" = "Wrapper aggiunto";
 /* TRANSLATORS: Wrapper almost empty */
@@ -4028,6 +4105,12 @@
 "printer-state.4" = "Trattamento";
 /* TRANSLATORS: Stopped */
 "printer-state.5" = "Fermata";
+"printer-wifi-state.3" = "Off";
+"printer-wifi-state.4" = "Not configured";
+"printer-wifi-state.5" = "Not visible";
+"printer-wifi-state.6" = "Cannot join";
+"printer-wifi-state.7" = "Joining";
+"printer-wifi-state.8" = "On";
 /* TRANSLATORS: Punch Edge */
 "punching-reference-edge" = "Bordo di perforazione";
 /* TRANSLATORS: Bottom */
