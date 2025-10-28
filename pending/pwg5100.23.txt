@@ -1,4 +1,4 @@
-https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf
+https://ftp.pwg.org/pub/pwg/candidates/cs-ippoauth10-20251017-5100.23.pdf
 
 Printer Description attributes:	Reference
 ------------------------------	---------
