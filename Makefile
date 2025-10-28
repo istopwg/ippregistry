@@ -3,7 +3,7 @@
 #
 #   https://www.msweet.org/mxml
 #
-# Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+# Copyright © 2018-2025 by The ISTO Printer Working Group.
 # Copyright © 2008-2018 by Michael R Sweet
 #
 # Licensed under Apache License v2.0.  See the file "LICENSE" for more
@@ -24,7 +24,7 @@ OPTIM		=	-g -Os
 
 # URLs and languages
 IANAIPP_URL	=	http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml
-TRANSLATE_LANGS	=	cs de el es fi fr ga hi hu id it ja ko nl pl pt sk sv tr vi zh
+TRANSLATE_LANGS	=	cs de el es fi fr ga hi hu id it ja ko nl pl pt sk sv ta tr vi zh
 TRANSLATE_URL	=	http://localhost:9000
 
 

@@ -1,7 +1,7 @@
 //
 // Common IPP registry definitions.
 //
-// Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2018-2025 by The ISTO Printer Working Group.
 // Copyright © 2008-2018 by Michael R Sweet
 //
 // Licensed under Apache License v2.0.  See the file "LICENSE" for more

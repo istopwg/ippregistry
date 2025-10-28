@@ -2,6 +2,12 @@
 #
 # Script to make a PWG Semantic Model schema.
 #
+# Copyright © 2018-2025 by The ISTO Printer Working Group.
+# Copyright © 2017-2018 by Michael R Sweet
+#
+# Licensed under Apache License v2.0.  See the file "LICENSE" for more
+# information.
+#
 # Usage:
 #
 #     ./makeschema.sh schema-name service-name [version]

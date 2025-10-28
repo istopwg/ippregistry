@@ -5,7 +5,7 @@
 //
 //    ./regtomap [--faxout] [--jekyll] [--print3d] [--scan] FILENAME.xml >FILENAME.html
 //
-// Copyright © 2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2024-2025 by The ISTO Printer Working Group.
 //
 // Licensed under Apache License v2.0.  See the file "LICENSE" for more
 // information.

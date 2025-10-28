@@ -2,6 +2,11 @@
 #
 # Script to build IPP attribute mapping pages.
 #
+# Copyright © 2018-2025 by The ISTO Printer Working Group.
+#
+# Licensed under Apache License v2.0.  See the file "LICENSE" for more
+# information.
+#
 # Usage:
 #
 #   ./update-ipp-maps.sh [--jekyll] DIRECTORY

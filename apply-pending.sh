@@ -1,4 +1,14 @@
 #!/bin/sh
+#
+# Script to apply pending registrations to the current IANA IPP registry.
+#
+# Copyright © 2018-2025 by The ISTO Printer Working Group.
+# Copyright © 2008-2018 by Michael R Sweet
+#
+# Licensed under Apache License v2.0.  See the file "LICENSE" for more
+# information.
+#
+
 src="iana-ipp-registrations.xml"
 dst="-o ipp-registrations.xml"
 

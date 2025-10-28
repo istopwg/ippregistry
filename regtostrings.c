@@ -5,7 +5,7 @@
 //
 //    ./regtostrings [--code] [--po] filename.xml >filename.ext
 //
-// Copyright © 2018-2024 by The IEEE-ISTO Printer Working Group.
+// Copyright © 2018-2025 by the ISTO Printer Working Group.
 // Copyright © 2008-2019 by Michael R Sweet
 //
 // Licensed under Apache License v2.0.  See the file "LICENSE" for more

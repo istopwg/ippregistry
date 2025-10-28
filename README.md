@@ -1,8 +1,9 @@
 IANA IPP Registry Tools
 =======================
 
-This repository contains the tools used by the PWG IPP workgroup to maintain
-the [IANA IPP registry](https://www.iana.org/assignments/ipp-registrations) and
+This repository contains the tools used by the PWG Internet Printing Protocol
+(IPP) workgroup to maintain the
+[IANA IPP registry](https://www.iana.org/assignments/ipp-registrations) and
 sample IPP strings file.  Four tools and a script are provided:
 
 - `apply-pending.sh`: A script that applies a list of plain text registrations;
@@ -20,7 +21,8 @@ Prerequisites
 -------------
 
 The tools use the [Mini-XML](https://www.msweet.org/mxml) library to access the
-XML registry file.  Otherwise you need a C compiler and a `make` program.
+XML registry file.  Otherwise you need a C compiler and a (POSIX-compatible)
+`make` program.
 
 The "apply-pending.sh" script uses the [curl](https://curl.haxx.se) program to
 download the current IANA IPP registry file.
@@ -130,15 +132,21 @@ The `--po` option tells `regtostrings` to generate a GNU gettext `.po` file:
 The source XML file should be the current IANA IPP registration file at
 <http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml>.
 
+If you have the [StringsUtil][SL] program installed, the "strings" target can be
+used to update the localizations:
+
+    make strings
+
 We use [Weblate][WL] to manage the localization of these strings files.
 
+[SL]: https://www.msweet.org/stringsutil/
 [WL]: https://hosted.weblate.org
 
 
 Legal Stuff
 -----------
 
-ippregistry is Copyright © 2018-2024 by the IEEE-ISTO Printer Working Group.
+ippregistry is Copyright © 2018-2025 by the ISTO Printer Working Group.
 
 This software is licensed under the Apache License Version 2.0.  See the files
 "LICENSE" and "NOTICE" for more information.
