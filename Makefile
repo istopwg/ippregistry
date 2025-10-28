@@ -81,6 +81,9 @@ regtostrings:	regtostrings.c ipp-registry.h ipp-strings.h
 # Update the localizations of the IANA IPP registry
 .PHONY: strings
 strings:	localizations/base.strings
+	for lang in $(TRANSLATE_LANGS); do \
+		stringsutil -c -f localizations/ipp-$$lang.strings merge localizations/base.strings; \
+	done
 
 
 # Do a baseline translation using stringsutil and LibreTranslate
