@@ -1,0 +1,19 @@
+https://ftp.pwg.org/pub/pwg/ipp/registrations/vendor-ipp-20250919.txt
+
+The following registration template defines Chinese media size names for D0 to
+D6 media defined in GB/T 148-1997 and the ZL envelope size defined in GB/T
+1416-2021.
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+media (type2 keyword | name(MAX))	[RFC8011]
+  prc_d0_764x1064mm	[IPP-20250919]
+  prc_d1_532x760mm	[IPP-20250919]
+  prc_d2_380x528mm	[IPP-20250919]
+  prc_d3_264x376mm	[IPP-20250919]
+  prc_d4_188x260mm	[IPP-20250919]
+  prc_d5_130x184mm	[IPP-20250919]
+  prc_d6_92x126mm	[IPP-20250919]
+  prc_zl_120x230mm	[IPP-20250919]
