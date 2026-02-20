@@ -535,7 +535,6 @@
 "job-storage-disposition-supported.none" = "None";
 "job-storage-disposition-supported.print-and-store" = "Print and store";
 "job-storage-disposition-supported.store-only" = "Store only";
-">>>>>>> 683b42a (Update strings files.)"  "";
 "label-mode-configured.applicator" = "Iarratasóir";
 "label-mode-configured.cutter" = "cutter";
 "label-mode-configured.cutter-delayed" = "Cutter moill";
