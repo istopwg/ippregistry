@@ -1,4 +1,6 @@
 /iana-ipp-registrations.xml*
+/iana-ipp-registrations-*.xml
+/ipp.strings
 /ipp-registrations.xml*
 /pending/*.log
 /preview/ipp-registrations.xhtml
