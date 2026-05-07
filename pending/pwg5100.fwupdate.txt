@@ -1,0 +1,78 @@
+https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfwupdate10-20260506.pdf
+
+Operation Attributes:	Reference
+------------------------------	---------
+delay-update-until (type2 keyword)	[FWUPDATE]
+delay-update-until-date-time (dateTime)	[FWUPDATE]
+
+Printer Description Attributes:	Reference
+------------------------------	---------
+printer-new-firmware-policy-configured (type2 keyword)	[FWUPDATE]
+printer-new-firmware-policy-supported (1setOf type2 keyword)	[FWUPDATE]
+printer-firmware-repository-uri-configured (uri)	[FWUPDATE]
+printer-firmware-repository-uri-supported (1setOf uri)	[FWUPDATE]
+
+Printer Status Attributes:	Reference
+------------------------------	---------
+printer-new-firmware-check-date-time (dateTime | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-delayed-until (type2 keyword | no-value)	[FWUPDATE]
+printer-new-firmware-delayed-until-date-time (dateTime | no-value)	[FWUPDATE]
+printer-new-firmware-name (1setOf name(MAX) | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-patches (1setOf text(MAX) | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-k-octets (1setOf integer(1:MAX) | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-string-version (1setOf text(MAX) | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-support-uri (uri | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-urgency (type2 keyword | no-value | unknown)	[FWUPDATE]
+printer-new-firmware-version (1setOf octetString(MAX) | no-value | unknown)	[FWUPDATE]
+
+
+Attributes (attribute syntax)
+  Keyword Attribute Value	Reference
+  -----------------------	---------
+delay-update-until (type2 keyword)	[FWUPDATE]
+  no-hold	[FWUPDATE]
+  indefinite	[FWUPDATE]
+  day-time	[FWUPDATE]
+  evening	[FWUPDATE]
+  night	[FWUPDATE]
+  second-shift	[FWUPDATE]
+  third-shift	[FWUPDATE]
+  weekend	[FWUPDATE]
+ipp-features-supported (1setOf type2 keyword)	[PWG5100.13]
+  fwupdate	[FWUPDATE]
+printer-new-firmware-policy-configured (type2 keyword)	[FWUPDATE]
+  auto	[FWUPDATE]
+  check	[FWUPDATE]
+  directed	[FWUPDATE]
+  download	[FWUPDATE]
+printer-new-firmware-delayed-until (type2 keyword | no-value)	[FWUPDATE]
+  <Any "delay-update-until" keyword value>	[FWUPDATE]
+printer-new-firmware-urgency (type2 keyword | no-value | unknown)	[FWUPDATE]
+  bugfix	[FWUPDATE]
+  feature	[FWUPDATE]
+  security	[FWUPDATE]
+printer-state-reasons (type2 keyword)	[RFC8011]
+  firmware-repository-access-error	[FWUPDATE]
+  firmware-repository-unreachable	[FWUPDATE]
+  new-firmware-installation-delay-until-specified	[FWUPDATE]
+  new-firmware-available	[FWUPDATE]
+  new-firmware-download-failure	[FWUPDATE]
+  new-firmware-download-in-progress	[FWUPDATE]
+  new-firmware-download-success	[FWUPDATE]
+  new-firmware-installation-failure	[FWUPDATE]
+  new-firmware-installation-in-progress	[FWUPDATE]
+  new-firmware-installation-success	[FWUPDATE]
+
+
+Attributes (attribute syntax)
+  Enum Value  Enum Symbolic Name	Reference
+  ----------  ------------------	---------
+operations-supported (1setOf type2 enum)	[RFC8011]
+  0x0068  Check-For-New-Printer-Firmware	[FWUPDATE]
+  0x0069  Update-Printer-Firmware	[FWUPDATE]
+
+
+Operation Name	Reference
+--------------	---------
+Check-For-New-Printer-Firmware	[FWUPDATE]
+Update-Printer-Firmware	[FWUPDATE]
